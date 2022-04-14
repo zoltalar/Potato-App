@@ -1,0 +1,22 @@
+// --------------------------------------------------
+// Site Search
+// --------------------------------------------------
+
+.site-search {
+  padding: 5rem 0 10rem;
+
+  form {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: .625rem;
+    margin: 0 auto;
+    max-width: 50rem;
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    margin-bottom: 5rem;
+    text-align: center;
+  }
+}

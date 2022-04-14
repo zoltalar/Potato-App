@@ -1,0 +1,18 @@
+// --------------------------------------------------
+// Navbar
+// --------------------------------------------------
+
+.navbar-primary {
+  padding: 1.25rem 0;
+
+  .navbar-brand {
+    background: url('~assets/images/logo.png') left center no-repeat;
+    color: #6c757d;
+    display: inline-block;
+    font-size: 1.5rem;
+    font-style: italic;
+    line-height: 1.2;
+    padding: .75rem 0 .75rem 3.75rem;
+    text-decoration: none;
+  }
+}
