@@ -6,6 +6,9 @@
 </template>
 <script>
 export default {
-  name: 'PageIndex'
+  name: 'PageIndex',
+  mounted() {
+    this.loadResources()
+  }
 }
 </script>

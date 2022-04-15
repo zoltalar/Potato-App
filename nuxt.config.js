@@ -29,40 +29,61 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/bootstrap.js',
+    '~/plugins/lodash.js',
+    '~/plugins/mixins.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-  ],
+  buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
+    '@nuxtjs/axios',
+    '@nuxtjs/fontawesome',
     '@nuxtjs/i18n',
   ],
 
+  axios: {
+    baseUrl: 'http://potato-api.local'
+  },
+
+  bootstrapVue: {
+    bootstrapCSS: false,
+    icons: false,
+  },
+
+  fontawesome: {
+    icons: {
+      solid: true,
+      regular: true
+    }
+  },
+
   i18n: {
+    detectBrowserLanguage: {
+      useCookie: false
+    },
+    strategy: 'prefix',
     locales: [
       {
         code: 'en',
+        name: 'English',
         file: 'en-us.js'
       },
       {
         code: 'pl',
+        name: 'Polski',
         file: 'pl.js'
       }
     ],
     lazy: true,
     langDir: 'lang/',
     defaultLocale: 'pl'
-  },
-
-  axios: {
-    baseUrl: 'http://potato-api.local'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

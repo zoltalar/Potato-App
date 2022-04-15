@@ -15,4 +15,16 @@
     padding: .75rem 0 .75rem 3.75rem;
     text-decoration: none;
   }
+
+  .navbar-nav {
+
+    .nav-link {
+
+      img {
+        height: 1.25rem;
+        vertical-align: top;
+        width: auto;
+      }
+    }
+  }
 }
