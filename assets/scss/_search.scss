@@ -25,8 +25,9 @@
     font-weight: 600;
     font-size: 1.25rem;
     left: 1rem;
+    margin-bottom: 0;
     position: absolute;
-    top: 0.55rem;
+    top: 0.65rem;
     z-index: $zindex-dropdown;
   }
 
@@ -36,51 +37,38 @@
     width: 4.1875rem;
   }
 
-  .multiselect {
-
-    &__input {
-      font-size: 1.25rem;
-      line-height: inherit;
-      margin-top: .5rem;
-      padding-left: 0;
-    }
-
-    &__placeholder {
-      margin-bottom: 0;
-      padding-top: .5rem;
-    }
-
-    &__select {
-      height: 3rem;
-    }
-
-    &__single {
-      line-height: inherit;
-      padding-top: .5rem;
-    }
-
-    &__tags {
-      font-size: 1.25rem;
-      min-height: 3.0625rem;
-      padding-left: .75rem;
-    }
+  .item {
+    margin-bottom: 1rem;
   }
 
   .location {
     width: calc(100% - 5.1875rem);
-
-    .multiselect {
-
-      &__tags {
-        padding-left: 4.5rem !important;
-      }
-    }
   }
 
-  .search {
+  .vs {
 
-    .form-control {
-      margin-bottom: 1rem;
+    &__actions {
+      padding-top: 0;
+    }
+
+    &__dropdown-option {
+      padding: .5rem 1rem !important;
+    }
+
+    &__dropdown-toggle {
+      padding: .3125rem .5rem .5rem;
+    }
+
+    &__open-indicator {
+      margin-top: .25rem;
+    }
+
+    &__search {
+      font-size: $input-font-size-lg !important;;
+    }
+
+    &__selected {
+      font-size: $input-font-size-lg !important;
     }
   }
 
@@ -92,6 +80,10 @@
 
     .col-right {
       padding-left: .5rem;
+    }
+
+    .item {
+      margin-bottom: 0;
     }
   }
 }

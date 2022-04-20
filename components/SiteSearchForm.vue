@@ -2,49 +2,51 @@
   <form>
     <b-row>
       <b-col md="6" class="col-left">
-        <multiselect
+        <v-select
           class="item"
-          v-model="search.item"
+          @search="searchInventory"
+          :filterable="false"
           :options="inventory"
-          :multiple="false"
-          :searchable="true"
-          :show-labels="false"
-          :show-no-results="true"
-          @search-change="searchInventory"
-        >
-          <template slot="singleLabel" slot-scope="props">
-            {{ props.option.name }}
+          :placeholder="$t('messages.search_product_with_example')"
+          :reduce="item => item.id"
+          v-model="search.item">
+          <template slot="option" slot-scope="item">
+            <span v-if="item.translations && item.translations.length">{{ item.translations[0].name }}</span>
+            <span v-else>{{ item.name }}</span>
           </template>
-          <template slot="option" slot-scope="props">
-            <strong>{{ props.option.name }}</strong>
+          <template slot="selected-option" slot-scope="item">
+            <span v-if="item.translations && item.translations.length">{{ item.translations[0].name }}</span>
+            <span v-else>{{ item.name }}</span>
           </template>
-        </multiselect>
+          <template slot="no-options">
+            {{ $t('messages.no_inventory_items') }}
+          </template>
+        </v-select>
       </b-col>
       <b-col md="6" class="col-right">
         <div class="position-relative">
           <b-button variant="primary" size="lg">
             <font-awesome-icon icon="search" />
           </b-button>
-          <label for="input-search-location">{{ $t('phrases.near') }}</label>
-          <multiselect
+          <v-select
             class="location"
-            v-model="search.location"
+            @search="searchLocations"
+            :filterable="false"
             :options="cities"
-            :internal-search="false"
-            :multiple="false"
-            :searchable="true"
-            :show-labels="false"
-            :show-no-results="true"
-            @search-change="searchLocations"
-          >
-            <template slot="singleLabel" slot-scope="props">
-              {{ props.option.name }}
+            :placeholder="$t('phrases.near')"
+            :reduce="city => city.id"
+            v-model="search.location">
+            <template slot="option" slot-scope="city">
+              <strong>{{ city.name }}</strong>
+              <small>({{ city.state.name }})</small>
             </template>
-            <template slot="option" slot-scope="props">
-              <strong>{{ props.option.name }}</strong>
-              <small class="ml-1">({{ props.option.state.name }})</small>
+            <template slot="selected-option" slot-scope="city">
+              {{ city.name }}
             </template>
-          </multiselect>
+            <template slot="no-options">
+              {{ $t('messages.no_locations') }}
+            </template>
+          </v-select>
         </div>
       </b-col>
     </b-row>
@@ -62,25 +64,29 @@ export default {
     cities: []
   }),
   methods: {
-    searchInventory (query) {
-      this
-        .$axios
-        .get('/api/potato/inventory/index', {
-          params: { search: query }
-        })
-        .then((response) => {
-          this.inventory = response.data.data
-        })
+    searchInventory (search) {
+      if (search.length >= 2) {
+        this
+          .$axios
+          .get('/api/potato/inventory/index', {
+            params: { search, language: this.languageCode() }
+          })
+          .then((response) => {
+            this.inventory = response.data.data
+          })
+      }
     },
-    searchLocations (query) {
-      this
-        .$axios
-        .get('/api/potato/cities/index', {
-          params: { search: query }
-        })
-        .then((response) => {
-          this.cities = response.data.data
-        })
+    searchLocations (search) {
+      if (search.length >= 2) {
+        this
+          .$axios
+          .get('/api/potato/cities/index', {
+            params: { search, country: this.countryCode() }
+          })
+          .then((response) => {
+            this.cities = response.data.data
+          })
+      }
     }
   }
 }

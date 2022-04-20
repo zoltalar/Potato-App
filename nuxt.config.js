@@ -46,7 +46,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/fontawesome',
     '@nuxtjs/i18n',
-    'nuxt-vue-multiselect'
+    'nuxt-vue-select'
   ],
 
   axios: {

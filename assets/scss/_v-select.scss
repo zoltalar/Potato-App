@@ -1,0 +1,25 @@
+// --------------------------------------------------
+// V-select
+// --------------------------------------------------
+
+.vs {
+
+  &__dropdown-option{
+
+    small {
+      margin-left: .25rem;
+    }
+  }
+
+  &__dropdown-option--highlight {
+    background: $primary !important;
+  }
+
+  &__dropdown-toggle {
+    border-color: $input-border-color !important;
+  }
+
+  &__search {
+    color: $input-color;
+  }
+}
