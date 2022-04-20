@@ -20,8 +20,8 @@ export default {
   name: 'LanguageRegionForm',
   data: () => ({
     i18n: {
-      language: 'pl',
-      country: 'pl'
+      language: undefined,
+      country: undefined
     }
   }),
   methods: {
@@ -30,6 +30,10 @@ export default {
     },
     language () {
       return this.i18n.language
+    },
+    populate () {
+      this.i18n.language = this.languageCode()
+      this.i18n.country = this.countryCode()
     }
   }
 }

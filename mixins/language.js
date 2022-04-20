@@ -1,5 +1,8 @@
 export default {
   methods: {
+    languageCode () {
+      return this.$store.getters['language/code']
+    },
     languageCollection () {
       return this.$store.getters['language/collection']
     },

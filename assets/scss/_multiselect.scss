@@ -1,0 +1,27 @@
+// --------------------------------------------------
+// Multiselect
+// --------------------------------------------------
+
+.multiselect {
+
+  &__content-wrapper {
+    z-index: $zindex-tooltip !important;
+  }
+
+  &__option--highlight {
+    background: $primary !important;
+  }
+
+  &__single {
+    color: $input-color;
+    font-size: 1.25rem !important;
+    padding-left: 0 !important;
+    vertical-align: middle;
+  }
+
+  &__tags {
+    border: $input-border-width solid $input-border-color !important;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+  }
+}
