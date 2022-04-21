@@ -11,7 +11,9 @@
             <li class="nav-item">
               <nuxt-link :to="localePath('/register')" class="nav-link">{{ $t('phrases.register') }}</nuxt-link>
             </li>
-            <b-nav-item href="#">{{ $t('phrases.login') }}</b-nav-item>
+            <li class="nav-item">
+              <nuxt-link :to="localePath('/login')" class="nav-link">{{ $t('phrases.login') }}</nuxt-link>
+            </li>
             <b-nav-item v-b-modal.modal-region-language>
               <img :src="countryFlag(defaultCountry())" />
             </b-nav-item>

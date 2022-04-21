@@ -7,9 +7,63 @@ body {
   min-width: 20rem;
 }
 
+.footer-nav {
+  list-style-type: none;
+  margin: 1rem 0 0;
+  padding: 0;
+
+  > li {
+    display: inline-block;
+
+    & + li {
+      margin-left: 10px;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    margin-top: 0;
+    text-align: right;
+  }
+}
+
 .img-flag {
   height: auto;
   margin: 0 .125rem;
   vertical-align: middle;
   width: 2rem;
+}
+
+.page-title {
+  background-color: #f2f2f2;
+  color: #4c4c4c;
+  padding: 1.25rem 0;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+  }
+}
+
+.site-footer {
+  background-color: #eef9f0;
+  color: #505050;
+  font-family: $font-montserrat;
+  font-size: .8125rem;
+  padding: 3rem 0;
+  text-align: center;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:active,
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    text-align: left;
+  }
 }

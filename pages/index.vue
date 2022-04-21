@@ -1,14 +1,11 @@
 <template>
-  <background>
-    <the-header />
-    <site-search />
-  </background>
+  <div>
+    Home
+  </div>
 </template>
 <script>
 export default {
   name: 'PageIndex',
-  mounted() {
-    this.loadResources()
-  }
+  layout: 'home'
 }
 </script>

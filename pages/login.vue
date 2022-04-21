@@ -1,22 +1,22 @@
 <template>
-  <div class="authentication register">
+  <div class="authentication login">
     <page-title>
-      {{ $t('phrases.register') }}
+      {{ $t('phrases.login') }}
     </page-title>
     <page-content>
-      Register
+      Login
     </page-content>
   </div>
 </template>
 <script>
 export default {
-  name: 'PageRegister',
+  name: 'PageLogin',
   layout: 'default',
   nuxtI18n: {
     locales: ['en', 'pl'],
     paths: {
-      en: '/register',
-      pl: '/rejestracja'
+      en: '/login',
+      pl: '/logowanie'
     }
   }
 }
