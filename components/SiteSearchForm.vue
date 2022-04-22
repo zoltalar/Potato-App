@@ -69,7 +69,11 @@ export default {
         this
           .$axios
           .get('/api/potato/inventory/index', {
-            params: { search, language: this.languageCode() }
+            params: {
+              search,
+              language: this.languageCode(),
+              country: this.countryCode()
+            }
           })
           .then((response) => {
             this.inventory = response.data.data
@@ -81,7 +85,10 @@ export default {
         this
           .$axios
           .get('/api/potato/cities/index', {
-            params: { search, country: this.countryCode() }
+            params: {
+              search,
+              country: this.countryCode()
+            }
           })
           .then((response) => {
             this.cities = response.data.data

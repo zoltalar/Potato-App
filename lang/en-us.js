@@ -10,14 +10,19 @@ export default {
   phrases: {
     contact_us: 'Contact Us',
     country: 'Country',
+    'dont_have_an_account?': "Don't have an account?",
+    email: 'Email',
     home_page: 'Homepage',
     language_and_region: 'Language and Region',
     language: 'Language',
     login: 'Login',
     near: 'Near',
+    password: 'Password',
     potato: 'Potato',
     region: 'Region',
     register: 'Register',
-    search: 'Search'
+    search: 'Search',
+    to_login: 'Login',
+    to_register: 'Register'
   }
 }

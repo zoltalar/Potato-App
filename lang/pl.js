@@ -10,14 +10,19 @@ export default {
   phrases: {
     contact_us: 'Kontakt',
     country: 'Kraj',
+    'dont_have_an_account?': 'Nie posiadasz konta?',
+    email: 'Email',
     home_page: 'Strona Główna',
     language_and_region: 'Język i Region',
     language: 'Język',
     login: 'Logowanie',
     near: 'Koło',
+    password: 'Hasło',
     potato: 'Ziemniak',
     region: 'Region',
     register: 'Rejestracja',
-    search: 'Szukaj'
+    search: 'Szukaj',
+    to_login: 'Zaloguj Się',
+    to_register: 'Zarejestruj Się'
   }
 }

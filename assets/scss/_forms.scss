@@ -2,6 +2,14 @@
 // Forms
 // --------------------------------------------------
 
+.custom-select,
 .form-control {
-  background-color: #f2f2f2;
+  background-color: $gray-150;
+}
+
+.form-default {
+
+  .form-control {
+    @extend .form-control-lg
+  }
 }

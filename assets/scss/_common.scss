@@ -2,6 +2,17 @@
 // Common Styles
 // --------------------------------------------------
 
+.authentication {
+
+  &.login {
+
+    main {
+      margin: 0 auto;
+      max-width: 23rem;
+    }
+  }
+}
+
 body {
   font-family: $font-open-sans;
   min-width: 20rem;
@@ -33,8 +44,12 @@ body {
   width: 2rem;
 }
 
+.page-content {
+  padding: 2rem 0;
+}
+
 .page-title {
-  background-color: #f2f2f2;
+  background-color: $gray-150;
   color: #4c4c4c;
   padding: 1.25rem 0;
 
