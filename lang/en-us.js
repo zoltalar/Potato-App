@@ -1,5 +1,6 @@
 export default {
   messages: {
+    auth_failed: 'These credentials do not match our records.',
     codename: 'Potato',
     copyrights_text: 'Copyright © {year} Potato',
     no_inventory_items: 'No products to display',
@@ -16,6 +17,7 @@ export default {
     language_and_region: 'Language and Region',
     language: 'Language',
     login: 'Login',
+    logout: 'Logout',
     near: 'Near',
     password: 'Password',
     potato: 'Potato',

@@ -8,12 +8,13 @@
         <b-navbar-toggle target="nav-primary-collapse"></b-navbar-toggle>
         <b-collapse id="nav-primary-collapse" is-nav>
           <b-navbar-nav class="ml-auto">
-            <li class="nav-item">
+            <li class="nav-item" v-if=" ! $auth.loggedIn">
               <nuxt-link :to="localePath('/register')" class="nav-link">{{ $t('phrases.register') }}</nuxt-link>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" v-if=" ! $auth.loggedIn">
               <nuxt-link :to="localePath('/login')" class="nav-link">{{ $t('phrases.login') }}</nuxt-link>
             </li>
+            <b-nav-item @click.prevent="logout" v-if="$auth.loggedIn">{{ $t('phrases.logout') }}</b-nav-item>
             <b-nav-item v-b-modal.modal-region-language>
               <img :src="countryFlag(defaultCountry())" />
             </b-nav-item>

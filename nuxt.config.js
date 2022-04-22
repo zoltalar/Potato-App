@@ -44,10 +44,50 @@ export default {
   modules: [
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
     '@nuxtjs/fontawesome',
     '@nuxtjs/i18n',
     'nuxt-vue-select'
   ],
+
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: 'token',
+          global: true,
+          required: true,
+          type: 'Bearer'
+        },
+        user: {
+          property: 'data',
+          autoFetch: true
+        },
+        endpoints: {
+          login: {
+            url: '/api/potato/authentication/login',
+            method: 'post',
+            propertyName: 'token'
+          },
+          user: {
+            url: '/api/potato/users/current',
+            method: 'get',
+            propertyName: 'data'
+          },
+          logout: {
+            url: '/api/potato/authentication/logout',
+            method: 'post'
+          }
+        },
+        tokenType: 'Bearer'
+      }
+    },
+    redirect: {
+      login: '/login',
+      logout: '/',
+      home: false
+    }
+  },
 
   axios: {
     baseUrl: 'http://potato-api.local'

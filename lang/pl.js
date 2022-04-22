@@ -1,5 +1,6 @@
 export default {
   messages: {
+    auth_failed: 'Te dane są nie poprawne.',
     codename: 'Ziemniaczek',
     copyrights_text: 'Copyright © {year} Ziemniaczek',
     no_inventory_items: 'Brak produktów do wyświetlenia',
@@ -16,6 +17,7 @@ export default {
     language_and_region: 'Język i Region',
     language: 'Język',
     login: 'Logowanie',
+    logout: 'Logout',
     near: 'Koło',
     password: 'Hasło',
     potato: 'Ziemniak',
