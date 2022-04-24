@@ -4,7 +4,14 @@
       {{ $t('phrases.register') }}
     </page-title>
     <page-content>
-      Register
+      <b-row>
+        <b-col md="6">
+          <register-form />
+        </b-col>
+        <b-col md="6">
+          2
+        </b-col>
+      </b-row>
     </page-content>
   </div>
 </template>
