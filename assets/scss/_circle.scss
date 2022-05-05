@@ -1,0 +1,29 @@
+// --------------------------------------------------
+// Circle
+// --------------------------------------------------
+
+.circle {
+  background-color: $primary;
+  border-radius: 50%;
+  color: $white;
+  display: inline-block;
+  font-size: 2.5rem;
+  font-weight: 600;
+  height: 5rem;
+  line-height: 80px;
+  text-align: center;
+  width: 5rem;
+
+  > i {
+    color: $white;
+    font-size: 2.25rem;
+  }
+}
+
+.circle-light-gray {
+  background-color: #ced4da;
+}
+
+.circle-red {
+  background-color: #d63b29;
+}

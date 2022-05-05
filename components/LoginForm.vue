@@ -5,7 +5,7 @@
         {{ $t('phrases.email') }}
         <span class="text-danger">*</span>
       </template>
-      <b-form-input type="email" v-model="user.email" />
+      <b-form-input type="email" maxlength="255" v-model="user.email" />
       <div class="invalid-feedback" :class="{'d-block': error}" v-if="error === 'Unauthorized'">
         {{ $t('messages.auth_failed') }}
       </div>
@@ -15,7 +15,7 @@
         {{ $t('phrases.password') }}
         <span class="text-danger">*</span>
       </template>
-      <b-form-input type="password" v-model="user.password" />
+      <b-form-input type="password" maxlength="40" v-model="user.password" />
     </b-form-group>
     <b-form-group>
       <b-btn type="submit" variant="primary" size="lg" block :disabled=" ! hasInput()">{{ $t('phrases.to_login') }}</b-btn>

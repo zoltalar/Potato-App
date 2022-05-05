@@ -1,16 +1,64 @@
 <template>
-  <form class="form-default">
+  <form class="form-default" @submit.prevent="register">
     <b-form-group>
       <template v-slot:label>
         {{ $t('phrases.first_name') }}
         <span class="text-danger">*</span>
       </template>
+      <b-form-input maxlength="100" v-model="user.first_name" />
+      <div class="invalid-feedback d-block" v-if="error('first_name') !== null">
+        {{ error('first_name') }}
+      </div>
+    </b-form-group>
+    <b-form-group>
+      <template v-slot:label>
+        {{ $t('phrases.last_name') }}
+        <span class="text-danger">*</span>
+      </template>
+      <b-form-input maxlength="100" v-model="user.last_name" />
+      <div class="invalid-feedback d-block" v-if="error('last_name') !== null">
+        {{ error('last_name') }}
+      </div>
+    </b-form-group>
+    <b-form-group>
+      <template v-slot:label>
+        {{ $t('phrases.email') }}
+        <span class="text-danger">*</span>
+      </template>
+      <b-form-input maxlength="255" v-model="user.email" />
+      <div class="invalid-feedback d-block" v-if="error('email') !== null">
+        {{ error('email') }}
+      </div>
+    </b-form-group>
+    <b-form-group>
+      <template v-slot:label>
+        {{ $t('phrases.password') }}
+        <span class="text-danger">*</span>
+      </template>
+      <b-input-group>
+        <b-form-input :type="passwordInputType" maxlength="40" v-model="user.password" />
+        <b-input-group-append>
+          <b-button variant="secondary" @click="togglePasswordInputType()">
+            <font-awesome-icon :icon="passwordInputTypeIcon" />
+          </b-button>
+        </b-input-group-append>
+      </b-input-group>
+      <div class="invalid-feedback d-block" v-if="error('password') !== null">
+        {{ error('password') }}
+      </div>
+    </b-form-group>
+    <b-form-group>
+      <b-button variant="primary" type="submit" size="lg">{{ $t('phrases.to_register') }}</b-button>
+      <nuxt-link :to="localePath('/login')" class="ml-3">{{ $t('phrases.to_login') }}</nuxt-link>
     </b-form-group>
   </form>
 </template>
 <script>
+import formErrorsMixin from '@/mixins/form-errors'
+import passwordMixin from '@/mixins/password'
 export default {
   name: 'RegisterForm',
+  mixins: [ formErrorsMixin, passwordMixin ],
   data: () => ({
     user: {
       first_name: '',
@@ -18,6 +66,21 @@ export default {
       email: '',
       password: ''
     }
-  })
+  }),
+  methods: {
+    register () {
+      const user = this.user
+
+      this
+        .$axios
+        .post('/api/potato/register', user)
+        .then((response) => {
+          this.setErrors(response)
+        })
+        .catch((error) => {
+          this.setErrors(error.response)
+        })
+    }
+  }
 }
 </script>

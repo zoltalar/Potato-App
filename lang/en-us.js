@@ -6,7 +6,10 @@ export default {
     no_inventory_items: 'No products to display',
     no_locations: 'No locations to display',
     search_food: 'Find locally grown fresh food',
-    search_product_with_example: 'Search products e.g. Apples'
+    search_product_with_example: 'Search products e.g. Apples',
+    why_register_reason_1: 'Eat healthy and organic food from local farmers and markets.',
+    why_register_reason_2: 'Buy and sell organic food locally.',
+    why_register_reason_3: 'Monitor food prices.'
   },
   phrases: {
     contact_us: 'Contact Us',
@@ -27,6 +30,7 @@ export default {
     register: 'Register',
     search: 'Search',
     to_login: 'Login',
-    to_register: 'Register'
+    to_register: 'Register',
+    'why_register?': 'Why Register?'
   }
 }

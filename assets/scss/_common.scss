@@ -11,6 +11,46 @@
       max-width: 23rem;
     }
   }
+
+  &.register {
+
+    aside {
+      text-align: center;
+
+      h4 {
+        margin: .5rem 0 1.5rem;
+      }
+    }
+
+    main {
+      margin-bottom: 2rem;
+      margin-top: 2rem;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+
+    &.register {
+
+      aside {
+        margin-top: -4.75rem;
+      }
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+
+    &.register {
+
+      aside {
+        margin-left: 10%;
+      }
+
+      main {
+        margin-right: 10%;
+      }
+    }
+  }
 }
 
 body {
@@ -44,7 +84,8 @@ body {
   width: 2rem;
 }
 
-.page-content {
+.page-content,
+.page-content-aside {
   padding: 2rem 0;
 }
 

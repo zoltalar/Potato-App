@@ -6,7 +6,10 @@ export default {
     no_inventory_items: 'Brak produktów do wyświetlenia',
     no_locations: 'Brak miejscowości do wyświetlenia',
     search_food: 'Szukaj zdrową żywność w Twojej okolicy',
-    search_product_with_example: 'Szukaj produktów np. Jabłka'
+    search_product_with_example: 'Szukaj produktów np. Jabłka',
+    why_register_reason_1: 'Spożywaj zdrową żywność od lokalnych rolników i agromarketów.',
+    why_register_reason_2: 'Kupuj i sprzedawaj zdrową żywność lokalnie.',
+    why_register_reason_3: 'Śledź ceny żywności.'
   },
   phrases: {
     contact_us: 'Kontakt',
@@ -27,6 +30,7 @@ export default {
     register: 'Rejestracja',
     search: 'Szukaj',
     to_login: 'Zaloguj Się',
-    to_register: 'Zarejestruj Się'
+    to_register: 'Zarejestruj Się',
+    'why_register?': 'Korzyści z Rejestracji'
   }
 }

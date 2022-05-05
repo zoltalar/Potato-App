@@ -3,16 +3,27 @@
     <page-title>
       {{ $t('phrases.register') }}
     </page-title>
-    <page-content>
-      <b-row>
-        <b-col md="6">
-          <register-form />
-        </b-col>
-        <b-col md="6">
-          2
-        </b-col>
-      </b-row>
-    </page-content>
+    <page-content-aside>
+      <template>
+        <register-form />
+      </template>
+      <template v-slot:aside>
+        <span class="circle">
+          <font-awesome-icon icon="list" />
+        </span>
+        <h4>{{ $t('phrases.why_register?') }}</h4>
+        <div class="list">
+          <div class="list-item" v-for="(reason, i) in reasons()">
+            <span class="circle circle-light-gray">
+              {{ (i + 1) }}
+            </span>
+            <div class="list-item-center">
+              <p>{{ reason.text }}</p>
+            </div>
+          </div>
+        </div>
+      </template>
+    </page-content-aside>
   </div>
 </template>
 <script>
@@ -24,6 +35,15 @@ export default {
     paths: {
       en: '/register',
       pl: '/rejestracja'
+    }
+  },
+  methods: {
+    reasons() {
+      return [
+        { text: this.$t('messages.why_register_reason_1') },
+        { text: this.$t('messages.why_register_reason_2') },
+        { text: this.$t('messages.why_register_reason_3') }
+      ]
     }
   }
 }

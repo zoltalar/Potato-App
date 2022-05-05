@@ -7,7 +7,7 @@
       <login-form />
       <div class="text-center">
         {{ $t('phrases.dont_have_an_account?') }}
-        <nuxt-link :to="localePath('register')">{{ $t('phrases.to_register') }}</nuxt-link>
+        <nuxt-link :to="localePath('/register')">{{ $t('phrases.to_register') }}</nuxt-link>
       </div>
     </page-content>
   </div>
