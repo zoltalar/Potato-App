@@ -5,6 +5,7 @@ export default {
     copyrights_text: 'Copyright © {year} Ziemniaczek',
     no_inventory_items: 'Brak produktów do wyświetlenia',
     no_locations: 'Brak miejscowości do wyświetlenia',
+    registration_successful: 'Konto zostało utworzone pomyślnie.',
     search_food: 'Szukaj zdrową żywność w Twojej okolicy',
     search_product_with_example: 'Szukaj produktów np. Jabłka',
     why_register_reason_1: 'Spożywaj zdrową żywność od lokalnych rolników i agromarketów.',
@@ -31,6 +32,8 @@ export default {
     search: 'Szukaj',
     to_login: 'Zaloguj Się',
     to_register: 'Zarejestruj Się',
+    verify_your_email_address: 'Zweryfikuj Swój Email',
+    verifying: 'Weryfikacja',
     'why_register?': 'Korzyści z Rejestracji'
   }
 }

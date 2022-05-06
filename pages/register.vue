@@ -5,6 +5,10 @@
     </page-title>
     <page-content-aside>
       <template>
+        <b-alert class="mb-4" variant="success" :show=" ! $_.isEmpty(user)">
+          {{ $t('messages.registration_successful') }}
+          <nuxt-link :to="localePath('/login')">{{ $t('phrases.to_login') }}</nuxt-link>
+        </b-alert>
         <register-form />
       </template>
       <template v-slot:aside>
@@ -37,14 +41,25 @@ export default {
       pl: '/rejestracja'
     }
   },
+  data: () => ({
+    user: {}
+  }),
   methods: {
-    reasons() {
+    listen () {
+      this.$root.$on('register', ({ user }) => {
+        this.user = user
+      })
+    },
+    reasons () {
       return [
         { text: this.$t('messages.why_register_reason_1') },
         { text: this.$t('messages.why_register_reason_2') },
         { text: this.$t('messages.why_register_reason_3') }
       ]
     }
+  },
+  mounted() {
+    this.listen()
   }
 }
 </script>

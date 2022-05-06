@@ -5,6 +5,7 @@ export default {
     copyrights_text: 'Copyright © {year} Potato',
     no_inventory_items: 'No products to display',
     no_locations: 'No locations to display',
+    registration_successful: 'You have successfully created an account.',
     search_food: 'Find locally grown fresh food',
     search_product_with_example: 'Search products e.g. Apples',
     why_register_reason_1: 'Eat healthy and organic food from local farmers and markets.',
@@ -31,6 +32,8 @@ export default {
     search: 'Search',
     to_login: 'Login',
     to_register: 'Register',
+    verify_your_email_address: 'Verify your Email Address',
+    verifying: 'Verifying',
     'why_register?': 'Why Register?'
   }
 }

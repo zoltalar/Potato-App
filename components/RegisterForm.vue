@@ -69,17 +69,29 @@ export default {
   }),
   methods: {
     register () {
-      const user = this.user
+      let user = this.user
 
       this
         .$axios
         .post('/api/potato/register', user)
         .then((response) => {
           this.setErrors(response)
+          user = this.$_.get(response, 'data.data')
+          if ( ! this.$_.isEmpty(user)) {
+            this.reset()
+            this.$root.$emit('register', { user })
+          }
         })
         .catch((error) => {
           this.setErrors(error.response)
         })
+    },
+    reset () {
+      const user = this.user
+      this.$_.forOwn(user, (value, key) => {
+        user[key] = ''
+      })
+      this.user = user
     }
   }
 }
