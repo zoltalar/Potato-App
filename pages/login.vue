@@ -16,6 +16,18 @@
 export default {
   name: 'PageLogin',
   layout: 'default',
+  head() {
+    return {
+      title: this.$t('phrases.login'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('messages.meta_description_login')
+        }
+      ],
+    }
+  },
   nuxtI18n: {
     locales: ['en', 'pl'],
     paths: {

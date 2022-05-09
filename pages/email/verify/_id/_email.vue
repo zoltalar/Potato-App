@@ -13,6 +13,13 @@ export default {
   name: 'PageEmailVerify',
   middleware: ['auth'],
   layout: 'default',
+  nuxtI18n: {
+    locales: ['en', 'pl'],
+    paths: {
+      en: '/email/verify',
+      pl: '/email/weryfikuj/:id/:email'
+    }
+  },
   watch: {
     '$route': {
       handler() {
