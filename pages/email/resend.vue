@@ -24,6 +24,18 @@ export default {
   name: 'PageEmailResend',
   middleware: ['auth'],
   layout: 'default',
+  head() {
+    return {
+      title: this.$t('phrases.verify_your_email_address'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('messages.meta_description_email_resend')
+        }
+      ],
+    }
+  },
   nuxtI18n: {
     locales: ['en', 'pl'],
     paths: {

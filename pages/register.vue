@@ -34,6 +34,18 @@
 export default {
   name: 'PageRegister',
   layout: 'default',
+  head() {
+    return {
+      title: this.$t('phrases.register'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.$t('messages.meta_description_register')
+        }
+      ],
+    }
+  },
   nuxtI18n: {
     locales: ['en', 'pl'],
     paths: {
