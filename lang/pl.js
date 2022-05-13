@@ -1,12 +1,24 @@
 export default {
   messages: {
+    account_farms_empty: 'W chwili obecnej nie posiadasz żadnych gospodarstw rolnych. Kliknij w poniższy przycisk aby dodać nowe gospodarstwo rolne.',
     auth_failed: 'Te dane są nie poprawne.',
     codename: 'Ziemniaczek',
     copyrights_text: 'Copyright © {year} Ziemniaczek',
+    farm_create_agreement:
+      '<p><strong>Możesz utworzyć gospodarstwo domowe w serwisie Ziemniaczek jeśli:</strong></p>' +
+      '<ul>' +
+      '<li>Nie wytwarzasz produktów z GMO.</li>' +
+      '</ul>' +
+      '<p>Jeśli masz jakiekolwiek pytania odnośnie warunków utworzenia gospodarstwa rolnego, prosimy o kontakt.</p>' +
+      '<p class="mb-0">Nie sprzedajemy, nie dzielimy i nie rozdajemy Twojego adresu email komukolwiek. Twój adres email nie będzie widoczny w naszym serwisie.</p>',
+    farm_created_message: 'Gospodarstwo rolne zostało utworzone pomyślnie.',
+    farm_promote_no: 'Darmowa opcja ale może zawierać reklamy od naszych reklamodawców.',
+    farm_promote_yes: 'Promowane gospodarstwo domowe sprawia że pojawia się jako pierwsze w wynikach wyszukiwarki; wyświetla się w liście promowanych gospodarstw w danym regionie; gwarantuje większą liczbę odwiedzin. Koszt to <strong class="text-danger">60 PLN za rok.</strong>',
     meta_description_email_resend: 'Potwierdź adres email',
     meta_description_email_verify: 'Zweryfikuj adres email przez link',
     meta_description_index: 'Szukaj zdrową żywność w Twojej okolicy od rolników i agromarketów',
     meta_description_login: 'Zaloguj się do Ziemniaczka',
+    meta_description_my_account_farms: 'Lista moich gospodarstw rolnych',
     meta_description_register: 'Utwórz darmowe konto',
     no_inventory_items: 'Brak produktów do wyświetlenia',
     no_locations: 'Brak miejscowości do wyświetlenia',
@@ -22,28 +34,44 @@ export default {
     why_register_reason_3: 'Śledź ceny żywności.'
   },
   phrases: {
+    account: 'Konto',
+    add_farm: 'Dodaj Gospodarstwo Rolne',
+    cancel: 'Anuluj',
     contact_us: 'Kontakt',
     country: 'Kraj',
+    create: 'Utwórz',
+    dashboard: 'Panel',
     'dont_have_an_account?': 'Nie posiadasz konta?',
     email: 'Email',
+    farm_name: 'Nazwa Gospodarstwa Rolnego',
+    farms: 'Gospodarstwa Rolne',
+    favorites: 'Ulubione',
     first_name: 'Imię',
     home_page: 'Strona Główna',
+    i_have_read_and_agree_with_conditions_above: 'Zapoznałem się i akceptuję powyższe warunki',
     language_and_region: 'Język i Region',
     language: 'Język',
     last_name: 'Nazwisko',
     login: 'Logowanie',
-    logout: 'Logout',
+    logout: 'Wyloguj',
+    markets: 'Agromarkety',
+    messages: 'Wiadomości',
+    my_account: 'Moje Konto',
     near: 'Koło',
+    no: 'Nie',
     password: 'Hasło',
     potato: 'Ziemniak',
+    promote_this_farm: 'Promuj to Gospodarstwo Rolne',
     region: 'Region',
     register: 'Rejestracja',
     request_another_link: 'Wyślij Kolejny Link',
+    reviews: 'Recencje',
     search: 'Szukaj',
     to_login: 'Zaloguj Się',
     to_register: 'Zarejestruj Się',
     verify_your_email_address: 'Zweryfikuj Swój Email',
     verifying: 'Weryfikacja',
-    'why_register?': 'Korzyści z Rejestracji'
+    'why_register?': 'Korzyści z Rejestracji',
+    yes: 'Tak'
   }
 }

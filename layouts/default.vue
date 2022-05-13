@@ -8,7 +8,7 @@
 <script>
 export default {
   name: 'LayoutDefault',
-  head() {
+  head () {
     return {
       titleTemplate: '%s - ' + this.$t('messages.codename'),
       htmlAttrs: {
@@ -16,7 +16,7 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     this.loadResources()
   }
 }

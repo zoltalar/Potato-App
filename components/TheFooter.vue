@@ -11,7 +11,7 @@
               <nuxt-link :to="localePath('/')">{{ $t('phrases.home_page') }}</nuxt-link>
             </li>
             <li>
-              <a href="#">{{ $t('phrases.contact_us') }}</a>
+              <nuxt-link :to="localePath('/contact')">{{ $t('phrases.contact_us') }}</nuxt-link>
             </li>
           </ul>
         </b-col>

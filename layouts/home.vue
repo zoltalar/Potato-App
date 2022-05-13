@@ -11,7 +11,7 @@
 <script>
 export default {
   name: 'LayoutHome',
-  head() {
+  head () {
     return {
       titleTemplate: '%s - ' + this.$t('messages.codename'),
       htmlAttrs: {
@@ -19,7 +19,7 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     this.loadResources()
   }
 }

@@ -14,6 +14,9 @@
             <li class="nav-item" v-if=" ! $auth.loggedIn">
               <nuxt-link :to="localePath('/login')" class="nav-link">{{ $t('phrases.login') }}</nuxt-link>
             </li>
+            <li class="nav-item" v-if="$auth.loggedIn">
+              <nuxt-link :to="localePath('/account/farms')" class="nav-link">{{ $t('phrases.my_account') }}</nuxt-link>
+            </li>
             <b-nav-item @click.prevent="logout" v-if="$auth.loggedIn">{{ $t('phrases.logout') }}</b-nav-item>
             <b-nav-item v-b-modal.modal-region-language>
               <img :src="countryFlag(defaultCountry())" />

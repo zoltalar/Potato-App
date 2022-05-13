@@ -24,7 +24,7 @@ export default {
   name: 'PageEmailResend',
   middleware: ['auth'],
   layout: 'default',
-  head() {
+  head () {
     return {
       title: this.$t('phrases.verify_your_email_address'),
       meta: [

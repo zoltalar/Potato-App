@@ -7,7 +7,7 @@
 export default {
   name: 'PageIndex',
   layout: 'home',
-  head() {
+  head () {
     return {
       title: this.$t('messages.search_food'),
       meta: [

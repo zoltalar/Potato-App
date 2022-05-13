@@ -16,7 +16,7 @@
 export default {
   name: 'PageLogin',
   layout: 'default',
-  head() {
+  head () {
     return {
       title: this.$t('phrases.login'),
       meta: [

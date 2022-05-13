@@ -34,7 +34,7 @@
 export default {
   name: 'PageRegister',
   layout: 'default',
-  head() {
+  head () {
     return {
       title: this.$t('phrases.register'),
       meta: [

@@ -1,12 +1,24 @@
 export default {
   messages: {
+    account_farms_empty: 'You do not have any farms created at the moment. Please click the button below to add a new farm.',
     auth_failed: 'These credentials do not match our records.',
-    codename: 'Potato',
-    copyrights_text: 'Copyright © {year} Potato',
+    codename: 'Local Grocery',
+    copyrights_text: 'Copyright © {year} Local Grocery',
+    farm_create_agreement:
+      '<p><strong>You can create a farm with Local Grocery if:</strong></p>' +
+      '<ul>' +
+      '<li>You do not produce GMOs.</li>' +
+      '</ul>' +
+      '<p>If you have any questions regarding the above, please contact us.</p>' +
+      '<p class="mb-0">We do not sell, share or give away your email address. Your email address will not be visible to public.</p>',
+    farm_created_message: 'Farm has been created successfully.',
+    farm_promote_no: 'Free option but may contain ads from our advertisers.',
+    farm_promote_yes: 'Promoted farm appears in the top of search results; is displayed in the list of promoted farms in a region, guarantees more web traffic. Cost of <strong class="text-danger">15 USD per year</strong>.',
     meta_description_email_resend: 'Confirm your email address',
     meta_description_email_verify: 'Verify your email address by URL',
     meta_description_index: 'Find locally grown fresh food from farmers and markets',
-    meta_description_login: 'Potato login',
+    meta_description_login: 'Local Grocery login',
+    meta_description_my_account_farms: 'My list of farms',
     meta_description_register: 'Register for free account',
     no_inventory_items: 'No products to display',
     no_locations: 'No locations to display',
@@ -22,28 +34,44 @@ export default {
     why_register_reason_3: 'Monitor food prices.'
   },
   phrases: {
+    account: 'Account',
+    add_farm: 'Add Farm',
+    cancel: 'Cancel',
     contact_us: 'Contact Us',
     country: 'Country',
+    create: 'Create',
+    dashboard: 'Dashboard',
     'dont_have_an_account?': "Don't have an account?",
     email: 'Email',
+    farm_name: 'Farm Name',
+    farms: 'Farms',
+    favorites: 'Favorites',
     first_name: 'First Name',
     home_page: 'Homepage',
+    i_have_read_and_agree_with_conditions_above: 'I have read and agree with conditions above',
     language_and_region: 'Language and Region',
     language: 'Language',
     last_name: 'Last Name',
     login: 'Login',
     logout: 'Logout',
+    markets: 'Markets',
+    messages: 'Messages',
+    my_account: 'My Account',
     near: 'Near',
+    no: 'No',
     password: 'Password',
     potato: 'Potato',
+    promote_this_farm: 'Promote this Farm',
     region: 'Region',
     register: 'Register',
     request_another_link: 'Request Another Link',
+    reviews: 'Reviews',
     search: 'Search',
     to_login: 'Login',
     to_register: 'Register',
     verify_your_email_address: 'Verify your Email Address',
     verifying: 'Verifying',
-    'why_register?': 'Why Register?'
+    'why_register?': 'Why Register?',
+    yes: 'Yes'
   }
 }
