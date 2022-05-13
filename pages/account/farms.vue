@@ -8,10 +8,18 @@
         <my-account-menu class="mb-4" />
       </template>
       <template>
-        <b-alert variant="success" :show="hasFlashMessage()" dismissible>
+        <b-alert class="mb-4" variant="success" :show="hasFlashMessage()" @dismissed="clearFlashMessage()" dismissible>
           {{ flashMessage() }}
         </b-alert>
-        <div class="mb-4" v-if="farms.length === 0">
+        <div v-if="farms.length > 0">
+          <p v-html="$t('messages.account_farms')"></p>
+          <farm-list-item class="mb-4" :farm="farm" v-for="(farm, i) in farms" :key="'farm-list-item-' + i">
+            <template v-slot:links>
+              <nuxt-link :to="localePath({ name: 'farms-edit-id', params: { id: farm.id } })">{{ $t('phrases.edit') }}</nuxt-link>
+            </template>
+          </farm-list-item>
+        </div>
+        <div class="mb-4" v-else>
           <p v-html="$t('messages.account_farms_empty')"></p>
         </div>
         <nuxt-link :to="localePath('/farms/create')" class="btn btn-primary btn-lg">{{ $t('phrases.add_farm') }}</nuxt-link>
@@ -45,6 +53,19 @@ export default {
   },
   data: () => ({
     farms: []
-  })
+  }),
+  methods: {
+    fetch() {
+      this
+        .$axios
+        .get('/api/potato/account/farms')
+        .then((response) => {
+          this.farms = this._.get(response, 'data.data')
+        })
+    }
+  },
+  mounted() {
+    this.fetch()
+  }
 }
 </script>

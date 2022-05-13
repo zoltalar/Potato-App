@@ -1,5 +1,6 @@
 export default {
   messages: {
+    account_farms: 'List below contains all your farms.',
     account_farms_empty: 'You do not have any farms created at the moment. Please click the button below to add a new farm.',
     auth_failed: 'These credentials do not match our records.',
     codename: 'Local Grocery',
@@ -37,11 +38,14 @@ export default {
     account: 'Account',
     add_farm: 'Add Farm',
     cancel: 'Cancel',
+    contact_information: 'Contact Information',
     contact_us: 'Contact Us',
     country: 'Country',
     create: 'Create',
     dashboard: 'Dashboard',
     'dont_have_an_account?': "Don't have an account?",
+    edit: 'Edit',
+    edit_farm: 'Edit Farm',
     email: 'Email',
     farm_name: 'Farm Name',
     farms: 'Farms',

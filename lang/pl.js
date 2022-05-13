@@ -1,5 +1,6 @@
 export default {
   messages: {
+    account_farms: 'Lista poniżej zawiera wszystkie Twoje gospodarstwa rolne.',
     account_farms_empty: 'W chwili obecnej nie posiadasz żadnych gospodarstw rolnych. Kliknij w poniższy przycisk aby dodać nowe gospodarstwo rolne.',
     auth_failed: 'Te dane są nie poprawne.',
     codename: 'Ziemniaczek',
@@ -37,11 +38,14 @@ export default {
     account: 'Konto',
     add_farm: 'Dodaj Gospodarstwo Rolne',
     cancel: 'Anuluj',
+    contact_information: 'Dane Kontaktowe',
     contact_us: 'Kontakt',
     country: 'Kraj',
     create: 'Utwórz',
     dashboard: 'Panel',
     'dont_have_an_account?': 'Nie posiadasz konta?',
+    edit: 'Edytuj',
+    edit_farm: 'Edytuj Gospodarstwo Rolne',
     email: 'Email',
     farm_name: 'Nazwa Gospodarstwa Rolnego',
     farms: 'Gospodarstwa Rolne',
