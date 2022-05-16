@@ -1,5 +1,5 @@
 <template>
-  <form class="form-default" @submit.prevent="register">
+  <form class="form-default" @submit.prevent="update">
     <b-form-group>
       <template v-slot:label>
         {{ $t('phrases.first_name') }}
@@ -30,69 +30,64 @@
         {{ error('email') }}
       </div>
     </b-form-group>
-    <b-form-group>
-      <template v-slot:label>
-        {{ $t('phrases.password') }}
-        <span class="text-danger">*</span>
-      </template>
-      <b-input-group>
-        <b-form-input :type="passwordInputType" :class="{'is-invalid': error('password') !== null}" maxlength="40" v-model="user.password" />
-        <b-input-group-append>
-          <b-button variant="secondary" @click="togglePasswordInputType()">
-            <font-awesome-icon :icon="passwordInputTypeIcon" />
-          </b-button>
-        </b-input-group-append>
-      </b-input-group>
-      <div class="invalid-feedback d-block" v-if="error('password') !== null">
-        {{ error('password') }}
+    <b-form-group :label="$t('phrases.phone')">
+      <b-form-input :class="{'is-invalid': error('phone') !== null}" maxlength="20" v-model="user.phone" />
+      <div class="invalid-feedback d-block" v-if="error('phone') !== null">
+        {{ error('phone') }}
       </div>
     </b-form-group>
     <b-form-group>
-      <b-button type="submit" variant="primary" size="lg">{{ $t('phrases.to_register') }}</b-button>
-      <nuxt-link :to="localePath('/login')" class="ml-3">{{ $t('phrases.to_login') }}</nuxt-link>
+      <b-button type="submit" variant="primary" size="lg">{{ $t('phrases.save') }}</b-button>
     </b-form-group>
   </form>
 </template>
 <script>
 import formErrorsMixin from '@/mixins/form-errors'
-import passwordMixin from '@/mixins/password'
 export default {
-  name: 'RegisterForm',
-  mixins: [ formErrorsMixin, passwordMixin ],
+  name: 'ContactInformationForm',
+  mixins: [ formErrorsMixin ],
   data: () => ({
     user: {
       first_name: '',
       last_name: '',
       email: '',
-      password: ''
+      phone: ''
     }
   }),
   methods: {
-    register () {
+    populate () {
+      const editedUser = this.authUser
+      const user = this.user
+
+      if ( ! this.$_.isEmpty(editedUser)) {
+        this.$_.forOwn(editedUser, (value, key) => {
+          if (key in user) {
+            user[key] = value
+          }
+        })
+
+        this.user = user
+      }
+    },
+    update () {
       let user = this.user
 
       this
         .$axios
-        .post('/api/potato/register', user)
+        .post('/api/potato/account/update-contact-information', user)
         .then((response) => {
-          this.setErrors(response)
           user = this.$_.get(response, 'data.data')
           if ( ! this.$_.isEmpty(user)) {
-            this.reset()
-            this.$root.$emit('register', { user })
+            this.$root.$emit('contact-information-updated', { user })
           }
         })
         .catch((error) => {
           this.setErrors(error.response)
         })
-    },
-    reset () {
-      const user = this.user
-      this.$_.forOwn(user, (value, key) => {
-        user[key] = ''
-      })
-      this.user = user
     }
+  },
+  mounted () {
+    this.populate()
   }
 }
 </script>

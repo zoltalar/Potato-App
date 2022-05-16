@@ -1,9 +1,11 @@
 export default {
   messages: {
+    account_contact_information: 'This is your contact information that we use for order status updates. Please keep it up to date.',
     account_farms: 'List below contains all your farms.',
     account_farms_empty: 'You do not have any farms created at the moment. Please click the button below to add a new farm.',
     auth_failed: 'These credentials do not match our records.',
     codename: 'Local Grocery',
+    contact_information_updated: 'Your profile has been updated successfully.',
     copyrights_text: 'Copyright © {year} Local Grocery',
     farm_create_agreement:
       '<p><strong>You can create a farm with Local Grocery if:</strong></p>' +
@@ -64,12 +66,14 @@ export default {
     near: 'Near',
     no: 'No',
     password: 'Password',
+    phone: 'Phone',
     potato: 'Potato',
     promote_this_farm: 'Promote this Farm',
     region: 'Region',
     register: 'Register',
     request_another_link: 'Request Another Link',
     reviews: 'Reviews',
+    save: 'Save',
     search: 'Search',
     to_login: 'Login',
     to_register: 'Register',

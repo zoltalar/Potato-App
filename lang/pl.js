@@ -1,9 +1,11 @@
 export default {
   messages: {
+    account_contact_information: 'To są Twoje informacje kontaktowe które wykorzystujemy do obsługi zamówień. Prosimy o aktualność.',
     account_farms: 'Lista poniżej zawiera wszystkie Twoje gospodarstwa rolne.',
     account_farms_empty: 'W chwili obecnej nie posiadasz żadnych gospodarstw rolnych. Kliknij w poniższy przycisk aby dodać nowe gospodarstwo rolne.',
     auth_failed: 'Te dane są nie poprawne.',
     codename: 'Ziemniaczek',
+    contact_information_updated: 'Twój profil został zaktualizowany pomyślnie.',
     copyrights_text: 'Copyright © {year} Ziemniaczek',
     farm_create_agreement:
       '<p><strong>Możesz utworzyć gospodarstwo domowe w serwisie Ziemniaczek jeśli:</strong></p>' +
@@ -64,12 +66,14 @@ export default {
     near: 'Koło',
     no: 'Nie',
     password: 'Hasło',
+    phone: 'Telefon',
     potato: 'Ziemniak',
     promote_this_farm: 'Promuj to Gospodarstwo Rolne',
     region: 'Region',
     register: 'Rejestracja',
     request_another_link: 'Wyślij Kolejny Link',
     reviews: 'Recencje',
+    save: 'Zapisz',
     search: 'Szukaj',
     to_login: 'Zaloguj Się',
     to_register: 'Zarejestruj Się',

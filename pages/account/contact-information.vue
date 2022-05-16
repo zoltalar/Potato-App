@@ -8,7 +8,15 @@
         <my-account-menu class="mb-4" />
       </template>
       <template>
-        Test
+        <b-alert class="mb-4" variant="success" :show="hasFlashMessage()" @dismissed="clearFlashMessage()" dismissible>
+          {{ flashMessage() }}
+        </b-alert>
+        <p class="mb-4">{{ $t('messages.account_contact_information') }}</p>
+        <b-row>
+          <b-col md="6">
+            <contact-information-form />
+          </b-col>
+        </b-row>
       </template>
     </page-aside-content>
   </div>
@@ -36,6 +44,17 @@ export default {
       en: '/account/contact-information',
       pl: '/konto/dane-kontaktowe'
     }
+  },
+  methods: {
+    listen () {
+      this.$root.$on('contact-information-updated', () => {
+        this.$store.commit('flash/message', this.$t('messages.contact_information_updated'))
+        this.$auth.fetchUser()
+      })
+    }
+  },
+  mounted() {
+    this.listen()
   }
 }
 </script>
