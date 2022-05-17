@@ -5,7 +5,7 @@
         {{ $t('phrases.farm_name') }}
         <span class="text-danger">*</span>
       </template>
-      <b-form-input :class="{'is-invalid': error('name') !== null}" maxlength="100" v-model="farm.name" />
+      <b-form-input :class="{'is-invalid': error('name') !== null}" maxlength="255" v-model="farm.name" />
       <div class="invalid-feedback d-block" v-if="error('name') !== null">
         {{ error('name') }}
       </div>

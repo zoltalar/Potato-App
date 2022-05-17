@@ -37,7 +37,7 @@ export default {
   methods: {
     listen () {
       this.$root.$on('farm-created', () => {
-        this.$store.commit('flash/message', this.$t('messages.farm_created_message'))
+        this.$store.commit('flash/message', this.$t('messages.farm_created'))
         this.$router.push(this.localePath('/account/farms'))
       })
     }

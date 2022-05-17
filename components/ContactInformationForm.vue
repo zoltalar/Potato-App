@@ -79,6 +79,7 @@ export default {
           user = this.$_.get(response, 'data.data')
           if ( ! this.$_.isEmpty(user)) {
             this.$root.$emit('contact-information-updated', { user })
+            this.$auth.fetchUser()
           }
         })
         .catch((error) => {

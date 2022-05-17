@@ -49,7 +49,6 @@ export default {
     listen () {
       this.$root.$on('contact-information-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.contact_information_updated'))
-        this.$auth.fetchUser()
       })
     }
   },

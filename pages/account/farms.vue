@@ -15,7 +15,7 @@
           <p v-html="$t('messages.account_farms')"></p>
           <farm-list-item class="mb-4" :farm="farm" v-for="(farm, i) in farms" :key="'farm-list-item-' + i">
             <template v-slot:links>
-              <nuxt-link :to="localePath({ name: 'farms-edit-id', params: { id: farm.id } })">{{ $t('phrases.edit') }}</nuxt-link>
+              <nuxt-link :to="localePath({ name: 'farms-edit-id-tab', params: { id: farm.id, tab: localeFarmEditTab('contact-information') } })">{{ $t('phrases.edit') }}</nuxt-link>
             </template>
           </farm-list-item>
         </div>
