@@ -19,6 +19,8 @@ export default {
     farm_created: 'Gospodarstwo rolne zostało utworzone pomyślnie.',
     farm_description: 'Podaj kilka zdań odnośnie Twojego gospodarstwa rolnego. Nie zapomnij użyć słów kluczowych typu "świeże pomidory", "nabiał". Nie wpisuj Twojego adresu emailowego w celu zapobiegania spamu.',
     farm_description_updated: 'Opis gospodarstwa rolnego został zaktualizowany pomyślnie.',
+    farm_operating_hours: 'Wpisz dni kiedy Twoje gospodarstwo rolne jest otwarte, np. <em>Od poniedziałku do piątku: 7 - 16</em>.',
+    farm_operating_hours_updated: 'Godziny otwarcia gospodarstwa rolnego zostały zaktualizowane pomyślnie.',
     farm_promote_no: 'Darmowa opcja ale może zawierać reklamy od naszych reklamodawców.',
     farm_promote_yes: 'Promowane gospodarstwo domowe sprawia że pojawia się jako pierwsze w wynikach wyszukiwarki; wyświetla się w liście promowanych gospodarstw w danym regionie; gwarantuje większą liczbę odwiedzin. Koszt to <strong class="text-danger">60 PLN za rok.</strong>',
     meta_description_email_resend: 'Potwierdź adres email',

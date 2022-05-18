@@ -24,6 +24,11 @@
           <p class="mb-4">{{ $t('messages.farm_description') }}</p>
           <farm-description-form :edited-farm="farm" />
         </div>
+        <div v-else-if="farmEditTab() === 'operating-hours'">
+          <h5 class="mb-2">{{ $t('phrases.operating_hours') }}</h5>
+          <p class="mb-4" v-html="$t('messages.farm_operating_hours')"></p>
+          <farm-operating-hours-form :edited-farm="farm" />
+        </div>
       </template>
     </page-aside-content>
   </div>
@@ -82,6 +87,9 @@ export default {
       })
       this.$root.$on('farm-description-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.farm_description_updated'))
+      })
+      this.$root.$on('farm-operating-hours-updated', () => {
+        this.$store.commit('flash/message', this.$t('messages.farm_operating_hours_updated'))
       })
     }
   },

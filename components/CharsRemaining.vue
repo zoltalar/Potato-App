@@ -25,7 +25,7 @@ export default {
       input.dispatchEvent(new KeyboardEvent('keypress'))
     },
     update (value) {
-      this.value = value
+      this.value = (this.$_.isNil(value) ? '' : value)
     }
   },
   mounted () {
