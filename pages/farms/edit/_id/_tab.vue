@@ -29,6 +29,14 @@
           <p class="mb-4" v-html="$t('messages.farm_operating_hours')"></p>
           <farm-operating-hours-form :edited-farm="farm" />
         </div>
+        <div v-else-if="farmEditTab() === 'social-media'">
+          <h5 class="mb-4">{{ $t('phrases.social_media') }}</h5>
+          <b-row>
+            <b-col md="9">
+              <farm-social-media-form :edited-farm="farm" />
+            </b-col>
+          </b-row>
+        </div>
       </template>
     </page-aside-content>
   </div>
@@ -90,6 +98,9 @@ export default {
       })
       this.$root.$on('farm-operating-hours-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.farm_operating_hours_updated'))
+      })
+      this.$root.$on('farm-social-media-updated', () => {
+        this.$store.commit('flash/message', this.$t('messages.farm_social_media_updated'))
       })
     }
   },
