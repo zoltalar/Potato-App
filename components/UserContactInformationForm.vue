@@ -44,7 +44,7 @@
 <script>
 import formErrorsMixin from '@/mixins/form-errors'
 export default {
-  name: 'ContactInformationForm',
+  name: 'UserContactInformationForm',
   mixins: [ formErrorsMixin ],
   data: () => ({
     user: {
@@ -74,11 +74,11 @@ export default {
 
       this
         .$axios
-        .post('/api/potato/account/update-contact-information', user)
+        .put('/api/potato/users/update-contact-information', user)
         .then((response) => {
           user = this.$_.get(response, 'data.data')
           if ( ! this.$_.isEmpty(user)) {
-            this.$root.$emit('contact-information-updated', { user })
+            this.$root.$emit('user-contact-information-updated', { user })
             this.$auth.fetchUser()
           }
         })

@@ -21,7 +21,10 @@ export default{
           href: this.localePath('/account/contact-information'),
           title: this.$t('phrases.contact_information')
         },
-        { href: '#', title: this.$t('phrases.password') }
+        {
+          href: this.localePath('/account/password'),
+          title: this.$t('phrases.password')
+        }
       ]
     }
   }

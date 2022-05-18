@@ -11,10 +11,10 @@
         <b-alert class="mb-4" variant="success" :show="hasFlashMessage()" @dismissed="clearFlashMessage()" dismissible>
           {{ flashMessage() }}
         </b-alert>
-        <p class="mb-4">{{ $t('messages.account_contact_information') }}</p>
+        <p class="mb-4">{{ $t('messages.account_password') }}</p>
         <b-row>
           <b-col md="6">
-            <user-contact-information-form />
+            <user-password-form />
           </b-col>
         </b-row>
       </template>
@@ -23,17 +23,17 @@
 </template>
 <script>
 export default {
-  name: 'PageAccountContactInformation',
+  name: 'PageAccountPassword',
   middleware: ['auth'],
   layout: 'default',
   head () {
     return {
-      title: this.$t('phrases.contact_information'),
+      title: this.$t('phrases.password'),
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('messages.meta_description_my_account_contact_information')
+          content: this.$t('messages.meta_description_my_account_password')
         }
       ],
     }
@@ -41,14 +41,14 @@ export default {
   nuxtI18n: {
     locales: ['en', 'pl'],
     paths: {
-      en: '/account/contact-information',
-      pl: '/konto/dane-kontaktowe'
+      en: '/account/password',
+      pl: '/konto/haslo'
     }
   },
   methods: {
     listen () {
-      this.$root.$on('user-contact-information-updated', () => {
-        this.$store.commit('flash/message', this.$t('messages.user_contact_information_updated'))
+      this.$root.$on('user-password-updated', () => {
+        this.$store.commit('flash/message', this.$t('messages.user_password_updated'))
       })
     }
   },

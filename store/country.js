@@ -15,7 +15,7 @@ export const mutations = {
 export const actions = {
   async code ({ commit }, code) {
     if (this.$auth.loggedIn) {
-      await this.$axios.post('/api/potato/users/update-country', { code })
+      await this.$axios.put('/api/potato/users/update-country', { code })
     }
     commit('code', code)
   },
