@@ -5,6 +5,7 @@ import countryMixin from '@/mixins/country'
 import farmMixin from '@/mixins/farm'
 import flashMixin from '@/mixins/flash'
 import languageMixin from '@/mixins/language'
+import nameableMixin from '@/mixins/nameable'
 import systemMixin from '@/mixins/system'
 
 Vue.mixin(authMixin)
@@ -12,4 +13,5 @@ Vue.mixin(countryMixin)
 Vue.mixin(farmMixin)
 Vue.mixin(flashMixin)
 Vue.mixin(languageMixin)
+Vue.mixin(nameableMixin)
 Vue.mixin(systemMixin)

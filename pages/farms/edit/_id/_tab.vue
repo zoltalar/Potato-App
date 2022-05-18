@@ -11,12 +11,19 @@
         <b-alert class="mb-4" variant="success" :show="hasFlashMessage()" @dismissed="clearFlashMessage()" dismissible>
           {{ flashMessage() }}
         </b-alert>
-        <h5 class="mb-4">{{ $t('phrases.contact_information') }}</h5>
-        <b-row>
-          <b-col md="6">
-            <farm-contact-information-form :edited-farm="farm" />
-          </b-col>
-        </b-row>
+        <div v-if="farmEditTab() === 'contact-information'">
+          <h5 class="mb-4">{{ $t('phrases.contact_information') }}</h5>
+          <b-row>
+            <b-col md="6">
+              <farm-contact-information-form :edited-farm="farm" />
+            </b-col>
+          </b-row>
+        </div>
+        <div v-else-if="farmEditTab() === 'description'">
+          <h5 class="mb-2">{{ $t('phrases.description') }}</h5>
+          <p class="mb-4">{{ $t('messages.farm_description') }}</p>
+          <farm-description-form :edited-farm="farm" />
+        </div>
       </template>
     </page-aside-content>
   </div>
@@ -72,6 +79,9 @@ export default {
     listen () {
       this.$root.$on('farm-contact-information-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.farm_contact_information_updated'))
+      })
+      this.$root.$on('farm-description-updated', () => {
+        this.$store.commit('flash/message', this.$t('messages.farm_description_updated'))
       })
     }
   },
