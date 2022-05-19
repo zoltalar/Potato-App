@@ -19,6 +19,14 @@
             </b-col>
           </b-row>
         </div>
+        <div v-if="farmEditTab() === 'address'">
+          <h5 class="mb-4">{{ $t('phrases.address') }}</h5>
+          <b-row>
+            <b-col md="6">
+              <farm-address-form :edited-farm="farm" />
+            </b-col>
+          </b-row>
+        </div>
         <div v-else-if="farmEditTab() === 'description'">
           <h5 class="mb-2">{{ $t('phrases.description') }}</h5>
           <p class="mb-4">{{ $t('messages.farm_description') }}</p>

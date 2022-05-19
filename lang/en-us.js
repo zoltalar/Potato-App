@@ -93,6 +93,7 @@ export default {
     potato: 'Potato',
     products: 'Products',
     promote_this_farm: 'Promote this Farm',
+    publish_on_website: 'Publish on Website',
     publish_phone_on_the_website: 'Publish Phone on the Website',
     region: 'Region',
     register: 'Register',

@@ -93,6 +93,7 @@ export default {
     potato: 'Ziemniak',
     products: 'Produkty',
     promote_this_farm: 'Promuj to Gospodarstwo Rolne',
+    publish_on_website: 'Opublikuj na Stronie',
     publish_phone_on_the_website: 'Opublikuj Telefon na Stronie',
     region: 'Region',
     register: 'Rejestracja',
