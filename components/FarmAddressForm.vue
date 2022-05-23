@@ -16,8 +16,8 @@
         <span class="text-danger">*</span>
       </template>
       <b-form-select size="lg" v-model="address.state_id" :options="stateOptions()" :disabled="$_.isNil(country_id)"></b-form-select>
-      <div class="invalid-feedback d-block" v-if="error('state_id') !== null">
-        {{ error('state_id') }}
+      <div class="invalid-feedback d-block" v-if="error('address.state_id') !== null">
+        {{ error('address.state_id') }}
       </div>
     </b-form-group>
     <b-form-group>
@@ -25,22 +25,22 @@
         {{ addressLabel() }}
         <span class="text-danger">*</span>
       </template>
-      <b-form-input :class="{'is-invalid': error('address') !== null}" maxlength="100" v-model="address.address" />
-      <div class="invalid-feedback d-block" v-if="error('address') !== null">
-        {{ error('address') }}
+      <b-form-input :class="{'is-invalid': error('address.address') !== null}" maxlength="100" v-model="address.address" />
+      <div class="invalid-feedback d-block" v-if="error('address.address') !== null">
+        {{ error('address.address') }}
       </div>
     </b-form-group>
     <b-form-group v-if="$_.get(this.selectedCountry(), 'code') === 'us'">
-      <b-form-input :class="{'is-invalid': error('address_2') !== null}" maxlength="100" v-model="address.address_2" />
+      <b-form-input :class="{'is-invalid': error('address.address_2') !== null}" maxlength="100" v-model="address.address_2" />
     </b-form-group>
     <b-form-group>
       <template v-slot:label>
         {{ $t('phrases.town') }}
         <span class="text-danger">*</span>
       </template>
-      <b-form-input :class="{'is-invalid': error('city') !== null}" maxlength="60" v-model="address.city" />
-      <div class="invalid-feedback d-block" v-if="error('city') !== null">
-        {{ error('city') }}
+      <b-form-input :class="{'is-invalid': error('address.city') !== null}" maxlength="60" v-model="address.city" />
+      <div class="invalid-feedback d-block" v-if="error('address.city') !== null">
+        {{ error('address.city') }}
       </div>
     </b-form-group>
     <b-form-group>
@@ -48,9 +48,9 @@
         {{ $t('phrases.postal_code') }}
         <span class="text-danger">*</span>
       </template>
-      <b-form-input :class="{'is-invalid': error('zip') !== null}" maxlength="15" v-model="address.zip" />
-      <div class="invalid-feedback d-block" v-if="error('zip') !== null">
-        {{ error('zip') }}
+      <b-form-input :class="{'is-invalid': error('address.zip') !== null}" maxlength="15" v-model="address.zip" />
+      <div class="invalid-feedback d-block" v-if="error('address.zip') !== null">
+        {{ error('address.zip') }}
       </div>
     </b-form-group>
     <h5 class="mt-4 mb-4">{{ $t('phrases.driving_directions_parking') }}</h5>
@@ -94,6 +94,16 @@ export default {
     },
     country_id: null,
   }),
+  computed: {
+    editedAddress () {
+      const editedFarm = this.editedFarm
+      let addresses = this.$_.get(editedFarm, 'addresses', [])
+      addresses = this.$_.filter(addresses, (address) => {
+        return address.type === 1
+      })
+      return this.$_.head(addresses)
+    }
+  },
   watch: {
     'editedFarm': {
       handler() {
@@ -101,12 +111,19 @@ export default {
       },
       deep: true,
       immediate: true
+    },
+    'address.directions': {
+      handler(directions) {
+        this.$refs['address-directions'].update(directions)
+      }
     }
   },
   methods: {
     populate () {
       const editedFarm = this.editedFarm
       const farm = this.farm
+      const editedAddress = this.editedAddress
+      const address = this.address
       if ( ! this.$_.isEmpty(editedFarm)) {
         this.$_.forOwn(editedFarm, (value, key) => {
           if (key in farm) {
@@ -115,15 +132,29 @@ export default {
         })
         this.farm = farm
       }
+      if ( ! this.$_.isEmpty(editedAddress)) {
+        this.$_.forOwn(editedAddress, (value, key) => {
+          if (key in address) {
+            address[key] = value
+          }
+        })
+        this.country_id = editedAddress.state.country_id
+        this.address = address
+      }
     },
     save () {
-      const address = this.address
+      let address = this.address
+      address.type = 1
       const farm = this.farm
       this
         .$axios
-        .post(`/api/potato/addresses/save/farm/${farm.id}`, address)
+        .post(`/api/potato/addresses/save/farm/${farm.id}`, { address, addressable: farm })
         .then((response) => {
           this.setErrors(response)
+          address = this.$_.get(response, 'data.data')
+          if ( ! this.$_.isEmpty(address)) {
+            console.log(address)
+          }
         })
         .catch((error) => {
           this.setErrors(error.response)

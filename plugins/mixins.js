@@ -1,5 +1,6 @@
 import Vue from 'vue'
 
+import addressMixin from '/mixins/address'
 import authMixin from '@/mixins/auth'
 import countryMixin from '@/mixins/country'
 import farmMixin from '@/mixins/farm'
@@ -8,6 +9,7 @@ import languageMixin from '@/mixins/language'
 import nameableMixin from '@/mixins/nameable'
 import systemMixin from '@/mixins/system'
 
+Vue.mixin(addressMixin)
 Vue.mixin(authMixin)
 Vue.mixin(countryMixin)
 Vue.mixin(farmMixin)

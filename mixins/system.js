@@ -7,6 +7,9 @@ export default {
       if (this.$_.isEmpty(this.countryCollection())) {
         this.refreshCountryCollection()
       }
+      if (this.$_.isEmpty(this.addressMeta())) {
+        this.refreshAddressMeta()
+      }
     }
   }
 }
