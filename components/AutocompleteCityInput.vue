@@ -1,9 +1,14 @@
 <template>
   <div class="autocomplete-input">
-    <b-form-input maxlength="60" v-model="city" />
-    <ul v-if="hasCities()">
-      <li v-for="(city, i) in cities" :key="'autocomplete-result-' + i">
-        <span @click.prevent="select(city)">{{ city.name }}</span>
+    <b-form-input
+      maxlength="60"
+      :class="{'is-invalid': error}"
+      @input="onChange"
+      :disabled="disabled"
+      v-model="city" />
+    <ul v-if="hasCities() && open">
+      <li v-for="(city, i) in cities" :key="'autocomplete-city-' + i" @click.prevent="select(city)">
+        <span>{{ city.name }}</span>
         <small>({{ city.state.name }})</small>
       </li>
     </ul>
@@ -16,33 +21,26 @@ export default {
     value: {
       type: String,
       default: null
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    error: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data: () => ({
     city: '',
-    cities: []
+    cities: [],
+    country_id: null,
+    state_id: null,
+    open: false
   }),
   watch: {
-    city: {
-      handler (city) {
-        if (city.length >= 2) {
-          this
-            .$axios
-            .get('/api/potato/cities/index', {
-              params: {
-                search: city
-              }
-            })
-            .then((response) => {
-              let cities = this.$_.get(response, 'data.data', [])
-              if (cities.length > 10) {
-                cities = this.$_.slice(cities, 0, 5)
-              }
-              this.cities = cities
-            })
-        }
-      }
-    },
     value: {
       handler (value) {
         this.city = value
@@ -51,12 +49,63 @@ export default {
     }
   },
   methods: {
+    clickOutside (event) {
+      if ( ! this.$el.contains(event.target)) {
+        this.open = false
+      }
+    },
+    fetchCities () {
+      const city = this.city
+      const stateId = this.state_id
+      const countryId = this.country_id
+      if (city.length >= 2) {
+        this
+          .$axios
+          .get('/api/potato/cities/index', {
+            params: {
+              search: city,
+              state_id: stateId,
+              country_id: countryId
+            }
+          })
+          .then((response) => {
+            let cities = this.$_.get(response, 'data.data', [])
+            if (cities.length > 5) {
+              cities = this.$_.slice(cities, 0, 5)
+            }
+            this.cities = cities
+          })
+      } else {
+        this.cities = []
+      }
+    },
     hasCities () {
       return this.cities.length > 0
     },
+    listen () {
+      this.$root.$on('input-country-id', ({ id }) => {
+        this.country_id = id
+      })
+      this.$root.$on('input-state-id', ({ id }) => {
+        this.state_id = id
+      })
+    },
+    onChange () {
+      this.fetchCities()
+      this.open = true
+    },
     select (city) {
       this.city = city.name
+      this.open = false
+      this.$root.$emit('autocomplete-city-input', { city })
     }
+  },
+  mounted() {
+    this.listen()
+    document.addEventListener('click', this.clickOutside)
+  },
+  destroyed() {
+    document.removeEventListener('click', this.clickOutside)
   }
 }
 </script>

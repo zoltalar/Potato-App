@@ -25,21 +25,20 @@
         {{ addressLabel() }}
         <span class="text-danger">*</span>
       </template>
-      <b-form-input :class="{'is-invalid': error('address.address') !== null}" maxlength="100" v-model="address.address" />
+      <b-form-input :class="{'is-invalid': error('address.address') !== null}" maxlength="100" :disabled="$_.isNil(country_id)" v-model="address.address" />
       <div class="invalid-feedback d-block" v-if="error('address.address') !== null">
         {{ error('address.address') }}
       </div>
     </b-form-group>
     <b-form-group v-if="$_.get(this.selectedCountry(), 'code') === 'us'">
-      <b-form-input :class="{'is-invalid': error('address.address_2') !== null}" maxlength="100" v-model="address.address_2" />
+      <b-form-input :class="{'is-invalid': error('address.address_2') !== null}" maxlength="100" :disabled="$_.isNil(country_id)" v-model="address.address_2" />
     </b-form-group>
     <b-form-group>
       <template v-slot:label>
         {{ $t('phrases.town') }}
         <span class="text-danger">*</span>
       </template>
-      <autocomplete-city-input v-model="address.city" />
-      <!--<b-form-input :class="{'is-invalid': error('address.city') !== null}" maxlength="60" v-model="address.city" />-->
+      <autocomplete-city-input :error="error('address.city') !== null" :disabled="$_.isNil(country_id)" v-model="address.city" />
       <div class="invalid-feedback d-block" v-if="error('address.city') !== null">
         {{ error('address.city') }}
       </div>
@@ -49,14 +48,14 @@
         {{ $t('phrases.postal_code') }}
         <span class="text-danger">*</span>
       </template>
-      <b-form-input :class="{'is-invalid': error('address.zip') !== null}" maxlength="15" v-model="address.zip" />
+      <b-form-input :class="{'is-invalid': error('address.zip') !== null}" maxlength="15" :disabled="$_.isNil(country_id)" v-model="address.zip" />
       <div class="invalid-feedback d-block" v-if="error('address.zip') !== null">
         {{ error('address.zip') }}
       </div>
     </b-form-group>
     <h5 class="mt-4 mb-4">{{ $t('phrases.driving_directions_parking') }}</h5>
     <b-form-group>
-      <b-form-textarea id="input-address-directions" size="lg" rows="7" maxlength="1000" no-resize v-model="address.directions"></b-form-textarea>
+      <b-form-textarea id="input-address-directions" size="lg" rows="7" maxlength="1000" :disabled="$_.isNil(country_id)" no-resize v-model="address.directions"></b-form-textarea>
       <small class="form-text text-muted">
         <chars-remaining for="input-address-directions" ref="address-directions" />
         <span>{{ $t('phrases.html_not_allowed') }}.</span>
@@ -118,13 +117,27 @@ export default {
         this.$refs['address-directions'].update(directions)
       }
     },
+    'address.state_id': {
+      handler (id) {
+        this.$root.$emit('input-state-id', { id })
+      }
+    },
     'country_id': {
       handler (id) {
-        this.$root.$emit('input-country-id', id)
+        this.$root.$emit('input-country-id', { id })
       }
     }
   },
   methods: {
+    listen () {
+      this.$root.$on('autocomplete-city-input', ({ city }) => {
+        const zip = this.$_.head(this.phrases(city.zips))
+        this.address.city = city.name
+        if ( ! this.$_.isNil(zip)) {
+          this.address.zip = zip
+        }
+      })
+    },
     populate () {
       const editedFarm = this.editedFarm
       const farm = this.farm
@@ -169,6 +182,7 @@ export default {
   },
   mounted() {
     this.fetchCountries()
+    this.listen()
   }
 }
 </script>

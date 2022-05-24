@@ -7,6 +7,7 @@ import farmMixin from '@/mixins/farm'
 import flashMixin from '@/mixins/flash'
 import languageMixin from '@/mixins/language'
 import nameableMixin from '@/mixins/nameable'
+import stringMixin from '@/mixins/string'
 import systemMixin from '@/mixins/system'
 
 Vue.mixin(addressMixin)
@@ -16,4 +17,5 @@ Vue.mixin(farmMixin)
 Vue.mixin(flashMixin)
 Vue.mixin(languageMixin)
 Vue.mixin(nameableMixin)
+Vue.mixin(stringMixin)
 Vue.mixin(systemMixin)
