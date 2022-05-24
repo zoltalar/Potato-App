@@ -38,7 +38,8 @@
         {{ $t('phrases.town') }}
         <span class="text-danger">*</span>
       </template>
-      <b-form-input :class="{'is-invalid': error('address.city') !== null}" maxlength="60" v-model="address.city" />
+      <autocomplete-city-input v-model="address.city" />
+      <!--<b-form-input :class="{'is-invalid': error('address.city') !== null}" maxlength="60" v-model="address.city" />-->
       <div class="invalid-feedback d-block" v-if="error('address.city') !== null">
         {{ error('address.city') }}
       </div>
@@ -106,15 +107,20 @@ export default {
   },
   watch: {
     'editedFarm': {
-      handler() {
+      handler () {
         this.populate()
       },
       deep: true,
       immediate: true
     },
     'address.directions': {
-      handler(directions) {
+      handler (directions) {
         this.$refs['address-directions'].update(directions)
+      }
+    },
+    'country_id': {
+      handler (id) {
+        this.$root.$emit('input-country-id', id)
       }
     }
   },

@@ -1,0 +1,36 @@
+// --------------------------------------------------
+// Autocomplete Input
+// --------------------------------------------------
+
+.autocomplete-input {
+  position: relative;
+
+  small {
+    color: $gray-600;
+    font-size: 70%;
+    margin-left: .25rem;
+  }
+
+  > ul {
+    background-color: $white;
+    border: $input-border-width solid $input-border-color;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: calc(100% - 1px);
+    width: 100%;
+
+    > li {
+      color: $gray-900;
+      cursor: pointer;
+      padding: .5rem 1rem;
+      font-size: 1.25rem;
+
+      &:hover,
+      &:focus {
+        background-color: $gray-150;
+      }
+    }
+  }
+}

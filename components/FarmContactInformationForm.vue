@@ -74,7 +74,7 @@ export default {
   }),
   watch: {
     'editedFarm': {
-      handler() {
+      handler () {
         this.populate()
       },
       deep: true,

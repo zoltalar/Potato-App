@@ -32,13 +32,13 @@ export default {
   }),
   watch: {
     'editedFarm': {
-      handler() {
+      handler () {
         this.populate()
       },
       deep: true
     },
     'farm.operating_hours': {
-      handler(hours) {
+      handler (hours) {
         this.$refs['farm-operating-hours'].update(hours)
       }
     }

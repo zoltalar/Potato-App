@@ -32,13 +32,13 @@ export default {
   }),
   watch: {
     'editedFarm': {
-      handler() {
+      handler () {
         this.populate()
       },
       deep: true
     },
     'farm.description': {
-      handler(description) {
+      handler (description) {
         this.$refs['farm-description'].update(description)
       }
     }
