@@ -1,5 +1,5 @@
 <template>
-  <div class="farms create">
+  <div class="farms edit">
     <page-title>
       {{ $t('phrases.edit_farm') }}
     </page-title>
@@ -19,11 +19,20 @@
             </b-col>
           </b-row>
         </div>
-        <div v-if="farmEditTab() === 'address'">
+        <div v-else-if="farmEditTab() === 'address'">
           <h5 class="mb-4">{{ $t('phrases.address') }}</h5>
           <b-row>
             <b-col md="6">
               <farm-address-form :edited-farm="farm" />
+            </b-col>
+          </b-row>
+        </div>
+        <div v-else-if="farmEditTab() === 'mailing-address'">
+          <h5 class="mb-2">{{ $t('phrases.mailing_address') }}</h5>
+          <p class="mb-4">{{ $t('messages.farm_mailing_address') }}</p>
+          <b-row>
+            <b-col md="6">
+              <farm-mailing-address-form :edited-farm="farm" />
             </b-col>
           </b-row>
         </div>

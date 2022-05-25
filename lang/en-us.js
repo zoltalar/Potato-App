@@ -19,6 +19,7 @@ export default {
     farm_created: 'Farm has been created successfully.',
     farm_description: 'Please provide few paragraphs regarding your farm. Be sure to include keywords such as "fresh tomatoes", "dairy". Do not include your email address in order to avoid spam.',
     farm_description_updated: "Farm's description has been updated successfully.",
+    farm_mailing_address: "If different from farm's address.",
     farm_operating_hours: 'Enter days when your farm is open for business, e.g. <em>Monday to Friday: 7:00 am - 4:00 pm.</em>',
     farm_operating_hours_updated: "Farm's operating hours have been updated successfully.",
     farm_promote_no: 'Free option but may contain ads from our advertisers.',
