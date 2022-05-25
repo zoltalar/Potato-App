@@ -54,6 +54,11 @@
               <image-create-form :imageable="farm" type="farm" />
             </b-col>
           </b-row>
+          <b-row class="mt-4" v-if="hasImages()">
+            <b-col md="4" v-for="(image, i) in images">
+              <image-list-item :image="image" />
+            </b-col>
+          </b-row>
         </div>
         <div v-else-if="farmEditTab() === 'social-media'">
           <h5 class="mb-4">{{ $t('phrases.social_media') }}</h5>
@@ -91,6 +96,12 @@ export default {
       pl: '/gospodarstwa-rolne/edytuj/:id/:tab'
     }
   },
+  computed: {
+    images () {
+      const farm = this.farm
+      return this.$_.get(farm, 'images', [])
+    }
+  },
   data: () => ({
     farm: {}
   }),
@@ -107,13 +118,15 @@ export default {
   methods: {
     fetch () {
       const id = this.$route.params.id
-
       this
         .$axios
         .get(`/api/potato/farms/show/${id}`)
         .then((response) => {
           this.farm = this.$_.get(response, 'data.data')
         })
+    },
+    hasImages () {
+      return this.images.length > 0
     },
     listen () {
       this.$root.$on('farm-address-updated', () => {
