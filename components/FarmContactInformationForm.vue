@@ -29,7 +29,7 @@
       </div>
     </b-form-group>
     <b-form-group>
-      <b-checkbox :value="1" :unchecked-value="0" v-model="farm.publish_phone" :disabled="farm.phone === ''">{{ $t('phrases.publish_phone_on_the_website') }}</b-checkbox>
+      <b-checkbox :value="1" :unchecked-value="0" v-model="farm.publish_phone" :disabled="farm.phone === ''">{{ $t('phrases.publish_phone_on_website') }}</b-checkbox>
     </b-form-group>
     <b-form-group :label="$t('phrases.fax')">
       <b-form-input :class="{'is-invalid': error('fax') !== null}" maxlength="20" v-model="farm.fax" />

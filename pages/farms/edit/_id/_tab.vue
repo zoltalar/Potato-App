@@ -46,6 +46,15 @@
           <p class="mb-4" v-html="$t('messages.farm_operating_hours')"></p>
           <farm-operating-hours-form :edited-farm="farm" />
         </div>
+        <div v-else-if="farmEditTab() === 'photos'">
+          <h5 class="mb-2">{{ $t('phrases.photos') }}</h5>
+          <p class="mb-4" v-html="$t('messages.farm_photos')"></p>
+          <b-row>
+            <b-col md="6">
+              <image-create-form :imageable="farm" type="farm" />
+            </b-col>
+          </b-row>
+        </div>
         <div v-else-if="farmEditTab() === 'social-media'">
           <h5 class="mb-4">{{ $t('phrases.social_media') }}</h5>
           <b-row>
@@ -107,11 +116,20 @@ export default {
         })
     },
     listen () {
+      this.$root.$on('farm-address-updated', () => {
+        this.$store.commit('flash/message', this.$t('messages.farm_address_updated'))
+      })
       this.$root.$on('farm-contact-information-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.farm_contact_information_updated'))
       })
       this.$root.$on('farm-description-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.farm_description_updated'))
+      })
+      this.$root.$on('farm-image-created', () => {
+        this.$store.commit('flash/message', this.$t('messages.farm_image_created'))
+      })
+      this.$root.$on('farm-mailing-address-updated', () => {
+        this.$store.commit('flash/message', this.$t('messages.farm_mailing_address_updated'))
       })
       this.$root.$on('farm-operating-hours-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.farm_operating_hours_updated'))

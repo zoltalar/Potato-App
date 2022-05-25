@@ -172,7 +172,7 @@ export default {
           this.setErrors(response)
           address = this.$_.get(response, 'data.data')
           if ( ! this.$_.isEmpty(address)) {
-            console.log(address)
+            this.$root.$emit('farm-address-updated', { farm })
           }
         })
         .catch((error) => {
