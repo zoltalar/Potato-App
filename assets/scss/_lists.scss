@@ -13,6 +13,18 @@
   }
 }
 
+.list-farm-item {
+
+  .img-primary {
+    border: none;
+    border-radius: 0.25rem;
+    float: left;
+    height: auto;
+    margin: 0 1rem 0 0;
+    width: 100px;
+  }
+}
+
 .list-farms {
 
   .link-name {

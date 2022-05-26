@@ -4,7 +4,7 @@
       maxlength="60"
       :class="{'is-invalid': error}"
       @input="onChange"
-      @keyup="onKeyUp"
+      @keydown="onKeyDown"
       :disabled="disabled"
       v-model="city" />
     <ul v-if="hasCities() && open">
@@ -39,7 +39,8 @@ export default {
     cities: [],
     country_id: null,
     state_id: null,
-    open: false
+    open: false,
+    timeout: null
   }),
   watch: {
     value: {
@@ -92,10 +93,17 @@ export default {
       })
     },
     onChange () {
-      this.fetchCities()
-      this.open = true
+      if (this.timeout) {
+        clearTimeout(this.timeout)
+        this.timeout = null
+      }
+
+      this.timeout = setTimeout(() => {
+        this.fetchCities()
+        this.open = true
+      }, 400)
     },
-    onKeyUp () {
+    onKeyDown () {
       const city = {
         name: this.city,
         zips: ''
@@ -113,6 +121,8 @@ export default {
     document.addEventListener('click', this.clickOutside)
   },
   destroyed() {
+    this.$root.$off('input-country-id')
+    this.$root.$off('input-state-id')
     document.removeEventListener('click', this.clickOutside)
   }
 }

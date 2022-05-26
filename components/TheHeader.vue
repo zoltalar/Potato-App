@@ -27,6 +27,14 @@
     </b-container>
     <b-modal id="modal-region-language" centered :title="$t('phrases.language_and_region')" @shown="populateI18n" @ok="saveI18n" no-enforce-focus>
       <language-region-form ref="form-language-region" />
+      <template #modal-footer="{ ok, cancel, hide }">
+        <b-button variant="secondary" @click="cancel()">
+          {{ $t('phrases.cancel') }}
+        </b-button>
+        <b-button variant="primary" @click="ok()">
+          {{ $t('phrases.ok') }}
+        </b-button>
+      </template>
     </b-modal>
   </header>
 </template>

@@ -4,6 +4,8 @@
       <b-dropdown class="float-right" variant="light" size="sm">
         <b-dropdown-item @click.prevent="edit(image)">{{ $t('phrases.edit') }}</b-dropdown-item>
         <b-dropdown-item @click.prevent="destroy(image)">{{ $t('phrases.delete') }}</b-dropdown-item>
+        <b-dropdown-item>{{ $t('phrases.set_as_cover_image') }}</b-dropdown-item>
+        <b-dropdown-item>{{ $t('phrases.set_as_main') }}</b-dropdown-item>
       </b-dropdown>
       {{ image.title }}
     </b-card-text>

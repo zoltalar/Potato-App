@@ -72,6 +72,14 @@
     </page-aside-content>
     <b-modal id="modal-farm-image-edit" :title="$t('phrases.edit_photo')" @ok="updateImage">
       <image-edit-form :edited-image="image" type="farm" :imageable="farm" ref="form-farm-image-edit" />
+      <template #modal-footer="{ ok, cancel, hide }">
+        <b-button variant="secondary" @click="cancel()">
+          {{ $t('phrases.cancel') }}
+        </b-button>
+        <b-button variant="primary" @click="ok()">
+          {{ $t('phrases.ok') }}
+        </b-button>
+      </template>
     </b-modal>
   </div>
 </template>
