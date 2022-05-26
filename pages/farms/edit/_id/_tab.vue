@@ -55,8 +55,8 @@
             </b-col>
           </b-row>
           <b-row class="mt-4" v-if="hasImages()">
-            <b-col md="4" v-for="(image, i) in images">
-              <image-list-item :image="image" />
+            <b-col md="4" v-for="(image, i) in images" :key="'farm-image-' + i">
+              <image-list-item :image="image" :imageable="farm" type="farm" />
             </b-col>
           </b-row>
         </div>
@@ -70,6 +70,9 @@
         </div>
       </template>
     </page-aside-content>
+    <b-modal id="modal-farm-image-edit" :title="$t('phrases.edit_photo')" @ok="updateImage">
+      <image-edit-form :edited-image="image" type="farm" :imageable="farm" ref="form-farm-image-edit" />
+    </b-modal>
   </div>
 </template>
 <script>
@@ -103,7 +106,8 @@ export default {
     }
   },
   data: () => ({
-    farm: {}
+    farm: {},
+    image: {}
   }),
   watch: {
     'farm': {
@@ -116,6 +120,10 @@ export default {
     }
   },
   methods: {
+    editImage (image) {
+      this.image = image
+      this.$bvModal.show('modal-farm-image-edit')
+    },
     fetch () {
       const id = this.$route.params.id
       this
@@ -129,6 +137,17 @@ export default {
       return this.images.length > 0
     },
     listen () {
+      this.$root.$off('farm-address-updated')
+      this.$root.$off('farm-contact-information-updated')
+      this.$root.$off('farm-description-updated')
+      this.$root.$off('farm-image-created')
+      this.$root.$off('farm-image-deleted')
+      this.$root.$off('farm-image-edit')
+      this.$root.$off('farm-image-updated')
+      this.$root.$off('farm-mailing-address-updated')
+      this.$root.$off('farm-operating-hours-updated')
+      this.$root.$off('farm-social-media-updated')
+
       this.$root.$on('farm-address-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.farm_address_updated'))
       })
@@ -140,6 +159,19 @@ export default {
       })
       this.$root.$on('farm-image-created', () => {
         this.$store.commit('flash/message', this.$t('messages.farm_image_created'))
+        this.fetch()
+      })
+      this.$root.$on('farm-image-deleted', () => {
+        this.$store.commit('flash/message', this.$t('messages.farm_image_deleted'))
+        this.fetch()
+      })
+      this.$root.$on('farm-image-edit', ({ image }) => {
+        this.editImage(image)
+      })
+      this.$root.$on('farm-image-updated', () => {
+        this.$bvModal.hide('modal-farm-image-edit')
+        this.$store.commit('flash/message', this.$t('messages.farm_image_updated'))
+        this.fetch()
       })
       this.$root.$on('farm-mailing-address-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.farm_mailing_address_updated'))
@@ -150,6 +182,12 @@ export default {
       this.$root.$on('farm-social-media-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.farm_social_media_updated'))
       })
+    },
+    updateImage (event) {
+      event.preventDefault()
+      this.$refs['form-farm-image-edit'].update()
+
+      return
     }
   },
   mounted () {

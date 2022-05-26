@@ -4,6 +4,7 @@
       maxlength="60"
       :class="{'is-invalid': error}"
       @input="onChange"
+      @keyup="onKeyUp"
       :disabled="disabled"
       v-model="city" />
     <ul v-if="hasCities() && open">
@@ -93,6 +94,13 @@ export default {
     onChange () {
       this.fetchCities()
       this.open = true
+    },
+    onKeyUp () {
+      const city = {
+        name: this.city,
+        zips: ''
+      }
+      this.$root.$emit('autocomplete-city-input', { city })
     },
     select (city) {
       this.city = city.name
