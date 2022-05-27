@@ -10,6 +10,7 @@ export default {
     confirm_model_destroy: 'Czy na pewno chcesz usunąć {model}?',
     copyrights_text: 'Copyright © {year} Ziemniaczek',
     farm_address_updated: 'Adres gospodarstwa rolnego został zaktualizowany pomyślnie.',
+    farm_contact_information_email: 'Adres email nie zostanie pokazany na profilu gospodarstwa rolnego lecz użytkownicy beda mogli kontaktować się przez opcję <em>Wyślij Wiadomość</em>.',
     farm_contact_information_updated: 'Dane kontaktowe gospodarstwa rolnego zostały zaktualizowane pomyślnie.',
     farm_create_agreement:
       '<p><strong>Możesz utworzyć gospodarstwo domowe w serwisie Ziemniaczek jeśli:</strong></p>' +

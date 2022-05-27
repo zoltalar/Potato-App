@@ -1,5 +1,8 @@
 export default {
   methods: {
+    empty (string) {
+      return this._.isNil(string) || string === ''
+    },
     phrases (string) {
       let phrases = []
       if (string) {

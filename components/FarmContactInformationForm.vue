@@ -29,13 +29,24 @@
       </div>
     </b-form-group>
     <b-form-group>
-      <b-checkbox :value="1" :unchecked-value="0" v-model="farm.publish_phone" :disabled="farm.phone === ''">{{ $t('phrases.publish_phone_on_website') }}</b-checkbox>
+      <b-checkbox :value="1" :unchecked-value="0" v-model="farm.publish_phone" :disabled="empty(farm.phone)">{{ $t('phrases.publish_phone_on_website') }}</b-checkbox>
     </b-form-group>
     <b-form-group :label="$t('phrases.fax')">
       <b-form-input :class="{'is-invalid': error('fax') !== null}" maxlength="20" v-model="farm.fax" />
       <div class="invalid-feedback d-block" v-if="error('fax') !== null">
         {{ error('fax') }}
       </div>
+    </b-form-group>
+    <b-form-group>
+      <template v-slot:label>
+        {{ $t('phrases.email') }}
+        <span class="text-danger">*</span>
+      </template>
+      <b-form-input type="email" :class="{'is-invalid': error('email') !== null}" maxlength="255" v-model="farm.email" />
+      <div class="invalid-feedback d-block" v-if="error('email') !== null">
+        {{ error('email') }}
+      </div>
+      <small class="form-text text-muted" v-html="$t('messages.farm_contact_information_email')"></small>
     </b-form-group>
     <b-form-group :label="$t('phrases.website_url')">
       <b-form-input :class="{'is-invalid': error('website') !== null}" maxlength="255" placeholder="http://" v-model="farm.website" />
@@ -69,6 +80,7 @@ export default {
       phone: '',
       publish_phone: 0,
       fax: '',
+      email: '',
       website: ''
     }
   }),

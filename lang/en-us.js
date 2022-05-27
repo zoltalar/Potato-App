@@ -10,6 +10,7 @@ export default {
     confirm_model_destroy: 'Are you sure you want to delete this {model}?',
     copyrights_text: 'Copyright © {year} Local Grocery',
     farm_address_updated: "Farm's address information has been updated successfully.",
+    farm_contact_information_email: "Email address will not be shown on the farm's profile page, but users will be able to contact you via <em>Send Message</em> option.",
     farm_contact_information_updated: "Farm's contact information has been updated successfully.",
     farm_create_agreement:
       '<p><strong>You can create a farm with Local Grocery if:</strong></p>' +
