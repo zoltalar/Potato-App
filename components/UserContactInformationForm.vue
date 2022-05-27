@@ -56,7 +56,7 @@ export default {
   }),
   methods: {
     populate () {
-      const editedUser = this.authUser
+      const editedUser = this.$auth.user
       const user = this.user
 
       if ( ! this.$_.isEmpty(editedUser)) {

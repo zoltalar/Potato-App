@@ -11,6 +11,7 @@
     <b-card-text v-if="farm.description">
       <char-limit :text="farm.description" :chars="170" />
     </b-card-text>
+    <b-badge variant="danger" class="float-right" v-if="!farmIsActive(farm)">{{ $t('phrases.inactive') }}</b-badge>
     <slot name="links"></slot>
   </b-card>
 </template>

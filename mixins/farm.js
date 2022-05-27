@@ -26,6 +26,9 @@ export default {
         { tab: 'social-media', tabs: { en: 'social-media', pl: 'media-spolecznosciowe' } }
       ]
     },
+    farmIsActive (farm) {
+      return parseInt(farm.active) === 1
+    },
     farmIsNameable (farm) {
       return ! this.$_.isNil(farm.first_name) && ! this.$_.isNil(farm.last_name)
     },
