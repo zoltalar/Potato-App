@@ -5,12 +5,19 @@
       -
       {{ farm.name }}
     </page-title>
-    <page-content-aside>
+    <page-content>
       <template>
+        <b-alert class="mb-4" variant="success" :show="hasFlashMessage()" @dismissed="clearFlashMessage()" dismissible>
+          {{ flashMessage() }}
+        </b-alert>
         <p class="mb-4">{{ $t('messages.farm_deactivate') }}</p>
-        <farm-deactivate-form :edited-farm="farm" />
+        <b-row>
+          <b-col md="6">
+            <farm-deactivate-form :edited-farm="farm" />
+          </b-col>
+        </b-row>
       </template>
-    </page-content-aside>
+    </page-content>
   </div>
 </template>
 <script>
@@ -43,7 +50,7 @@ export default {
   watch: {
     farm: {
       handler(farm) {
-        if (this.$_.isEmpty(farm) || !this.isOwner()) {
+        if (this.$_.isEmpty(farm) || !this.owner()) {
           this.$router.push(this.localePath('/account/farms'))
         }
       },
@@ -60,7 +67,14 @@ export default {
           this.farm = this.$_.get(response, 'data.data')
         })
     },
-    isOwner () {
+    listen () {
+      this.$root.$off('farm-deactivated')
+
+      this.$root.$on('farm-deactivated', () => {
+        this.$store.commit('flash/message', this.$t('messages.farm_deactivated'))
+      })
+    },
+    owner () {
       const user = this.$auth.user
       const farm = this.farm
       return user.id === farm.user_id
@@ -68,6 +82,7 @@ export default {
   },
   mounted () {
     this.fetch()
+    this.listen()
   }
 }
 </script>

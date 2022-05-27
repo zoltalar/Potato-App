@@ -21,6 +21,7 @@ export default {
       '<p class="mb-0">We do not sell, share or give away your email address. Your email address will not be visible to public.</p>',
     farm_created: 'Farm has been created successfully.',
     farm_deactivate: 'Please provide a reason for farm deactivation.',
+    farm_deactivated: 'Farm has been deactivated successfully.',
     farm_description: 'Please provide few paragraphs regarding your farm. Be sure to include keywords such as "fresh tomatoes", "dairy". Do not include your email address in order to avoid spam.',
     farm_description_updated: "Farm's description has been updated successfully.",
     farm_image_created: "Farm's photo has been uploaded successfully.",

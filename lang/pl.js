@@ -21,6 +21,7 @@ export default {
       '<p class="mb-0">Nie sprzedajemy, nie dzielimy i nie rozdajemy Twojego adresu email komukolwiek. Twój adres email nie będzie widoczny w naszym serwisie.</p>',
     farm_created: 'Gospodarstwo rolne zostało utworzone pomyślnie.',
     farm_deactivate: 'Prosimy podać powód dla którego dezaktywujesz gospodarstwo rolne.',
+    farm_deactivated: 'Gospodarstwo rolne zostało zdezaktywowane pomyślnie.',
     farm_description: 'Podaj kilka zdań odnośnie Twojego gospodarstwa rolnego. Nie zapomnij użyć słów kluczowych typu "świeże pomidory", "nabiał". Nie wpisuj Twojego adresu emailowego w celu zapobiegania spamu.',
     farm_description_updated: 'Opis gospodarstwa rolnego został zaktualizowany pomyślnie.',
     farm_image_created: 'Zdjęcie gospodarstwa rolnego zostało dodane pomyślnie.',

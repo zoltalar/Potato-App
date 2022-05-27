@@ -62,13 +62,21 @@ export default {
         this.farm = farm
       }
     },
+    reset () {
+      this.farm.deactivation_reason = ''
+    },
     update () {
-      const farm = this.farm
+      let farm = this.farm
       this
         .$axios
         .put(`/api/potato/farms/deactivate/${farm.id}`, farm)
         .then((response) => {
           this.setErrors(response)
+          farm = this.$_.get(response, 'data.data')
+          if (!this.$_.isEmpty(farm)) {
+            this.reset()
+            this.$root.$emit('farm-deactivated', { farm })
+          }
         })
         .catch((error) => {
           this.setErrors(error.response)
