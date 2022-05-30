@@ -2,6 +2,9 @@
   <form class="form-default" @submit.prevent="update">
     <b-form-group>
       <b-form-textarea id="input-farm-operating-hours" size="lg" rows="7" maxlength="500" no-resize v-model="farm.operating_hours"></b-form-textarea>
+      <div class="invalid-feedback d-block" v-if="error('operating_hours') !== null">
+        {{ error('operating_hours') }}
+      </div>
       <small class="form-text text-muted">
         <chars-remaining for="input-farm-operating-hours" ref="farm-operating-hours" />
         <span>{{ $t('phrases.html_not_allowed') }}.</span>

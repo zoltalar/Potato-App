@@ -2,6 +2,9 @@
   <form class="form-default" @submit.prevent="update">
     <b-form-group>
       <b-form-textarea id="input-farm-description" size="lg" rows="10" maxlength="5000" no-resize v-model="farm.description"></b-form-textarea>
+      <div class="invalid-feedback d-block" v-if="error('description') !== null">
+        {{ error('description') }}
+      </div>
       <small class="form-text text-muted">
         <chars-remaining for="input-farm-description" ref="farm-description" />
         <span>{{ $t('phrases.html_not_allowed') }}.</span>
