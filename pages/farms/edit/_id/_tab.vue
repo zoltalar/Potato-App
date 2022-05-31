@@ -5,9 +5,12 @@
     </page-title>
     <page-aside-content>
       <template v-slot:aside>
-        <farm-edit-menu class="mb-4" />
+        <farm-edit-menu :farm="farm" class="mb-4" />
       </template>
       <template>
+        <b-alert class="mb-4" variant="danger" :show="hasErrorMessage()" @dismissed="clearErrorMessage()" dismissible>
+          {{ flashErrorMessage () }}
+        </b-alert>
         <b-alert class="mb-4" variant="success" :show="hasFlashMessage()" @dismissed="clearFlashMessage()" dismissible>
           {{ flashMessage() }}
         </b-alert>

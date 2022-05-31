@@ -4,7 +4,7 @@
       {{ $t('phrases.verify_your_email_address') }}
     </page-title>
     <page-content>
-      <div v-if="$_.isNil(authUser.email_verified_at)">
+      <div v-if="$_.isNil($auth.user.email_verified_at)">
         <b-alert variant="success" :show="resent" dismissible>
           {{ $t('messages.verification_resent_text') }}
         </b-alert>

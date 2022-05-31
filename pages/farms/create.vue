@@ -5,6 +5,9 @@
     </page-title>
     <page-content-aside>
       <template>
+        <b-alert class="mb-4" variant="danger" :show="hasErrorMessage()" @dismissed="clearErrorMessage()" dismissible>
+          {{ flashErrorMessage() }}
+        </b-alert>
         <farm-create-form />
       </template>
     </page-content-aside>
