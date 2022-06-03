@@ -6,7 +6,35 @@
     </page-title>
     <page-aside-content :col-aside="{ md: 4, lg: 4 }" :col-main="{ md: 8, lg: 8 }">
       <template v-slot:aside>
-        <image-primary :imageable="farm" type="farm" />
+        <image-primary :imageable="farm" type="farm" class="mb-3" />
+        <ul class="list-buttons">
+          <li class="mb-3">
+            <b-button variant="primary" size="lg" block>
+              <font-awesome-icon icon="comment" />
+              {{ $t('phrases.send_message') }}
+            </b-button>
+          </li>
+          <li>
+            <b-button variant="primary" size="lg" block>
+              <font-awesome-icon icon="edit" />
+              {{ $t('phrases.write_a_review') }}
+            </b-button>
+          </li>
+        </ul>
+        <b-card class="card-default mt-4">
+          <b-card-title class="h6 mb-1">{{ $t('phrases.contact_information') }}</b-card-title>
+          <b-card-text>
+            {{ fullName(farm, true) }}
+            <span v-if="farmPublishPhone(farm)">
+              <br />
+              {{ farm.phone }}
+            </span>
+            <span v-if="farm.website">
+              <br />
+              <b-link :href="farm.website" target="_blank">{{ farm.website }}</b-link>
+            </span>
+          </b-card-text>
+        </b-card>
       </template>
       <template>
         Test 2

@@ -7,8 +7,11 @@
 }
 
 .list-buttons {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 
-  i {
+  svg {
     margin-right: .5rem;
   }
 }

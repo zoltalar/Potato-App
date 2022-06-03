@@ -1,6 +1,6 @@
 <template>
   <div class="page-cover" :style="style">
-    <nuxt-link :to="editLink()" class="link-edit" :title="$t('phrases.edit_cover')" v-if="owner()">
+    <nuxt-link :to="editLink()" class="link-edit" :title="$t('phrases.edit_cover')" v-if="farmIsOwner(imageable)">
       <font-awesome-icon icon="pencil-alt" />
     </nuxt-link>
   </div>
@@ -47,11 +47,6 @@ export default {
       if (type === 'farm') {
         return this.localePath({ name: 'farms-edit-id-tab', params: { id: imageable.id, tab: this.localeFarmEditTab('photos') } })
       }
-    },
-    owner () {
-      const imageable = this.imageable
-      const user = this.$auth.user
-      return this.$auth.loggedIn && this.$_.get(imageable, 'user_id') === this.$_.get(user, 'id')
     }
   }
 }

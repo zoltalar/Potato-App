@@ -1,5 +1,11 @@
 export default {
   methods: {
+    farmAddress (farm) {
+      const addresses = this.$_.get(farm, 'addresses', [])
+      return this.$_.head(this.$_.filter(addresses, (address) => {
+        return address.type === 1
+      }))
+    },
     farmEditTab () {
       const tab = this.$route.params.tab
       let editTab = tab
@@ -31,6 +37,18 @@ export default {
     },
     farmIsNameable (farm) {
       return ! this.$_.isNil(farm.first_name) && ! this.$_.isNil(farm.last_name)
+    },
+    farmIsOwner (farm) {
+      return this.$auth.loggedIn && this.$auth.user.id === this._.get(farm, 'user_id')
+    },
+    farmMailingAddress (farm) {
+      const addresses = this.$_.get(farm, 'addresses', [])
+      return this.$_.head(this.$_.filter(addresses, (address) => {
+        return address.type === 2
+      }))
+    },
+    farmPublishPhone (farm) {
+      return parseInt(farm.publish_phone) === 1
     },
     localeFarmEditTab (tab) {
       let editTab = tab

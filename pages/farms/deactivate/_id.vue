@@ -50,7 +50,7 @@ export default {
   watch: {
     farm: {
       handler(farm) {
-        if (this.$_.isEmpty(farm) || !this.owner()) {
+        if (this.$_.isEmpty(farm) || !this.farmIsOwner(farm)) {
           this.$router.push(this.localePath('/account/farms'))
         }
       },
@@ -73,11 +73,6 @@ export default {
       this.$root.$on('farm-deactivated', () => {
         this.$store.commit('flash/message', this.$t('messages.farm_deactivated'))
       })
-    },
-    owner () {
-      const user = this.$auth.user
-      const farm = this.farm
-      return user.id === farm.user_id
     }
   },
   mounted () {

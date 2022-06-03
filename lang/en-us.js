@@ -133,6 +133,7 @@ export default {
     reviews: 'Reviews',
     save: 'Save',
     search: 'Search',
+    send_message: 'Send Message',
     set_as_cover_image: 'Set as Cover Image',
     set_as_main: 'Set as Main',
     social_media: 'Social Media',
@@ -153,6 +154,7 @@ export default {
     view: 'View',
     voivodeship: 'Voivodeship',
     'why_register?': 'Why Register?',
+    write_a_review: 'Write a Review',
     yes: 'Yes'
   }
 }

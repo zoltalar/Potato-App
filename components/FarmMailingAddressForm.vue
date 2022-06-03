@@ -88,11 +88,7 @@ export default {
   computed: {
     editedAddress () {
       const editedFarm = this.editedFarm
-      let addresses = this.$_.get(editedFarm, 'addresses', [])
-      addresses = this.$_.filter(addresses, (address) => {
-        return address.type === 2
-      })
-      return this.$_.head(addresses)
+      return this.farmMailingAddress(editedFarm)
     }
   },
   watch: {

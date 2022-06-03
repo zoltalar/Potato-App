@@ -133,6 +133,7 @@ export default {
     reviews: 'Recencje',
     save: 'Zapisz',
     search: 'Szukaj',
+    send_message: 'Wyślij Wiadomość',
     set_as_cover_image: 'Ustaw Jako Okładkę',
     set_as_main: 'Ustaw Jako Główne',
     social_media: 'Media Społecznościowe',
@@ -153,6 +154,7 @@ export default {
     view: 'Podgląd',
     voivodeship: 'Województwo',
     'why_register?': 'Korzyści z Rejestracji',
+    write_a_review: 'Napisz Recenzję',
     yes: 'Tak'
   }
 }

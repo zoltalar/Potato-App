@@ -1,0 +1,15 @@
+// --------------------------------------------------
+// Cards
+// --------------------------------------------------
+
+.card-default {
+  background-color: #eefaf0;
+  color: $gray-700;
+
+  h6,
+  .h6 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}
