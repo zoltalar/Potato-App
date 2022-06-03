@@ -84,6 +84,7 @@ export default {
     'dont_have_an_account?': "Don't have an account?",
     driving_directions_parking: 'Driving Directions / Parking',
     edit: 'Edit',
+    edit_contact_information: 'Edit Contact Information',
     edit_cover: 'Edit Cover',
     edit_farm: 'Edit Farm',
     edit_photo: 'Edit Photo',

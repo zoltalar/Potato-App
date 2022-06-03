@@ -6,6 +6,42 @@ export default {
         return address.type === 1
       }))
     },
+    farmEditAddressLink (farm) {
+      return this.localePath({
+        name: 'farms-edit-id-tab',
+        params: {
+          id: farm.id,
+          tab: this.localeFarmEditTab('address')
+        }
+      })
+    },
+    farmEditContactInformationLink (farm) {
+      return this.localePath({
+        name: 'farms-edit-id-tab',
+        params: {
+          id: farm.id,
+          tab: this.localeFarmEditTab('contact-information')
+        }
+      })
+    },
+    farmEditMailingAddressLink (farm) {
+      return this.localePath({
+        name: 'farms-edit-id-tab',
+        params: {
+          id: farm.id,
+          tab: this.localeFarmEditTab('mailing-address')
+        }
+      })
+    },
+    farmEditPhotosLink (farm) {
+      return this.localePath({
+        name: 'farms-edit-id-tab',
+        params: {
+          id: farm.id,
+          tab: this.localeFarmEditTab('photos')
+        }
+      })
+    },
     farmEditTab () {
       const tab = this.$route.params.tab
       let editTab = tab
@@ -46,6 +82,12 @@ export default {
       return this.$_.head(this.$_.filter(addresses, (address) => {
         return address.type === 2
       }))
+    },
+    farmPublishAddress (farm) {
+      return parseInt(farm.publish_address) === 1
+    },
+    farmPublishMailingAddress (farm) {
+      return parseInt(farm.publish_mailing_address) === 1
     },
     farmPublishPhone (farm) {
       return parseInt(farm.publish_phone) === 1

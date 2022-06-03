@@ -84,6 +84,7 @@ export default {
     'dont_have_an_account?': 'Nie posiadasz konta?',
     driving_directions_parking: 'Jak Dojechać / Parking',
     edit: 'Edytuj',
+    edit_contact_information: 'Edytuj Dane Kontaktowe',
     edit_cover: 'Edytuj Okładkę',
     edit_farm: 'Edytuj Gospodarstwo Rolne',
     edit_photo: 'Edytuj Zdjęcie',

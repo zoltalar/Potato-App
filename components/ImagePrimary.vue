@@ -41,7 +41,7 @@ export default {
       const imageable = this.imageable
       const type = this.type
       if (type === 'farm') {
-        return this.localePath({ name: 'farms-edit-id-tab', params: { id: imageable.id, tab: this.localeFarmEditTab('photos') } })
+        return this.farmEditPhotosLink(imageable)
       }
     }
   }
