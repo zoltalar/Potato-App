@@ -33,6 +33,15 @@ export default {
         }
       })
     },
+    farmEditOperatingHoursLink (farm) {
+      return this.localePath({
+        name: 'farms-edit-id-tab',
+        params: {
+          id: farm.id,
+          tab: this.localeFarmEditTab('operating-hours')
+        }
+      })
+    },
     farmEditPhotosLink (farm) {
       return this.localePath({
         name: 'farms-edit-id-tab',

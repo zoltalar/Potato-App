@@ -17,7 +17,7 @@
             <template v-slot:links>
               <nuxt-link :to="localePath({ name: 'farms-edit-id-tab', params: { id: farm.id, tab: localeFarmEditTab('contact-information') } })" class="card-link">{{ $t('phrases.edit') }}</nuxt-link>
               <nuxt-link :to="localePath({ name: 'farms-deactivate-id', params: { id: farm.id } })" class="card-link" v-if="farmIsActive(farm)">{{ $t('phrases.deactivate') }}</nuxt-link>
-              <nuxt-link :to="localePath({ name: 'farms-show-id', params: { id: farm.id } })" class="card-link">{{ $t('phrases.view') }}</nuxt-link>
+              <nuxt-link :to="localePath({ name: 'farms-show-id-name', params: { id: farm.id, name: slugify(farm.name) } })" class="card-link">{{ $t('phrases.view') }}</nuxt-link>
             </template>
           </farm-list-item>
         </div>

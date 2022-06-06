@@ -5,6 +5,9 @@
     </page-title>
     <page-content-aside>
       <template>
+        <b-alert class="mb-4" variant="danger" :show="hasErrorMessage()" @dismissed="clearErrorMessage()" dismissible>
+          {{ flashErrorMessage () }}
+        </b-alert>
         <b-alert class="mb-4" variant="success" :show=" ! $_.isEmpty(user)">
           {{ $t('messages.registration_successful') }}
           <nuxt-link :to="localePath('/login')">{{ $t('phrases.to_login') }}</nuxt-link>

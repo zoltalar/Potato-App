@@ -3,6 +3,10 @@ export default {
     empty (string) {
       return this._.isNil(string) || string === ''
     },
+    nl2br (string, xhtml = true) {
+      const tag = (xhtml || typeof xhtml === 'undefined') ? '<br ' + '/>' : '<br>'
+      return (string + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + tag + '$2')
+    },
     phrases (string) {
       let phrases = []
       if (string) {
@@ -19,6 +23,9 @@ export default {
         phrases = this._.uniq(phrases)
       }
       return phrases
+    },
+    slugify (string) {
+      return this.$_.kebabCase(string)
     }
   }
 }

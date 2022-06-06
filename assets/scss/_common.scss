@@ -55,6 +55,13 @@
 
 .farms {
 
+  &.show {
+
+    main {
+      color: $gray-700;
+    }
+  }
+
   @include media-breakpoint-up(md) {
 
     &.show {
