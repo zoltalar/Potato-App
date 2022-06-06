@@ -24,6 +24,15 @@ export default {
         }
       })
     },
+    farmEditDescriptionLink (farm) {
+      return this.localePath({
+        name: 'farms-edit-id-tab',
+        params: {
+          id: farm.id,
+          tab: this.localeFarmEditTab('description')
+        }
+      })
+    },
     farmEditMailingAddressLink (farm) {
       return this.localePath({
         name: 'farms-edit-id-tab',

@@ -18,7 +18,7 @@ export default {
     truncatedText() {
       const text = this.text
       const chars = this.chars
-      if ( ! text) {
+      if (!text) {
         return ''
       }
       if (text.length <= chars) {

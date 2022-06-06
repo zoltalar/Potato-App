@@ -81,6 +81,22 @@ body {
   min-width: 20rem;
 }
 
+.description {
+
+  .link-edit {
+    background-color: $gray-300;
+    border-radius: $border-radius;
+    color: $gray-700;
+    display: inline-block;
+    font-size: 0.75rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    margin-left: .25rem;
+    text-align: center;
+    width: 1.5rem;
+  }
+}
+
 .footer-nav {
   list-style-type: none;
   margin: 1rem 0 0;
