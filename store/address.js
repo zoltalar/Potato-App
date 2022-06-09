@@ -11,7 +11,7 @@ export const mutations = {
 export const actions = {
   async meta ({ commit }) {
     const response = await this.$axios.get('/api/potato/addresses/meta')
-    const meta = this._vm._.get(response, 'data')
+    const meta = this._vm.$_.get(response, 'data')
     commit('meta', meta)
     return meta
   }

@@ -126,6 +126,8 @@ export default {
   },
   methods: {
     listen () {
+      this.$root.$off('autocomplete-city-input')
+
       this.$root.$on('autocomplete-city-input', ({ city }) => {
         const zip = this.$_.head(this.phrases(city.zips))
         this.address.city = city.name

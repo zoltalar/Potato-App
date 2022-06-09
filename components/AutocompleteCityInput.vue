@@ -4,7 +4,7 @@
       maxlength="60"
       :class="{'is-invalid': error}"
       @input="onChange"
-      @keydown="onKeyDown"
+      @keyup="onKeyUp"
       :disabled="disabled"
       v-model="city" />
     <ul v-if="hasCities() && open">
@@ -103,7 +103,7 @@ export default {
         this.open = true
       }, 400)
     },
-    onKeyDown () {
+    onKeyUp () {
       const city = {
         name: this.city,
         zips: ''
@@ -121,8 +121,6 @@ export default {
     document.addEventListener('click', this.clickOutside)
   },
   destroyed() {
-    this.$root.$off('input-country-id')
-    this.$root.$off('input-state-id')
     document.removeEventListener('click', this.clickOutside)
   }
 }

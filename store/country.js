@@ -23,7 +23,7 @@ export const actions = {
     const response = await this.$axios.get('/api/potato/countries/index', {
       params: { all: true }
     })
-    const collection = this._vm._.get(response, 'data.data')
+    const collection = this._vm.$_.get(response, 'data.data')
     commit('collection', collection)
     return collection
   }
