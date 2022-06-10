@@ -140,6 +140,7 @@ export default {
     reviews: 'Reviews',
     save: 'Save',
     search: 'Search',
+    search_results: 'Search Results',
     send_message: 'Send Message',
     set_as_cover_image: 'Set as Cover Image',
     set_as_main: 'Set as Main',

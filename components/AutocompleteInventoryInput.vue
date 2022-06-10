@@ -4,6 +4,7 @@
       size="lg"
       maxlength="255"
       :placeholder="$t('messages.search_product_with_example')"
+      required
       @input="onChange"
       @keyup="onKeyUp"
       v-model="item" />
@@ -79,18 +80,20 @@ export default {
       }, 400)
     },
     onKeyUp () {
-      const item = this.item
+      const item = {
+        id: 0,
+        name: this.item
+      }
       this.$root.$emit('autocomplete-inventory-input', { item })
     },
     select (item) {
-      let name = item.name
       if (item.translations && item.translations.length) {
         const translation = this.$_.head(item.translations)
-        name = translation.name
+        item.name = translation.name
       }
-      this.item = name
+      this.item = item.name
       this.open = false
-      this.$root.$emit('autocomplete-inventory-input', { item: name })
+      this.$root.$emit('autocomplete-inventory-input', { item })
     }
   },
   mounted() {

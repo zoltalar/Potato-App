@@ -140,6 +140,7 @@ export default {
     reviews: 'Recencje',
     save: 'Zapisz',
     search: 'Szukaj',
+    search_results: 'Wyniki Wyszukiwania',
     send_message: 'Wyślij Wiadomość',
     set_as_cover_image: 'Ustaw Jako Okładkę',
     set_as_main: 'Ustaw Jako Główne',

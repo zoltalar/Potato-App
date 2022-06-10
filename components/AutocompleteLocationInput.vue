@@ -4,6 +4,7 @@
       size="lg"
       maxlength="255"
       :placeholder="$t('phrases.near')"
+      required
       @input="onChange"
       @keyup="onKeyUp"
       v-model="location" />
@@ -70,35 +71,36 @@ export default {
         this.locations = []
       }
     },
-    geolocate () {
-      if (process.browser) {
-        const city = this.$store.getters['city/city']
-        if (this.empty(city)) {
-          const id = this.$auth.$storage.getUniversal('potato._city_id')
-          const name = this.$auth.$storage.getUniversal('potato._city_name')
-          if (!this.$_.isNil(id) && !this.$_.isNil(name)) {
-            this.$store.commit('city/id', id)
-            this.$store.commit('city/city', name)
-            this.location = name
-            this.onKeyUp()
+    locate () {
+      if (!process.browser) {
+        return false;
+      }
+      let city = this.$store.getters['city/city']
+      if (this.$_.isNil(city)) {
+        try {
+          city = this.$auth.$storage.getCookie('potato._city')
+          if (!this.$_.isEmpty(city)) {
+            this.location = city.name
+            this.onKeyUp(city)
+            this.$store.commit('city/city', city)
           } else if (navigator && navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
               this
                 .$store
-                .dispatch('city/coords', [
+                .dispatch('city/locate', [
                   position.coords.latitude,
                   position.coords.longitude
                 ])
                 .then((city) => {
                   this.location = city.name
-                  this.onKeyUp()
+                  this.onKeyUp(city)
                 })
             })
           }
-        } else {
-          this.location = city
-          this.onKeyUp()
-        }
+        } catch(e) {}
+      } else {
+        this.location = city.name
+        this.onKeyUp(city)
       }
     },
     hasLocations () {
@@ -115,23 +117,23 @@ export default {
         this.open = true
       }, 400)
     },
-    onKeyUp () {
-      const location = this.location
+    onKeyUp (city = null) {
+      const location = {
+        id: city.id || 0,
+        name: city.name || this.location
+      }
       this.$root.$emit('autocomplete-location-input', { location })
     },
     select (location) {
-      const id = location.id
-      const name = location.name
-      this.location = name
+      this.location = location.name
       this.open = false
-      this.$store.dispatch('city/id', id)
-      this.$store.dispatch('city/city', name)
-      this.$root.$emit('autocomplete-location-input', { location: name })
+      this.$store.dispatch('city/city', location)
+      this.$root.$emit('autocomplete-location-input', { location })
     }
   },
   mounted() {
     if (this.geolocation) {
-      this.geolocate()
+      this.locate()
     }
     document.addEventListener('click', this.clickOutside)
   },

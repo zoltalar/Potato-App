@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit.prevent="submit">
     <b-row>
       <b-col md="6" class="col-left">
         <div class="item">
@@ -8,7 +8,7 @@
       </b-col>
       <b-col md="6" class="col-right">
         <div class="position-relative">
-          <b-button variant="primary" size="lg">
+          <b-button type="submit" variant="primary" size="lg">
             <font-awesome-icon icon="search" />
           </b-button>
           <div class="location">
@@ -25,21 +25,36 @@ export default {
   data: () => ({
     search: {
       item: '',
-      location: ''
+      id: 0,
+      location: '',
+      type: 'farms'
     }
   }),
   methods: {
     listen () {
       this.$root.$on('autocomplete-inventory-input', ({ item }) => {
-        this.search.item = item
+        this.search.item = item.name
       })
 
       this.$root.$on('autocomplete-location-input', ({ location }) => {
-        this.search.location = location
+        this.search.id = location.id
+        this.search.location = location.name
       })
+    },
+    submit () {
+      const search = this.search
+      const type = search.type
+      this.$router.push(this.localePath({
+        name: type + '-search-id-item-location',
+        params: {
+          id: search.id,
+          item: search.item.toLowerCase(),
+          location: search.location.toLowerCase()
+        }
+      }))
     }
   },
-  mounted() {
+  created() {
     this.listen()
   }
 }
