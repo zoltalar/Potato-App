@@ -12,6 +12,17 @@
     </b-form-group>
     <b-form-group>
       <template v-slot:label>
+        {{ $t('phrases.email') }}
+        <span class="text-danger">*</span>
+      </template>
+      <b-form-input type="email" :class="{'is-invalid': error('email') !== null}" maxlength="255" v-model="farm.email" />
+      <div class="invalid-feedback d-block" v-if="error('email') !== null">
+        {{ error('email') }}
+      </div>
+      <small class="form-text text-muted" v-html="$t('messages.farm_contact_information_email')"></small>
+    </b-form-group>
+    <b-form-group>
+      <template v-slot:label>
         {{ $t('phrases.promote_this_farm') }}
         <span class="text-danger">*</span>
       </template>
@@ -50,6 +61,7 @@ export default {
   data: () => ({
     farm: {
       name: '',
+      email: '',
       promote: null,
       terms: null
     }

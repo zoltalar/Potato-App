@@ -101,6 +101,9 @@ export default {
         return address.type === 2
       }))
     },
+    farmNotEmpty (farm) {
+      return ! this.$_.isEmpty(farm)
+    },
     farmPublishAddress (farm) {
       return parseInt(farm.publish_address) === 1
     },

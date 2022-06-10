@@ -21,7 +21,7 @@
     </nuxt-link>
     <b-card-title class="h6 mb-1">{{ $t('phrases.address') }}</b-card-title>
     <b-card-text class="mb-4">
-      <span v-if="farmPublishAddress(farm)">{{ addressLine(address, ',', ['address', 'address_2', 'city', 'state', 'zip']) }}</span>
+      <span v-if="farmPublishAddress(farm) && addressLine(address)">{{ addressLine(address, ',', ['address', 'address_2', 'city', 'state', 'zip']) }}</span>
       <span v-else> - </span>
     </b-card-text>
     <nuxt-link :to="farmEditMailingAddressLink(farm)" class="link-edit" :title="$t('phrases.edit_mailing_address')" v-if="farmIsOwner(farm)">
@@ -29,7 +29,7 @@
     </nuxt-link>
     <b-card-title class="h6 mb-1">{{ $t('phrases.mailing_address') }}</b-card-title>
     <b-card-text>
-      <span v-if="farmPublishMailingAddress(farm)">{{ addressLine(mailingAddress, ',', ['address', 'address_2', 'city', 'state', 'zip']) }}</span>
+      <span v-if="farmPublishMailingAddress(farm) && addressLine(mailingAddress)">{{ addressLine(mailingAddress, ',', ['address', 'address_2', 'city', 'state', 'zip']) }}</span>
       <span v-else> - </span>
     </b-card-text>
   </b-card>

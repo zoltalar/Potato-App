@@ -5,7 +5,8 @@
     </nuxt-link>
     <b-card-title class="h6 mb-1">{{ $t('phrases.operating_hours') }}</b-card-title>
     <b-card-text>
-      <span>{{ farm.operating_hours }}</span>
+      <span v-if="farm.operating_hours">{{ farm.operating_hours }}</span>
+      <span v-else> - </span>
     </b-card-text>
   </b-card>
 </template>

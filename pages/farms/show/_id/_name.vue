@@ -1,5 +1,5 @@
 <template>
-  <div class="farms show">
+  <div class="farms show" v-if="farmNotEmpty(farm)">
     <page-cover :imageable="farm" type="farm" />
     <page-title>
       {{ farm.name }}
@@ -7,24 +7,14 @@
     <page-aside-content :col-aside="{ md: 4, lg: 4 }" :col-main="{ md: 8, lg: 8 }">
       <template v-slot:aside>
         <image-primary :imageable="farm" type="farm" class="mb-3" />
-        <ul class="list-buttons">
-          <li class="mb-3">
-            <b-button variant="primary" size="lg" block>
-              <font-awesome-icon icon="comment" />
-              {{ $t('phrases.send_message') }}
-            </b-button>
-          </li>
-          <li>
-            <b-button variant="primary" size="lg" block>
-              <font-awesome-icon icon="edit" />
-              {{ $t('phrases.write_a_review') }}
-            </b-button>
-          </li>
-        </ul>
+        <farm-buttons-menu :farm="farm" />
         <farm-contact-information :farm="farm" class="mt-4" />
         <farm-operating-hours :farm="farm" class="mt-4" />
       </template>
       <template>
+        <b-alert class="mb-4" variant="success" :show="hasFlashMessage()" @dismissed="clearFlashMessage()" dismissible>
+          {{ flashMessage() }}
+        </b-alert>
         <farm-description :farm="farm" />
       </template>
     </page-aside-content>
@@ -76,8 +66,16 @@ export default {
           this.farm = this.$_.get(response, 'data.data')
         })
     },
+    listen () {
+      this.$root.$on('message-created', () => {
+        this.$store.commit('flash/message', this.$t('messages.message_sent'))
+      })
+    }
   },
-  mounted() {
+  created () {
+    this.listen()
+  },
+  mounted () {
     this.fetch()
   }
 }

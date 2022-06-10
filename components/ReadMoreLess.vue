@@ -7,16 +7,7 @@
 <script>
 export default {
   name: 'ReadMoreLess',
-  props: {
-    text: {
-      type: String,
-      required: true
-    },
-    chars: {
-      type: Number,
-      required: true
-    }
-  },
+  props: ['text', 'chars'],
   computed: {
     truncatedText () {
       const text = this.nl2br(this.text)

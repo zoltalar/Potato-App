@@ -25,7 +25,7 @@
         </b-collapse>
       </b-navbar>
     </b-container>
-    <b-modal id="modal-region-language" centered :title="$t('phrases.language_and_region')" @shown="populateI18n" @ok="saveI18n" no-enforce-focus>
+    <b-modal id="modal-region-language" :title="$t('phrases.language_and_region')" @shown="populateI18n" @ok="saveI18n" no-enforce-focus>
       <language-region-form ref="form-language-region" />
       <template #modal-footer="{ ok, cancel, hide }">
         <b-button variant="secondary" @click="cancel()">
