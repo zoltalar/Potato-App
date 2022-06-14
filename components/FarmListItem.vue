@@ -1,5 +1,5 @@
 <template>
-  <b-card class="list-farm-item" v-if="farm">
+  <b-card class="list-farm-item" v-if="farmNotEmpty(farm)">
     <font-awesome-icon icon="star" class="text-warning float-right" :title="$t('phrases.promoted')" v-if="farm.promote" />
     <b-img-lazy
       :src="imageVariation(image.variations, 'primary', 'file_url')"

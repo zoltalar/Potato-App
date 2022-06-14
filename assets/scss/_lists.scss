@@ -78,6 +78,92 @@
   transform: translateY(-50%);
 }
 
+.list-messages {
+  display: block;
+  list-style: none;
+  padding-left: 0;
+
+  > li {
+    cursor: pointer;
+    display: block;
+    height: 3.125rem;
+    line-height: 3.125rem;
+    position: relative;
+    transition-duration: .3s;
+
+    a {
+      color: $gray-600;
+
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+    }
+
+    &:hover,
+    &.unread {
+      background-color: $gray-150;
+    }
+
+    &.unread {
+
+      a {
+        color: $gray-900;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .checkbox-wrap {
+    float: left;
+    height: 3.125rem;
+    padding: .75rem 0 0 .75rem;
+  }
+
+  .col-mail {
+    float: left;
+    position: relative;
+  }
+
+  .col-mail-1 {
+    width: 28%;
+  }
+
+  .col-mail-2 {
+    width: 72%;
+  }
+
+  .date {
+    color: $gray-600;
+    padding-left: 10px;
+    position: absolute;
+    right: 0;
+    width: 6.25rem;
+  }
+
+  .subject {
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 6.875rem;
+    text-overflow: ellipsis;
+    top: 0;
+    white-space: nowrap;
+  }
+
+  .title {
+    left: 2.5rem;
+    line-height: 3.125rem;
+    margin-bottom: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0.3125rem;
+    text-overflow: ellipsis;
+    top: 0;
+    white-space: nowrap;
+  }
+}
+
 .list-social {
 
   li {

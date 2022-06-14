@@ -1,5 +1,5 @@
 <template>
-  <div class="account home">
+  <div class="account farms">
     <page-title>
       {{ $t('phrases.my_account') }}
     </page-title>

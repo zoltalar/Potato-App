@@ -18,8 +18,9 @@ export const actions = {
     const uri = `/api/potato/cities/locate/${latitude}/${longitude}`
     const response = await this.$axios.get(uri)
     const cities = this._vm.$_.get(response, 'data.data', [])
+    let city = null
     if (cities.length > 0) {
-      const city = this._vm.$_.head(cities)
+      city = this._vm.$_.head(cities)
       commit('city', city)
     }
     return city

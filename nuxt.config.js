@@ -31,6 +31,7 @@ export default {
     '~/plugins/axios.js',
     '~/plugins/bootstrap.js',
     '~/plugins/lodash.js',
+    '~/plugins/moment.js',
     '~/plugins/mixins.js'
   ],
 
@@ -47,6 +48,7 @@ export default {
     '@nuxtjs/auth-next',
     '@nuxtjs/fontawesome',
     '@nuxtjs/i18n',
+    '@nuxtjs/moment',
     'nuxt-vue-select'
   ],
 

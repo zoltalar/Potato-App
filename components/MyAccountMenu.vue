@@ -15,7 +15,10 @@ export default{
         },
         { href: '#', title: this.$t('phrases.markets') },
         { href: '#', title: this.$t('phrases.favorites') },
-        { href: '#', title: this.$t('phrases.messages') },
+        {
+          href: this.localePath('/account/messages'),
+          title: this.$t('phrases.messages')
+        },
         { href: '#', title: this.$t('phrases.reviews') },
         {
           href: this.localePath('/account/contact-information'),

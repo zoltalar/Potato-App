@@ -11,7 +11,7 @@
         {{ $t('phrases.message') }}
         <span class="text-danger">*</span>
       </template>
-      <b-form-textarea id="input-message-content" :class="{'is-invalid': error('content') !== null}" rows="7" maxlength="500" v-model="message.content"></b-form-textarea>
+      <b-form-textarea id="input-message-content" :class="{'is-invalid': error('content') !== null}" rows="7" maxlength="1000" v-model="message.content"></b-form-textarea>
       <div class="invalid-feedback d-block" v-if="error('content') !== null">
         {{ error('content') }}
       </div>
