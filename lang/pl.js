@@ -119,6 +119,7 @@ export default {
     markets: 'Agromarkety',
     message: 'Wiadomość',
     message_details: 'Szczegóły Wiadomości',
+    message_reply: 'Odpowiedź na Wiadomość',
     messages: 'Wiadomości',
     my_account: 'Moje Konto',
     near: 'Koło',

@@ -5,18 +5,19 @@
     </page-title>
     <page-aside-content :col-main="{md: 9}" :col-aside="{md: 3}">
       <template v-slot:aside>
-        <b-button-group>
+        <b-button-group class="mb-4">
           <nuxt-link :to="localePath('/account/messages')" class="btn btn-primary">{{ $t('phrases.back') }}</nuxt-link>
           <b-button variant="danger" @click.prevent="destroy">{{ $t('phrases.delete') }}</b-button>
         </b-button-group>
       </template>
       <template>
-        <b-card no-body>
+        <b-alert class="mb-4" variant="success" :show="hasFlashMessage()" @dismissed="clearFlashMessage()" dismissible>
+          {{ flashMessage() }}
+        </b-alert>
+        <b-card class="mb-4" no-body>
           <b-card-body>
             <b-card-title class="h5">{{ message.subject }}</b-card-title>
-            <b-card-text v-if="message.content">
-              {{ nl2br(message.content) }}
-            </b-card-text>
+            <b-card-text v-html="nl2br(message.content)" v-if="message.content"></b-card-text>
           </b-card-body>
           <b-card-footer>
             <small class="text-muted">
@@ -24,6 +25,10 @@
             </small>
           </b-card-footer>
         </b-card>
+        <b-button variant="primary" size="lg" @click.prevent="reply">{{ $t('phrases.reply') }}</b-button>
+        <b-modal id="modal-message-reply" :title="$t('phrases.message_reply')" @shown="populate" @ok="send" no-enforce-focus>
+          <message-reply-form :reply="message" ref="form-message-reply" />
+        </b-modal>
       </template>
     </page-aside-content>
   </div>
@@ -87,9 +92,27 @@ export default {
         .then((response) => {
           this.message = this.$_.get(response, 'data.data')
         })
+    },
+    listen () {
+      this.$root.$on('message-replied', () => {
+        this.$bvModal.hide('modal-message-reply')
+        this.$store.commit('flash/message', this.$t('messages.message_sent'))
+      })
+    },
+    reply () {
+      this.$bvModal.show('modal-message-reply')
+    },
+    send (event) {
+      event.preventDefault()
+      this.$refs['form-message-reply'].send()
+
+      return
     }
   },
-  mounted() {
+  created () {
+    this.listen()
+  },
+  mounted () {
     this.fetch()
   }
 }

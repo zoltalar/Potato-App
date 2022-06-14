@@ -9,6 +9,7 @@
     <div class="col-mail col-mail-2">
       <nuxt-link :to="messageViewLink(message)" class="subject">
         {{ message.subject }}
+        -
         <char-limit :chars="100" :text="message.content" class="teaser" />
       </nuxt-link>
       <span class="date">{{ shortDate(message.created_at) }}</span>

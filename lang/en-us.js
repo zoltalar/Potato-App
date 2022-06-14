@@ -119,6 +119,7 @@ export default {
     markets: 'Markets',
     message: 'Message',
     message_details: 'Message Details',
+    message_reply: 'Message Reply',
     messages: 'Messages',
     my_account: 'My Account',
     near: 'Near',

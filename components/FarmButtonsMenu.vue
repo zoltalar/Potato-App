@@ -15,7 +15,7 @@
       </li>
     </ul>
     <b-modal id="modal-message-create" :title="$t('phrases.send_a_message')" @ok="send" no-enforce-focus>
-      <message-create-form :messageable="farm" type="farm" ref="forms-message-create" />
+      <message-create-form :messageable="farm" type="farm" ref="form-message-create" />
     </b-modal>
   </div>
 </template>
@@ -39,7 +39,7 @@ export default {
     },
     send (event) {
       event.preventDefault()
-      this.$refs['forms-message-create'].store()
+      this.$refs['form-message-create'].store()
 
       return
     }
