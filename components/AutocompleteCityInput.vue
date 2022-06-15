@@ -116,11 +116,11 @@ export default {
       this.$root.$emit('autocomplete-city-input', { city })
     }
   },
-  mounted() {
+  mounted () {
     this.listen()
     document.addEventListener('click', this.clickOutside)
   },
-  destroyed() {
+  destroyed () {
     document.removeEventListener('click', this.clickOutside)
   }
 }

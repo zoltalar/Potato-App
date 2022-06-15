@@ -54,7 +54,7 @@ export default {
       }))
     }
   },
-  created() {
+  created () {
     this.listen()
   }
 }

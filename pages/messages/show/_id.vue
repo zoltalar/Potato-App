@@ -7,7 +7,7 @@
       <template v-slot:aside>
         <b-button-group class="mb-4">
           <nuxt-link :to="localePath('/account/messages')" class="btn btn-primary">{{ $t('phrases.back') }}</nuxt-link>
-          <b-button variant="danger" @click.prevent="destroy">{{ $t('phrases.delete') }}</b-button>
+          <b-button variant="secondary" @click.prevent="destroy">{{ $t('phrases.delete') }}</b-button>
         </b-button-group>
       </template>
       <template>
@@ -26,7 +26,7 @@
           </b-card-footer>
         </b-card>
         <b-button variant="primary" size="lg" @click.prevent="reply">{{ $t('phrases.reply') }}</b-button>
-        <b-modal id="modal-message-reply" :title="$t('phrases.message_reply')" @shown="populate" @ok="send" no-enforce-focus>
+        <b-modal id="modal-message-reply" :title="$t('phrases.message_reply')" @ok="send" no-enforce-focus>
           <message-reply-form :reply="message" ref="form-message-reply" />
         </b-modal>
       </template>
@@ -80,6 +80,7 @@ export default {
           .$axios
           .delete(`/api/potato/messages/${message.id}`)
           .then(() => {
+            this.$store.commit('flash/message', this.$t('messages.message_deleted'))
             this.$router.push(this.localePath('/account/messages'))
           })
       }

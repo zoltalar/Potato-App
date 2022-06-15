@@ -131,13 +131,13 @@ export default {
       this.$root.$emit('autocomplete-location-input', { location })
     }
   },
-  mounted() {
+  mounted () {
     if (this.geolocation) {
       this.locate()
     }
     document.addEventListener('click', this.clickOutside)
   },
-  destroyed() {
+  destroyed () {
     document.removeEventListener('click', this.clickOutside)
   }
 }

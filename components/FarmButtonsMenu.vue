@@ -44,7 +44,7 @@ export default {
       return
     }
   },
-  mounted() {
+  mounted () {
     this.listen()
   }
 }

@@ -12,10 +12,24 @@
           {{ flashMessage() }}
         </b-alert>
         <div v-if="messages.length > 0">
-          <p v-html="$t('messages.account_messages')"></p>
+          <p class="mb-4" v-html="$t('messages.account_messages')"></p>
+          <b-button-group size="sm" class="mb-3">
+            <b-button variant="secondary">
+              <input type="checkbox" v-model="toggle" />
+            </b-button>
+            <b-button variant="secondary" @click.prevent="destroyBatch">
+              <font-awesome-icon icon="trash" />
+            </b-button>
+          </b-button-group>
           <ul class="list-messages">
-            <message-list-item :message="message" v-for="(message, i) in messages" :key="'message-list-item-' + i" />
+            <message-list-item :message="message" v-for="(message, i) in pagedMessages" :key="'message-list-item-' + i" />
           </ul>
+          <b-pagination
+            v-model="pagination.currentPage"
+            :items="messages"
+            :total-rows="messages.length"
+            :per-page="pagination.perPage"
+          />
         </div>
         <div class="mb-4" v-else>
           <p v-html="$t('messages.account_messages_empty')"></p>
@@ -49,10 +63,52 @@ export default {
     }
   },
   data: () => ({
-    messages: []
+    messages: [],
+    pagination: {
+      currentPage: 1,
+      perPage: 10
+    },
+    toggle: false,
+    ids: []
   }),
+  computed: {
+    pagedMessages () {
+      const messages = this.messages
+      const pagination = this.pagination
+      const start = (pagination.currentPage - 1) * pagination.perPage
+      const end = pagination.currentPage * pagination.perPage
+      return messages.slice(start, end)
+    }
+  },
+  watch: {
+    toggle: {
+      handler (toggle) {
+        this.$root.$emit('toggle-messages', { toggle })
+      }
+    }
+  },
   methods: {
-    fetch() {
+    destroyBatch () {
+      const ids = this.$_.filter(this.ids, (id) => {
+        return this.$_.isNumber(id)
+      })
+      const models = this.$t('phrases.messages').toLowerCase()
+      const message = this.$t('messages.confirm_models_destroy_batch', { models })
+      if (ids.length === 0) {
+        alert(this.$t('messages.alert_selected_messages_empty'))
+      } else if (confirm(message)) {
+        this
+          .$axios
+          .post('/api/potato/messages/destroy-batch', { ids })
+          .then((response) => {
+            if (response.status === 204) {
+              this.$store.commit('flash/message', this.$t('messages.messages_deleted'))
+              this.fetch()
+            }
+          })
+      }
+    },
+    fetch () {
       this
         .$axios
         .get('/api/potato/account/messages')
@@ -60,12 +116,22 @@ export default {
           this.messages = this._.get(response, 'data.data')
         })
     },
-    read(message) {
-      this.selectedMessage = message
-      this.$bvModal.show('modal-message-read')
+    listen () {
+      this.$root.$on('toggle-message', ({toggle, id}) => {
+        if (toggle) {
+          if (this.$_.isNumber(id)) {
+            this.ids.push(id)
+          }
+        } else {
+          this.$_.pull(this.ids, id)
+        }
+      })
     }
   },
-  mounted() {
+  created () {
+    this.listen()
+  },
+  mounted () {
     this.fetch()
   }
 }

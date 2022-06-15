@@ -96,10 +96,10 @@ export default {
       this.$root.$emit('autocomplete-inventory-input', { item })
     }
   },
-  mounted() {
+  mounted () {
     document.addEventListener('click', this.clickOutside)
   },
-  destroyed() {
+  destroyed () {
     document.removeEventListener('click', this.clickOutside)
   }
 }

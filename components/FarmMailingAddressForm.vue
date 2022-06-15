@@ -164,7 +164,7 @@ export default {
         })
     }
   },
-  mounted() {
+  mounted () {
     this.fetchCountries()
     this.listen()
   }

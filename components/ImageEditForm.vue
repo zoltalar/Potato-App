@@ -70,7 +70,7 @@ export default {
       return `/api/potato/images/update/${image.id}/${type}/${imageable.id}`
     }
   },
-  mounted() {
+  mounted () {
     this.populate()
   }
 }
