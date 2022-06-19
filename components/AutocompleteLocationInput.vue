@@ -80,8 +80,7 @@ export default {
         try {
           city = this.$auth.$storage.getCookie('potato._city')
           if (!this.$_.isEmpty(city)) {
-            this.location = city.name
-            this.onKeyUp(city)
+            this.setCity(city)
             this.$store.commit('city/city', city)
           } else if (navigator && navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
@@ -92,15 +91,13 @@ export default {
                   position.coords.longitude
                 ])
                 .then((city) => {
-                  this.location = city.name
-                  this.onKeyUp(city)
+                  this.setCity(city)
                 })
             })
           }
         } catch(e) {}
       } else {
-        this.location = city.name
-        this.onKeyUp(city)
+        this.setCity(city)
       }
     },
     hasLocations () {
@@ -129,6 +126,10 @@ export default {
       this.open = false
       this.$store.dispatch('city/city', location)
       this.$root.$emit('autocomplete-location-input', { location })
+    },
+    setCity (city) {
+      this.location = city.name
+      this.onKeyUp(city)
     }
   },
   mounted () {

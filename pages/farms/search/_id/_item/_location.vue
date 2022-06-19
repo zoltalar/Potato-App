@@ -1,5 +1,9 @@
 <template>
-  <p>Search Results Page</p>
+  <div class="farms search">
+    <page-title>
+      {{ $t('phrases.search_results') }}
+    </page-title>
+  </div>
 </template>
 <script>
 export default {

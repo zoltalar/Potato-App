@@ -108,20 +108,18 @@ export default {
   },
 
   i18n: {
-    detectBrowserLanguage: {
-      useCookie: false
-    },
+    detectBrowserLanguage: false,
     strategy: 'prefix',
     locales: [
-      {
-        code: 'en',
-        name: 'English',
-        file: 'en-us.js'
-      },
       {
         code: 'pl',
         name: 'Polski',
         file: 'pl.js'
+      },
+      {
+        code: 'en',
+        name: 'English',
+        file: 'en-us.js'
       }
     ],
     lazy: true,

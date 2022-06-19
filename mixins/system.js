@@ -10,6 +10,9 @@ export default {
       if (this.$_.isEmpty(this.addressMeta())) {
         this.refreshAddressMeta()
       }
+      if (this.$_.isEmpty(this.unitMeta())) {
+        this.refreshUnitMeta()
+      }
     }
   }
 }

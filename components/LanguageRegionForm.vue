@@ -1,11 +1,11 @@
 <template>
   <form class="form-language-region">
     <b-form-group :label="$t('phrases.language')">
-      <b-form-select v-model="i18n.language" :options="languageOptions()"></b-form-select>
+      <b-form-select v-model="i18n.language" :options="languageOptions()" />
     </b-form-group>
     <b-form-group :label="$t('phrases.country')">
       <b-row>
-        <b-col sm="6" v-for="(country, i) in countryCollection()">
+        <b-col sm="6" v-for="(country) in countryCollection()">
           <b-form-radio name="country" v-model="i18n.country" :value="country.code">
             <img :src="countryFlag(country)" class="img-flag" />
             {{ country.name }}

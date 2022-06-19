@@ -33,7 +33,7 @@ export default {
   methods: {
     listen () {
       this.$root.$on('autocomplete-inventory-input', ({ item }) => {
-        this.search.item = item.name
+        this.search.item = this.inventoryName(item)
       })
 
       this.$root.$on('autocomplete-location-input', ({ location }) => {

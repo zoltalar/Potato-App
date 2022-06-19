@@ -10,7 +10,7 @@
       v-model="item" />
     <ul v-if="hasInventory() && open">
       <li v-for="(item, i) in inventory" :key="'autocomplete-inventory-' + i" @click.prevent="select(item)">
-        <span>{{ item.translations[0].name }}</span>
+        <span>{{ inventoryName(item) }}</span>
       </li>
     </ul>
   </div>
@@ -87,11 +87,7 @@ export default {
       this.$root.$emit('autocomplete-inventory-input', { item })
     },
     select (item) {
-      if (item.translations && item.translations.length) {
-        const translation = this.$_.head(item.translations)
-        item.name = translation.name
-      }
-      this.item = item.name
+      this.item = this.inventoryName(item)
       this.open = false
       this.$root.$emit('autocomplete-inventory-input', { item })
     }

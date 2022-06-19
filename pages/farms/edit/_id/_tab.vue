@@ -49,6 +49,11 @@
           <p class="mb-4" v-html="$t('messages.farm_operating_hours')"></p>
           <farm-operating-hours-form :edited-farm="farm" />
         </div>
+        <div v-else-if="farmEditTab() === 'products'">
+          <h5 class="mb-2">{{ $t('phrases.products') }}</h5>
+          <p class="mb-4" v-html="$t('messages.farm_products')"></p>
+          <products-form :productable="farm" type="farm" />
+        </div>
         <div v-else-if="farmEditTab() === 'photos'">
           <h5 class="mb-2">{{ $t('phrases.photos') }}</h5>
           <p class="mb-4" v-html="$t('messages.farm_photos')"></p>
