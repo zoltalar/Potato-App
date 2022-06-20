@@ -1,10 +1,28 @@
 export default {
+  props: {
+    productable: {
+      type: Object,
+      required: false
+    },
+    type: {
+      type: String,
+      required: true
+    }
+  },
   data: () => ({
     inventory: {},
     products: []
   }),
+  watch: {
+    productable: {
+      handler (productable) {
+        this.products = this.$_.get(productable, 'products', [])
+      },
+      immediate: true
+    }
+  },
   methods: {
-    fetchInventory () {
+    fetch () {
       this
         .$axios
         .get('/api/potato/inventory/index', {
@@ -27,6 +45,21 @@ export default {
       const product = this.$_.find(products, { id })
       return !this.$_.isNil(product)
     },
+    productIndex (id) {
+      return this.$_.findIndex(this.products, { id })
+    },
+    save () {
+      const products = this.products
+      this
+        .$axios
+        .post(this.uri(), { products })
+        .then((response) => {
+          this.setErrors(response)
+        })
+        .catch((error) => {
+          this.setErrors(error.response)
+        })
+    },
     toggleProduct (id) {
       if (this.hasProduct(id)) {
         this.$delete(this.products, this.productIndex(id))
@@ -43,8 +76,10 @@ export default {
         this.products.push(product)
       }
     },
-    productIndex (id) {
-      return this.$_.findIndex(this.products, { id })
+    uri () {
+      const type = this.type
+      const productable = this.productable
+      return `/api/potato/products/save/${type}/${productable.id}`
     }
   }
 }

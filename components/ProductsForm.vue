@@ -1,5 +1,5 @@
 <template>
-  <form class="form-products">
+  <form class="form-products" @submit.prevent="save">
     <div v-for="(items, name, i) in inventory" :key="'form-group-inventory-' + i">
       <h6>{{ name }}</h6>
       <b-form-group>
@@ -15,6 +15,9 @@
               <b-checkbox inline :value="1" :unchecked-value="0" v-model="products[productIndex(item.id)].spring">{{ $t('phrases.spring') }}</b-checkbox>
               <b-checkbox inline :value="1" :unchecked-value="0" v-model="products[productIndex(item.id)].summer">{{ $t('phrases.summer') }}</b-checkbox>
               <b-checkbox inline :value="1" :unchecked-value="0" v-model="products[productIndex(item.id)].fall">{{ $t('phrases.fall') }}</b-checkbox>
+              <div class="invalid-feedback d-block" v-if="error('products.' + productIndex(item.id) + '.seasons') !== null">
+                {{ error('products.' + productIndex(item.id) + '.seasons') }}
+              </div>
             </div>
             <div>
               <label class="sub-label">
@@ -23,6 +26,12 @@
               </label>
               <b-form-input size="sm" class="form-control-amount" :placeholder="$t('messages.product_amount_placeholder')" v-model="products[productIndex(item.id)].amount" />
               <b-form-select size="sm" class="custom-select-unit" :options="productUnits()" v-model="products[productIndex(item.id)].unit" />
+              <div class="invalid-feedback d-block" v-if="error('products.' + productIndex(item.id) + '.amount') !== null">
+                {{ error('products.' + productIndex(item.id) + '.amount') }}
+              </div>
+              <div class="invalid-feedback d-block" v-else-if="error('products.' + productIndex(item.id) + '.unit') !== null">
+                {{ error('products.' + productIndex(item.id) + '.unit') }}
+              </div>
             </div>
           </div>
         </div>
@@ -36,29 +45,12 @@
 </template>
 <script>
 import formProductableMixin from '@/mixins/form-productable'
+import formErrorsMixin from '@/mixins/form-errors'
 export default {
   name: 'ProductsForm',
-  props: {
-    productable: {
-      type: Object,
-      required: false
-    },
-    type: {
-      type: String,
-      required: true
-    }
-  },
-  mixins: [ formProductableMixin ],
-  watch: {
-    productable: {
-      handler (productable) {
-        this.products = this.$_.get(productable, 'products', [])
-      },
-      immediate: true
-    }
-  },
+  mixins: [ formProductableMixin, formErrorsMixin ],
   mounted () {
-    this.fetchInventory()
+    this.fetch()
   }
 }
 </script>

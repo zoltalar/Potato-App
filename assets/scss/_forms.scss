@@ -21,7 +21,7 @@
     margin: -0.0625rem .5rem 0;
     position: relative;
     top: -1px;
-    width: 8rem;
+    width: 6rem;
   }
 
   .form-control-amount {
@@ -36,6 +36,15 @@
   .sub-label {
     color: $text-muted;
     display: inline-block;
-    margin: 0 .5rem 0 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  @include media-breakpoint-up(sm) {
+
+    .sub-label {
+      margin-right: .5rem;
+      width: auto;
+    }
   }
 }
