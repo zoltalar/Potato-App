@@ -2,13 +2,13 @@
   <div>
     <ul class="list-buttons">
       <li class="mb-3">
-        <b-button variant="primary" size="lg" block :disabled="farmIsOwner(farm)" @click.prevent="message">
+        <b-button variant="primary" size="lg" block :disabled="farmIsOwner(farm) || !$auth.loggedIn" @click.prevent="message">
           <font-awesome-icon icon="comment" />
           {{ $t('phrases.send_a_message') }}
         </b-button>
       </li>
       <li>
-        <b-button variant="primary" size="lg" block :disabled="farmIsOwner(farm)">
+        <b-button variant="primary" size="lg" block :disabled="farmIsOwner(farm) || !$auth.loggedIn">
           <font-awesome-icon icon="edit" />
           {{ $t('phrases.write_a_review') }}
         </b-button>

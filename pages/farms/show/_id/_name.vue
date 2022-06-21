@@ -15,7 +15,8 @@
         <b-alert class="mb-4" variant="success" :show="hasFlashMessage()" @dismissed="clearFlashMessage()" dismissible>
           {{ flashMessage() }}
         </b-alert>
-        <farm-description :farm="farm" />
+        <farm-description :farm="farm" class="mb-4" />
+        <products :productable="farm" type="farm" />
       </template>
     </page-aside-content>
   </div>

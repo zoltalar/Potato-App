@@ -162,6 +162,7 @@ export default {
       this.$root.$off('farm-image-updated')
       this.$root.$off('farm-mailing-address-updated')
       this.$root.$off('farm-operating-hours-updated')
+      this.$root.$off('farm-products-saved')
       this.$root.$off('farm-social-media-updated')
 
       this.$root.$on('farm-address-updated', () => {
@@ -194,6 +195,9 @@ export default {
       })
       this.$root.$on('farm-operating-hours-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.farm_operating_hours_updated'))
+      })
+      this.$root.$on('farm-products-saved', () => {
+        this.$store.commit('flash/message', this.$t('messages.farm_products_saved'))
       })
       this.$root.$on('farm-social-media-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.farm_social_media_updated'))

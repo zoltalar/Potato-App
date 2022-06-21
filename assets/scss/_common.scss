@@ -81,7 +81,8 @@ body {
   min-width: 20rem;
 }
 
-.description {
+.description,
+.products {
 
   .link-edit {
     background-color: $gray-300;
@@ -196,6 +197,25 @@ body {
     font-size: 1.5rem;
     font-weight: 600;
     margin: 0;
+  }
+}
+
+.products {
+
+  .category-inventory {
+    padding: 1rem;
+
+    ul {
+      margin: 0;
+      overflow: auto;
+      padding: 0;
+
+      > li {
+        float: left;
+        list-style: square inside;
+        margin-right: 1rem;
+      }
+    }
   }
 }
 

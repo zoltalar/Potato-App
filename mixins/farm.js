@@ -60,6 +60,15 @@ export default {
         }
       })
     },
+    farmEditProductsLink (farm) {
+      return this.localePath({
+        name: 'farms-edit-id-tab',
+        params: {
+          id: farm.id,
+          tab: this.localeFarmEditTab('products')
+        }
+      })
+    },
     farmEditTab () {
       const tab = this.$route.params.tab
       let editTab = tab

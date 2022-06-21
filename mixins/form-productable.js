@@ -42,19 +42,24 @@ export default {
     },
     hasProduct (id) {
       const products = this.products
-      const product = this.$_.find(products, { id })
+      const product = this.$_.find(products, { inventory_id: id })
       return !this.$_.isNil(product)
     },
     productIndex (id) {
-      return this.$_.findIndex(this.products, { id })
+      return this.$_.findIndex(this.products, { inventory_id: id })
     },
     save () {
-      const products = this.products
+      let products = this.products
+      const type = this.type
       this
         .$axios
         .post(this.uri(), { products })
         .then((response) => {
           this.setErrors(response)
+          products = this.$_.get(response, 'data.data')
+          if (this.$_.isArray(products)) {
+            this.$root.$emit(type + '-products-saved', { products })
+          }
         })
         .catch((error) => {
           this.setErrors(error.response)
@@ -65,7 +70,7 @@ export default {
         this.$delete(this.products, this.productIndex(id))
       } else {
         const product = {
-          id,
+          inventory_id: id,
           spring: 0,
           summer: 0,
           fall: 0,
