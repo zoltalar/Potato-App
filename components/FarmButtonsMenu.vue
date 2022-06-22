@@ -2,6 +2,12 @@
   <div>
     <ul class="list-buttons">
       <li class="mb-3">
+        <b-button variant="primary" size="lg" block :disabled="farmIsOwner(farm) || !$auth.loggedIn" @click.prevent="favorite">
+          <font-awesome-icon icon="star" />
+          {{ $t('phrases.add_to_favorites') }}
+        </b-button>
+      </li>
+      <li class="mb-3">
         <b-button variant="primary" size="lg" block :disabled="farmIsOwner(farm) || !$auth.loggedIn" @click.prevent="message">
           <font-awesome-icon icon="comment" />
           {{ $t('phrases.send_a_message') }}
@@ -29,6 +35,15 @@ export default {
     }
   },
   methods: {
+    favorite () {
+      const farm = this.farm
+      this
+        .$axios
+        .post(`/api/potato/favorites/store/farm/${farm.id}`)
+        .then((response) => {
+          console.log(response)
+        })
+    },
     listen () {
       this.$root.$on('message-created', (message) => {
         this.$bvModal.hide('modal-message-create')

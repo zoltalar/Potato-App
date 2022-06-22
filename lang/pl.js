@@ -74,6 +74,7 @@ export default {
     account: 'Konto',
     add_farm: 'Dodaj Gospodarstwo Rolne',
     add_photo: 'Dodaj Zdjęcie',
+    add_to_favorites: 'Dodaj do Ulubionych',
     address: 'Adres',
     availability: 'Dostępność',
     back: 'Powrót',

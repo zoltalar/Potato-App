@@ -7,7 +7,7 @@
       </nuxt-link>
     </h6>
     <b-tabs>
-      <b-tab :title="$t('phrases.' + season)" v-for="(categories, season) in inventory">
+      <b-tab :title="$t('phrases.' + season)" :active="currentSeason() === season" v-for="(categories, season) in inventory">
         <div class="category-inventory" v-for="(inventoryNames, categoryName) in categories">
           <h6>{{ categoryName }}</h6>
           <ul>

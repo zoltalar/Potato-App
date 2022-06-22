@@ -6,12 +6,6 @@ export default {
       })
       const inventory = {}
       this.$_.forEach(products, (products, categoryName) => {
-        const attributes = [
-          'spring',
-          'summer',
-          'fall',
-          'winter'
-        ]
         this.$_.forEach(products, (product) => {
           const attributes = [
             'spring',

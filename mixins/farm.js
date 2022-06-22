@@ -98,6 +98,9 @@ export default {
     farmIsActive (farm) {
       return parseInt(farm.active) === 1
     },
+    farmIsFavorited (farm) {
+      const favorites = this.$_.get(farm, 'favorites', [])
+    },
     farmIsNameable (farm) {
       return ! this.$_.isNil(farm.first_name) && ! this.$_.isNil(farm.last_name)
     },

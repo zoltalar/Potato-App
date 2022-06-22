@@ -74,6 +74,7 @@ export default {
     account: 'Account',
     add_farm: 'Add Farm',
     add_photo: 'Add Photo',
+    add_to_favorites: 'Add to Favorites',
     address: 'Address',
     availability: 'Availability',
     back: 'Back',

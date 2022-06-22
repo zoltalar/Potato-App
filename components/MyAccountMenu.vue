@@ -13,7 +13,6 @@ export default{
           href: this.localePath('/account/farms'),
           title: this.$t('phrases.farms')
         },
-        { href: '#', title: this.$t('phrases.markets') },
         { href: '#', title: this.$t('phrases.favorites') },
         {
           href: this.localePath('/account/messages'),
