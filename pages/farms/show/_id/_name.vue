@@ -78,6 +78,9 @@ export default {
       this.$root.$on('message-created', () => {
         this.$store.commit('flash/message', this.$t('messages.message_sent'))
       })
+      this.$root.$on('review-created', () => {
+        this.$store.commit('flash/message', this.$t('messages.review_created'))
+      })
     }
   },
   created () {

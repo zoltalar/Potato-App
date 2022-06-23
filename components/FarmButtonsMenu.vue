@@ -13,8 +13,8 @@
           {{ $t('phrases.send_a_message') }}
         </b-button>
       </li>
-      <li>
-        <b-button variant="primary" size="lg" block :disabled="farmIsOwner(farm) || !$auth.loggedIn">
+      <li v-if="!farmIsReviewed(farm)">
+        <b-button variant="primary" size="lg" block :disabled="farmIsOwner(farm) || !$auth.loggedIn" @click.prevent="review">
           <font-awesome-icon icon="edit" />
           {{ $t('phrases.write_a_review') }}
         </b-button>
@@ -22,6 +22,9 @@
     </ul>
     <b-modal id="modal-message-create" :title="$t('phrases.send_a_message')" @ok="send" no-enforce-focus>
       <message-create-form :messageable="farm" type="farm" ref="form-message-create" />
+    </b-modal>
+    <b-modal id="modal-review-create" :title="$t('phrases.create_a_review')" @ok="rate" no-enforce-focus>
+      <review-create-form :rateable="farm" type="farm" ref="form-review-create" />
     </b-modal>
   </div>
 </template>
@@ -48,12 +51,24 @@ export default {
         })
     },
     listen () {
-      this.$root.$on('message-created', (message) => {
+      this.$root.$on('message-created', () => {
         this.$bvModal.hide('modal-message-create')
+      })
+      this.$root.$on('review-created', () => {
+        this.$bvModal.hide('modal-review-create')
       })
     },
     message () {
       this.$bvModal.show('modal-message-create')
+    },
+    rate (event) {
+      event.preventDefault()
+      this.$refs['form-review-create'].store()
+
+      return
+    },
+    review () {
+      this.$bvModal.show('modal-review-create')
     },
     send (event) {
       event.preventDefault()

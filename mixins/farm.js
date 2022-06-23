@@ -115,6 +115,17 @@ export default {
     farmIsOwner (farm) {
       return this.$auth.loggedIn && this.$auth.user.id === this.$_.get(farm, 'user_id')
     },
+    farmIsReviewed (farm) {
+      const reviews = this.$_.get(farm, 'reviews', [])
+      let user = { id: 0 }
+      if (this.$auth.loggedIn) {
+        user = this.$auth.user
+      }
+      const review = this.$_.find(reviews, (review) => {
+        return review.user_id === user.id
+      })
+      return !this.$_.isNil(review)
+    },
     farmMailingAddress (farm) {
       const addresses = this.$_.get(farm, 'addresses', [])
       return this.$_.head(this.$_.filter(addresses, (address) => {
