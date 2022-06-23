@@ -12,6 +12,9 @@
         <farm-operating-hours :farm="farm" class="mt-4" />
       </template>
       <template>
+        <b-alert class="mb-4" variant="danger" :show="!farmIsActive(farm)">
+          {{ $t('messages.farm_inactive') }}
+        </b-alert>
         <b-alert class="mb-4" variant="success" :show="hasFlashMessage()" @dismissed="clearFlashMessage()" dismissible>
           {{ flashMessage() }}
         </b-alert>
@@ -68,6 +71,10 @@ export default {
         })
     },
     listen () {
+      this.$root.$on('farm-favorited', () => {
+        this.$store.commit('flash/message', this.$t('messages.farm_favorited'))
+        this.fetch()
+      })
       this.$root.$on('message-created', () => {
         this.$store.commit('flash/message', this.$t('messages.message_sent'))
       })

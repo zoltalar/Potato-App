@@ -100,12 +100,20 @@ export default {
     },
     farmIsFavorited (farm) {
       const favorites = this.$_.get(farm, 'favorites', [])
+      let user = { id: 0 }
+      if (this.$auth.loggedIn) {
+        user = this.$auth.user
+      }
+      const favorite = this.$_.find(favorites, (favorite) => {
+        return favorite.user_id === user.id
+      })
+      return !this.$_.isNil(favorite)
     },
     farmIsNameable (farm) {
       return ! this.$_.isNil(farm.first_name) && ! this.$_.isNil(farm.last_name)
     },
     farmIsOwner (farm) {
-      return this.$auth.loggedIn && this.$auth.user.id === this._.get(farm, 'user_id')
+      return this.$auth.loggedIn && this.$auth.user.id === this.$_.get(farm, 'user_id')
     },
     farmMailingAddress (farm) {
       const addresses = this.$_.get(farm, 'addresses', [])

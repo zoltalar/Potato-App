@@ -1,7 +1,7 @@
 <template>
   <div class="account farms">
     <page-title>
-      {{ $t('phrases.my_account') }}
+      {{ $t('phrases.farms') }}
     </page-title>
     <page-aside-content>
       <template v-slot:aside>
@@ -11,15 +11,22 @@
         <b-alert class="mb-4" variant="success" :show="hasFlashMessage()" @dismissed="clearFlashMessage()" dismissible>
           {{ flashMessage() }}
         </b-alert>
-        <div v-if="farms.length > 0">
+        <div class="list-farms" v-if="farms.length > 0">
           <p v-html="$t('messages.account_farms')"></p>
-          <farm-list-item class="mb-4" :farm="farm" v-for="(farm, i) in farms" :key="'farm-list-item-' + i">
+          <farm-list-item class="mb-4" :farm="farm" v-for="(farm, i) in pagedFarms" :key="'farm-list-item-' + i">
             <template v-slot:links>
               <nuxt-link :to="localePath({ name: 'farms-edit-id-tab', params: { id: farm.id, tab: localeFarmEditTab('contact-information') } })" class="card-link">{{ $t('phrases.edit') }}</nuxt-link>
               <nuxt-link :to="localePath({ name: 'farms-deactivate-id', params: { id: farm.id } })" class="card-link" v-if="farmIsActive(farm)">{{ $t('phrases.deactivate') }}</nuxt-link>
               <nuxt-link :to="localePath({ name: 'farms-show-id-name', params: { id: farm.id, name: slugify(farm.name) } })" class="card-link">{{ $t('phrases.view') }}</nuxt-link>
             </template>
           </farm-list-item>
+          <b-pagination
+            class="mb-4"
+            v-model="pagination.currentPage"
+            :items="farms"
+            :total-rows="farms.length"
+            :per-page="pagination.perPage"
+          />
         </div>
         <div class="mb-4" v-else>
           <p v-html="$t('messages.account_farms_empty')"></p>
@@ -36,7 +43,7 @@ export default {
   layout: 'default',
   head () {
     return {
-      title: this.$t('phrases.my_account'),
+      title: this.$t('phrases.farms'),
       meta: [
         {
           hid: 'description',
@@ -54,8 +61,21 @@ export default {
     }
   },
   data: () => ({
-    farms: []
+    farms: [],
+    pagination: {
+      currentPage: 1,
+      perPage: 10
+    }
   }),
+  computed: {
+    pagedFarms () {
+      const farms = this.farms
+      const pagination = this.pagination
+      const start = (pagination.currentPage - 1) * pagination.perPage
+      const end = pagination.currentPage * pagination.perPage
+      return farms.slice(start, end)
+    }
+  },
   methods: {
     fetch() {
       this

@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul class="list-buttons">
-      <li class="mb-3">
+      <li class="mb-3" v-if="!farmIsFavorited(farm)">
         <b-button variant="primary" size="lg" block :disabled="farmIsOwner(farm) || !$auth.loggedIn" @click.prevent="favorite">
           <font-awesome-icon icon="star" />
           {{ $t('phrases.add_to_favorites') }}
@@ -41,7 +41,10 @@ export default {
         .$axios
         .post(`/api/potato/favorites/store/farm/${farm.id}`)
         .then((response) => {
-          console.log(response)
+          const favorite = this.$_.get(response, 'data.data')
+          if (!this.$_.isEmpty(favorite)) {
+            this.$root.$emit('farm-favorited', { favorite })
+          }
         })
     },
     listen () {
