@@ -113,7 +113,7 @@ export default {
         .$axios
         .get('/api/potato/account/messages')
         .then((response) => {
-          this.messages = this._.get(response, 'data.data')
+          this.messages = this.$_.get(response, 'data.data')
         })
     },
     listen () {

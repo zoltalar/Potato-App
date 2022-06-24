@@ -18,6 +18,23 @@
         <b-alert class="mb-4" variant="success" :show="hasFlashMessage()" @dismissed="clearFlashMessage()" dismissible>
           {{ flashMessage() }}
         </b-alert>
+        <b-row class="mb-4">
+          <b-col sm="7">
+            <b-row>
+              <b-col sm="6">
+                <b-form-rating variant="warning" size="lg" class="p-0" :value="farm.average_rating" no-border inline readonly />
+              </b-col>
+              <b-col sm="6">
+                <a href="#">
+                  <strong>{{ $t('messages.reviews_count', { count: farm.reviews_count }) }}</strong>
+                </a>
+              </b-col>
+            </b-row>
+          </b-col>
+          <b-col sm="5">
+            ...
+          </b-col>
+        </b-row>
         <farm-description :farm="farm" class="mb-4" />
         <products :productable="farm" type="farm" />
       </template>
@@ -80,6 +97,7 @@ export default {
       })
       this.$root.$on('review-created', () => {
         this.$store.commit('flash/message', this.$t('messages.review_created'))
+        this.fetch()
       })
     }
   },

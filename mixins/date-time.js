@@ -40,6 +40,14 @@ export default {
     dateTimeFromNow (dt) {
       return this.$moment(dt).locale(this.languageCode()).fromNow(true)
     },
+    localeDateFormat () {
+      let format = 'DD/MM/YYYY'
+      const code = this.languageCode()
+      if (code === 'en') {
+        format = 'MM/DD/YYYY'
+      }
+      return format
+    },
     seasonIndex (season) {
       const seasons = {
         winter: 0,

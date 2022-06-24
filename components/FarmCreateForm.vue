@@ -74,8 +74,8 @@ export default {
         .post('/api/potato/farms/store', farm)
         .then((response) => {
           this.setErrors(response)
-          farm = this._.get(response, 'data.data')
-          if ( ! this._.isEmpty(farm)) {
+          farm = this.$_.get(response, 'data.data')
+          if (!this.$_.isEmpty(farm)) {
             this.$root.$emit('farm-created', { farm })
           }
         })

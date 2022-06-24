@@ -20,7 +20,9 @@ export default{
           href: this.localePath('/account/messages'),
           title: this.$t('phrases.messages')
         },
-        { href: '#', title: this.$t('phrases.reviews') },
+        {
+          href: this.localePath('/account/reviews'),
+          title: this.$t('phrases.reviews') },
         {
           href: this.localePath('/account/contact-information'),
           title: this.$t('phrases.contact_information')

@@ -1,7 +1,7 @@
 export default {
   methods: {
     empty (string) {
-      return this._.isNil(string) || string === ''
+      return this.$_.isNil(string) || string === ''
     },
     nl2br (string, xhtml = true) {
       const tag = (xhtml || typeof xhtml === 'undefined') ? '<br ' + '/>' : '<br>'
@@ -11,16 +11,16 @@ export default {
       let phrases = []
       if (string) {
         const rows = string.split(/\r?\n/)
-        this._.forEach(rows, (row) => {
+        this.$_.forEach(rows, (row) => {
           const words = row.split(/;|,/)
-          this._.forEach(words, (word) => {
-            word = this._.trim(word)
+          this.$_.forEach(words, (word) => {
+            word = this.$_.trim(word)
             if (word) {
               phrases.push(word)
             }
           })
         })
-        phrases = this._.uniq(phrases)
+        phrases = this.$_.uniq(phrases)
       }
       return phrases
     },

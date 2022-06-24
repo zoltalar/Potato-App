@@ -10,12 +10,12 @@ export default {
       this.clearErrorMessage()
     },
     error (attribute) {
-      return this._.get(this.errors, attribute, null)
+      return this.$_.get(this.errors, attribute, null)
     },
     setErrors (response) {
       this.clearErrors()
-      const errors = this._.get(response, 'data.errors', {})
-      if (!this._.isEmpty(errors)) {
+      const errors = this.$_.get(response, 'data.errors', {})
+      if (!this.$_.isEmpty(errors)) {
         this.$store.commit('flash/error', this.$t('messages.form_errors'))
         for (const property in errors) {
           if (errors[property][0]) {

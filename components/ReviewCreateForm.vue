@@ -5,7 +5,7 @@
         {{ $t('phrases.rating') }}
         <span class="text-danger">*</span>
       </template>
-      <b-form-rating variant="warning" no-border inline v-model="review.rating" />
+      <b-form-rating variant="warning" size="lg" class="p-0" no-border inline v-model="review.rating" />
       <div class="invalid-feedback d-block" v-if="error('rating') !== null">
         {{ error('rating') }}
       </div>

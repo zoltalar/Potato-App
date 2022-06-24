@@ -82,7 +82,7 @@ export default {
         .$axios
         .get('/api/potato/account/farms')
         .then((response) => {
-          this.farms = this._.get(response, 'data.data')
+          this.farms = this.$_.get(response, 'data.data')
         })
     }
   },

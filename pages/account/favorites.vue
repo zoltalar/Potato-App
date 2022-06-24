@@ -95,7 +95,7 @@ export default {
         .$axios
         .get('/api/potato/account/favorites')
         .then((response) => {
-          this.favorites = this._.get(response, 'data.data')
+          this.favorites = this.$_.get(response, 'data.data')
         })
     }
   },
