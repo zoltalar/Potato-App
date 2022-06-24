@@ -144,14 +144,33 @@ body {
     right: 3.125rem;
     text-align: center;
     width: 2rem;
-    z-index: $zindex-sticky;
+    z-index: $zindex-popover;
+  }
+
+  .overlay {
+    background-color: $gray-200;
+    border-radius: 50%;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    opacity: .25;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .5s ease;
+    width: 100%;
+    z-index: $zindex-fixed;
+  }
+
+  &:hover {
+
+    .overlay {
+      opacity: 1;
+    }
   }
 
   @include media-breakpoint-up(md) {
-
-    > img {
-      margin-top: -80%;
-    }
+    margin-top: -80%;
   }
 }
 

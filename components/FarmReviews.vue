@@ -1,5 +1,5 @@
 <template>
-  <div id="reviews" class="reviews">
+  <div id="reviews" class="reviews" v-if="hasReviews()">
     <h6 class="mb-3">{{ $t('phrases.reviews') }}</h6>
     <div class="review-wrap" v-for="(review, i) in pagedReviews" :key="'review-' + i">
       <review class="mb-4" :review="review" />
@@ -41,5 +41,10 @@ export default {
       return this.$_.get(farm, 'reviews', [])
     }
   },
+  methods: {
+    hasReviews () {
+      return this.reviews.length > 0
+    }
+  }
 }
 </script>

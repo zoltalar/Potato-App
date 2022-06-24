@@ -6,7 +6,7 @@
         <font-awesome-icon icon="pencil-alt" />
       </nuxt-link>
     </h6>
-    <b-tabs>
+    <b-tabs v-if="hasInventory()">
       <b-tab :title="$t('phrases.' + season)" :active="currentSeason() === season" v-for="(categories, season) in inventory">
         <div class="category-inventory" v-for="(inventoryNames, categoryName) in categories">
           <h6>{{ categoryName }}</h6>
@@ -18,6 +18,7 @@
         </div>
       </b-tab>
     </b-tabs>
+    <p v-else>{{ $t('phrases.no_product_information') }}.</p>
   </div>
 </template>
 <script>
@@ -37,6 +38,12 @@ export default {
     inventory () {
       const productable = this.productable
       return this.productInventory(productable.products)
+    }
+  },
+  methods: {
+    hasInventory () {
+      const inventory = this.inventory
+      return !this.$_.isEmpty(inventory)
     }
   }
 }

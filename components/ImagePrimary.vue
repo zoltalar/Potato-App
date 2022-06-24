@@ -1,6 +1,7 @@
 <template>
   <div class="image-primary" v-if="image">
-    <img :src="image" :alt="primary.title || imageable.name">
+    <img :src="image" :alt="alt">
+    <div class="overlay"></div>
     <nuxt-link :to="editLink()" class="link-edit" :title="$t('phrases.edit_primary_photo')" v-if="farmIsOwner(imageable)">
       <font-awesome-icon icon="pencil-alt" />
     </nuxt-link>
@@ -20,10 +21,23 @@ export default {
     }
   },
   computed: {
+    alt () {
+      const imageable = this.imageable
+      const primary = this.primary
+      let alt = imageable.name
+      if (!this.$_.isEmpty(primary)) {
+        alt = primary.title
+      }
+      return alt
+    },
     image () {
       const primary = this.primary
       const variations = this.$_.get(primary, 'variations', [])
-      return this.imageVariation(variations, 'primary', 'file_url')
+      let image = this.imageVariation(variations, 'primary', 'file_url')
+      if (this.empty(image)) {
+        image = require(`@/assets/images/blank.png`)
+      }
+      return image
     },
     images () {
       const imageable = this.imageable

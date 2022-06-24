@@ -10,12 +10,13 @@ export default {
   props: ['text', 'chars'],
   computed: {
     truncatedText () {
-      const text = this.nl2br(this.text)
+      let text = this.text
       const chars = this.chars
       const all = this.all
-      if (!text) {
+      if (this.empty(text)) {
         return ''
       }
+      text = this.nl2br(text)
       if (text.length <= chars || all) {
         return text;
       }
