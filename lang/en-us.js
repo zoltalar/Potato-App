@@ -48,6 +48,7 @@ export default {
     farm_products_saved: "Farm's product inventory has been updated successfully.",
     farm_promote_no: 'Free option but may contain ads from our advertisers.',
     farm_promote_yes: 'Promoted farm appears in the top of search results; is displayed in the list of promoted farms in a region, guarantees more web traffic. Cost of <strong class="text-danger">15 USD per year</strong>.',
+    farm_review_footer: 'Created on {date} at {time} by {user}.',
     farm_social_media_updated: "Farm's social media information has been updated successfully.",
     favorite_deleted: 'Favorite has been removed successfully.',
     form_errors: 'Form contains errors. Please try again.',

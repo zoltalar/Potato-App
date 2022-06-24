@@ -13,9 +13,21 @@
         </b-alert>
         <div class="list-reviews" v-if="reviews.length > 0">
           <p v-html="$t('messages.account_reviews')"></p>
-          <div class="list-favorites">
-            <review-list-item class="mb-4" :review="review" v-for="(review, i) in pagedReviews" :key="'review-list-item-' + i" />
-          </div>
+          <review-list-item class="mb-4" :review="review" v-for="(review, i) in pagedReviews" :key="'review-list-item-' + i">
+            <template v-slot:footer>
+              <b-card-footer>
+                <small class="text-muted">
+                  {{
+                    $t('messages.review_footer', {
+                      date: shortDate(review.created_at, localeDateFormat()),
+                      time: shortTime(review.created_at),
+                      rateable: review.rateable.name
+                    })
+                  }}
+                </small>
+              </b-card-footer>
+            </template>
+          </review-list-item>
           <b-pagination
             v-model="pagination.currentPage"
             :items="reviews"

@@ -8,17 +8,7 @@
       </b-card-text>
       <slot name="links"></slot>
     </b-card-body>
-    <b-card-footer>
-      <small class="text-muted">
-        {{
-          $t('messages.review_footer', {
-            date: shortDate(review.created_at, localeDateFormat()),
-            time: shortTime(review.created_at),
-            rateable: review.rateable.name
-          })
-        }}
-      </small>
-    </b-card-footer>
+    <slot name="footer"></slot>
   </b-card>
 </template>
 <script>

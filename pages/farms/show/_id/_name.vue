@@ -25,7 +25,7 @@
                 <b-form-rating variant="warning" size="lg" class="p-0" :value="farm.average_rating" no-border inline readonly />
               </b-col>
               <b-col sm="6">
-                <a href="#">
+                <a href="#reviews">
                   <strong>{{ $t('messages.reviews_count', { count: farm.reviews_count }) }}</strong>
                 </a>
               </b-col>
@@ -36,7 +36,8 @@
           </b-col>
         </b-row>
         <farm-description :farm="farm" class="mb-4" />
-        <products :productable="farm" type="farm" />
+        <products :productable="farm" type="farm" class="mb-4" />
+        <farm-reviews :farm="farm" />
       </template>
     </page-aside-content>
   </div>

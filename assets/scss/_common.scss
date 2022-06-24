@@ -2,6 +2,10 @@
 // Common Styles
 // --------------------------------------------------
 
+html {
+  scroll-behavior: smooth;
+}
+
 .authentication {
 
   &.login {

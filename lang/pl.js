@@ -48,6 +48,7 @@ export default {
     farm_products_saved: 'Lista produktów gospodarstwa rolnego została zaktualizowana pomyślnie.',
     farm_promote_no: 'Darmowa opcja ale może zawierać reklamy od naszych reklamodawców.',
     farm_promote_yes: 'Promowane gospodarstwo domowe sprawia że pojawia się jako pierwsze w wynikach wyszukiwarki; wyświetla się w liście promowanych gospodarstw w danym regionie; gwarantuje większą liczbę odwiedzin. Koszt to <strong class="text-danger">60 PLN za rok.</strong>',
+    farm_review_footer: 'Utworzono dnia {date} o godzinie {time} przez {user}.',
     farm_social_media_updated: 'Media społecznościowe gospodarstwa rolnego zostały zaktualizowane pomyślnie.',
     favorite_deleted: 'Ulubione zostało usunięte pomyślnie.',
     form_errors: 'Formularz zawiera błędy. Prosimy sprobować ponownie.',
