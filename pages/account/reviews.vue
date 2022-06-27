@@ -13,7 +13,7 @@
         </b-alert>
         <div class="list-reviews" v-if="reviews.length > 0">
           <p v-html="$t('messages.account_reviews')"></p>
-          <review-list-item class="mb-4" :review="review" v-for="(review, i) in pagedReviews" :key="'review-list-item-' + i">
+          <review-list-item-card class="mb-4" :review="review" v-for="(review, i) in pagedReviews" :key="'review-list-item-' + i">
             <template v-slot:footer>
               <b-card-footer>
                 <small class="text-muted">
@@ -27,7 +27,7 @@
                 </small>
               </b-card-footer>
             </template>
-          </review-list-item>
+          </review-list-item-card>
           <b-pagination
             v-model="pagination.currentPage"
             :items="reviews"

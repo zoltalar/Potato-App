@@ -1,19 +1,15 @@
 <template>
-  <b-card class="list-farm-item" v-if="farmNotEmpty(farm)">
-    <font-awesome-icon icon="star" class="text-warning float-right" :title="$t('phrases.promoted')" v-if="farm.promote" />
-    <b-img-lazy
-      :src="imageVariation(image.variations, 'primary', 'file_url')"
-      :alt="image.title"
-      class="img-primary"
-      v-if="image && image.file" />
-    <b-card-title class="h5">{{ farm.name }}</b-card-title>
-    <b-card-sub-title class="mb-2" v-if="farmIsNameable(farm)">{{ fullName(farm, true) }}</b-card-sub-title>
-    <b-card-text v-if="farm.description">
-      <char-limit :text="farm.description" :chars="170" :ellipsis="true" />
-    </b-card-text>
-    <b-badge variant="danger" class="float-right" v-if="!farmIsActive(farm)">{{ $t('phrases.inactive') }}</b-badge>
-    <slot name="links"></slot>
-  </b-card>
+  <div class="list-item">
+    <nuxt-link :to="localePath({ name: 'farms-show-id-name', params: { id: farm.id, name: slugify(farm.name) } })" v-if="image">
+      <img :src="image" class="img-list-item" />
+    </nuxt-link>
+    <nuxt-link :to="localePath({ name: 'farms-show-id-name', params: { id: farm.id, name: slugify(farm.name) } })" class="link-name">{{ farm.name }}</nuxt-link>
+    <b-form-rating variant="warning" size="sm" class="p-0 ml-2" :value="farm.average_rating" no-border inline readonly />
+    <p>
+      <char-limit :chars="70" :text="farm.description" :ellipsis="true" />
+      <distance-away :distance="farmDistanceAway(farm)" class="small ml-2" />
+    </p>
+  </div>
 </template>
 <script>
 export default {
@@ -26,8 +22,17 @@ export default {
   },
   computed: {
     image () {
+      const primary = this.primary
+      const variations = this.$_.get(primary, 'variations', [])
+      return this.imageVariation(variations, 'primary', 'file_url')
+    },
+    images () {
       const farm = this.farm
-      return this.$_.head(this.$_.get(farm, 'images', []))
+      return this.$_.get(farm, 'images', [])
+    },
+    primary () {
+      const images = this.images
+      return this.primaryImage(images)
     }
   }
 }

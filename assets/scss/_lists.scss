@@ -30,19 +30,16 @@
 
 .list-farms {
 
+  .img-list-item {
+    float: left;
+    margin-right: 1.25rem;
+  }
+
   .link-name {
     display: inline-block;
     font-weight: 700;
     margin-bottom: .25rem;
     text-decoration: none;
-  }
-
-  .list-item {
-
-    .img-list-item {
-      float: left;
-      margin-right: 1.25rem;
-    }
   }
 }
 
@@ -69,6 +66,12 @@
   .list-item-center {
     padding-left: calc(5rem + 1.25rem);
     padding-right: 1.25rem;
+  }
+
+  .img-list-item {
+    border-radius: 50%;
+    height: 5rem;
+    width: 5rem;
   }
 }
 

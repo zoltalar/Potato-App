@@ -13,13 +13,13 @@
         </b-alert>
         <div class="list-farms" v-if="farms.length > 0">
           <p v-html="$t('messages.account_farms')"></p>
-          <farm-list-item class="mb-4" :farm="farm" v-for="(farm, i) in pagedFarms" :key="'farm-list-item-' + i">
+          <farm-list-item-card class="mb-4" :farm="farm" v-for="(farm, i) in pagedFarms" :key="'farm-list-item-' + i">
             <template v-slot:links>
               <nuxt-link :to="localePath({ name: 'farms-edit-id-tab', params: { id: farm.id, tab: localeFarmEditTab('contact-information') } })" class="card-link">{{ $t('phrases.edit') }}</nuxt-link>
               <nuxt-link :to="localePath({ name: 'farms-deactivate-id', params: { id: farm.id } })" class="card-link" v-if="farmIsActive(farm)">{{ $t('phrases.deactivate') }}</nuxt-link>
               <nuxt-link :to="localePath({ name: 'farms-show-id-name', params: { id: farm.id, name: slugify(farm.name) } })" class="card-link">{{ $t('phrases.view') }}</nuxt-link>
             </template>
-          </farm-list-item>
+          </farm-list-item-card>
           <b-pagination
             class="mb-4"
             v-model="pagination.currentPage"

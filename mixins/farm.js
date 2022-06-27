@@ -6,6 +6,10 @@ export default {
         return address.type === 1
       }))
     },
+    farmDistanceAway (farm) {
+      const address = this.farmAddress(farm)
+      return this.$_.get(address, 'distance', 0)
+    },
     farmEditAddressLink (farm) {
       return this.localePath({
         name: 'farms-edit-id-tab',

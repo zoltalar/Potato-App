@@ -102,6 +102,11 @@ body {
   }
 }
 
+.distance-away {
+  font-style: italic;
+  font-weight: 700;
+}
+
 .footer-nav {
   list-style-type: none;
   margin: 1rem 0 0;
@@ -243,6 +248,18 @@ body {
         list-style: square inside;
         margin-right: 1rem;
       }
+    }
+  }
+}
+
+.promoted-farms {
+  text-align: center;
+
+  .home & {
+    margin-top: -2.75rem;
+
+    h5 {
+      margin: .5rem 0 1.5rem;
     }
   }
 }
