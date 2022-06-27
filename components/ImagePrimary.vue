@@ -1,10 +1,18 @@
 <template>
   <div class="image-primary" v-if="image">
     <img :src="image" :alt="alt">
-    <div class="overlay"></div>
+    <div class="overlay" @click.prevent="gallery" v-if="hasImages()">
+      {{ $t('phrases.view_photo_gallery') }}
+      ({{ images.length }})
+    </div>
     <nuxt-link :to="editLink()" class="link-edit" :title="$t('phrases.edit_primary_photo')" v-if="farmIsOwner(imageable)">
       <font-awesome-icon icon="pencil-alt" />
     </nuxt-link>
+    <b-modal id="modal-photo-gallery-view" size="xl" :title="$t('phrases.photo_gallery')" hide-footer no-enforce-focus>
+      <b-carousel id="farm-photo-gallery" fade controls indicators>
+        <b-carousel-slide :caption="image.title" :img-src="image.file_url" v-for="(image, i) in images"></b-carousel-slide>
+      </b-carousel>
+    </b-modal>
   </div>
 </template>
 <script>
@@ -45,9 +53,7 @@ export default {
     },
     primary () {
       const images = this.images
-      return this.$_.head(this.$_.filter(images, (image) => {
-        return parseInt(image.primary) === 1
-      }))
+      return this.primaryImage(images)
     }
   },
   methods: {
@@ -57,6 +63,12 @@ export default {
       if (type === 'farm') {
         return this.farmEditPhotosLink(imageable)
       }
+    },
+    gallery () {
+      this.$bvModal.show('modal-photo-gallery-view')
+    },
+    hasImages () {
+      return this.images.length > 0
     }
   }
 }

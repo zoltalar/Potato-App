@@ -15,6 +15,11 @@ export default {
         name += '.' + key
       }
       return this.$_.get(variations, name)
+    },
+    primaryImage(images) {
+      return this.$_.head(this.$_.filter(images, (image) => {
+        return parseInt(image.primary) === 1
+      }))
     }
   }
 }
