@@ -173,7 +173,7 @@
 
     a:not(.link-edit) {
 
-      > i {
+      > svg {
         font-size: 1.5rem;
       }
     }
@@ -189,7 +189,7 @@
     line-height: 1.5rem;
     position: relative;
     text-align: center;
-    top: -2px;
+    top: -.25rem;
     vertical-align: top;
     width: 1.5rem;
   }
@@ -197,28 +197,28 @@
 
 .list-social-item-facebook {
 
-  i {
+  svg {
     color: #39599f;
   }
 }
 
 .list-social-item-instagram {
 
-  i {
+  svg {
     color: #8a3ab9;
   }
 }
 
 .list-social-item-pinterest {
 
-  i {
+  svg {
     color: #c8232c;
   }
 }
 
 .list-social-item-twitter {
 
-  i {
+  svg {
     color: #00acee;
   }
 }

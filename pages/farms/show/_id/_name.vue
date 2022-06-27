@@ -9,7 +9,7 @@
         <image-primary :imageable="farm" type="farm" class="mb-3" />
         <farm-buttons-menu :farm="farm" />
         <farm-contact-information :farm="farm" class="mt-4" />
-        <farm-operating-hours :farm="farm" class="mt-4" />
+        <farm-operating-hours :farm="farm" class="mt-4 mb-4" />
       </template>
       <template>
         <b-alert class="mb-4" variant="danger" :show="!farmIsActive(farm)">
@@ -19,20 +19,23 @@
           {{ flashMessage() }}
         </b-alert>
         <b-row class="mb-4">
-          <b-col sm="7">
+          <b-col>
             <b-row>
-              <b-col sm="6">
-                <b-form-rating variant="warning" size="lg" class="p-0" :value="farm.average_rating" no-border inline readonly />
-              </b-col>
-              <b-col sm="6">
-                <a href="#reviews">
-                  <strong>{{ $t('messages.reviews_count', { count: farm.reviews_count }) }}</strong>
-                </a>
+              <b-col>
+                <b-form-rating
+                  variant="warning"
+                  size="lg"
+                  class="p-0"
+                  :value="farm.average_rating"
+                  :title="$t('messages.reviews_count', { count: farm.reviews_count })"
+                  no-border
+                  inline
+                  readonly />
               </b-col>
             </b-row>
           </b-col>
-          <b-col sm="5">
-            ...
+          <b-col>
+            <social-media :linkable="farm" type="farm" class="text-right" />
           </b-col>
         </b-row>
         <farm-description :farm="farm" class="mb-4" />

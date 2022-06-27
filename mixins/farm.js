@@ -73,6 +73,15 @@ export default {
         }
       })
     },
+    farmEditSocialMediaLink (farm) {
+      return this.localePath({
+        name: 'farms-edit-id-tab',
+        params: {
+          id: farm.id,
+          tab: this.localeFarmEditTab('social-media')
+        }
+      })
+    },
     farmEditTab () {
       const tab = this.$route.params.tab
       let editTab = tab

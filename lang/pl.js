@@ -123,6 +123,7 @@ export default {
     edit_photo: 'Edytuj Zdjęcie',
     edit_primary_photo: 'Edytuj Zdjęcie Główne',
     edit_products: 'Edytuj Produkty',
+    edit_social_media: 'Edytuj Media Społecznościowe',
     email: 'Email',
     facebook: 'Facebook',
     fall: 'Jesień',
