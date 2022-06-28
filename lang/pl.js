@@ -172,6 +172,7 @@ export default {
     postal_code: 'Kod Pocztowy',
     potato: 'Ziemniak',
     pound: 'Funt',
+    price: 'Cena',
     products: 'Produkty',
     promote_this_farm: 'Promuj to Gospodarstwo Rolne',
     promoted: 'Promowane',

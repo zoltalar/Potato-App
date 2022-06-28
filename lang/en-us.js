@@ -172,6 +172,7 @@ export default {
     postal_code: 'Postal Code',
     potato: 'Potato',
     pound: 'Pound',
+    price: 'Price',
     products: 'Products',
     promote_this_farm: 'Promote this Farm',
     promoted: 'Promoted',

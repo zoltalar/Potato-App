@@ -22,6 +22,7 @@ textarea.form-control {
 
 .form-products {
 
+  .custom-select-currency,
   .custom-select-unit {
     display: inline-block;
     margin: -0.0625rem .5rem 0;
@@ -30,7 +31,8 @@ textarea.form-control {
     width: 6rem;
   }
 
-  .form-control-amount {
+  .form-control-amount,
+  .form-control-price {
     display: inline-block;
     width: 9.375rem;
   }

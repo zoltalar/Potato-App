@@ -87,7 +87,9 @@ export default {
           fall: 0,
           winter: 0,
           amount: '',
-          unit: null
+          amount_unit: null,
+          price: '',
+          currency_id: null
         }
         this.products.push(product)
       }

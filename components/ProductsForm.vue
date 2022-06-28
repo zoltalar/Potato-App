@@ -19,19 +19,27 @@
                 {{ error('products.' + productIndex(item.id) + '.seasons') }}
               </div>
             </div>
-            <div>
+            <div class="mb-1">
               <label class="sub-label">
                 {{ $t('phrases.quantity') }}
                 ({{ $t('phrases.optional').toLowerCase() }})
               </label>
-              <b-form-input size="sm" class="form-control-amount" :placeholder="$t('messages.product_amount_placeholder')" v-model="products[productIndex(item.id)].amount" />
-              <b-form-select size="sm" class="custom-select-unit" :options="productUnits()" v-model="products[productIndex(item.id)].unit" />
+              <b-form-input type="number" size="sm" class="form-control-amount" :placeholder="$t('messages.product_amount_placeholder')" v-model="products[productIndex(item.id)].amount" />
+              <b-form-select size="sm" class="custom-select-unit" :options="productUnits()" v-model="products[productIndex(item.id)].amount_unit" />
               <div class="invalid-feedback d-block" v-if="error('products.' + productIndex(item.id) + '.amount') !== null">
                 {{ error('products.' + productIndex(item.id) + '.amount') }}
               </div>
-              <div class="invalid-feedback d-block" v-else-if="error('products.' + productIndex(item.id) + '.unit') !== null">
-                {{ error('products.' + productIndex(item.id) + '.unit') }}
+              <div class="invalid-feedback d-block" v-else-if="error('products.' + productIndex(item.id) + '.amount_unit') !== null">
+                {{ error('products.' + productIndex(item.id) + '.amount_unit') }}
               </div>
+            </div>
+            <div>
+              <label class="sub-label">
+                {{ $t('phrases.price') }}
+                ({{ $t('phrases.optional').toLowerCase() }})
+              </label>
+              <b-form-input size="sm" class="form-control-price" v-model="products[productIndex(item.id)].price" />
+              <b-form-select size="sm" class="custom-select-currency" :options="currencyOptions()" v-model="products[productIndex(item.id)].currency_id" />
             </div>
           </div>
         </div>
