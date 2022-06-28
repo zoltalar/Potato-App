@@ -10,23 +10,34 @@ export default {
     }
   },
   data: () => ({
-    inventory: {},
-    products: []
+    inventory: {}
   }),
+  computed: {
+    products () {
+      const productable = this.productable
+      return this.$_.get(productable, 'products', [])
+    }
+  },
   watch: {
     productable: {
-      handler (productable) {
-        this.products = this.$_.get(productable, 'products', [])
+      handler () {
+        this.fetch()
       },
       immediate: true
     }
   },
   methods: {
     fetch () {
+      const type = this.type
+      const productable = this.productable
       this
         .$axios
         .get('/api/potato/inventory/index', {
-          params: { limit: 100 }
+          params: {
+            limit: 1000,
+            type,
+            productable_id: productable.id
+          }
         })
         .then((response) => {
           let inventory = this.$_.get(response, 'data.data', [])

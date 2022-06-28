@@ -39,7 +39,7 @@
     </div>
     <b-form-group>
       <b-button type="submit" variant="primary" size="lg">{{ $t('phrases.save') }}</b-button>
-      <nuxt-link :to="localePath('/account/farms')" class="ml-3">{{ $t('phrases.cancel') }}</nuxt-link>
+      <nuxt-link :to="localePath('/account/farms')" class="ml-3" v-if="type === 'farm'">{{ $t('phrases.cancel') }}</nuxt-link>
     </b-form-group>
   </form>
 </template>
@@ -48,9 +48,6 @@ import formProductableMixin from '@/mixins/form-productable'
 import formErrorsMixin from '@/mixins/form-errors'
 export default {
   name: 'ProductsForm',
-  mixins: [ formProductableMixin, formErrorsMixin ],
-  mounted () {
-    this.fetch()
-  }
+  mixins: [ formProductableMixin, formErrorsMixin ]
 }
 </script>

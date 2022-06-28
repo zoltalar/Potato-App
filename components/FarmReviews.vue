@@ -1,19 +1,22 @@
 <template>
-  <div id="reviews" class="reviews" v-if="hasReviews()">
+  <div id="reviews" class="reviews">
     <h6 class="mb-3">
       {{ $t('phrases.reviews') }}
       ({{ reviews.length }})
     </h6>
-    <div class="list-reviews" v-for="(review, i) in pagedReviews" :key="'review-' + i">
-      <review-list-item class="mb-4" :review="review" />
-      <hr v-if="i < pagedReviews.length - 1" />
+    <div v-if="hasReviews()">
+      <div class="list-reviews" v-for="(review, i) in pagedReviews" :key="'review-' + i">
+        <review-list-item class="mb-4" :review="review" />
+        <hr v-if="i < pagedReviews.length - 1" />
+      </div>
+      <b-pagination
+        v-model="pagination.currentPage"
+        :items="reviews"
+        :total-rows="reviews.length"
+        :per-page="pagination.perPage"
+      />
     </div>
-    <b-pagination
-      v-model="pagination.currentPage"
-      :items="reviews"
-      :total-rows="reviews.length"
-      :per-page="pagination.perPage"
-    />
+    <p v-else>{{ $t('phrases.no_reviews') }}.</p>
   </div>
 </template>
 <script>
