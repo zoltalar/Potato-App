@@ -20,9 +20,9 @@ export default {
     unitTypes () {
       return this.$_.get(this.unitTypes(), 'types')
     },
-    productUnits () {
+    productUnits (defaultText = true) {
       const productUnits = [{
-        text: '',
+        text: (defaultText ? ' - ' + this.$t('phrases.unit') +  ' - ' : ''),
         value: null
       }]
       let units = this.countryUnits()

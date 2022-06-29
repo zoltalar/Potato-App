@@ -89,7 +89,8 @@ export default {
           amount: '',
           amount_unit: null,
           price: '',
-          currency_id: null
+          currency_id: null,
+          price_unit: null
         }
         this.products.push(product)
       }

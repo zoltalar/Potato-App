@@ -32,18 +32,12 @@ export default {
     }
   }),
   methods: {
-    populate () {
-      const reply = this.reply
-      if (!this.$_.isEmpty(reply)) {
-        this.message.reply_id = reply.id
-      }
-    },
     send () {
       let message = this.message
       const reply = this.reply
       this
         .$axios
-        .post(`/api/potato/messages/reply/${reply.id}`, message)
+        .post(`/api/potato/messages/reply/${reply.token}`, message)
         .then((response) => {
           this.setErrors(response)
           message = this.$_.get(response, 'data.data')

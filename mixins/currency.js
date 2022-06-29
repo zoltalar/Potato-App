@@ -3,16 +3,16 @@ export default {
     currencyCollection () {
       return this.$store.getters['currency/collection']
     },
-    currencyOptions () {
+    currencyOptions (defaultText = true) {
       const options = [{
-        value: null,
-        text: '',
+        text: (defaultText ? ' - ' + this.$t('phrases.currency') +  ' - ' : ''),
+        value: null
       }]
       const currencies = this.currencyCollection()
       this.$_.forEach(currencies, (currency) => {
         options.push({
-          value: currency.id,
-          text: currency.code
+          text: currency.code,
+          value: currency.id
         })
       })
       return options

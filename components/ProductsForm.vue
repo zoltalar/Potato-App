@@ -6,7 +6,7 @@
         <div v-for="(item) in items">
           <b-checkbox :checked="hasProduct(item.id)" @change="toggleProduct(item.id)">{{ inventoryName(item) }}</b-checkbox>
           <div class="options" v-if="hasProduct(item.id)">
-            <div class="mb-1">
+            <b-form-group>
               <label class="sub-label">
                 {{ $t('phrases.availability') }}
                 <span class="text-danger">*</span>
@@ -18,36 +18,49 @@
               <div class="invalid-feedback d-block" v-if="error('products.' + productIndex(item.id) + '.seasons') !== null">
                 {{ error('products.' + productIndex(item.id) + '.seasons') }}
               </div>
-            </div>
-            <div class="mb-1">
+            </b-form-group>
+            <b-form-group>
               <label class="sub-label">
                 {{ $t('phrases.quantity') }}
                 ({{ $t('phrases.optional').toLowerCase() }})
               </label>
-              <b-form-input type="number" size="sm" class="form-control-amount" :placeholder="$t('messages.product_amount_placeholder')" v-model="products[productIndex(item.id)].amount" />
-              <b-form-select size="sm" class="custom-select-unit" :options="productUnits()" v-model="products[productIndex(item.id)].amount_unit" />
+              <b-input-group class="input-group-fixed">
+                <b-form-input type="number" size="sm" :placeholder="$t('messages.product_amount_placeholder')" v-model="products[productIndex(item.id)].amount" />
+                <b-form-select size="sm" :options="productUnits()" v-model="products[productIndex(item.id)].amount_unit" />
+              </b-input-group>
               <div class="invalid-feedback d-block" v-if="error('products.' + productIndex(item.id) + '.amount') !== null">
                 {{ error('products.' + productIndex(item.id) + '.amount') }}
               </div>
               <div class="invalid-feedback d-block" v-else-if="error('products.' + productIndex(item.id) + '.amount_unit') !== null">
                 {{ error('products.' + productIndex(item.id) + '.amount_unit') }}
               </div>
-            </div>
-            <div>
+            </b-form-group>
+            <b-form-group>
               <label class="sub-label">
                 {{ $t('phrases.price') }}
-                ({{ $t('phrases.optional').toLowerCase() }})
+                ({{ $t('phrases.optional').toLowerCase() }}, <em>{{ $t('messages.price_sample') }}</em>)
               </label>
-              <b-form-input size="sm" class="form-control-price" v-model="products[productIndex(item.id)].price" />
-              <b-form-select size="sm" class="custom-select-currency" :options="currencyOptions()" v-model="products[productIndex(item.id)].currency_id" />
-            </div>
+              <b-input-group class="input-group-fixed">
+                <b-form-input size="sm" :placeholder="$t('messages.product_price_placeholder')" v-model="products[productIndex(item.id)].price" />
+                <b-form-select size="sm" :options="currencyOptions()" v-model="products[productIndex(item.id)].currency_id" />
+                <b-form-select size="sm" :options="productUnits()" v-model="products[productIndex(item.id)].price_unit" />
+              </b-input-group>
+              <div class="invalid-feedback d-block" v-if="error('products.' + productIndex(item.id) + '.price') !== null">
+                {{ error('products.' + productIndex(item.id) + '.price') }}
+              </div>
+              <div class="invalid-feedback d-block" v-else-if="error('products.' + productIndex(item.id) + '.currency_id') !== null">
+                {{ error('products.' + productIndex(item.id) + '.currency_id') }}
+              </div>
+              <div class="invalid-feedback d-block" v-else-if="error('products.' + productIndex(item.id) + '.price_unit') !== null">
+                {{ error('products.' + productIndex(item.id) + '.price_unit') }}
+              </div>
+            </b-form-group>
           </div>
         </div>
       </b-form-group>
     </div>
-    <b-form-group>
+    <b-form-group class="form-group-sticky">
       <b-button type="submit" variant="primary" size="lg">{{ $t('phrases.save') }}</b-button>
-      <nuxt-link :to="localePath('/account/farms')" class="ml-3" v-if="type === 'farm'">{{ $t('phrases.cancel') }}</nuxt-link>
     </b-form-group>
   </form>
 </template>

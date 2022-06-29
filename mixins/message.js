@@ -8,9 +8,9 @@ export default {
     },
     messageViewLink (message) {
       return this.localePath({
-        name: 'messages-show-id',
+        name: 'messages-show-token',
         params: {
-          id: message.id
+          token: message.token
         }
       })
     }

@@ -20,22 +20,14 @@ textarea.form-control {
   }
 }
 
+.form-group-sticky {
+  bottom: 2rem;
+  position: fixed;
+  right: 2rem;
+  z-index: $zindex-sticky;
+}
+
 .form-products {
-
-  .custom-select-currency,
-  .custom-select-unit {
-    display: inline-block;
-    margin: -0.0625rem .5rem 0;
-    position: relative;
-    top: -1px;
-    width: 6rem;
-  }
-
-  .form-control-amount,
-  .form-control-price {
-    display: inline-block;
-    width: 9.375rem;
-  }
 
   .options {
     margin: .25rem 0 0 1.45rem;
@@ -43,16 +35,8 @@ textarea.form-control {
 
   .sub-label {
     color: $text-muted;
-    display: inline-block;
-    margin: 0;
+    display: block;
+    margin: 0 0 .25rem;
     width: 100%;
-  }
-
-  @include media-breakpoint-up(sm) {
-
-    .sub-label {
-      margin-right: .5rem;
-      width: auto;
-    }
   }
 }

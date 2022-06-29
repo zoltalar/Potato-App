@@ -53,8 +53,8 @@ export default {
   nuxtI18n: {
     locales: ['en', 'pl'],
     paths: {
-      en: '/messages/show/:id',
-      pl: '/wiadomosci/pokaz/:id'
+      en: '/messages/show/:token',
+      pl: '/wiadomosci/pokaz/:token'
     }
   },
   data: () => ({
@@ -78,7 +78,7 @@ export default {
         message = this.message
         this
           .$axios
-          .delete(`/api/potato/messages/${message.id}`)
+          .delete(`/api/potato/messages/${message.token}`)
           .then(() => {
             this.$store.commit('flash/message', this.$t('messages.message_deleted'))
             this.$router.push(this.localePath('/account/messages'))
@@ -86,10 +86,10 @@ export default {
       }
     },
     fetch () {
-      const id = this.$route.params.id
+      const token = this.$route.params.token
       this
         .$axios
-        .get(`/api/potato/messages/show/${id}`)
+        .get(`/api/potato/messages/show/${token}`)
         .then((response) => {
           this.message = this.$_.get(response, 'data.data')
         })
