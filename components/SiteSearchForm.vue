@@ -48,8 +48,8 @@ export default {
         name: type + '-search-id-item-location',
         params: {
           id: search.id,
-          item: search.item.toLowerCase(),
-          location: search.location.toLowerCase()
+          item: search.item,
+          location: search.location
         }
       }))
     }
