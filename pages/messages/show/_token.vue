@@ -92,6 +92,7 @@ export default {
         .get(`/api/potato/messages/show/${token}`)
         .then((response) => {
           this.message = this.$_.get(response, 'data.data')
+          this.$auth.fetchUser()
         })
     },
     listen () {

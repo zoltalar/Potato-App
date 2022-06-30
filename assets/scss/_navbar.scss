@@ -5,6 +5,17 @@
 .navbar-primary {
   padding: 1.25rem 0;
 
+  .nav-item-user {
+
+    .badge {
+      font-size: 60%;
+      left: -.25rem;
+      line-height: 1.5;
+      position: relative;
+      top: -.75rem;
+    }
+  }
+
   .navbar-brand {
     background: url('~assets/images/logo.png') left center no-repeat;
     color: #6c757d;

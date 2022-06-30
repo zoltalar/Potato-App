@@ -14,10 +14,24 @@
             <li class="nav-item" v-if=" ! $auth.loggedIn">
               <nuxt-link :to="localePath('/login')" class="nav-link">{{ $t('phrases.login') }}</nuxt-link>
             </li>
-            <li class="nav-item" v-if="$auth.loggedIn">
-              <nuxt-link :to="localePath('/account/farms')" class="nav-link">{{ $t('phrases.my_account') }}</nuxt-link>
-            </li>
-            <b-nav-item @click.prevent="logout" v-if="$auth.loggedIn">{{ $t('phrases.logout') }}</b-nav-item>
+            <b-nav-item-dropdown class="nav-item-user" right v-if="$auth.loggedIn">
+              <template v-slot:button-content>
+                {{ $auth.user.first_name }}
+                <b-badge variant="danger" pill v-if="hasMessages()">
+                  <font-awesome-icon icon="bell" />
+                </b-badge>
+              </template>
+              <li role="presentation">
+                <nuxt-link :to="localePath('/account/farms')" class="dropdown-item" role="menuitem">{{ $t('phrases.my_account') }}</nuxt-link>
+              </li>
+              <li role="presentation">
+                <nuxt-link :to="localePath('/account/messages')" class="dropdown-item" role="menuitem">
+                  {{ $t('phrases.messages') }}
+                  ({{ messages.length }})
+                </nuxt-link>
+              </li>
+              <b-dropdown-item href="/logout" @click.prevent="logout">{{ $t('phrases.logout') }}</b-dropdown-item>
+            </b-nav-item-dropdown>
             <b-nav-item v-b-modal.modal-region-language>
               <img :src="countryFlag(defaultCountry())" />
             </b-nav-item>
@@ -41,7 +55,15 @@
 <script>
 export default {
   name: 'TheHeader',
+  computed: {
+    messages () {
+      return this.$_.get(this.$auth.user, 'received_messages', [])
+    }
+  },
   methods: {
+    hasMessages () {
+      return this.messages.length > 0
+    },
     populateI18n () {
       const form = this.$refs['form-language-region']
       form.populate()
