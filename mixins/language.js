@@ -6,8 +6,14 @@ export default {
     languageCollection () {
       return this.$store.getters['language/collection']
     },
-    languageOptions () {
+    languageOptions (defaultOption = false, defaultText = '') {
       const options = []
+      if (defaultOption) {
+        options.push({
+          text: defaultText,
+          value: null
+        })
+      }
       const languages = this.languageCollection()
       this.$_.forEach(languages, (language) => {
         options.push({

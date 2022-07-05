@@ -32,15 +32,15 @@
               </li>
               <b-dropdown-item href="/logout" @click.prevent="logout">{{ $t('phrases.logout') }}</b-dropdown-item>
             </b-nav-item-dropdown>
-            <b-nav-item v-b-modal.modal-region-language>
+            <b-nav-item v-b-modal.modal-i18n>
               <img :src="countryFlag(defaultCountry())" />
             </b-nav-item>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
     </b-container>
-    <b-modal id="modal-region-language" :title="$t('phrases.language_and_region')" @shown="populateI18n" @ok="saveI18n" no-enforce-focus>
-      <language-region-form ref="form-language-region" />
+    <b-modal id="modal-i18n" :title="$t('phrases.language_region_and_currency')" @shown="populateI18n" @ok="saveI18n" no-enforce-focus>
+      <i18n-form ref="form-i18n" />
       <template #modal-footer="{ ok, cancel, hide }">
         <b-button variant="secondary" @click="cancel()">
           {{ $t('phrases.cancel') }}
@@ -65,18 +65,20 @@ export default {
       return this.messages.length > 0
     },
     populateI18n () {
-      const form = this.$refs['form-language-region']
+      const form = this.$refs['form-i18n']
       form.populate()
     },
     saveI18n () {
-      this.$bvModal.hide('modal-region-language')
+      this.$bvModal.hide('modal-i18n')
 
-      const form = this.$refs['form-language-region']
+      const form = this.$refs['form-i18n']
       const locale = this.$i18n.locale
       const language = form.language()
+      const currency = form.currency()
 
       this.$store.dispatch('country/code', form.country())
       this.$store.dispatch('language/code', language)
+      this.$store.dispatch('currency/code', currency)
 
       if (locale !== language) {
         this.$router.push(this.localePath('/', language))

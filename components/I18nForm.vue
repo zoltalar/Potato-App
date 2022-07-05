@@ -13,6 +13,9 @@
         </b-col>
       </b-row>
     </b-form-group>
+    <b-form-group :label="$t('phrases.currency')">
+      <b-form-select v-model="i18n.currency" :options="currencyOptions(false, '', 'code')" />
+    </b-form-group>
   </form>
 </template>
 <script>
@@ -21,12 +24,16 @@ export default {
   data: () => ({
     i18n: {
       language: undefined,
-      country: undefined
+      country: undefined,
+      currency: undefined
     }
   }),
   methods: {
     country () {
       return this.i18n.country
+    },
+    currency () {
+      return this.i18n.currency
     },
     language () {
       return this.i18n.language
@@ -34,6 +41,7 @@ export default {
     populate () {
       this.i18n.language = this.languageCode()
       this.i18n.country = this.countryCode()
+      this.i18n.currency = this.currencyCode()
     }
   }
 }

@@ -82,7 +82,7 @@ export default {
         {
           label: 'Visits',
           data: [10, 15, 20, 30, 40, 50, 60, 70, 34, 45, 11, 78],
-          backgroundColor: '#003f5c'
+          backgroundColor: '#58c26c'
         }
       ]
     },

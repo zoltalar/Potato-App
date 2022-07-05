@@ -148,6 +148,7 @@ export default {
     item: 'Sztuka',
     kilogram: 'Kilogram',
     language_and_region: 'Język i Region',
+    language_region_and_currency: 'Język, Region i Waluta',
     language: 'Język',
     last_name: 'Nazwisko',
     liter: 'Litr',

@@ -147,6 +147,7 @@ export default {
     item: 'Item',
     kilogram: 'Kilogram',
     language_and_region: 'Language and Region',
+    language_region_and_currency: 'Language, Region and Currency',
     language: 'Language',
     last_name: 'Last Name',
     liter: 'Liter',
