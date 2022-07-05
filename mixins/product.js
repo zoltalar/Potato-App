@@ -1,5 +1,19 @@
 export default {
   methods: {
+    productableOptions (defaultOption = false) {
+      const options = []
+      if (defaultOption) {
+        options.push({
+          text: '',
+          value: null
+        })
+      }
+      options.push({
+        text: this.$t('phrases.farms'),
+        value: 'farm'
+      })
+      return options
+    },
     productInventory (products) {
       products = this.$_.groupBy(products, (product) => {
         return this.categoryName(product.inventory.category)

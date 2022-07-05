@@ -1,7 +1,7 @@
 <template>
   <div class="autocomplete-input">
     <b-form-input
-      size="lg"
+      :size="size"
       maxlength="255"
       :placeholder="$t('phrases.near')"
       required
@@ -28,6 +28,10 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    size: {
+      type: String,
+      default: 'lg'
     }
   },
   data: () => ({

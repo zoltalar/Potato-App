@@ -20,11 +20,14 @@ export default {
     unitTypes () {
       return this.$_.get(this.unitTypes(), 'types')
     },
-    productUnits (defaultText = true) {
-      const productUnits = [{
-        text: (defaultText ? ' - ' + this.$t('phrases.unit') +  ' - ' : ''),
-        value: null
-      }]
+    productUnits (defaultOption = false, defaultText = '') {
+      const productUnits = []
+      if (defaultOption) {
+        productUnits.push({
+          text: defaultText,
+          value: null
+        })
+      }
       let units = this.countryUnits()
       units = this.$_.filter(units, (unit) => {
         return this.$_.includes([2, 4, 5], unit.type)

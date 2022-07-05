@@ -26,7 +26,7 @@
               </label>
               <b-input-group class="input-group-fixed">
                 <b-form-input type="number" size="sm" :placeholder="$t('messages.product_amount_placeholder')" v-model="products[productIndex(item.id)].amount" />
-                <b-form-select size="sm" :options="productUnits()" v-model="products[productIndex(item.id)].amount_unit" />
+                <b-form-select size="sm" :options="productUnits(true, ' - ' + $t('phrases.unit') + ' - ')" v-model="products[productIndex(item.id)].amount_unit" />
               </b-input-group>
               <div class="invalid-feedback d-block" v-if="error('products.' + productIndex(item.id) + '.amount') !== null">
                 {{ error('products.' + productIndex(item.id) + '.amount') }}
@@ -42,8 +42,8 @@
               </label>
               <b-input-group class="input-group-fixed">
                 <b-form-input size="sm" :placeholder="$t('messages.product_price_placeholder')" v-model="products[productIndex(item.id)].price" />
-                <b-form-select size="sm" :options="currencyOptions()" v-model="products[productIndex(item.id)].currency_id" />
-                <b-form-select size="sm" :options="productUnits()" v-model="products[productIndex(item.id)].price_unit" />
+                <b-form-select size="sm" :options="currencyOptions(true, ' - ' + $t('phrases.currency') + ' - ')" v-model="products[productIndex(item.id)].currency_id" />
+                <b-form-select size="sm" :options="productUnits(true, ' - ' + $t('phrases.unit') + ' - ')" v-model="products[productIndex(item.id)].price_unit" />
               </b-input-group>
               <div class="invalid-feedback d-block" v-if="error('products.' + productIndex(item.id) + '.price') !== null">
                 {{ error('products.' + productIndex(item.id) + '.price') }}

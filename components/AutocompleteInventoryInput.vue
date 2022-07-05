@@ -1,7 +1,7 @@
 <template>
   <div class="autocomplete-input">
     <b-form-input
-      size="lg"
+      :size="size"
       maxlength="255"
       :placeholder="$t('messages.search_product_with_example')"
       required
@@ -22,6 +22,10 @@ export default {
     value: {
       type: String,
       default: null
+    },
+    size: {
+      type: String,
+      default: 'lg'
     }
   },
   data: () => ({

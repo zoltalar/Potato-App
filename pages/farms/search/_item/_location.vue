@@ -5,10 +5,32 @@
     </page-title>
     <page-aside-content>
       <template v-slot:aside>
-        <h6>{{ $_.capitalize(item) }}</h6>
-        <client-only>
-          <bar-chart :chart-data="chartData" :options="chartOptions" />
-        </client-only>
+        <form>
+          <b-form-group :label="$t('phrases.product')">
+            <autocomplete-inventory-input size="md" />
+          </b-form-group>
+          <b-form-group :label="$t('phrases.near')">
+            <autocomplete-location-input size="md" />
+          </b-form-group>
+          <b-form-group>
+            <template v-slot:label>
+              {{ $t('phrases.type') }}
+              <span class="text-danger">*</span>
+            </template>
+            <b-form-select :options="productableOptions(true)" />
+          </b-form-group>
+          <b-form-group :label="$t('phrases.radius')">
+            <b-input-group>
+              <b-form-input type="range" min="10" max="100" v-model="search.radius" />
+              <b-input-group-append is-text>
+                {{ search.radius }}
+              </b-input-group-append>
+            </b-input-group>
+          </b-form-group>
+          <b-form-group>
+            <b-button type="submit" variant="primary">{{ $t('phrases.search') }}</b-button>
+          </b-form-group>
+        </form>
       </template>
       <template v-if="loaded">
         <div class="list-farms" v-if="farms.length > 0">
@@ -63,11 +85,14 @@ export default {
       currentPage: 1,
       perPage: 10
     },
-    chartData: {
-      labels: [],
-      datasets: []
-    },
-    chartOptions: {}
+    search: {
+      item: '',
+      inventory_id: 0,
+      location: '',
+      city_id: 0,
+      type: 'farms',
+      radius: 10
+    }
   }),
   computed: {
     cityId () {
@@ -91,23 +116,6 @@ export default {
     }
   },
   methods: {
-    chart () {
-      const inventoryId = this.inventoryId
-      this
-        .$axios
-        .get(`/api/potato/prices/analytics`, {
-          params: { inventory_id: inventoryId }
-        })
-        .then((response) => {
-          const analytics = this.$_.get(response, 'data.data', [])
-          this.chartData.labels = this.$_.map(analytics, 'month_year')
-          this.chartData.datasets = [{
-            label: this.$t('phrases.price') + ' (' + this.currencyCode() + ')',
-            data: this.$_.map(analytics, 'average_price'),
-            backgroundColor: '#dee2e6'
-          }]
-        })
-    },
     fetch () {
       const item = this.item
       const inventoryId = this.inventoryId
@@ -125,7 +133,6 @@ export default {
     }
   },
   mounted() {
-    this.chart()
     this.fetch()
   }
 }
