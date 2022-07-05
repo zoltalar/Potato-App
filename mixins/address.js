@@ -37,6 +37,10 @@ export default {
           const city = this.$_.get(model, 'city', '')
           middle += (middle ? ' ' : '') + city
         }
+        if (this.$_.includes(elements, 'state')) {
+          const state = this.$_.get(model, 'state.name', '')
+          middle += (middle ? glue : '') + state
+        }
       } else if (countryName === 'United States') {
         if (this.$_.includes(elements, 'city')) {
           const city = this.$_.get(model, 'city', '')

@@ -7,7 +7,8 @@
       class="img-primary"
       v-if="image && image.file" />
     <b-card-title class="h5">{{ farm.name }}</b-card-title>
-    <b-card-sub-title class="mb-2" v-if="farmIsNameable(farm)">{{ fullName(farm, true) }}</b-card-sub-title>
+    <b-card-sub-title class="mb-2" v-if="address">{{ addressLine(address, ',', ['city', 'state']) }}</b-card-sub-title>
+    <b-card-sub-title class="mb-2" v-else-if="farmIsNameable(farm)">{{ fullName(farm, true) }}</b-card-sub-title>
     <b-card-text v-if="farm.description">
       <char-limit :text="farm.description" :chars="160" :ellipsis="true" />
     </b-card-text>
@@ -25,6 +26,10 @@ export default {
     }
   },
   computed: {
+    address () {
+      const farm = this.farm
+      return this.farmAddress(farm)
+    },
     image () {
       const farm = this.farm
       return this.$_.head(this.$_.get(farm, 'images', []))

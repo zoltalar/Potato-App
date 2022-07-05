@@ -6,8 +6,11 @@
     <page-aside-content>
       <template v-slot:aside>
         <h6>{{ $_.capitalize(item) }}</h6>
+        <client-only>
+          <bar-chart :chart-data="barChartData" :options="barChartOptions" />
+        </client-only>
       </template>
-      <template>
+      <template v-if="loaded">
         <div class="list-farms" v-if="farms.length > 0">
           <p v-html="$t('messages.farms_search', { item, location })"></p>
           <farm-list-item-card :farm="farm" class="mb-4" v-for="(farm, i) in pagedFarms" :key="'farm-list-item-' + i">
@@ -49,20 +52,48 @@ export default {
   nuxtI18n: {
     locales: ['en', 'pl'],
     paths: {
-      en: '/farms/search/:id/:item/:location',
-      pl: '/gospodarstwa-rolne/szukaj/:id/:item/:location'
+      en: '/farms/search/:item/:location',
+      pl: '/gospodarstwa-rolne/szukaj/:item/:location'
     }
   },
   data: () => ({
     farms: [],
+    loaded: false,
     pagination: {
       currentPage: 1,
       perPage: 10
-    }
+    },
+    barChartData: {
+      labels: [
+        '2019-06',
+        '2019-07',
+        '2019-08',
+        '2019-09',
+        '2019-10',
+        '2019-11',
+        '2019-12',
+        '2020-01',
+        '2020-02',
+        '2020-03',
+        '2020-04',
+        '2020-05'
+      ],
+      datasets: [
+        {
+          label: 'Visits',
+          data: [10, 15, 20, 30, 40, 50, 60, 70, 34, 45, 11, 78],
+          backgroundColor: '#003f5c'
+        }
+      ]
+    },
+    barChartOptions: {}
   }),
   computed: {
-    id () {
-      return this.$route.params.id
+    cityId () {
+      return this.$route.query.city_id
+    },
+    inventoryId () {
+      return this.$route.query.inventory_id
     },
     item () {
       return this.$route.params.item
@@ -80,15 +111,18 @@ export default {
   },
   methods: {
     fetch () {
-      const id = this.id
       const item = this.item
+      const inventoryId = this.inventoryId
+      const location = this.location
+      const cityId = this.cityId
       this
         .$axios
         .get(`/api/potato/farms/search`, {
-          params: { id, item }
+          params: { item, inventory_id: inventoryId, location, city_id: cityId }
         })
         .then((response) => {
           this.farms = this.$_.get(response, 'data.data', [])
+          this.loaded = true
         })
     }
   },

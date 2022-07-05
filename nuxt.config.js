@@ -30,6 +30,7 @@ export default {
   plugins: [
     '~/plugins/axios.js',
     '~/plugins/bootstrap.js',
+    { src: '~/plugins/chart.js', mode: 'client' },
     '~/plugins/lodash.js',
     '~/plugins/moment.js',
     '~/plugins/mixins.js'
