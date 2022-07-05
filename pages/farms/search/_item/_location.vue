@@ -7,7 +7,7 @@
       <template v-slot:aside>
         <h6>{{ $_.capitalize(item) }}</h6>
         <client-only>
-          <bar-chart :chart-data="barChartData" :options="barChartOptions" />
+          <bar-chart :chart-data="chartData" :options="chartOptions" />
         </client-only>
       </template>
       <template v-if="loaded">
@@ -63,30 +63,11 @@ export default {
       currentPage: 1,
       perPage: 10
     },
-    barChartData: {
-      labels: [
-        '2019-06',
-        '2019-07',
-        '2019-08',
-        '2019-09',
-        '2019-10',
-        '2019-11',
-        '2019-12',
-        '2020-01',
-        '2020-02',
-        '2020-03',
-        '2020-04',
-        '2020-05'
-      ],
-      datasets: [
-        {
-          label: 'Visits',
-          data: [10, 15, 20, 30, 40, 50, 60, 70, 34, 45, 11, 78],
-          backgroundColor: '#58c26c'
-        }
-      ]
+    chartData: {
+      labels: [],
+      datasets: []
     },
-    barChartOptions: {}
+    chartOptions: {}
   }),
   computed: {
     cityId () {
@@ -110,6 +91,23 @@ export default {
     }
   },
   methods: {
+    chart () {
+      const inventoryId = this.inventoryId
+      this
+        .$axios
+        .get(`/api/potato/prices/analytics`, {
+          params: { inventory_id: inventoryId }
+        })
+        .then((response) => {
+          const analytics = this.$_.get(response, 'data.data', [])
+          this.chartData.labels = this.$_.map(analytics, 'month_year')
+          this.chartData.datasets = [{
+            label: this.$t('phrases.price') + ' (' + this.currencyCode() + ')',
+            data: this.$_.map(analytics, 'average_price'),
+            backgroundColor: '#dee2e6'
+          }]
+        })
+    },
     fetch () {
       const item = this.item
       const inventoryId = this.inventoryId
@@ -127,6 +125,7 @@ export default {
     }
   },
   mounted() {
+    this.chart()
     this.fetch()
   }
 }

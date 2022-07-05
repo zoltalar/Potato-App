@@ -5,7 +5,7 @@ import { Chart, registerables } from 'chart.js'
 Chart.register(...registerables)
 
 Vue.component('bar-chart', {
-  mixins: [ Bar ],
+  extends: Bar,
   props: ['chartData', 'options'],
   mounted() {
     this.renderChart(this.chartData, this.options)
