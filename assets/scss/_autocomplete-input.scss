@@ -25,12 +25,23 @@
     > li {
       color: $gray-900;
       cursor: pointer;
-      padding: .5rem 1rem;
-      font-size: 1.25rem;
+      padding: .5rem .75rem;
+      font-size: 1rem;
 
       &:hover,
       &:focus {
         background-color: $gray-150;
+      }
+    }
+  }
+
+  &.size-lg {
+
+    > ul {
+
+      > li {
+        padding: .5rem 1rem;
+        font-size: 1.25rem;
       }
     }
   }

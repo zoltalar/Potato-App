@@ -81,6 +81,7 @@ export default {
       this.$store.dispatch('currency/code', currency)
 
       if (locale !== language) {
+        this.refreshAddressMeta()
         this.$router.push(this.localePath('/', language))
       }
 

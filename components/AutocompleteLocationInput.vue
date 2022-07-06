@@ -1,5 +1,5 @@
 <template>
-  <div class="autocomplete-input">
+  <div class="autocomplete-input" :class="'size-' + size">
     <b-form-input
       :size="size"
       maxlength="255"

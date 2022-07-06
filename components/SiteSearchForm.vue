@@ -3,7 +3,7 @@
     <b-row>
       <b-col md="6" class="col-left">
         <div class="item">
-          <autocomplete-inventory-input v-model="search.item" />
+          <autocomplete-inventory-input size="lg" v-model="search.item" />
         </div>
       </b-col>
       <b-col md="6" class="col-right">
@@ -12,7 +12,7 @@
             <font-awesome-icon icon="search" />
           </b-button>
           <div class="location">
-            <autocomplete-location-input :geolocation="true" v-model="search.location" />
+            <autocomplete-location-input size="lg" :geolocation="true" v-model="search.location" />
           </div>
         </div>
       </b-col>
@@ -31,6 +31,11 @@ export default {
       type: 'farms'
     }
   }),
+  computed: {
+    radius () {
+      return this.addressRadius()
+    }
+  },
   methods: {
     listen () {
       this.$root.$on('autocomplete-inventory-input', ({ item }) => {
@@ -53,8 +58,10 @@ export default {
           location: search.location
         },
         query: {
+          type,
           inventory_id: search.inventory_id,
-          city_id: search.city_id
+          city_id: search.city_id,
+          radius: this.radius
         }
       }))
     }

@@ -53,6 +53,7 @@ export default {
     farm_review_footer: 'Created on {date} at {time} by {user}.',
     farm_social_media_updated: "Farm's social media information has been updated successfully.",
     farms_search: 'You are searching for <strong>{item}</strong> near <strong>{location}</strong>.',
+    farms_search_empty: '<p>Sorry, but we did not find any farms.</p>',
     favorite_deleted: 'Favorite has been removed successfully.',
     form_errors: 'Form contains errors. Please try again.',
     message_deleted: 'Message has been deleted successfully.',

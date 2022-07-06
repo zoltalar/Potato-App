@@ -28,12 +28,12 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/axios.js',
-    '~/plugins/bootstrap.js',
+    { src: '~/plugins/axios.js', mode: 'client' },
+    { src: '~/plugins/bootstrap.js', mode: 'client' },
     { src: '~/plugins/chart.js', mode: 'client' },
-    '~/plugins/lodash.js',
-    '~/plugins/moment.js',
-    '~/plugins/mixins.js'
+    { src: '~/plugins/lodash.js' },
+    { src: '~/plugins/moment.js', mode: 'client' },
+    { src: '~/plugins/mixins.js' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

@@ -5,32 +5,7 @@
     </page-title>
     <page-aside-content>
       <template v-slot:aside>
-        <form>
-          <b-form-group :label="$t('phrases.product')">
-            <autocomplete-inventory-input size="md" />
-          </b-form-group>
-          <b-form-group :label="$t('phrases.near')">
-            <autocomplete-location-input size="md" />
-          </b-form-group>
-          <b-form-group>
-            <template v-slot:label>
-              {{ $t('phrases.type') }}
-              <span class="text-danger">*</span>
-            </template>
-            <b-form-select :options="productableOptions(true)" />
-          </b-form-group>
-          <b-form-group :label="$t('phrases.radius')">
-            <b-input-group>
-              <b-form-input type="range" min="10" max="100" v-model="search.radius" />
-              <b-input-group-append is-text>
-                {{ search.radius }}
-              </b-input-group-append>
-            </b-input-group>
-          </b-form-group>
-          <b-form-group>
-            <b-button type="submit" variant="primary">{{ $t('phrases.search') }}</b-button>
-          </b-form-group>
-        </form>
+        <advanced-site-search-form />
       </template>
       <template v-if="loaded">
         <div class="list-farms" v-if="farms.length > 0">
@@ -84,14 +59,6 @@ export default {
     pagination: {
       currentPage: 1,
       perPage: 10
-    },
-    search: {
-      item: '',
-      inventory_id: 0,
-      location: '',
-      city_id: 0,
-      type: 'farms',
-      radius: 10
     }
   }),
   computed: {

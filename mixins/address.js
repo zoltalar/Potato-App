@@ -66,6 +66,9 @@ export default {
     addressMeta () {
       return this.$store.getters['address/meta']
     },
+    addressRadius () {
+      return this.$_.get(this.addressMeta(), 'radius')
+    },
     addressableTypes () {
       return this.$_.get(this.addressMeta(), 'addressable_types')
     },

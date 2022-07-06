@@ -8,17 +8,15 @@ export default {
       }))
       return this.$_.get(country, 'units', [])
     },
-    refreshUnitMeta () {
-      this.$store.dispatch('unit/meta')
-    },
-    unitMeta () {
-      return this.$store.getters['unit/meta']
-    },
-    unitSystems () {
-      return this.$_.get(this.unitMeta(), 'systems')
-    },
-    unitTypes () {
-      return this.$_.get(this.unitTypes(), 'types')
+    lengthUnit (property = null) {
+      const units = this.countryUnits()
+      const unit = this.$_.head(this.$_.filter(units, (unit) => {
+        return parseInt(unit.type) === 1
+      }))
+      if (!this.$_.isNil(property)) {
+        return this.$_.get(unit, property)
+      }
+      return unit
     },
     productUnits (defaultOption = false, defaultText = '') {
       const productUnits = []
@@ -39,6 +37,18 @@ export default {
         })
       })
       return productUnits
+    },
+    refreshUnitMeta () {
+      this.$store.dispatch('unit/meta')
+    },
+    unitMeta () {
+      return this.$store.getters['unit/meta']
+    },
+    unitSystems () {
+      return this.$_.get(this.unitMeta(), 'systems')
+    },
+    unitTypes () {
+      return this.$_.get(this.unitTypes(), 'types')
     }
   }
 }
