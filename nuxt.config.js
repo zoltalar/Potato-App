@@ -93,7 +93,7 @@ export default {
   },
 
   axios: {
-    baseUrl: 'http://potato-api.local'
+    baseUrl: process.env.API_BASE_URL
   },
 
   bootstrapVue: {

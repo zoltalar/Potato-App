@@ -80,18 +80,30 @@ export default {
       const start = (pagination.currentPage - 1) * pagination.perPage
       const end = pagination.currentPage * pagination.perPage
       return farms.slice(start, end)
+    },
+    radius () {
+      return this.$route.query.radius
+    }
+  },
+  watch: {
+    '$route.query': {
+      handler () {
+        this.fetch()
+      }
     }
   },
   methods: {
     fetch () {
+      this.loaded = false
       const item = this.item
       const inventoryId = this.inventoryId
       const location = this.location
       const cityId = this.cityId
+      const radius = this.radius
       this
         .$axios
         .get(`/api/potato/farms/search`, {
-          params: { item, inventory_id: inventoryId, location, city_id: cityId }
+          params: { item, inventory_id: inventoryId, location, city_id: cityId, radius }
         })
         .then((response) => {
           this.farms = this.$_.get(response, 'data.data', [])

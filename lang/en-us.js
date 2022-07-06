@@ -95,6 +95,7 @@ export default {
     address: 'Address',
     availability: 'Availability',
     back: 'Back',
+    browse_farms_map: 'Browse Farms Map',
     buy_from_farmers_near_you: 'Buy From Farmers Near You',
     cancel: 'Cancel',
     change: 'Change',

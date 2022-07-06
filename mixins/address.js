@@ -66,7 +66,10 @@ export default {
     addressMeta () {
       return this.$store.getters['address/meta']
     },
-    addressRadius () {
+    addressMinRadius () {
+      return 5
+    },
+    addressMaxRadius () {
       return this.$_.get(this.addressMeta(), 'radius')
     },
     addressableTypes () {

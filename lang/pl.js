@@ -95,6 +95,7 @@ export default {
     address: 'Adres',
     availability: 'Dostępność',
     back: 'Powrót',
+    browse_farms_map: 'Przeglądaj Mapę Gospodarstw Rolnych',
     buy_from_farmers_near_you: 'Kupuj od Rolników w Pobliżu Ciebie',
     cancel: 'Anuluj',
     change: 'Zmień',

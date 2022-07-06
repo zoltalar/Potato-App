@@ -33,7 +33,7 @@ export default {
   }),
   computed: {
     radius () {
-      return this.addressRadius()
+      return this.addressMaxRadius()
     }
   },
   methods: {

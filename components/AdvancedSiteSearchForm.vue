@@ -19,7 +19,7 @@
         <small class="text-muted ml-1">({{ lengthUnit('abbreviation') }})</small>
       </template>
       <b-input-group>
-        <b-form-input type="range" min="10" :max="addressRadius()" v-model="search.radius" />
+        <b-form-input type="range" :min="addressMinRadius()" :max="addressMaxRadius()" v-model="search.radius" />
         <b-input-group-append is-text>
           {{ search.radius }}
         </b-input-group-append>
@@ -40,7 +40,7 @@ export default {
       location: '',
       city_id: 0,
       type: 'farms',
-      radius: 60
+      radius: 0
     }
   }),
   computed: {

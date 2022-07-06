@@ -6,7 +6,10 @@
       :alt="image.title"
       class="img-primary"
       v-if="image && image.file" />
-    <b-card-title class="h5">{{ farm.name }}</b-card-title>
+    <b-card-title class="h5">
+      {{ farm.name }}
+      <b-form-rating variant="warning" size="sm" class="p-0 ml-2" :value="farm.average_rating" no-border inline readonly />
+    </b-card-title>
     <b-card-sub-title class="mb-2" v-if="address">{{ addressLine(address, ',', ['city', 'state']) }}</b-card-sub-title>
     <b-card-sub-title class="mb-2" v-else-if="farmIsNameable(farm)">{{ fullName(farm, true) }}</b-card-sub-title>
     <b-card-text v-if="farm.description">

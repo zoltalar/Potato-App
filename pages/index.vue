@@ -13,7 +13,14 @@
             </div>
           </div>
         </b-col>
-        <b-col sm="6"></b-col>
+        <b-col sm="6">
+          <div class="map">
+            <span class="circle">
+              <font-awesome-icon icon="map" />
+            </span>
+            <h5>{{ $t('phrases.browse_farms_map') }}</h5>
+          </div>
+        </b-col>
       </b-row>
     </b-container>
   </div>

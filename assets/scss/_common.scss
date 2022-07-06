@@ -191,6 +191,10 @@ body {
   width: 2rem;
 }
 
+.map {
+  height: 16.25rem;
+}
+
 .page-aside-content,
 .page-content,
 .page-content-aside {
@@ -251,7 +255,8 @@ body {
   }
 }
 
-.promoted-farms {
+.promoted-farms,
+.map {
   text-align: center;
 
   .home & {
