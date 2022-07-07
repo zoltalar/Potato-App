@@ -103,6 +103,7 @@ export default {
     confirm_new_password: 'Confirm New Password',
     contact_information: 'Contact Information',
     contact_us: 'Contact Us',
+    continue: 'Continue',
     country: 'Country',
     create: 'Create',
     create_a_review: 'Create a Review',

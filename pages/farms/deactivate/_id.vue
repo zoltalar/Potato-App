@@ -10,12 +10,17 @@
         <b-alert class="mb-4" variant="success" :show="hasFlashMessage()" @dismissed="clearFlashMessage()" dismissible>
           {{ flashMessage() }}
         </b-alert>
-        <p class="mb-4">{{ $t('messages.farm_deactivate') }}</p>
-        <b-row>
-          <b-col md="6">
-            <farm-deactivate-form :edited-farm="farm" />
-          </b-col>
-        </b-row>
+        <div v-if="farmIsActive(farm)">
+          <p class="mb-4">{{ $t('messages.farm_deactivate') }}</p>
+          <b-row>
+            <b-col md="6">
+              <farm-deactivate-form :edited-farm="farm" />
+            </b-col>
+          </b-row>
+        </div>
+        <div v-else>
+          <nuxt-link :to="localePath('/account/farms')" class="btn btn-primary btn-lg">{{ $t('phrases.continue') }}</nuxt-link>
+        </div>
       </template>
     </page-content>
   </div>
@@ -72,6 +77,7 @@ export default {
 
       this.$root.$on('farm-deactivated', () => {
         this.$store.commit('flash/message', this.$t('messages.farm_deactivated'))
+        this.fetch()
       })
     }
   },
