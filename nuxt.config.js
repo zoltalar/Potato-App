@@ -32,6 +32,7 @@ export default {
     { src: '~/plugins/bootstrap.js', mode: 'client' },
     { src: '~/plugins/chart.js', mode: 'client' },
     { src: '~/plugins/lodash.js' },
+    { src: '~/plugins/maps.js', mode: 'client' },
     { src: '~/plugins/moment.js', mode: 'client' },
     { src: '~/plugins/mixins.js' }
   ],
