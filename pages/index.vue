@@ -88,6 +88,7 @@ export default {
         if (!this.$_.isEmpty(city)) {
           this.centerize(city)
           this.locate(city)
+          this.fetch()
         }
       },
       deep: true,
