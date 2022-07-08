@@ -14,10 +14,13 @@
         <div v-if="messages.length > 0">
           <p class="mb-4" v-html="$t('messages.account_messages')"></p>
           <b-button-group size="sm" class="mb-3">
-            <b-button variant="secondary">
+            <b-button variant="secondary" :title="$t('phrases.toggle_messages')">
               <input type="checkbox" v-model="toggle" />
             </b-button>
-            <b-button variant="secondary" @click.prevent="destroyBatch">
+            <b-button variant="secondary" :title="$t('phrases.refresh')" @click.prevent="fetch">
+              <font-awesome-icon icon="sync" />
+            </b-button>
+            <b-button variant="secondary" :title="$t('phrases.delete_selected_messages')" @click.prevent="destroyBatch">
               <font-awesome-icon icon="trash" />
             </b-button>
           </b-button-group>
