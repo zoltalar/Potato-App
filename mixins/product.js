@@ -1,5 +1,23 @@
 export default {
   methods: {
+    categoryProducts (inventory) {
+      inventory = this.$_.groupBy(inventory, (item) => {
+        return this.categoryName(item.category)
+      })
+      const products = {}
+      this.$_.forEach(inventory, (categoryProducts, categoryName) => {
+        this.$_.forEach(categoryProducts, (product) => {
+          if (this.$_.isNil(products[categoryName])) {
+            products[categoryName] = {}
+          }
+          const inventoryName = this.inventoryName(product)
+          if (this.$_.isNil(products[categoryName][inventoryName])) {
+            products[categoryName][inventoryName] = product.id
+          }
+        })
+      })
+      return products
+    },
     productableOptions (defaultOption = false) {
       const options = []
       if (defaultOption) {

@@ -253,6 +253,32 @@ body {
       }
     }
   }
+
+  &.index {
+
+    .category-products {
+      color: $gray-700;
+
+      h6 {
+        background-color: $gray-125;
+        border-radius: $border-radius;
+        padding: 1rem;
+      }
+
+      ul {
+        list-style: square outside;
+        margin: 0 0 1.5rem 0;
+        overflow: auto;
+        padding: 1rem 1rem 0 2rem;
+
+        > li {
+          float: left;
+          width: 25%;
+          margin-right: 0;
+        }
+      }
+    }
+  }
 }
 
 .promoted-farms,
