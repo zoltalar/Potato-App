@@ -5,13 +5,20 @@
     </page-title>
     <page-content>
       <template>
-        <div class="category-products" v-for="(categoryProducts, categoryName, i) in products" :key="'category-product-' + i">
-          <h6>{{ categoryName }}</h6>
-          <ul>
-            <li v-for="(id, inventoryName, j) in categoryProducts" :key="'category-product-item-' + i + '-' + j">
-              <nuxt-link :to="localePath({ name: 'products-show-id-name', params: { id, name: slugify(inventoryName) }})">{{ inventoryName }}</nuxt-link>
-            </li>
-          </ul>
+        <div>
+          <div class="category-products" v-for="(categoryProducts, categoryName, i) in products" :key="'category-product-' + i">
+            <h6>{{ categoryName }}</h6>
+            <ul>
+              <li v-for="(inventoryId, inventoryName, j) in categoryProducts" :key="'category-product-item-' + i + '-' + j">
+                <a :href="localePath({ name: 'products' })" @click.prevent="sidebar(inventoryId, inventoryName)">{{ inventoryName }}</a>
+              </li>
+            </ul>
+          </div>
+          <b-sidebar id="sidebar-product" backdrop backdrop-variant="secondary">
+            <template>
+              <inventory-details :id="id" :name="name" />
+            </template>
+          </b-sidebar>
         </div>
       </template>
     </page-content>
@@ -41,7 +48,9 @@ export default {
     }
   },
   data: () => ({
-    inventory: []
+    inventory: [],
+    id: null,
+    name: ''
   }),
   computed: {
     products () {
@@ -61,6 +70,12 @@ export default {
         .then((result) => {
           this.inventory = this.$_.get(result, 'data.data', [])
         })
+    },
+    sidebar (id, name) {
+      this.id = id
+      this.name = name
+
+      this.$root.$emit('bv::toggle::collapse', 'sidebar-product')
     }
   },
   mounted () {

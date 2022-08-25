@@ -78,6 +78,23 @@ export default {
     addressTypes () {
       return this.$_.get(this.addressMeta(), 'types')
     },
+    areaName (area) {
+      return area.city + ', ' + area.state_name
+    },
+    areaUrl (area, inventoryId, inventoryName) {
+      const type = 'farms'
+      return this.localePath({
+        name: type + '-search-item-location',
+        params: {
+          item: inventoryName,
+          location: area.city
+        },
+        query: {
+          type,
+          inventory_id: inventoryId
+        }
+      })
+    },
     refreshAddressMeta () {
       this.$store.dispatch('address/meta')
     }

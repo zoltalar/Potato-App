@@ -11,7 +11,7 @@ export default {
   layout: 'default',
   head () {
     return {
-      title: this.farm.name,
+      title: 'Product Name',
       meta: [
         {
           hid: 'description',
