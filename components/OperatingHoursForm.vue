@@ -1,5 +1,5 @@
 <template>
-  <form class="form-operating-hours">
+  <form class="form-operating-hours" @submit.prevent="save">
     <b-form-group>
       <div v-for="(day, i) in days()">
         <b-checkbox @change="toggle(day)">{{ $t('phrases.' + day) }}</b-checkbox>

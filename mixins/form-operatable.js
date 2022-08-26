@@ -98,12 +98,34 @@ export default {
       })
       return count
     },
+    save () {
+      let hours = this.hours
+      const type = this.type
+      this
+        .$axios
+        .post(this.uri(), hours)
+        .then((response) => {
+          this.setErrors(response)
+          hours = this.$_.get(response, 'data.data')
+          if (!this.$_.isEmpty(hours)) {
+            this.$root.$emit(type + '-operating-hours-saved', { hours })
+          }
+        })
+        .catch((error) => {
+          this.setErrors(error.response)
+        })
+    },
     toggle (day) {
       const selected = this.hours[day].selected
       if (!selected) {
         this.reset(day)
       }
       this.hours[day].selected = !selected
+    },
+    uri () {
+      const type = this.type
+      const operatable = this.operatable
+      return `/api/potato/operating-hours/save/${type}/${operatable.id}`
     }
   }
 }
