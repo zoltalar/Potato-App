@@ -47,7 +47,7 @@
         <div v-else-if="farmEditTab() === 'operating-hours'">
           <h5 class="mb-2">{{ $t('phrases.operating_hours') }}</h5>
           <p class="mb-4" v-html="$t('messages.farm_operating_hours')"></p>
-          <farm-operating-hours-form :edited-farm="farm" />
+          <operating-hours-form :operatable="farm" type="farm" />
         </div>
         <div v-else-if="farmEditTab() === 'products'">
           <h5 class="mb-2">{{ $t('phrases.products') }}</h5>

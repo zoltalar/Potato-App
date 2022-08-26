@@ -18,6 +18,10 @@ textarea.form-control {
   input.form-control {
     @extend .form-control-lg
   }
+
+  select.custom-select {
+    @extend .custom-select-lg
+  }
 }
 
 .form-group-sticky {
@@ -27,6 +31,7 @@ textarea.form-control {
   z-index: $zindex-sticky;
 }
 
+.form-operating-hours,
 .form-products {
 
   .options {

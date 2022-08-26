@@ -5,25 +5,25 @@
         {{ $t('phrases.farm_name') }}
         <span class="text-danger">*</span>
       </template>
-      <b-form-input :class="{'is-invalid': error('name') !== null}" maxlength="255" v-model="farm.name" />
+      <b-form-input size="lg" :class="{'is-invalid': error('name') !== null}" maxlength="255" v-model="farm.name" />
       <div class="invalid-feedback d-block" v-if="error('name') !== null">
         {{ error('name') }}
       </div>
     </b-form-group>
     <b-form-group :label="$t('phrases.first_name')">
-      <b-form-input :class="{'is-invalid': error('first_name') !== null}" maxlength="100" v-model="farm.first_name" />
+      <b-form-input size="lg" :class="{'is-invalid': error('first_name') !== null}" maxlength="100" v-model="farm.first_name" />
       <div class="invalid-feedback d-block" v-if="error('first_name') !== null">
         {{ error('first_name') }}
       </div>
     </b-form-group>
     <b-form-group :label="$t('phrases.last_name')">
-      <b-form-input :class="{'is-invalid': error('last_name') !== null}" maxlength="100" v-model="farm.last_name" />
+      <b-form-input size="lg" :class="{'is-invalid': error('last_name') !== null}" maxlength="100" v-model="farm.last_name" />
       <div class="invalid-feedback d-block" v-if="error('last_name') !== null">
         {{ error('last_name') }}
       </div>
     </b-form-group>
     <b-form-group :label="$t('phrases.phone')">
-      <b-form-input :class="{'is-invalid': error('phone') !== null}" maxlength="20" v-model="farm.phone" />
+      <b-form-input size="lg" :class="{'is-invalid': error('phone') !== null}" maxlength="20" v-model="farm.phone" />
       <div class="invalid-feedback d-block" v-if="error('phone') !== null">
         {{ error('phone') }}
       </div>
@@ -32,7 +32,7 @@
       <b-checkbox :value="1" :unchecked-value="0" v-model="farm.publish_phone" :disabled="empty(farm.phone)">{{ $t('phrases.publish_phone_on_website') }}</b-checkbox>
     </b-form-group>
     <b-form-group :label="$t('phrases.fax')">
-      <b-form-input :class="{'is-invalid': error('fax') !== null}" maxlength="20" v-model="farm.fax" />
+      <b-form-input size="lg" :class="{'is-invalid': error('fax') !== null}" maxlength="20" v-model="farm.fax" />
       <div class="invalid-feedback d-block" v-if="error('fax') !== null">
         {{ error('fax') }}
       </div>
@@ -42,14 +42,14 @@
         {{ $t('phrases.email') }}
         <span class="text-danger">*</span>
       </template>
-      <b-form-input type="email" :class="{'is-invalid': error('email') !== null}" maxlength="255" v-model="farm.email" />
+      <b-form-input type="email" size="lg" :class="{'is-invalid': error('email') !== null}" maxlength="255" v-model="farm.email" />
       <div class="invalid-feedback d-block" v-if="error('email') !== null">
         {{ error('email') }}
       </div>
       <small class="form-text text-muted" v-html="$t('messages.farm_contact_information_email')"></small>
     </b-form-group>
     <b-form-group :label="$t('phrases.website_url')">
-      <b-form-input :class="{'is-invalid': error('website') !== null}" maxlength="255" placeholder="http://" v-model="farm.website" />
+      <b-form-input size="lg" :class="{'is-invalid': error('website') !== null}" maxlength="255" placeholder="http://" v-model="farm.website" />
       <div class="invalid-feedback d-block" v-if="error('website') !== null">
         {{ error('website') }}
       </div>

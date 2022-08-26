@@ -8,14 +8,14 @@
         {{ $t('phrases.country') }}
         <span class="text-danger">*</span>
       </template>
-      <b-form-select size="lg" v-model="country_id" :options="countryOptions()" />
+      <b-form-select v-model="country_id" :options="countryOptions()" />
     </b-form-group>
     <b-form-group>
       <template v-slot:label>
         {{ stateLabel() }}
         <span class="text-danger">*</span>
       </template>
-      <b-form-select size="lg" v-model="address.state_id" :options="stateOptions()" :disabled="$_.isNil(country_id)" />
+      <b-form-select v-model="address.state_id" :options="stateOptions()" :disabled="$_.isNil(country_id)" />
       <div class="invalid-feedback d-block" v-if="error('address.state_id') !== null">
         {{ error('address.state_id') }}
       </div>
