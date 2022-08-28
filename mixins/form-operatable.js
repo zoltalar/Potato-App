@@ -45,9 +45,24 @@ export default {
         selected: false,
         start: null,
         end: null
-      }
+      },
+      exceptions: null
     }
   }),
+  computed: {
+    editedOperatingHours () {
+      const operatable = this.operatable
+      return this.operatingHours(operatable)
+    }
+  },
+  watch: {
+    'editedOperatingHours': {
+      handler () {
+        this.populate()
+      },
+      immediate: true
+    }
+  },
   methods: {
     cancelUrl () {
       const type = this.type
@@ -57,7 +72,7 @@ export default {
       return ''
     },
     days () {
-      return this.$_.keys(this.hours)
+      return this.$_.chain(this.hours).keys().without('exceptions').value()
     },
     duplicate () {
       if (this.selectedDaysCount() <= 1) {
@@ -82,6 +97,27 @@ export default {
     },
     hour12 () {
       return this.countryCode() === 'us'
+    },
+    populate () {
+      const editedOperatingHours = this.editedOperatingHours
+      const days = this.days()
+      if ( ! this.$_.isEmpty(editedOperatingHours)) {
+        this.$_.forEach(days, (day) => {
+          if (day in editedOperatingHours) {
+            const operatingHours = editedOperatingHours[day]
+            let range = this.$_.head(operatingHours)
+            if (!this.$_.isNil(range)) {
+              range = range.split('-')
+              if (range.length === 2) {
+                this.hours[day].selected = true
+                this.hours[day].start = range[0]
+                this.hours[day].end = range[1]
+              }
+            }
+          }
+        })
+        this.hours.exceptions = editedOperatingHours.exceptions
+      }
     },
     reset (day) {
       this.hours[day].start = null
@@ -114,13 +150,6 @@ export default {
         .catch((error) => {
           this.setErrors(error.response)
         })
-    },
-    toggle (day) {
-      const selected = this.hours[day].selected
-      if (!selected) {
-        this.reset(day)
-      }
-      this.hours[day].selected = !selected
     },
     uri () {
       const type = this.type

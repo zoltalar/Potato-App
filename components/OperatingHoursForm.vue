@@ -1,12 +1,13 @@
 <template>
   <form class="form-operating-hours" @submit.prevent="save">
     <b-form-group>
-      <div v-for="(day, i) in days()">
-        <b-checkbox @change="toggle(day)">{{ $t('phrases.' + day) }}</b-checkbox>
+      <div v-for="(day, i) in days()" :key="'day-operating-hours' + i">
+        <b-checkbox v-model="hours[day].selected">{{ $t('phrases.' + day) }}</b-checkbox>
         <div class="options" v-if="hours[day].selected === true">
           <b-form-group>
             <label class="sub-label">
               {{ $t('phrases.time_range') }}
+              ({{ $t('phrases.from_to') }})
               <span class="text-danger">*</span>
             </label>
             <b-input-group size="sm" class="input-group-fixed">
@@ -36,6 +37,13 @@
           </b-form-group>
         </div>
       </div>
+    </b-form-group>
+    <b-form-group :label="$t('phrases.exceptions')">
+      <b-form-textarea id="input-exceptions" size="lg" rows="7" maxlength="1000" no-resize v-model="hours.exceptions"></b-form-textarea>
+      <small class="form-text text-muted">
+        <chars-remaining for="input-exceptions" ref="operating-hours-exceptions" />
+        <span>{{ $t('phrases.html_not_allowed') }}.</span>
+      </small>
     </b-form-group>
     <b-form-group>
       <b-button type="submit" variant="primary" size="lg">{{ $t('phrases.save') }}</b-button>

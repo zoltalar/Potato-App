@@ -13,6 +13,7 @@ import inventoryMixin from '@/mixins/inventory'
 import languageMixin from '@/mixins/language'
 import messageMixin from '@/mixins/message'
 import nameableMixin from '@/mixins/nameable'
+import operatingHoursMixin from '@/mixins/operating-hours'
 import productMixin from '@/mixins/product'
 import stringMixin from '@/mixins/string'
 import systemMixin from '@/mixins/system'
@@ -31,6 +32,7 @@ Vue.mixin(inventoryMixin)
 Vue.mixin(languageMixin)
 Vue.mixin(messageMixin)
 Vue.mixin(nameableMixin)
+Vue.mixin(operatingHoursMixin)
 Vue.mixin(productMixin)
 Vue.mixin(stringMixin)
 Vue.mixin(systemMixin)
