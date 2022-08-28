@@ -10,8 +10,16 @@
               <span class="text-danger">*</span>
             </label>
             <b-input-group size="sm" class="input-group-fixed">
-              <b-form-timepicker :hour12="hour12()" :label-no-time-selected="$t('phrases.no_time_selected')" v-model="hours[day].start" />
-              <b-form-timepicker :hour12="hour12()" :label-no-time-selected="$t('phrases.no_time_selected')" v-model="hours[day].end" />
+              <b-form-timepicker
+                :hour12="hour12()"
+                :label-no-time-selected="$t('phrases.no_time_selected')"
+                :label-close-button="$t('phrases.close')"
+                v-model="hours[day].start" />
+              <b-form-timepicker
+                :hour12="hour12()"
+                :label-no-time-selected="$t('phrases.no_time_selected')"
+                :label-close-button="$t('phrases.close')"
+                v-model="hours[day].end" />
               <b-button variant="primary" size="sm" :title="$t('phrases.duplicate')" @click.prevent="duplicate(day)" v-if="day === 'monday'">
                 <font-awesome-icon icon="clone" />
               </b-button>
@@ -19,6 +27,12 @@
                 <font-awesome-icon icon="times" />
               </b-button>
             </b-input-group>
+            <div class="invalid-feedback d-block" v-if="error(day + '.start') !== null">
+              {{ error(day + '.start') }}
+            </div>
+            <div class="invalid-feedback d-block" v-else-if="error(day + '.end') !== null">
+              {{ error(day + '.end') }}
+            </div>
           </b-form-group>
         </div>
       </div>
@@ -31,8 +45,9 @@
 </template>
 <script>
 import formOperatableMixin from '@/mixins/form-operatable'
+import formErrorsMixin from '@/mixins/form-errors'
 export default {
   name: 'OperatingHoursForm',
-  mixins: [ formOperatableMixin ]
+  mixins: [ formOperatableMixin, formErrorsMixin ]
 }
 </script>
