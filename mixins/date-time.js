@@ -69,6 +69,13 @@ export default {
         format = 'hh:mm a'
       }
       return this.$moment(dt).locale(code).format(format)
+    },
+    time (time, format = 'HH:mm') {
+      const code = this.countryCode()
+      if (code === 'us') {
+        format = 'hh:mm a'
+      }
+      return this.$moment(time, 'HH:mm:ss').locale(code).format(format)
     }
   }
 }

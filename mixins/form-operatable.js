@@ -61,6 +61,11 @@ export default {
         this.populate()
       },
       immediate: true
+    },
+    'hours.exceptions': {
+      handler (exceptions) {
+        this.$refs['operating-hours-exceptions'].update(exceptions)
+      }
     }
   },
   methods: {
@@ -71,15 +76,12 @@ export default {
       }
       return ''
     },
-    days () {
-      return this.$_.chain(this.hours).keys().without('exceptions').value()
-    },
     duplicate () {
       if (this.selectedDaysCount() <= 1) {
         alert(this.$t('messages.operating_hours_duplicate_error'))
         return false
       }
-      const days = this.days()
+      const days = this.operatingHoursDays()
       const hours = this.hours
       let start = null
       let end = null
@@ -100,7 +102,7 @@ export default {
     },
     populate () {
       const editedOperatingHours = this.editedOperatingHours
-      const days = this.days()
+      const days = this.operatingHoursDays()
       if ( ! this.$_.isEmpty(editedOperatingHours)) {
         this.$_.forEach(days, (day) => {
           if (day in editedOperatingHours) {
@@ -125,7 +127,7 @@ export default {
     },
     selectedDaysCount () {
       let count = 0
-      const days = this.days()
+      const days = this.operatingHoursDays()
       const hours = this.hours
       this.$_.forEach(days, (day) => {
         if (hours[day].selected === true) {
@@ -144,7 +146,7 @@ export default {
           this.setErrors(response)
           hours = this.$_.get(response, 'data.data')
           if (!this.$_.isEmpty(hours)) {
-            this.$root.$emit(type + '-operating-hours-saved', { hours })
+            this.$root.$emit(type + '-operating-hours-updated', { hours })
           }
         })
         .catch((error) => {

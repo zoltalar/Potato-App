@@ -85,6 +85,11 @@ body {
   min-width: 20rem;
 }
 
+.day-name {
+  color: $gray-700;
+  display: inline-block;
+}
+
 .description,
 .products {
 

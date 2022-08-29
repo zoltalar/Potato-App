@@ -107,6 +107,7 @@ export default {
     change: 'Zmień',
     choose_an_image: 'Wybierz zdjęcie',
     close: 'Zamknij',
+    closed: 'Zamknięte',
     confirm_new_password: 'Potwierdź Nowe Hasło',
     contact_information: 'Dane Kontaktowe',
     contact_us: 'Kontakt',
