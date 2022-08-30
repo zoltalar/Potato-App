@@ -18,7 +18,7 @@
               <input type="checkbox" v-model="toggle" />
             </b-button>
             <b-button variant="secondary" :title="$t('phrases.refresh')" @click.prevent="fetch">
-              <font-awesome-icon icon="sync" />
+              <font-awesome-icon icon="sync" :class="{'fa-spin': busy}" />
             </b-button>
             <b-button variant="secondary" :title="$t('phrases.delete_selected_messages')" @click.prevent="destroyBatch">
               <font-awesome-icon icon="trash" />
@@ -72,7 +72,8 @@ export default {
       perPage: 10
     },
     toggle: false,
-    ids: []
+    ids: [],
+    busy: false
   }),
   computed: {
     pagedMessages () {
@@ -112,11 +113,15 @@ export default {
       }
     },
     fetch () {
+      this.busy = true
       this
         .$axios
         .get('/api/potato/account/messages')
         .then((response) => {
           this.messages = this.$_.get(response, 'data.data')
+          setTimeout(() => {
+            this.busy = false
+          }, 1000)
         })
     },
     listen () {

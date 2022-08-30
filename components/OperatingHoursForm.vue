@@ -1,7 +1,7 @@
 <template>
   <form class="form-operating-hours" @submit.prevent="save">
     <b-form-group>
-      <div v-for="(day, i) in operatingHoursDays()" :key="'day-operating-hours' + i">
+      <div v-for="(day, i) in days()" :key="'day-operating-hours' + i">
         <b-checkbox v-model="hours[day].selected">{{ $t('phrases.' + day) }}</b-checkbox>
         <div class="options" v-if="hours[day].selected === true">
           <b-form-group>

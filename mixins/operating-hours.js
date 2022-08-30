@@ -3,17 +3,6 @@ export default {
     operatingHours (operatable) {
       return this.$_.get(operatable, 'operating_hours', {})
     },
-    operatingHoursDays () {
-      return [
-        'monday',
-        'tuesday',
-        'wednesday',
-        'thursday',
-        'friday',
-        'saturday',
-        'sunday'
-      ]
-    },
     operatingHoursDayRange (hours, day) {
       let string = this.$t('phrases.closed')
       if (day in hours) {
@@ -21,13 +10,16 @@ export default {
         if (!this.$_.isNil(range)) {
           range = range.split('-')
           if (range.length === 2) {
-            const start = range[0]
-            const end = range[1]
+            const start = this.time(range[0])
+            const end = this.time(range[1])
             string = [start, end].join(' - ')
           }
         }
       }
       return string
+    },
+    operatingHoursIsEmpty (hours) {
+      return this.$_.isEmpty(hours)
     }
   }
 }

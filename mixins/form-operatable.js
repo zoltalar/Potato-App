@@ -81,7 +81,7 @@ export default {
         alert(this.$t('messages.operating_hours_duplicate_error'))
         return false
       }
-      const days = this.operatingHoursDays()
+      const days = this.days()
       const hours = this.hours
       let start = null
       let end = null
@@ -102,7 +102,7 @@ export default {
     },
     populate () {
       const editedOperatingHours = this.editedOperatingHours
-      const days = this.operatingHoursDays()
+      const days = this.days()
       if ( ! this.$_.isEmpty(editedOperatingHours)) {
         this.$_.forEach(days, (day) => {
           if (day in editedOperatingHours) {
@@ -127,7 +127,7 @@ export default {
     },
     selectedDaysCount () {
       let count = 0
-      const days = this.operatingHoursDays()
+      const days = this.days()
       const hours = this.hours
       this.$_.forEach(days, (day) => {
         if (hours[day].selected === true) {

@@ -40,6 +40,17 @@ export default {
     dateTimeFromNow (dt) {
       return this.$moment(dt).locale(this.languageCode()).fromNow(true)
     },
+    days () {
+      return [
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday'
+      ]
+    },
     localeDateFormat () {
       let format = 'DD/MM/YYYY'
       const code = this.languageCode()
