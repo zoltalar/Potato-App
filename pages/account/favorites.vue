@@ -14,7 +14,7 @@
         <div v-if="favorites.length > 0">
           <p v-html="$t('messages.account_favorites')"></p>
           <div class="list-favorites" v-for="(favorite, i) in pagedFavorites" :key="'favorite-list-item-' + i">
-            <farm-list-item-card class="mb-4" :farm="favorite.favoriteable" v-if="favorite.favoriteable_type === 'farm'">
+            <farm-list-item-card class="mb-4" :farm="favorite.favoriteable" :linkable-image="true" v-if="favorite.favoriteable_type === 'farm'">
               <template v-slot:links>
                 <a :href="localePath('/account/favorites')" class="card-link" @click.prevent="destroy(favorite)">{{ $t('phrases.delete') }}</a>
                 <nuxt-link :to="localePath({ name: 'farms-show-id-name', params: { id: favorite.favoriteable.id, name: slugify(favorite.favoriteable.name) } })" class="card-link">{{ $t('phrases.view') }}</nuxt-link>

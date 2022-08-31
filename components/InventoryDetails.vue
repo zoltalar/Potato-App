@@ -35,19 +35,21 @@ export default {
   methods: {
     chart () {
       const id = this.id
-      this
-        .$axios
-        .get(`/api/potato/prices/analytics/${id}`)
-        .then((response) => {
-          const analytics = this.$_.get(response, 'data.data', [])
-          this.chartData.labels = this.$_.map(analytics, 'month_year')
-          this.chartData.datasets = [{
-            label: this.$t('phrases.price') + ' (' + this.currencyCode() + ')',
-            data: this.$_.map(analytics, 'average_price'),
-            backgroundColor: '#58c26c',
-            hoverBackgroundColor: '#58c26c'
-          }]
-        })
+      if (!this.$_.isNil(id)) {
+        this
+          .$axios
+          .get(`/api/potato/prices/analytics/${id}`)
+          .then((response) => {
+            const analytics = this.$_.get(response, 'data.data', [])
+            this.chartData.labels = this.$_.map(analytics, 'month_year')
+            this.chartData.datasets = [{
+              label: this.$t('phrases.price') + ' (' + this.currencyCode() + ')',
+              data: this.$_.map(analytics, 'average_price'),
+              backgroundColor: '#58c26c',
+              hoverBackgroundColor: '#58c26c'
+            }]
+          })
+      }
     },
     fetch () {
       const id = this.id

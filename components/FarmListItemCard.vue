@@ -1,11 +1,17 @@
 <template>
   <b-card class="list-farm-item" v-if="farmNotEmpty(farm)">
     <font-awesome-icon icon="star" class="text-warning float-right" :title="$t('phrases.promoted')" v-if="farm.promote" />
+    <nuxt-link :to="localePath({ name: 'farms-show-id-name', params: { id: farm.id, name: slugify(farm.name) } })" v-if="linkableImage && image && image.file">
+      <b-img-lazy
+        :src="imageVariation(image.variations, 'primary', 'file_url')"
+        :alt="image.title"
+        class="img-primary" />
+    </nuxt-link>
     <b-img-lazy
       :src="imageVariation(image.variations, 'primary', 'file_url')"
       :alt="image.title"
       class="img-primary"
-      v-if="image && image.file" />
+      v-else-if="image && image.file" />
     <b-card-title class="h5">
       {{ farm.name }}
       <b-form-rating variant="warning" size="sm" class="p-0 ml-2" :value="farm.average_rating" no-border inline readonly />
@@ -26,6 +32,11 @@ export default {
     farm: {
       type: Object,
       required: true
+    },
+    linkableImage: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   computed: {

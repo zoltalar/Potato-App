@@ -13,7 +13,7 @@
         </b-alert>
         <div class="list-farms" v-if="farms.length > 0">
           <p v-html="$t('messages.account_farms')"></p>
-          <farm-list-item-card class="mb-4" :farm="farm" v-for="(farm, i) in pagedFarms" :key="'farm-list-item-' + i">
+          <farm-list-item-card class="mb-4" :farm="farm" :linkable-image="true" v-for="(farm, i) in pagedFarms" :key="'farm-list-item-' + i">
             <template v-slot:links>
               <nuxt-link :to="localePath({ name: 'farms-edit-id-tab', params: { id: farm.id, tab: localeFarmEditTab('contact-information') } })" class="card-link">{{ $t('phrases.edit') }}</nuxt-link>
               <nuxt-link :to="localePath({ name: 'farms-deactivate-id', params: { id: farm.id } })" class="card-link" v-if="farmIsActive(farm)">{{ $t('phrases.deactivate') }}</nuxt-link>

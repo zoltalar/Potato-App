@@ -10,7 +10,7 @@
       <template v-if="loaded">
         <div class="list-farms" v-if="farms.length > 0">
           <p v-html="$t('messages.farms_search', { item, location })"></p>
-          <farm-list-item-card :farm="farm" class="mb-4" v-for="(farm, i) in pagedFarms" :key="'farm-list-item-' + i">
+          <farm-list-item-card :farm="farm" :linkable-image="true" class="mb-4" v-for="(farm, i) in pagedFarms" :key="'farm-list-item-' + i">
             <template v-slot:links>
               <nuxt-link :to="localePath({ name: 'farms-show-id-name', params: { id: farm.id, name: slugify(farm.name) } })" class="card-link">{{ $t('phrases.details') }}</nuxt-link>
             </template>

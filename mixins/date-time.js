@@ -59,17 +59,13 @@ export default {
       }
       return format
     },
-    seasonIndex (season) {
-      const seasons = {
-        winter: 0,
-        spring: 1,
-        summer: 2,
-        fall: 3
-      }
-      if (seasons.hasOwnProperty(season)) {
-        return seasons[season]
-      }
-      return null
+    seasons () {
+      return [
+        'winter',
+        'spring',
+        'summer',
+        'fall'
+      ]
     },
     shortDate (dt, format = 'MMM DD') {
       return this.$moment(dt).locale(this.languageCode()).format(format)

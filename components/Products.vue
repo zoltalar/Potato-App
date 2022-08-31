@@ -7,14 +7,16 @@
       </nuxt-link>
     </h6>
     <b-tabs v-if="hasInventory()">
-      <b-tab :title="$t('phrases.' + season)" :active="currentSeason() === season" v-for="(categories, season) in inventory">
-        <div class="category-inventory" v-for="(inventoryNames, categoryName) in categories">
-          <h6>{{ categoryName }}</h6>
-          <ul>
-            <li v-for="(inventoryName) in inventoryNames">
-              {{ inventoryName }}
-            </li>
-          </ul>
+      <b-tab :title="$t('phrases.' + season)" :active="currentSeason() === season" v-for="(season, i) in seasons()" :key="'inventory-tab-' + i">
+        <div v-if="inventory[season]">
+          <div class="category-inventory" v-for="(inventoryNames, categoryName) in inventory[season]">
+            <h6>{{ categoryName }}</h6>
+            <ul>
+              <li v-for="(inventoryName) in inventoryNames">
+                {{ inventoryName }}
+              </li>
+            </ul>
+          </div>
         </div>
       </b-tab>
     </b-tabs>
