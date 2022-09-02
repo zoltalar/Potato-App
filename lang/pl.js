@@ -246,6 +246,7 @@ export default {
     set_as_main: 'Ustaw Jako Główne',
     social_media: 'Media Społecznościowe',
     spring: 'Wiosna',
+    stand: 'Stoisko',
     state: 'Stan',
     street: 'Ulica',
     street_address: 'Adres',

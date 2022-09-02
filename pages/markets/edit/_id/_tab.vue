@@ -14,6 +14,22 @@
         <b-alert class="mb-4" variant="success" :show="hasFlashMessage()" @dismissed="clearFlashMessage()" dismissible>
           {{ flashMessage() }}
         </b-alert>
+        <div v-if="marketEditTab() === 'contact-information'">
+          <h5 class="mb-4">{{ $t('phrases.contact_information') }}</h5>
+          <b-row>
+            <b-col md="6">
+              <market-contact-information-form :edited-market="market" />
+            </b-col>
+          </b-row>
+        </div>
+        <div v-else-if="marketEditTab() === 'address'">
+          <h5 class="mb-4">{{ $t('phrases.address') }}</h5>
+          <b-row>
+            <b-col md="6">
+              <market-address-form :edited-market="market" />
+            </b-col>
+          </b-row>
+        </div>
       </template>
     </page-aside-content>
   </div>

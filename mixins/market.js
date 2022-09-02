@@ -17,6 +17,20 @@ export default {
         return address.type === 1
       }))
     },
+    marketEditTab () {
+      const tab = this.$route.params.tab
+      let editTab = tab
+      if (tab) {
+        const locale = this.$i18n.locale
+        const tabs = this.marketEditTabs()
+        this.$_.each(tabs, (struct) => {
+          if (struct.tabs[locale] === tab) {
+            editTab = struct.tab
+          }
+        })
+      }
+      return editTab
+    },
     marketEditTabs () {
       return [
         { tab: 'contact-information', tabs: { en: 'contact-information', pl: 'dane-kontaktowe' } },

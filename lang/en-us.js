@@ -246,6 +246,7 @@ export default {
     set_as_main: 'Set as Main',
     social_media: 'Social Media',
     spring: 'Spring',
+    stand: 'Stand',
     state: 'State',
     street: 'Street',
     street_address: 'Street Address',
