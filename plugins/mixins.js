@@ -11,6 +11,7 @@ import flashMixin from '@/mixins/flash'
 import imageMixin from '@/mixins/image'
 import inventoryMixin from '@/mixins/inventory'
 import languageMixin from '@/mixins/language'
+import marketMixin from '@/mixins/market'
 import messageMixin from '@/mixins/message'
 import nameableMixin from '@/mixins/nameable'
 import operatingHoursMixin from '@/mixins/operating-hours'
@@ -30,6 +31,7 @@ Vue.mixin(flashMixin)
 Vue.mixin(imageMixin)
 Vue.mixin(inventoryMixin)
 Vue.mixin(languageMixin)
+Vue.mixin(marketMixin)
 Vue.mixin(messageMixin)
 Vue.mixin(nameableMixin)
 Vue.mixin(operatingHoursMixin)

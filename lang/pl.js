@@ -5,6 +5,8 @@ export default {
     account_farms_empty: 'W chwili obecnej nie posiadasz żadnych gospodarstw rolnych. Kliknij w poniższy przycisk aby dodać nowe gospodarstwo rolne.',
     account_favorites: 'Lista poniżej zawiera wszystkie Twoje ulubione gospodarstwa rolne i agromarkety.',
     account_favorites_empty: 'W chwili obecnej nie posiadasz żadnych ulubionych gospodarstw rolnych ani agromarketów.',
+    account_markets: 'Lista poniżej zawiera wszystkie Twoje agromarkety.',
+    account_markets_empty: 'W chwili obecnej nie posiadasz żadnych agromarketów. Kliknij w poniższy przycisk aby dodać nowy agromarket.',
     account_messages: 'Poniższa lista zawiera wszystkie Twoje otrzymane wiadomości.',
     account_messages_empty: 'W chwili obecnej nie posiadasz żadnych otrzymanych wiadomości.',
     account_password: 'Prosimy użyć formularza poniżej aby zaktualizować hasło. Musisz wpisać swoje obecne i nowe hasło dwa razy.',
@@ -22,7 +24,7 @@ export default {
     copyrights_text: 'Copyright © {year} Ziemniaczek',
     distance_away: 'Oddalone o {distance} {unit}',
     farm_address_updated: 'Adres gospodarstwa rolnego został zaktualizowany pomyślnie.',
-    farm_contact_information_email: 'Adres email nie zostanie pokazany na profilu gospodarstwa rolnego lecz użytkownicy beda mogli kontaktować się przez opcję <em>Wyślij Wiadomość</em>.',
+    farm_contact_information_email: 'Adres email nie zostanie pokazany na profilu gospodarstwa rolnego lecz umożliwi użytkownikom kontaktowanie się przez opcję <em>Wyślij Wiadomość</em>.',
     farm_contact_information_updated: 'Dane kontaktowe gospodarstwa rolnego zostały zaktualizowane pomyślnie.',
     farm_create_agreement:
       '<p><strong>Możesz utworzyć gospodarstwo domowe w serwisie Ziemniaczek jeśli:</strong></p>' +
@@ -56,6 +58,17 @@ export default {
     farms_search_empty: '<p>Przykro nam ale nie znaleźliśmy żadnych gospodarstw rolnych.</p>',
     favorite_deleted: 'Ulubione zostało usunięte pomyślnie.',
     form_errors: 'Formularz zawiera błędy. Prosimy sprobować ponownie.',
+    market_contact_information_email: 'Adres email nie zostanie pokazany na profilu agromarketu lecz umożliwi użytkownikom kontaktowanie się przez opcję <em>Wyślij Wiadomość</em>.',
+    market_create_agreement:
+      '<p><strong>Możesz utworzyć agromarket w serwisie Ziemniaczek jeśli:</strong></p>' +
+      '<ul>' +
+      '<li>Nie sprzedajesz produktów z GMO.</li>' +
+      '</ul>' +
+      '<p>Jeśli masz jakiekolwiek pytania odnośnie warunków utworzenia agromarketu, prosimy o kontakt.</p>' +
+      '<p class="mb-0">Nie sprzedajemy, nie dzielimy i nie rozdajemy Twojego adresu email komukolwiek. Twój adres email nie będzie widoczny w naszym serwisie.</p>',
+    market_created: 'Agromarket został utworzony pomyślnie.',
+    market_promote_yes: 'Promowany agromarket sprawia że pojawia się jako pierwszy w wynikach wyszukiwarki; wyświetla się w liście promowanych agromarketów w danym regionie; gwarantuje większą liczbę odwiedzin. Koszt to <strong class="text-danger">60 PLN za rok.</strong>',
+    market_promote_no: 'Darmowa opcja ale może zawierać reklamy od naszych reklamodawców.',
     message_deleted: 'Wiadomość została usunięta pomyślnie.',
     message_footer: 'Otrzymano {ago} temu od {user}.',
     message_sent: 'Wiadomość została wysłana pomyślnie.',
@@ -96,6 +109,7 @@ export default {
   phrases: {
     account: 'Konto',
     add_farm: 'Dodaj Gospodarstwo Rolne',
+    add_farm_market: 'Dodaj Agromarket',
     add_photo: 'Dodaj Zdjęcie',
     add_to_favorites: 'Dodaj do Ulubionych',
     address: 'Adres',
@@ -136,6 +150,7 @@ export default {
     edit_cover: 'Edytuj Okładkę',
     edit_description: 'Edytuj Opis',
     edit_farm: 'Edytuj Gospodarstwo Rolne',
+    edit_farm_market: 'Edytuj Agromarket',
     edit_mailing_address: 'Edytuj Adres do Korespondencji',
     edit_operating_hours: 'Edytuj Godziny Otwarcia',
     edit_photo: 'Edytuj Zdjęcie',
@@ -146,6 +161,8 @@ export default {
     exceptions: 'Wyjątki',
     facebook: 'Facebook',
     fall: 'Jesień',
+    farm_market_name: 'Nazwa Agromarketu',
+    farm_markets: 'Agromarkety',
     farm_name: 'Nazwa Gospodarstwa Rolnego',
     farms: 'Gospodarstwa Rolne',
     favorites: 'Ulubione',
@@ -201,6 +218,7 @@ export default {
     product: 'Produkt',
     products: 'Produkty',
     promote_this_farm: 'Promuj to Gospodarstwo Rolne',
+    promote_this_farm_market: 'Promuj ten Agromarket',
     promoted: 'Promowane',
     publish_on_website: 'Opublikuj na Stronie',
     publish_phone_on_website: 'Opublikuj Telefon na Stronie',

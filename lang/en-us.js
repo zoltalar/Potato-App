@@ -5,6 +5,8 @@ export default {
     account_farms_empty: 'You do not have any farms created at the moment. Please click the button below to add a new farm.',
     account_favorites: 'List below contains all your favorited farms and markets.',
     account_favorites_empty: 'You do not have any farms or markets added to your favorites.',
+    account_markets: 'List below contains all your markets.',
+    account_markets_empty: 'You do not have any farm markets created at the moment. Please click the button below to add a new market.',
     account_messages: 'List below contains all your received messages.',
     account_messages_empty: 'Currently you do not have any received messages.',
     account_password: 'Please use the form below to update your password. You have to enter your current password to verify your identity, and your new password twice.',
@@ -56,6 +58,17 @@ export default {
     farms_search_empty: '<p>Sorry, but we did not find any farms.</p>',
     favorite_deleted: 'Favorite has been removed successfully.',
     form_errors: 'Form contains errors. Please try again.',
+    market_contact_information_email: "Email address will not be shown on the farm market's profile page, but users will be able to contact you via <em>Send Message</em> option.",
+    market_create_agreement:
+      '<p><strong>You can create a farm market with Local Grocery if:</strong></p>' +
+      '<ul>' +
+      '<li>You do not sell GMOs.</li>' +
+      '</ul>' +
+      '<p>If you have any questions regarding the above, please contact us.</p>' +
+      '<p class="mb-0">We do not sell, share or give away your email address. Your email address will not be visible to public.</p>',
+    market_created: 'Farm market has been created successfully.',
+    market_promote_no: 'Free option but may contain ads from our advertisers.',
+    market_promote_yes: 'Promoted farm market appears in the top of search results; is displayed in the list of promoted farm markets in a region, guarantees more web traffic. Cost of <strong class="text-danger">15 USD per year</strong>.',
     message_deleted: 'Message has been deleted successfully.',
     message_footer: 'Received {ago} ago from {user}.',
     message_sent: 'Message has been sent successfully.',
@@ -96,6 +109,7 @@ export default {
   phrases: {
     account: 'Account',
     add_farm: 'Add Farm',
+    add_farm_market: 'Add Farm Market',
     add_photo: 'Add Photo',
     add_to_favorites: 'Add to Favorites',
     address: 'Address',
@@ -136,6 +150,7 @@ export default {
     edit_cover: 'Edit Cover',
     edit_description: 'Edit Description',
     edit_farm: 'Edit Farm',
+    edit_farm_market: 'Edit Farm Market',
     edit_mailing_address: 'Edit Mailing Address',
     edit_operating_hours: 'Edit Operating Hours',
     edit_photo: 'Edit Photo',
@@ -146,6 +161,8 @@ export default {
     exceptions: 'Exceptions',
     facebook: 'Facebook',
     fall: 'Fall',
+    farm_market_name: 'Farm Market Name',
+    farm_markets: 'Farm Markets',
     farm_name: 'Farm Name',
     farms: 'Farms',
     favorites: 'Favorites',
@@ -201,6 +218,7 @@ export default {
     product: 'Product',
     products: 'Products',
     promote_this_farm: 'Promote this Farm',
+    promote_this_farm_market: 'Promote this Farm Market',
     promoted: 'Promoted',
     publish_on_website: 'Publish on Website',
     publish_phone_on_website: 'Publish Phone on Website',

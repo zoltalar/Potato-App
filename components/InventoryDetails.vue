@@ -53,12 +53,14 @@ export default {
     },
     fetch () {
       const id = this.id
-      this
-        .$axios
-        .get(`/api/potato/products/top-growing-areas/${id}`)
-        .then((result) => {
-          this.areas = this.$_.get(result, 'data.data', [])
-        })
+      if (!this.$_.isNil(id)) {
+        this
+          .$axios
+          .get(`/api/potato/products/top-growing-areas/${id}`)
+          .then((result) => {
+            this.areas = this.$_.get(result, 'data.data', [])
+          })
+      }
     },
     hasAreas () {
       return this.areas.length > 0
