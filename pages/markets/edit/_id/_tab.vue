@@ -1,7 +1,7 @@
 <template>
   <div class="markets edit">
     <page-title>
-      {{ $t('phrases.edit_farm_market') }}
+      {{ $t('phrases.edit_farmers_market') }}
     </page-title>
     <page-aside-content>
       <template v-slot:aside>
@@ -44,6 +44,11 @@
           <p class="mb-4">{{ $t('messages.market_description') }}</p>
           <market-description-form :edited-market="market" />
         </div>
+        <div v-else-if="marketEditTab() === 'operating-hours'">
+          <h5 class="mb-2">{{ $t('phrases.operating_hours') }}</h5>
+          <p class="mb-4" v-html="$t('messages.market_operating_hours')"></p>
+          <market-operating-hours-form :operatable="market" type="market" />
+        </div>
       </template>
     </page-aside-content>
   </div>
@@ -55,12 +60,12 @@ export default {
   layout: 'default',
   head () {
     return {
-      title: this.$t('phrases.edit_farm_market'),
+      title: this.$t('phrases.edit_farmers_market'),
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('messages.meta_description_farm_market_edit')
+          content: this.$t('messages.meta_description_farmers_market_edit')
         }
       ],
     }

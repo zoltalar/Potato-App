@@ -1,7 +1,7 @@
 <template>
   <div class="account markets">
     <page-title>
-      {{ $t('phrases.farm_markets') }}
+      {{ $t('phrases.farmers_markets') }}
     </page-title>
     <page-aside-content>
       <template v-slot:aside>
@@ -30,7 +30,7 @@
         <div class="mb-4" v-else>
           <p v-html="$t('messages.account_markets_empty')"></p>
         </div>
-        <nuxt-link :to="localePath('/markets/create')" class="btn btn-primary btn-lg">{{ $t('phrases.add_farm_market') }}</nuxt-link>
+        <nuxt-link :to="localePath('/markets/create')" class="btn btn-primary btn-lg">{{ $t('phrases.add_farmers_market') }}</nuxt-link>
       </template>
     </page-aside-content>
   </div>
@@ -42,7 +42,7 @@ export default {
   layout: 'default',
   head () {
     return {
-      title: this.$t('phrases.farm_markets'),
+      title: this.$t('phrases.farmers_markets'),
       meta: [
         {
           hid: 'description',

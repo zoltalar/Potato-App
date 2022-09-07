@@ -1,7 +1,7 @@
 <template>
   <div class="farms create">
     <page-title>
-      {{ $t('phrases.add_farm_market') }}
+      {{ $t('phrases.add_farmers_market') }}
     </page-title>
     <page-content-aside>
       <template>
@@ -20,7 +20,7 @@ export default {
   layout: 'default',
   head () {
     return {
-      title: this.$t('phrases.add_farm_market'),
+      title: this.$t('phrases.add_farmers_market'),
       meta: [
         {
           hid: 'description',

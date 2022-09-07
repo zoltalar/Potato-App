@@ -2,7 +2,7 @@
   <form class="form-default" @submit.prevent="update">
     <b-form-group>
       <template v-slot:label>
-        {{ $t('phrases.farm_market_name') }}
+        {{ $t('phrases.farmers_market_name') }}
         <span class="text-danger">*</span>
       </template>
       <b-form-input size="lg" :class="{'is-invalid': error('name') !== null}" maxlength="255" v-model="market.name" />
