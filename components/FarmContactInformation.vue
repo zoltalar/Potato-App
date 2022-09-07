@@ -46,11 +46,11 @@ export default {
   computed: {
     address () {
       const farm = this.farm
-      return this.farmAddress(farm)
+      return this.addressableAddress(farm)
     },
     mailingAddress () {
       const farm = this.farm
-      return this.farmMailingAddress(farm)
+      return this.addressableMailingAddress(farm)
     }
   },
 }

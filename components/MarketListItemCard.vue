@@ -42,7 +42,7 @@ export default {
   computed: {
     address () {
       const market = this.market
-      return this.marketAddress(market)
+      return this.addressableAddress(market)
     },
     image () {
       const market = this.market

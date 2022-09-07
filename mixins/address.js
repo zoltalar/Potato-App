@@ -1,5 +1,20 @@
 export default {
   methods: {
+    addressableAddress (addressable) {
+      const addresses = this.$_.get(addressable, 'addresses', [])
+      return this.$_.head(this.$_.filter(addresses, (address) => {
+        return address.type === 1
+      }))
+    },
+    addressableMailingAddress (addressable) {
+      const addresses = this.$_.get(addressable, 'addresses', [])
+      return this.$_.head(this.$_.filter(addresses, (address) => {
+        return address.type === 2
+      }))
+    },
+    addressableTypes () {
+      return this.$_.get(this.addressMeta(), 'addressable_types')
+    },
     addressLine (model, glue = ',', elements = []) {
       if (this.$_.isNil(model) || this.$_.isEmpty(model)) {
         return ''
@@ -71,9 +86,6 @@ export default {
     },
     addressMaxRadius () {
       return this.$_.get(this.addressMeta(), 'radius')
-    },
-    addressableTypes () {
-      return this.$_.get(this.addressMeta(), 'addressable_types')
     },
     addressTypes () {
       return this.$_.get(this.addressMeta(), 'types')

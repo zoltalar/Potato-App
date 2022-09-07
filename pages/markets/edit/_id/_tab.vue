@@ -30,6 +30,15 @@
             </b-col>
           </b-row>
         </div>
+        <div v-else-if="marketEditTab() === 'mailing-address'">
+          <h5 class="mb-2">{{ $t('phrases.mailing_address') }}</h5>
+          <p class="mb-4">{{ $t('messages.market_mailing_address') }}</p>
+          <b-row>
+            <b-col md="6">
+              <market-mailing-address-form :edited-market="market" />
+            </b-col>
+          </b-row>
+        </div>
       </template>
     </page-aside-content>
   </div>
@@ -94,10 +103,22 @@ export default {
     },
     hasImages () {
       return this.images.length > 0
+    },
+    listen () {
+      this.$root.$off('market-address-updated')
+      this.$root.$off('market-mailing-address-updated')
+
+      this.$root.$on('market-address-updated', () => {
+        this.$store.commit('flash/message', this.$t('messages.market_address_updated'))
+      })
+      this.$root.$on('market-mailing-address-updated', () => {
+        this.$store.commit('flash/message', this.$t('messages.market_mailing_address_updated'))
+      })
     }
   },
   mounted () {
     this.fetch()
+    this.listen()
   }
 }
 </script>

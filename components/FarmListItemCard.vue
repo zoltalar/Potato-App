@@ -42,7 +42,7 @@ export default {
   computed: {
     address () {
       const farm = this.farm
-      return this.farmAddress(farm)
+      return this.addressableAddress(farm)
     },
     image () {
       const farm = this.farm

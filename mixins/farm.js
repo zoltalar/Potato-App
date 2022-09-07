@@ -1,13 +1,7 @@
 export default {
   methods: {
-    farmAddress (farm) {
-      const addresses = this.$_.get(farm, 'addresses', [])
-      return this.$_.head(this.$_.filter(addresses, (address) => {
-        return address.type === 1
-      }))
-    },
     farmDistanceAway (farm) {
-      const address = this.farmAddress(farm)
+      const address = this.addressableAddress(farm)
       return this.$_.get(address, 'distance', 0)
     },
     farmEditAddressLink (farm) {
@@ -138,12 +132,6 @@ export default {
         return review.user_id === user.id
       })
       return !this.$_.isNil(review)
-    },
-    farmMailingAddress (farm) {
-      const addresses = this.$_.get(farm, 'addresses', [])
-      return this.$_.head(this.$_.filter(addresses, (address) => {
-        return address.type === 2
-      }))
     },
     farmNotEmpty (farm) {
       return ! this.$_.isEmpty(farm)

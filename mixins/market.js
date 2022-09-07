@@ -11,12 +11,6 @@ export default {
       })
       return editTab
     },
-    marketAddress (market) {
-      const addresses = this.$_.get(market, 'addresses', [])
-      return this.$_.head(this.$_.filter(addresses, (address) => {
-        return address.type === 1
-      }))
-    },
     marketEditTab () {
       const tab = this.$route.params.tab
       let editTab = tab
@@ -45,12 +39,6 @@ export default {
     },
     marketIsActive (market) {
       return parseInt(market.active) === 1
-    },
-    marketMailingAddress (market) {
-      const addresses = this.$_.get(market, 'addresses', [])
-      return this.$_.head(this.$_.filter(addresses, (address) => {
-        return address.type === 2
-      }))
     },
     marketNotEmpty (market) {
       return ! this.$_.isEmpty(market)

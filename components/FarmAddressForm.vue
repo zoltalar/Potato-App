@@ -15,7 +15,7 @@
         {{ stateLabel() }}
         <span class="text-danger">*</span>
       </template>
-      <b-form-select v-model="address.state_id" :options="stateOptions()" :disabled="$_.isNil(country_id)" />
+      <b-form-select :class="{'is-invalid': error('address.state_id') !== null}" :options="stateOptions()" v-model="address.state_id" :disabled="$_.isNil(country_id)" />
       <div class="invalid-feedback d-block" v-if="error('address.state_id') !== null">
         {{ error('address.state_id') }}
       </div>
@@ -97,7 +97,7 @@ export default {
   computed: {
     editedAddress () {
       const editedFarm = this.editedFarm
-      return this.farmAddress(editedFarm)
+      return this.addressableAddress(editedFarm)
     }
   },
   watch: {

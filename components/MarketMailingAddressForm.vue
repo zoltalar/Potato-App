@@ -1,21 +1,21 @@
 <template>
   <form class="form-default" @submit.prevent="save">
     <b-form-group>
-      <b-checkbox :value="1" :unchecked-value="0" v-model="market.publish_address">{{ $t('phrases.publish_on_website') }}</b-checkbox>
+      <b-checkbox :value="1" :unchecked-value="0" v-model="market.publish_mailing_address">{{ $t('phrases.publish_on_website') }}</b-checkbox>
     </b-form-group>
     <b-form-group>
       <template v-slot:label>
         {{ $t('phrases.country') }}
         <span class="text-danger">*</span>
       </template>
-      <b-form-select v-model="country_id" :options="countryOptions()" />
+      <b-form-select size="lg" v-model="country_id" :options="countryOptions()" />
     </b-form-group>
     <b-form-group>
       <template v-slot:label>
         {{ stateLabel() }}
         <span class="text-danger">*</span>
       </template>
-      <b-form-select :class="{'is-invalid': error('address.state_id') !== null}" :options="stateOptions()" v-model="address.state_id" :disabled="$_.isNil(country_id)" />
+      <b-form-select size="lg" :class="{'is-invalid': error('address.state_id') !== null}" :options="stateOptions()" v-model="address.state_id" :disabled="$_.isNil(country_id)" />
       <div class="invalid-feedback d-block" v-if="error('address.state_id') !== null">
         {{ error('address.state_id') }}
       </div>
@@ -53,12 +53,6 @@
         {{ error('address.zip') }}
       </div>
     </b-form-group>
-    <b-form-group :label="$t('phrases.stand')">
-      <b-form-input :class="{'is-invalid': error('address.stand') !== null}" maxlength="255" :disabled="$_.isNil(country_id)" v-model="address.stand" />
-      <div class="invalid-feedback d-block" v-if="error('address.stand') !== null">
-        {{ error('address.stand') }}
-      </div>
-    </b-form-group>
     <b-form-group>
       <b-button type="submit" variant="primary" size="lg">{{ $t('phrases.save') }}</b-button>
       <nuxt-link :to="localePath('/account/markets')" class="ml-3">{{ $t('phrases.cancel') }}</nuxt-link>
@@ -69,7 +63,7 @@
 import formErrorsMixin from '@/mixins/form-errors'
 import formAddressable from '@/mixins/form-addressable'
 export default {
-  name: 'MarketAddressForm',
+  name: 'MarketMailingAddressForm',
   mixins: [ formErrorsMixin, formAddressable ],
   props: {
     editedMarket: {
@@ -83,19 +77,18 @@ export default {
       address: '',
       address_2: '',
       city: '',
-      zip: '',
-      stand: ''
+      zip: ''
     },
     market: {
       id: null,
-      publish_address: 0
+      publish_mailing_address: 0
     },
     country_id: null,
   }),
   computed: {
     editedAddress () {
       const editedMarket = this.editedMarket
-      return this.addressableAddress(editedMarket)
+      return this.addressableMailingAddress(editedMarket)
     }
   },
   watch: {
@@ -154,7 +147,7 @@ export default {
     },
     save () {
       let address = this.address
-      address.type = 1
+      address.type = 2
       const market = this.market
       this
         .$axios
@@ -163,7 +156,7 @@ export default {
           this.setErrors(response)
           address = this.$_.get(response, 'data.data')
           if ( ! this.$_.isEmpty(address)) {
-            this.$root.$emit('market-address-updated', { market })
+            this.$root.$emit('market-mailing-address-updated', { market })
           }
         })
         .catch((error) => {

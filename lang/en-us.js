@@ -58,6 +58,7 @@ export default {
     farms_search_empty: '<p>Sorry, but we did not find any farms.</p>',
     favorite_deleted: 'Favorite has been removed successfully.',
     form_errors: 'Form contains errors. Please try again.',
+    market_address_updated: "Farm market's address information has been updated successfully.",
     market_contact_information_email: "Email address will not be shown on the farm market's profile page, but users will be able to contact you via <em>Send Message</em> option.",
     market_create_agreement:
       '<p><strong>You can create a farm market with Local Grocery if:</strong></p>' +
@@ -67,6 +68,8 @@ export default {
       '<p>If you have any questions regarding the above, please contact us.</p>' +
       '<p class="mb-0">We do not sell, share or give away your email address. Your email address will not be visible to public.</p>',
     market_created: 'Farm market has been created successfully.',
+    market_mailing_address: "If different from farm market's address.",
+    market_mailing_address_updated: "Farm market's mailing address has been updated successfully.",
     market_promote_no: 'Free option but may contain ads from our advertisers.',
     market_promote_yes: 'Promoted farm market appears in the top of search results; is displayed in the list of promoted farm markets in a region, guarantees more web traffic. Cost of <strong class="text-danger">15 USD per year</strong>.',
     message_deleted: 'Message has been deleted successfully.',
