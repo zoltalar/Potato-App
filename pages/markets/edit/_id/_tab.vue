@@ -39,6 +39,11 @@
             </b-col>
           </b-row>
         </div>
+        <div v-else-if="marketEditTab() === 'description'">
+          <h5 class="mb-2">{{ $t('phrases.description') }}</h5>
+          <p class="mb-4">{{ $t('messages.market_description') }}</p>
+          <market-description-form :edited-market="market" />
+        </div>
       </template>
     </page-aside-content>
   </div>
@@ -106,10 +111,17 @@ export default {
     },
     listen () {
       this.$root.$off('market-address-updated')
+      this.$root.$off('market-description-updated')
       this.$root.$off('market-mailing-address-updated')
 
       this.$root.$on('market-address-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.market_address_updated'))
+      })
+      this.$root.$on('market-contact-information-updated', () => {
+        this.$store.commit('flash/message', this.$t('messages.market_contact_information_updated'))
+      })
+      this.$root.$on('market-description-updated', () => {
+        this.$store.commit('flash/message', this.$t('messages.market_description_updated'))
       })
       this.$root.$on('market-mailing-address-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.market_mailing_address_updated'))

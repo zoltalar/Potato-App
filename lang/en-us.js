@@ -60,6 +60,7 @@ export default {
     form_errors: 'Form contains errors. Please try again.',
     market_address_updated: "Farm market's address information has been updated successfully.",
     market_contact_information_email: "Email address will not be shown on the farm market's profile page, but users will be able to contact you via <em>Send Message</em> option.",
+    market_contact_information_updated: "Farm market's contact information has been updated successfully.",
     market_create_agreement:
       '<p><strong>You can create a farm market with Local Grocery if:</strong></p>' +
       '<ul>' +
@@ -68,6 +69,8 @@ export default {
       '<p>If you have any questions regarding the above, please contact us.</p>' +
       '<p class="mb-0">We do not sell, share or give away your email address. Your email address will not be visible to public.</p>',
     market_created: 'Farm market has been created successfully.',
+    market_description: 'Please provide few paragraphs regarding your farm market. Be sure to include keywords such as "potatoes", "wheat". Do not include your email address in order to avoid spam.',
+    market_description_updated: "Farm market's description has been updated successfully.",
     market_mailing_address: "If different from farm market's address.",
     market_mailing_address_updated: "Farm market's mailing address has been updated successfully.",
     market_promote_no: 'Free option but may contain ads from our advertisers.',

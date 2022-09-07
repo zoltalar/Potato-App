@@ -1,74 +1,74 @@
 <template>
   <form class="form-default" @submit.prevent="update">
     <b-form-group>
-      <b-form-textarea id="input-farm-description" size="lg" rows="10" maxlength="5000" no-resize v-model="farm.description"></b-form-textarea>
+      <b-form-textarea id="input-market-description" size="lg" rows="10" maxlength="5000" no-resize v-model="market.description"></b-form-textarea>
       <div class="invalid-feedback d-block" v-if="error('description') !== null">
         {{ error('description') }}
       </div>
       <small class="form-text text-muted">
-        <chars-remaining for="input-farm-description" ref="farm-description" />
+        <chars-remaining for="input-market-description" ref="market-description" />
         <span>{{ $t('phrases.html_not_allowed') }}.</span>
       </small>
     </b-form-group>
     <b-form-group>
       <b-button type="submit" variant="primary" size="lg">{{ $t('phrases.save') }}</b-button>
-      <nuxt-link :to="localePath('/account/farms')" class="ml-3">{{ $t('phrases.cancel') }}</nuxt-link>
+      <nuxt-link :to="localePath('/account/markets')" class="ml-3">{{ $t('phrases.cancel') }}</nuxt-link>
     </b-form-group>
   </form>
 </template>
 <script>
 import formErrorsMixin from '@/mixins/form-errors'
 export default {
-  name: 'FarmDescriptionForm',
+  name: 'MarketDescriptionForm',
   mixins: [ formErrorsMixin ],
   props: {
-    editedFarm: {
+    editedMarket: {
       type: Object,
       required: true
     }
   },
   data: () => ({
-    farm: {
+    market: {
       id: null,
       description: ''
     }
   }),
   watch: {
-    'editedFarm': {
+    'editedMarket': {
       handler () {
         this.populate()
       },
       deep: true
     },
-    'farm.description': {
+    'market.description': {
       handler (description) {
-        this.$refs['farm-description'].update(description)
+        this.$refs['market-description'].update(description)
       }
     }
   },
   methods: {
     populate () {
-      const editedFarm = this.editedFarm
-      const farm = this.farm
-      if ( ! this.$_.isEmpty(editedFarm)) {
-        this.$_.forOwn(editedFarm, (value, key) => {
-          if (key in farm) {
-            farm[key] = value
+      const editedMarket = this.editedMarket
+      const market = this.market
+      if ( ! this.$_.isEmpty(editedMarket)) {
+        this.$_.forOwn(editedMarket, (value, key) => {
+          if (key in market) {
+            market[key] = value
           }
         })
-        this.farm = farm
+        this.market = market
       }
     },
     update () {
-      let farm = this.farm
+      let market = this.market
       this
         .$axios
-        .put(`/api/potato/farms/update-description/${farm.id}`, farm)
+        .put(`/api/potato/markets/update-description/${market.id}`, market)
         .then((response) => {
           this.setErrors(response)
-          farm = this.$_.get(response, 'data.data')
-          if ( ! this.$_.isEmpty(farm)) {
-            this.$root.$emit('farm-description-updated', { farm })
+          market = this.$_.get(response, 'data.data')
+          if ( ! this.$_.isEmpty(market)) {
+            this.$root.$emit('market-description-updated', { market })
           }
         })
         .catch((error) => {

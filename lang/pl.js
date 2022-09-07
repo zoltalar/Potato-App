@@ -60,6 +60,7 @@ export default {
     form_errors: 'Formularz zawiera błędy. Prosimy sprobować ponownie.',
     market_address_updated: 'Adres agromarketu został zaktualizowany pomyślnie.',
     market_contact_information_email: 'Adres email nie zostanie pokazany na profilu agromarketu lecz umożliwi użytkownikom kontaktowanie się przez opcję <em>Wyślij Wiadomość</em>.',
+    market_contact_information_updated: 'Dane kontaktowe agromarketu zostały zaktualizowane pomyślnie.',
     market_create_agreement:
       '<p><strong>Możesz utworzyć agromarket w serwisie Ziemniaczek jeśli:</strong></p>' +
       '<ul>' +
@@ -68,6 +69,8 @@ export default {
       '<p>Jeśli masz jakiekolwiek pytania odnośnie warunków utworzenia agromarketu, prosimy o kontakt.</p>' +
       '<p class="mb-0">Nie sprzedajemy, nie dzielimy i nie rozdajemy Twojego adresu email komukolwiek. Twój adres email nie będzie widoczny w naszym serwisie.</p>',
     market_created: 'Agromarket został utworzony pomyślnie.',
+    market_description: 'Podaj kilka zdań odnośnie Twojego agromarketu. Nie zapomnij użyć słów kluczowych typu "ziemniaki", "pszenica". Nie wpisuj Twojego adresu emailowego w celu zapobiegania spamu.',
+    market_description_updated: 'Opis agromarketu został zaktualizowany pomyślnie.',
     market_mailing_address: 'Jeśli jest inny od adresu agromarketu.',
     market_mailing_address_updated: 'Adres do korespondencji agromarketu został zaktualizowany pomyślnie.',
     market_promote_yes: 'Promowany agromarket sprawia że pojawia się jako pierwszy w wynikach wyszukiwarki; wyświetla się w liście promowanych agromarketów w danym regionie; gwarantuje większą liczbę odwiedzin. Koszt to <strong class="text-danger">60 PLN za rok.</strong>',
