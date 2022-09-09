@@ -59,6 +59,42 @@ export default {
       }
       return format
     },
+    monthNames (translate = false) {
+      let months = [
+        'january',
+        'february',
+        'march',
+        'april',
+        'may',
+        'june',
+        'july',
+        'august',
+        'september',
+        'october',
+        'november',
+        'december'
+      ]
+      if (translate) {
+        this.$_.forEach(months, (month, i) => {
+          months[i] = this.$t('date.' + month)
+        })
+      }
+      return months
+    },
+    monthNameOptions () {
+      let options = [{
+        value: null,
+        text: ''
+      }]
+      const months = this.monthNames(true)
+      this.$_.forEach(months, (month, i) => {
+        options.push({
+          value: (i+1),
+          text: month
+        })
+      })
+      return options
+    },
     seasons () {
       return [
         'winter',

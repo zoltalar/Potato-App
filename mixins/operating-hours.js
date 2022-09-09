@@ -20,6 +20,15 @@ export default {
     },
     operatingHoursIsEmpty (hours) {
       return this.$_.isEmpty(hours)
+    },
+    operatingHoursMeta () {
+      return this.$store.getters['operating-hours/meta']
+    },
+    operatingHoursTypes () {
+      return this.$_.get(this.operatingHoursMeta(), 'types')
+    },
+    refreshOperatingHoursMeta () {
+      this.$store.dispatch('operating-hours/meta')
     }
   }
 }
