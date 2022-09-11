@@ -2,7 +2,7 @@
   <form class="form-operating-hours">
     <b-form-group>
       <div v-for="(model, i) in hours" :key="'operating-hours-' + i">
-        <b-button variant="danger" size="sm" class="float-right" v-if="i >= 1">
+        <b-button variant="danger" size="sm" class="float-right" :title="$t('phrases.delete')" @click.prevent="deleteHours(i)" v-if="i >= 1">
           <font-awesome-icon icon="times" />
         </b-button>
         <p>
@@ -88,8 +88,8 @@
             </b-form-group>
           </div>
         </div>
-        <b-button variant="primary" size="sm" class="mt-3" @click.prevent="addHours()" v-if="i === hours.length - 1 && i < max">
-          {{ $t('phrases.add_season') }}
+        <b-button variant="primary" size="sm" class="mt-3" :title="$t('phrases.add_season')" @click.prevent="addHours()" v-if="i === hours.length - 1 && i < max">
+          <font-awesome-icon icon="plus" />
         </b-button>
         <hr />
       </div>
@@ -165,6 +165,9 @@ export default {
           end: null
         }
       })
+    },
+    deleteHours(index) {
+      this.$delete(this.hours, index)
     },
     hasHours () {
       return this.hours.length > 0
