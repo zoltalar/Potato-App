@@ -1,5 +1,5 @@
 <template>
-  <form class="form-operating-hours">
+  <form class="form-operating-hours" @submit.prevent="save">
     <b-form-group>
       <div v-for="(model, i) in hours" :key="'operating-hours-' + i">
         <b-button variant="danger" size="sm" class="float-right" :title="$t('phrases.delete')" @click.prevent="deleteHours(i)" v-if="i >= 1">
@@ -15,6 +15,9 @@
           </label>
           <b-radio :name="'types[' + i + ']'" value="1" v-model.number="hours[i].type">{{ $t('phrases.this_season_has_specific_start_and_end_dates') }}</b-radio>
           <b-radio :name="'types[' + i + ']'" value="2" v-model.number="hours[i].type">{{ $t('phrases.this_season_has_start_end_months') }}</b-radio>
+          <div class="invalid-feedback d-block" v-if="error('hours.' + i + '.type') !== null">
+            {{ error('hours.' + i + '.type') }}
+          </div>
         </b-form-group>
         <b-form-group v-if="hours[i].type === 1">
           <label class="sub-label">
@@ -41,6 +44,12 @@
               :label-no-date-selected="$t('phrases.no_date_selected')"
               v-model="hours[i].end_date" />
           </b-input-group>
+          <div class="invalid-feedback d-block" v-if="error('hours.' + i + '.start_date') !== null">
+            {{ error('hours.' + i + '.start_date') }}
+          </div>
+          <div class="invalid-feedback d-block" v-else-if="error('hours.' + i + '.end_date') !== null">
+            {{ error('hours.' + i + '.end_date') }}
+          </div>
         </b-form-group>
         <b-form-group v-else-if="hours[i].type === 2">
           <label class="sub-label">
@@ -171,6 +180,28 @@ export default {
     },
     hasHours () {
       return this.hours.length > 0
+    },
+    save () {
+      let hours = this.hours
+      const type = this.type
+      this
+        .$axios
+        .post(this.uri(), { hours })
+        .then((response) => {
+          this.setErrors(response)
+          hours = this.$_.get(response, 'data.data')
+          if (!this.$_.isEmpty(hours)) {
+            this.$root.$emit(type + '-operating-hours-updated', { hours })
+          }
+        })
+        .catch((error) => {
+          this.setErrors(error.response)
+        })
+    },
+    uri () {
+      const type = this.type
+      const operatable = this.operatable
+      return `/api/potato/operating-hours/save-batch/${type}/${operatable.id}`
     }
   },
   mounted () {
