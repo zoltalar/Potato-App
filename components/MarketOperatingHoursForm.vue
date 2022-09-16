@@ -61,6 +61,12 @@
             <b-select :options="monthNameOptions()" v-model.number="hours[i].start_month" />
             <b-select :options="monthNameOptions()" v-model.number="hours[i].end_month" />
           </b-input-group>
+          <div class="invalid-feedback d-block" v-if="error('hours.' + i + '.start_month') !== null">
+            {{ error('hours.' + i + '.start_month') }}
+          </div>
+          <div class="invalid-feedback d-block" v-else-if="error('hours.' + i + '.end_month') !== null">
+            {{ error('hours.' + i + '.end_month') }}
+          </div>
         </b-form-group>
         <p>
           <strong>{{ $t('phrases.days') }}</strong>
@@ -86,14 +92,20 @@
                   :label-close-button="$t('phrases.close')"
                   v-model="hours[i][day].end" />
                 <b-input-group-append>
-                  <b-button variant="primary" size="sm" :title="$t('phrases.duplicate')" v-if="day === 'monday'">
+                  <b-button variant="primary" size="sm" :title="$t('phrases.duplicate')" @click.prevent="duplicate(i, day)" v-if="day === 'monday'">
                     <font-awesome-icon icon="clone" />
                   </b-button>
-                  <b-button variant="danger" size="sm" :title="$t('phrases.reset')" v-else>
+                  <b-button variant="danger" size="sm" :title="$t('phrases.reset')" @click.prevent="reset(i, day)" v-else>
                     <font-awesome-icon icon="times" />
                   </b-button>
                 </b-input-group-append>
               </b-input-group>
+              <div class="invalid-feedback d-block" v-if="error('hours.' + i + '.' + day + '.start') !== null">
+                {{ error('hours.' + i + '.' + day + '.start') }}
+              </div>
+              <div class="invalid-feedback d-block" v-else-if="error('hours.' + i + '.' + day + '.end') !== null">
+                {{ error('hours.' + i + '.' + day + '.end') }}
+              </div>
             </b-form-group>
           </div>
         </div>
@@ -178,6 +190,27 @@ export default {
     deleteHours(index) {
       this.$delete(this.hours, index)
     },
+    duplicate (index) {
+      if (this.selectedDaysCount(index) <= 1) {
+        alert(this.$t('messages.operating_hours_duplicate_error'))
+        return false
+      }
+      const days = this.days()
+      const hours = this.hours[index]
+      let start = null
+      let end = null
+      this.$_.forEach(days, (day) => {
+        if (hours[day].selected === true) {
+          if (day === 'monday') {
+            start = hours[day].start
+            end = hours[day].end
+          } else {
+            this.hours[index][day].start = start
+            this.hours[index][day].end = end
+          }
+        }
+      })
+    },
     hasHours () {
       return this.hours.length > 0
     },
@@ -197,6 +230,17 @@ export default {
         .catch((error) => {
           this.setErrors(error.response)
         })
+    },
+    selectedDaysCount (index) {
+      let count = 0
+      const days = this.days()
+      const hours = this.hours[index]
+      this.$_.forEach(days, (day) => {
+        if (hours[day].selected === true) {
+          count++
+        }
+      })
+      return count
     },
     uri () {
       const type = this.type
