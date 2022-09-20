@@ -116,7 +116,7 @@ export default {
     }
   },
   watch: {
-    'editedOperatingHours': {
+    editedOperatingHours: {
       handler () {
         this.populate()
       },

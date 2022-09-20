@@ -2,7 +2,7 @@
   <form class="form-operating-hours" @submit.prevent="save">
     <b-form-group>
       <div v-for="(model, i) in hours" :key="'operating-hours-' + i">
-        <b-button variant="danger" size="sm" class="float-right" :title="$t('phrases.delete')" @click.prevent="deleteHours(i)" v-if="i >= 1">
+        <b-button variant="danger" size="sm" class="float-right" :title="$t('phrases.delete')" @click.prevent="deleteHours(i)">
           <font-awesome-icon icon="times" />
         </b-button>
         <p>
@@ -109,11 +109,11 @@
             </b-form-group>
           </div>
         </div>
-        <b-button variant="primary" size="sm" class="mt-3" :title="$t('phrases.add_season')" @click.prevent="addHours()" v-if="i === hours.length - 1 && i < max">
-          <font-awesome-icon icon="plus" />
-        </b-button>
         <hr />
       </div>
+      <b-button variant="primary" size="sm" :title="$t('phrases.add_season')" @click.prevent="addHours()" v-if="hours.length < max">
+        <font-awesome-icon icon="plus" />
+      </b-button>
     </b-form-group>
     <b-form-group>
       <b-button type="submit" variant="primary" size="lg">{{ $t('phrases.save') }}</b-button>
@@ -141,6 +141,23 @@ export default {
     hours: [],
     max: 2
   }),
+  computed: {
+    editedOperatingHours () {
+      const operatable = this.operatable
+      return this.operatingHours(operatable, [])
+    }
+  },
+  watch: {
+    editedOperatingHours: {
+      handler () {
+        this.populate()
+        if (!this.hasHours()) {
+          this.addHours()
+        }
+      },
+      immediate: true
+    }
+  },
   methods: {
     addHours () {
       let hours = this.hours
@@ -214,6 +231,34 @@ export default {
     hasHours () {
       return this.hours.length > 0
     },
+    populate () {
+      const editedOperatingHours = this.editedOperatingHours
+      const days = this.days()
+      if (this.$_.isArray(editedOperatingHours) && editedOperatingHours.length > 0) {
+        this.$_.forEach(editedOperatingHours, (editedOperatingHour, i) => {
+          this.addHours()
+          this.$_.forOwn(editedOperatingHour, (attribute) => {
+            if (!this.$_.isArray(attribute) && attribute in this.hours[i]) {
+              this.hours[i][attribute] = editedOperatingHour[attribute]
+            }
+          })
+          this.$_.forEach(days, (day) => {
+            if (day in editedOperatingHour) {
+              const operatingHours = editedOperatingHour[day]
+              let range = this.$_.head(operatingHours)
+              if (!this.$_.isNil(range)) {
+                range = range.split('-')
+                if (range.length === 2) {
+                  this.hours[i][day].selected = true
+                  this.hours[i][day].start = range[0]
+                  this.hours[i][day].end = range[1]
+                }
+              }
+            }
+          })
+        })
+      }
+    },
     save () {
       let hours = this.hours
       const type = this.type
@@ -246,11 +291,6 @@ export default {
       const type = this.type
       const operatable = this.operatable
       return `/api/potato/operating-hours/save-batch/${type}/${operatable.id}`
-    }
-  },
-  mounted () {
-    if (!this.hasHours()) {
-      this.addHours()
     }
   }
 }

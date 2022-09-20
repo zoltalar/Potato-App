@@ -1,7 +1,7 @@
 export default {
   methods: {
-    operatingHours (operatable) {
-      return this.$_.get(operatable, 'operating_hours', {})
+    operatingHours (operatable, defaultValue = {}) {
+      return this.$_.get(operatable, 'operating_hours', defaultValue)
     },
     operatingHoursDayRange (hours, day) {
       let string = this.$t('phrases.closed')

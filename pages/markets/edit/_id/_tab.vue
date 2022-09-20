@@ -118,6 +118,7 @@ export default {
       this.$root.$off('market-address-updated')
       this.$root.$off('market-description-updated')
       this.$root.$off('market-mailing-address-updated')
+      this.$root.$off('market-operating-hours-updated')
 
       this.$root.$on('market-address-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.market_address_updated'))
@@ -130,6 +131,9 @@ export default {
       })
       this.$root.$on('market-mailing-address-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.market_mailing_address_updated'))
+      })
+      this.$root.$on('market-operating-hours-updated', () => {
+        this.$store.commit('flash/message', this.$t('messages.market_operating_hours_updated'))
       })
     }
   },

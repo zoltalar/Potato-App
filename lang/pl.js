@@ -88,6 +88,7 @@ export default {
     market_mailing_address: 'Jeśli jest inny od adresu agromarketu.',
     market_mailing_address_updated: 'Adres do korespondencji agromarketu został zaktualizowany pomyślnie.',
     market_operating_hours: 'Określ dni kiedy Twój agromarket jest otwarty, np. <em>Od styczna do grudnia w każdą środę od 8 do 15</em>.',
+    market_operating_hours_updated: 'Godziny otwarcia agromarketu zostały zaktualizowane pomyślnie.',
     market_promote_yes: 'Promowany agromarket sprawia że pojawia się jako pierwszy w wynikach wyszukiwarki; wyświetla się w liście promowanych agromarketów w danym regionie; gwarantuje większą liczbę odwiedzin. Koszt to <strong class="text-danger">60 PLN za rok.</strong>',
     market_promote_no: 'Darmowa opcja ale może zawierać reklamy od naszych reklamodawców.',
     message_deleted: 'Wiadomość została usunięta pomyślnie.',

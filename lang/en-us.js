@@ -88,6 +88,7 @@ export default {
     market_mailing_address: "If different from farmers market's address.",
     market_mailing_address_updated: "Farmers market's mailing address has been updated successfully.",
     market_operating_hours: "Define days when your farmers' market is open for business, e.g. <em>from January to December, every Wednesday: 8:00 am - 3:30 pm.</em>",
+    market_operating_hours_updated: "Farmers market's operating hours have been updated successfully.",
     market_promote_no: 'Free option but may contain ads from our advertisers.',
     market_promote_yes: "Promoted farmers' market appears in the top of search results; is displayed in the list of promoted farmers' markets in a region, guarantees more web traffic. Cost of <strong class='text-danger'>15 USD per year</strong>.",
     message_deleted: 'Message has been deleted successfully.',
