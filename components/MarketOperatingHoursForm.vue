@@ -139,7 +139,7 @@ export default {
   },
   data: () => ({
     hours: [],
-    max: 2
+    max: 3
   }),
   computed: {
     editedOperatingHours () {
@@ -151,9 +151,6 @@ export default {
     editedOperatingHours: {
       handler () {
         this.populate()
-        if (!this.hasHours()) {
-          this.addHours()
-        }
       },
       immediate: true
     }
@@ -237,9 +234,9 @@ export default {
       if (this.$_.isArray(editedOperatingHours) && editedOperatingHours.length > 0) {
         this.$_.forEach(editedOperatingHours, (editedOperatingHour, i) => {
           this.addHours()
-          this.$_.forOwn(editedOperatingHour, (attribute) => {
-            if (!this.$_.isArray(attribute) && attribute in this.hours[i]) {
-              this.hours[i][attribute] = editedOperatingHour[attribute]
+          this.$_.forOwn(editedOperatingHour, (value, key) => {
+            if (!this.$_.isArray(value) && key in this.hours[i]) {
+              this.hours[i][key] = editedOperatingHour[key]
             }
           })
           this.$_.forEach(days, (day) => {
@@ -259,6 +256,10 @@ export default {
         })
       }
     },
+    reset (index, day) {
+      this.hours[index][day].start = null
+      this.hours[index][day].end = null
+    },
     save () {
       let hours = this.hours
       const type = this.type
@@ -268,9 +269,7 @@ export default {
         .then((response) => {
           this.setErrors(response)
           hours = this.$_.get(response, 'data.data')
-          if (!this.$_.isEmpty(hours)) {
-            this.$root.$emit(type + '-operating-hours-updated', { hours })
-          }
+          this.$root.$emit(type + '-operating-hours-updated', { hours })
         })
         .catch((error) => {
           this.setErrors(error.response)
