@@ -54,8 +54,33 @@
           <p class="mb-4" v-html="$t('messages.market_products')"></p>
           <products-form :productable="market" type="market" />
         </div>
+        <div v-else-if="marketEditTab() === 'photos'">
+          <h5 class="mb-2">{{ $t('phrases.photos') }}</h5>
+          <p class="mb-4" v-html="$t('messages.market_photos')"></p>
+          <b-row>
+            <b-col md="6">
+              <image-create-form :imageable="market" type="market" />
+            </b-col>
+          </b-row>
+          <b-row class="mt-4" v-if="hasImages()">
+            <b-col md="4" v-for="(image, i) in images" :key="'farm-image-' + i">
+              <image-list-item :image="image" :imageable="market" type="market" />
+            </b-col>
+          </b-row>
+        </div>
       </template>
     </page-aside-content>
+    <b-modal id="modal-market-image-edit" :title="$t('phrases.edit_photo')" @ok="updateImage">
+      <image-edit-form :edited-image="image" type="market" :imageable="market" ref="form-market-image-edit" />
+      <template #modal-footer="{ ok, cancel, hide }">
+        <b-button variant="secondary" @click="cancel()">
+          {{ $t('phrases.cancel') }}
+        </b-button>
+        <b-button variant="primary" @click="ok()">
+          {{ $t('phrases.ok') }}
+        </b-button>
+      </template>
+    </b-modal>
   </div>
 </template>
 <script>
@@ -122,6 +147,10 @@ export default {
     listen () {
       this.$root.$off('market-address-updated')
       this.$root.$off('market-description-updated')
+      this.$root.$off('market-image-created')
+      this.$root.$off('market-image-deleted')
+      this.$root.$off('market-image-edit')
+      this.$root.$off('market-image-updated')
       this.$root.$off('market-mailing-address-updated')
       this.$root.$off('market-operating-hours-updated')
       this.$root.$off('market-products-saved')
@@ -135,6 +164,22 @@ export default {
       this.$root.$on('market-description-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.market_description_updated'))
       })
+      this.$root.$on('market-image-created', () => {
+        this.$store.commit('flash/message', this.$t('messages.market_image_created'))
+        this.fetch()
+      })
+      this.$root.$on('market-image-deleted', () => {
+        this.$store.commit('flash/message', this.$t('messages.market_image_deleted'))
+        this.fetch()
+      })
+      this.$root.$on('market-image-edit', ({ image }) => {
+        this.editImage(image)
+      })
+      this.$root.$on('market-image-updated', () => {
+        this.$bvModal.hide('modal-market-image-edit')
+        this.$store.commit('flash/message', this.$t('messages.market_image_updated'))
+        this.fetch()
+      })
       this.$root.$on('market-mailing-address-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.market_mailing_address_updated'))
       })
@@ -144,6 +189,12 @@ export default {
       this.$root.$on('market-products-saved', () => {
         this.$store.commit('flash/message', this.$t('messages.market_products_saved'))
       })
+    },
+    updateImage (event) {
+      event.preventDefault()
+      this.$refs['form-market-image-edit'].update()
+
+      return
     }
   },
   mounted () {

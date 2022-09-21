@@ -48,6 +48,8 @@ export default {
       const type = this.type
       if (type === 'farm') {
         return this.localePath('/account/farms')
+      } else if (type === 'market') {
+        return this.localePath('/account/markets')
       }
       return ''
     },

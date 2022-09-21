@@ -10,7 +10,7 @@
       {{ image.title }}
       <small class="text-muted ml-1">{{ filesize(image) }} kB</small>
       <small v-if="imageIsCover(image)">{{ $t('phrases.currently_set_as_cover_image') }}</small>
-      <small v-if="imageIsPrimary(image)">{{ $t('phrases.currently_set_as_primary_image') }}</small>
+      <small class="d-block" v-if="imageIsPrimary(image)">{{ $t('phrases.currently_set_as_primary_image') }}</small>
     </b-card-text>
   </b-card>
 </template>

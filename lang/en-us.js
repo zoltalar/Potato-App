@@ -89,6 +89,7 @@ export default {
     market_mailing_address_updated: "Farmers market's mailing address has been updated successfully.",
     market_operating_hours: "Define days when your farmers' market is open for business, e.g. <em>from January to December, every Wednesday: 8:00 am - 3:30 pm.</em>. After making changes be sure to click <strong>Save</strong> button.",
     market_operating_hours_updated: "Farmers market's operating hours have been updated successfully.",
+    market_photos: "Add photos of your farmers' market. Each image should not exceed 10 MB.",
     market_products: "Choose products which your farmers' market sells. After specifying availability be sure to click <strong>Save</strong> button to save the changes.",
     market_products_saved: "Farmers market's product inventory has been updated successfully.",
     market_promote_no: 'Free option but may contain ads from our advertisers.',
