@@ -49,6 +49,11 @@
           <p class="mb-4" v-html="$t('messages.market_operating_hours')"></p>
           <market-operating-hours-form :operatable="market" type="market" />
         </div>
+        <div v-else-if="marketEditTab() === 'products'">
+          <h5 class="mb-2">{{ $t('phrases.products') }}</h5>
+          <p class="mb-4" v-html="$t('messages.market_products')"></p>
+          <products-form :productable="market" type="market" />
+        </div>
       </template>
     </page-aside-content>
   </div>
@@ -119,6 +124,7 @@ export default {
       this.$root.$off('market-description-updated')
       this.$root.$off('market-mailing-address-updated')
       this.$root.$off('market-operating-hours-updated')
+      this.$root.$off('market-products-saved')
 
       this.$root.$on('market-address-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.market_address_updated'))
@@ -134,6 +140,9 @@ export default {
       })
       this.$root.$on('market-operating-hours-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.market_operating_hours_updated'))
+      })
+      this.$root.$on('market-products-saved', () => {
+        this.$store.commit('flash/message', this.$t('messages.market_products_saved'))
       })
     }
   },

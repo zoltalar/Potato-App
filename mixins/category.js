@@ -1,5 +1,8 @@
 export default {
   methods: {
+    categoryCollection () {
+      return this.$store.getters['category/collection']
+    },
     categoryName (category) {
       let name = category.name
       if (category.translations) {
@@ -9,6 +12,15 @@ export default {
         }
       }
       return name
+    },
+    categoryNames () {
+      const categories = this.$_.sortBy(this.categoryCollection(), ['category.list_order'])
+      return categories.map((category) => {
+        return this.categoryName(category)
+      })
+    },
+    refreshCategoryCollection () {
+      this.$store.dispatch('category/collection')
     }
   }
 }

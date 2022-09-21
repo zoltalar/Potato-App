@@ -4,6 +4,9 @@ export default {
       if (this.$_.isEmpty(this.languageCollection())) {
         this.refreshLanguageCollection()
       }
+      if (this.$_.isEmpty(this.categoryCollection())) {
+        this.refreshCategoryCollection()
+      }
       if (this.$_.isEmpty(this.countryCollection())) {
         this.refreshCountryCollection()
       }

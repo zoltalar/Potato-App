@@ -25,7 +25,7 @@
                 ({{ $t('phrases.optional').toLowerCase() }})
               </label>
               <b-input-group size="sm" class="input-group-fixed">
-                <b-form-input type="number" :placeholder="$t('messages.product_amount_placeholder')" v-model="products[productIndex(item.id)].amount" />
+                <b-form-input type="number" step="0.01" :placeholder="$t('messages.product_amount_placeholder')" v-model="products[productIndex(item.id)].amount" />
                 <b-form-select :options="productUnits(true, ' - ' + $t('phrases.unit') + ' - ')" v-model="products[productIndex(item.id)].amount_unit" />
               </b-input-group>
               <div class="invalid-feedback d-block" v-if="error('products.' + productIndex(item.id) + '.amount') !== null">
@@ -41,7 +41,7 @@
                 ({{ $t('phrases.optional').toLowerCase() }}, <em>{{ $t('messages.price_sample') }}</em>)
               </label>
               <b-input-group size="sm" class="input-group-fixed">
-                <b-form-input type="number" :placeholder="$t('messages.product_price_placeholder')" v-model="products[productIndex(item.id)].price" />
+                <b-form-input type="number" step="0.01" :placeholder="$t('messages.product_price_placeholder')" v-model="products[productIndex(item.id)].price" />
                 <b-form-select :options="currencyOptions(true, ' - ' + $t('phrases.currency') + ' - ')" v-model="products[productIndex(item.id)].currency_id" />
                 <b-form-select :options="productUnits(true, ' - ' + $t('phrases.unit') + ' - ')" v-model="products[productIndex(item.id)].price_unit" />
               </b-input-group>
