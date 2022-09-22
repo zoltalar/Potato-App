@@ -2,7 +2,7 @@
   <form class="form-default" @submit.prevent="update">
     <b-form-group :label="$t('phrases.facebook')">
       <b-input-group prepend="https://facebook.com/">
-        <b-form-input :class="{'is-invalid': error('facebook') !== null}" maxlength="100" v-model="farm.facebook" />
+        <b-form-input :class="{'is-invalid': error('facebook') !== null}" maxlength="100" v-model="market.facebook" />
       </b-input-group>
       <div class="invalid-feedback d-block" v-if="error('facebook') !== null">
         {{ error('facebook') }}
@@ -10,7 +10,7 @@
     </b-form-group>
     <b-form-group :label="$t('phrases.twitter')">
       <b-input-group prepend="https://twitter.com/">
-        <b-form-input :class="{'is-invalid': error('twitter') !== null}" maxlength="100" v-model="farm.twitter" />
+        <b-form-input :class="{'is-invalid': error('twitter') !== null}" maxlength="100" v-model="market.twitter" />
       </b-input-group>
       <div class="invalid-feedback d-block" v-if="error('twitter') !== null">
         {{ error('twitter') }}
@@ -18,7 +18,7 @@
     </b-form-group>
     <b-form-group :label="$t('phrases.pinterest')">
       <b-input-group prepend="https://pinterest.com/">
-        <b-form-input :class="{'is-invalid': error('pinterest') !== null}" maxlength="100" v-model="farm.pinterest" />
+        <b-form-input :class="{'is-invalid': error('pinterest') !== null}" maxlength="100" v-model="market.pinterest" />
       </b-input-group>
       <div class="invalid-feedback d-block" v-if="error('pinterest') !== null">
         {{ error('pinterest') }}
@@ -26,7 +26,7 @@
     </b-form-group>
     <b-form-group :label="$t('phrases.instagram')">
       <b-input-group prepend="https://instagram.com/">
-        <b-form-input :class="{'is-invalid': error('instagram') !== null}" maxlength="100" v-model="farm.instagram" />
+        <b-form-input :class="{'is-invalid': error('instagram') !== null}" maxlength="100" v-model="market.instagram" />
       </b-input-group>
       <div class="invalid-feedback d-block" v-if="error('instagram') !== null">
         {{ error('instagram') }}
@@ -34,23 +34,23 @@
     </b-form-group>
     <b-form-group>
       <b-button type="submit" variant="primary" size="lg">{{ $t('phrases.save') }}</b-button>
-      <nuxt-link :to="localePath('/account/farms')" class="ml-3">{{ $t('phrases.cancel') }}</nuxt-link>
+      <nuxt-link :to="localePath('/account/markets')" class="ml-3">{{ $t('phrases.cancel') }}</nuxt-link>
     </b-form-group>
   </form>
 </template>
 <script>
 import formErrorsMixin from '@/mixins/form-errors'
 export default {
-  name: 'FarmSocialMediaForm',
+  name: 'MarketSocialMediaForm',
   mixins: [ formErrorsMixin ],
   props: {
-    editedFarm: {
+    editedMarket: {
       type: Object,
       required: true
     }
   },
   data: () => ({
-    farm: {
+    market: {
       id: null,
       facebook: '',
       twitter: '',
@@ -59,7 +59,7 @@ export default {
     }
   }),
   watch: {
-    editedFarm: {
+    editedMarket: {
       handler () {
         this.populate()
       },
@@ -68,28 +68,28 @@ export default {
   },
   methods: {
     populate () {
-      const editedFarm = this.editedFarm
-      const farm = this.farm
-      if ( ! this.$_.isEmpty(editedFarm)) {
-        this.$_.forOwn(editedFarm, (value, key) => {
-          if (key in farm) {
-            farm[key] = value
+      const editedMarket = this.editedMarket
+      const market = this.market
+      if ( ! this.$_.isEmpty(editedMarket)) {
+        this.$_.forOwn(editedMarket, (value, key) => {
+          if (key in market) {
+            market[key] = value
           }
         })
-        this.farm = farm
+        this.market = market
       }
     },
     update () {
-      let farm = this.farm
+      let market = this.market
 
       this
         .$axios
-        .put(`/api/potato/farms/update-social-media/${farm.id}`, farm)
+        .put(`/api/potato/markets/update-social-media/${market.id}`, market)
         .then((response) => {
           this.setErrors(response)
-          farm = this.$_.get(response, 'data.data')
-          if ( ! this.$_.isEmpty(farm)) {
-            this.$root.$emit('farm-social-media-updated', { farm })
+          market = this.$_.get(response, 'data.data')
+          if ( ! this.$_.isEmpty(market)) {
+            this.$root.$emit('market-social-media-updated', { market })
           }
         })
         .catch((error) => {

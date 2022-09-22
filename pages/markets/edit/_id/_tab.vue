@@ -68,6 +68,14 @@
             </b-col>
           </b-row>
         </div>
+        <div v-else-if="marketEditTab() === 'social-media'">
+          <h5 class="mb-4">{{ $t('phrases.social_media') }}</h5>
+          <b-row>
+            <b-col md="9">
+              <market-social-media-form :edited-market="market" />
+            </b-col>
+          </b-row>
+        </div>
       </template>
     </page-aside-content>
     <b-modal id="modal-market-image-edit" :title="$t('phrases.edit_photo')" @ok="updateImage">
@@ -154,6 +162,7 @@ export default {
       this.$root.$off('market-mailing-address-updated')
       this.$root.$off('market-operating-hours-updated')
       this.$root.$off('market-products-saved')
+      this.$root.$off('market-social-media-updated')
 
       this.$root.$on('market-address-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.market_address_updated'))
@@ -188,6 +197,9 @@ export default {
       })
       this.$root.$on('market-products-saved', () => {
         this.$store.commit('flash/message', this.$t('messages.market_products_saved'))
+      })
+      this.$root.$on('market-social-media-updated', () => {
+        this.$store.commit('flash/message', this.$t('messages.market_social_media_updated'))
       })
     },
     updateImage (event) {

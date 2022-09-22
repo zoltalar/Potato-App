@@ -97,6 +97,7 @@ export default {
     market_products_saved: 'Lista produktów agromarketu została zaktualizowana pomyślnie.',
     market_promote_yes: 'Promowany agromarket sprawia że pojawia się jako pierwszy w wynikach wyszukiwarki; wyświetla się w liście promowanych agromarketów w danym regionie; gwarantuje większą liczbę odwiedzin. Koszt to <strong class="text-danger">60 PLN za rok.</strong>',
     market_promote_no: 'Darmowa opcja ale może zawierać reklamy od naszych reklamodawców.',
+    market_social_media_updated: 'Media społecznościowe agromarketu zostały zaktualizowane pomyślnie.',
     message_deleted: 'Wiadomość została usunięta pomyślnie.',
     message_footer: 'Otrzymano {ago} temu od {user}.',
     message_sent: 'Wiadomość została wysłana pomyślnie.',

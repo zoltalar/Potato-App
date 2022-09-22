@@ -94,6 +94,7 @@ export default {
     market_products_saved: "Farmers market's product inventory has been updated successfully.",
     market_promote_no: 'Free option but may contain ads from our advertisers.',
     market_promote_yes: "Promoted farmers' market appears in the top of search results; is displayed in the list of promoted farmers' markets in a region, guarantees more web traffic. Cost of <strong class='text-danger'>15 USD per year</strong>.",
+    market_social_media_updated: "Farmers market's social media information has been updated successfully.",
     message_deleted: 'Message has been deleted successfully.',
     message_footer: 'Received {ago} ago from {user}.',
     message_sent: 'Message has been sent successfully.',
