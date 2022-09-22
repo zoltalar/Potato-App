@@ -85,6 +85,8 @@ export default {
     market_created: "Farmers' market has been created successfully.",
     market_description: 'Please provide few paragraphs regarding your farmers\' market. Be sure to include keywords such as "potatoes", "wheat". Do not include your email address in order to avoid spam.',
     market_description_updated: "Farmers market's description has been updated successfully.",
+    market_favorited: "Farmers' market has been added to your favorites successfully.",
+    market_inactive: "Farmers' market is currently inactive.",
     market_mailing_address: "If different from farmers market's address.",
     market_mailing_address_updated: "Farmers market's mailing address has been updated successfully.",
     market_operating_hours: "Define days when your farmers' market is open for business, e.g. <em>from January to December, every Wednesday: 8:00 am - 3:30 pm.</em>. After making changes be sure to click <strong>Save</strong> button.",

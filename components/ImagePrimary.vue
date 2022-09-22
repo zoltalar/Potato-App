@@ -5,7 +5,7 @@
       {{ $t('phrases.view_photo_gallery') }}
       ({{ images.length }})
     </div>
-    <nuxt-link :to="editLink()" class="link-edit" :title="$t('phrases.edit_primary_photo')" v-if="farmIsOwner(imageable)">
+    <nuxt-link :to="editLink()" class="link-edit" :title="$t('phrases.edit_primary_photo')" v-if="(type === 'farm' && farmIsOwner(imageable)) || (type === 'market' && marketIsOwner(imageable))">
       <font-awesome-icon icon="pencil-alt" />
     </nuxt-link>
     <b-modal id="modal-photo-gallery-view" size="xl" :title="$t('phrases.photo_gallery')" hide-footer no-enforce-focus>
@@ -62,6 +62,8 @@ export default {
       const type = this.type
       if (type === 'farm') {
         return this.farmEditPhotosLink(imageable)
+      } else if (type === 'market') {
+        return this.marketEditPhotosLink(imageable)
       }
     },
     gallery () {

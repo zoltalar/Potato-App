@@ -72,7 +72,7 @@ export default {
     farm: {}
   }),
   watch: {
-    'farm': {
+    farm: {
       handler (farm) {
         if (this.$_.isEmpty(farm)) {
           this.$router.push(this.localePath('/'))

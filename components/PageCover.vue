@@ -1,6 +1,6 @@
 <template>
   <div class="page-cover" :style="style">
-    <nuxt-link :to="editLink()" class="link-edit" :title="$t('phrases.edit_cover')" v-if="farmIsOwner(imageable)">
+    <nuxt-link :to="editLink()" class="link-edit" :title="$t('phrases.edit_cover')" v-if="(type === 'farm' && farmIsOwner(imageable)) || (type === 'market' && marketIsOwner(imageable))">
       <font-awesome-icon icon="pencil-alt" />
     </nuxt-link>
   </div>
@@ -46,6 +46,8 @@ export default {
       const type = this.type
       if (type === 'farm') {
         return this.farmEditPhotosLink(imageable)
+      } else if (type === 'market') {
+        return this.marketEditPhotosLink(imageable)
       }
     }
   }

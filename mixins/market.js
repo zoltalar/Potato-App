@@ -11,6 +11,15 @@ export default {
       })
       return editTab
     },
+    marketEditPhotosLink (market) {
+      return this.localePath({
+        name: 'markets-edit-id-tab',
+        params: {
+          id: market.id,
+          tab: this.localeMarketEditTab('photos')
+        }
+      })
+    },
     marketEditTab () {
       const tab = this.$route.params.tab
       let editTab = tab
@@ -39,6 +48,31 @@ export default {
     },
     marketIsActive (market) {
       return parseInt(market.active) === 1
+    },
+    marketIsFavorited (market) {
+      const favorites = this.$_.get(market, 'favorites', [])
+      let user = { id: 0 }
+      if (this.$auth.loggedIn) {
+        user = this.$auth.user
+      }
+      const favorite = this.$_.find(favorites, (favorite) => {
+        return favorite.user_id === user.id
+      })
+      return !this.$_.isNil(favorite)
+    },
+    marketIsOwner (market) {
+      return this.$auth.loggedIn && this.$auth.user.id === this.$_.get(market, 'user_id')
+    },
+    marketIsReviewed (farm) {
+      const reviews = this.$_.get(farm, 'reviews', [])
+      let user = { id: 0 }
+      if (this.$auth.loggedIn) {
+        user = this.$auth.user
+      }
+      const review = this.$_.find(reviews, (review) => {
+        return review.user_id === user.id
+      })
+      return !this.$_.isNil(review)
     },
     marketNotEmpty (market) {
       return ! this.$_.isEmpty(market)

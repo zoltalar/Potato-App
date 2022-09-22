@@ -20,7 +20,7 @@
         <font-awesome-icon :icon="['fab', 'instagram']" />
       </a>
     </li>
-    <li class="list-inline-item" v-if="type === 'farm' && farmIsOwner(linkable)">
+    <li class="list-inline-item" v-if="(type === 'farm' && farmIsOwner(linkable))">
       <nuxt-link :to="farmEditSocialMediaLink(linkable)" class="link-edit" :title="$t('phrases.edit_social_media')">
         <font-awesome-icon icon="pencil-alt" />
       </nuxt-link>
