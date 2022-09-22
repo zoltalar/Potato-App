@@ -11,6 +11,33 @@ export default {
       })
       return editTab
     },
+    marketEditAddressLink (market) {
+      return this.localePath({
+        name: 'market-edit-id-tab',
+        params: {
+          id: market.id,
+          tab: this.localeMarketEditTab('address')
+        }
+      })
+    },
+    marketEditContactInformationLink (market) {
+      return this.localePath({
+        name: 'market-edit-id-tab',
+        params: {
+          id: market.id,
+          tab: this.localeMarketEditTab('contact-information')
+        }
+      })
+    },
+    marketEditMailingAddressLink (market) {
+      return this.localePath({
+        name: 'market-edit-id-tab',
+        params: {
+          id: market.id,
+          tab: this.localeMarketEditTab('mailing-address')
+        }
+      })
+    },
     marketEditPhotosLink (market) {
       return this.localePath({
         name: 'markets-edit-id-tab',
@@ -63,8 +90,8 @@ export default {
     marketIsOwner (market) {
       return this.$auth.loggedIn && this.$auth.user.id === this.$_.get(market, 'user_id')
     },
-    marketIsReviewed (farm) {
-      const reviews = this.$_.get(farm, 'reviews', [])
+    marketIsReviewed (market) {
+      const reviews = this.$_.get(market, 'reviews', [])
       let user = { id: 0 }
       if (this.$auth.loggedIn) {
         user = this.$auth.user
@@ -79,6 +106,15 @@ export default {
     },
     marketIsNameable (market) {
       return ! this.$_.isNil(market.first_name) && ! this.$_.isNil(market.last_name)
+    },
+    marketPublishAddress (market) {
+      return parseInt(market.publish_address) === 1
+    },
+    marketPublishMailingAddress (market) {
+      return parseInt(market.publish_mailing_address) === 1
+    },
+    marketPublishPhone (market) {
+      return parseInt(market.publish_phone) === 1
     }
   }
 }
