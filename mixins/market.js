@@ -13,7 +13,7 @@ export default {
     },
     marketEditAddressLink (market) {
       return this.localePath({
-        name: 'market-edit-id-tab',
+        name: 'markets-edit-id-tab',
         params: {
           id: market.id,
           tab: this.localeMarketEditTab('address')
@@ -22,7 +22,7 @@ export default {
     },
     marketEditContactInformationLink (market) {
       return this.localePath({
-        name: 'market-edit-id-tab',
+        name: 'markets-edit-id-tab',
         params: {
           id: market.id,
           tab: this.localeMarketEditTab('contact-information')
@@ -31,10 +31,19 @@ export default {
     },
     marketEditMailingAddressLink (market) {
       return this.localePath({
-        name: 'market-edit-id-tab',
+        name: 'markets-edit-id-tab',
         params: {
           id: market.id,
           tab: this.localeMarketEditTab('mailing-address')
+        }
+      })
+    },
+    marketEditOperatingHoursLink (market) {
+      return this.localePath({
+        name: 'markets-edit-id-tab',
+        params: {
+          id: market.id,
+          tab: this.localeMarketEditTab('operating-hours')
         }
       })
     },

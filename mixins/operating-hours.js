@@ -19,7 +19,12 @@ export default {
       return string
     },
     operatingHoursIsEmpty (hours) {
-      return this.$_.isEmpty(hours)
+      if (this.$_.isObject(hours)) {
+        return this.$_.isEmpty(hours)
+      } else if (this.$_.isArray(hours)) {
+        return hours.length > 0
+      }
+      return false
     },
     operatingHoursMeta () {
       return this.$store.getters['operating-hours/meta']

@@ -9,6 +9,7 @@
         <image-primary :imageable="market" type="market" class="mb-3" />
         <market-buttons-menu :market="market" />
         <market-contact-information :market="market" class="mt-4" />
+        <market-operating-hours :market="market" class="mt-4 mb-4" />
       </template>
       <template>
         <b-alert class="mb-4" variant="danger" :show="!marketIsActive(market)">

@@ -21,7 +21,9 @@
     </nuxt-link>
     <b-card-title class="h6 mb-1">{{ $t('phrases.address') }}</b-card-title>
     <b-card-text class="mb-4">
-      <span v-if="marketPublishAddress(market) && addressLine(address)">{{ addressLine(address, ',', ['address', 'address_2', 'city', 'state', 'zip']) }}</span>
+      <span v-if="marketPublishAddress(market) && addressLine(address)">
+        {{ addressLine(address, ',', ['address', 'address_2', 'city', 'state', 'zip']) }}<span v-if="address.stand">, {{ $t('phrases.stand') }}: {{ address.stand }}</span>
+      </span>
       <span v-else> - </span>
     </b-card-text>
     <nuxt-link :to="marketEditMailingAddressLink(market)" class="link-edit" :title="$t('phrases.edit_mailing_address')" v-if="marketIsOwner(market)">

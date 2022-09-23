@@ -32,6 +32,9 @@ export default {
       }
       return season
     },
+    dateFormat (date) {
+      return this.$moment(date, 'YYYY-MM-DD').format(this.localeDateFormat())
+    },
     dateIsSame (dt) {
       const today = this.$moment().format('YYYY-MM-DD')
       const date = this.$moment(dt).format('YYYY-MM-DD')
@@ -58,6 +61,10 @@ export default {
         format = 'MM/DD/YYYY'
       }
       return format
+    },
+    monthName (index) {
+      const names = this.monthNames(true)
+      return names[index-1] ?? ''
     },
     monthNames (translate = false) {
       let months = [
