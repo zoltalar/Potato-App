@@ -18,6 +18,29 @@
         <b-alert class="mb-4" variant="success" :show="hasFlashMessage()" @dismissed="clearFlashMessage()" dismissible>
           {{ flashMessage() }}
         </b-alert>
+        <b-row class="mb-4">
+          <b-col>
+            <b-row>
+              <b-col>
+                <b-form-rating
+                  variant="warning"
+                  size="lg"
+                  class="p-0"
+                  :value="market.average_rating"
+                  :title="$t('messages.reviews_count', { count: market.reviews_count })"
+                  no-border
+                  inline
+                  readonly />
+              </b-col>
+            </b-row>
+          </b-col>
+          <b-col>
+            <social-media :linkable="market" type="market" class="text-right" />
+          </b-col>
+        </b-row>
+        <market-description :market="market" class="mb-4" />
+        <products :productable="market" type="market" class="mb-4" />
+        <reviewable-reviews :reviewable="market" />
       </template>
     </page-aside-content>
   </div>

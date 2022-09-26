@@ -6,13 +6,15 @@
     <page-content>
       <template>
         <div>
-          <div class="category-products" v-for="(categoryProducts, categoryName, i) in products" :key="'category-product-' + i">
-            <h6>{{ categoryName }}</h6>
-            <ul>
-              <li v-for="(inventoryId, inventoryName, j) in categoryProducts" :key="'category-product-item-' + i + '-' + j">
-                <a :href="localePath({ name: 'products' })" @click.prevent="sidebar(inventoryId, inventoryName)">{{ inventoryName }}</a>
-              </li>
-            </ul>
+          <div class="category-products" v-for="(categoryName, i) in categoryNames()" :key="'category-product-' + i">
+            <div v-if="products[categoryName]">
+              <h6>{{ categoryName }}</h6>
+              <ul>
+                <li v-for="(inventoryId, inventoryName, j) in products[categoryName]" :key="'category-product-item-' + i + '-' + j">
+                  <a :href="localePath({ name: 'products' })" @click.prevent="sidebar(inventoryId, inventoryName)">{{ inventoryName }}</a>
+                </li>
+              </ul>
+            </div>
           </div>
           <b-sidebar id="sidebar-product" backdrop backdrop-variant="secondary">
             <template>

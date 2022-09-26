@@ -40,7 +40,7 @@
         </b-row>
         <farm-description :farm="farm" class="mb-4" />
         <products :productable="farm" type="farm" class="mb-4" />
-        <farm-reviews :farm="farm" />
+        <reviewable-reviews :reviewable="farm" />
       </template>
     </page-aside-content>
   </div>

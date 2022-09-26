@@ -21,9 +21,9 @@
 </template>
 <script>
 export default {
-  name: 'FarmReviews',
+  name: 'ReviewableReviews',
   props: {
-    farm: {
+    reviewable: {
       type: Object,
       required: true
     }
@@ -43,8 +43,8 @@ export default {
       return reviews.slice(start, end)
     },
     reviews () {
-      const farm = this.farm
-      return this.$_.get(farm, 'reviews', [])
+      const reviewable = this.reviewable
+      return this.$_.get(reviewable, 'reviews', [])
     }
   },
   methods: {

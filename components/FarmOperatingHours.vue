@@ -16,7 +16,7 @@
     </b-card-text>
     <b-card-title class="h6 mb-1">{{ $t('phrases.exceptions') }}</b-card-title>
     <b-card-text>
-      <span v-if="!operatingHoursIsEmpty(hours) && hours.exceptions">{{ hours.exceptions }}</span>
+      <span v-if="!operatingHoursIsEmpty(hours)">{{ hours.exceptions }}</span>
       <span v-else> - </span>
     </b-card-text>
   </b-card>

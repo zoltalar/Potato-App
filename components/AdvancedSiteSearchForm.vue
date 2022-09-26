@@ -57,10 +57,10 @@ export default {
       return this.$route.params.location
     },
     radius () {
-      return this.$route.query.radius
+      return this.$route.query.radius || this.addressMaxRadius()
     },
     type () {
-      return this.$route.query.type
+      return this.$route.query.type || 'farms'
     }
   },
   methods: {

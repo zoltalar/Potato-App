@@ -20,15 +20,18 @@ export default {
     },
     productableOptions (defaultOption = false) {
       const options = []
+      const types = ['farms', 'markets']
       if (defaultOption) {
         options.push({
           text: '',
           value: null
         })
       }
-      options.push({
-        text: this.$t('phrases.farms'),
-        value: 'farms'
+      this.$_.forEach(types, (type) => {
+        options.push({
+          text: this.$t('phrases.' + type),
+          value: type
+        })
       })
       return options
     },

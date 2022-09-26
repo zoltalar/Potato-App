@@ -5,7 +5,7 @@ export default {
     },
     operatingHoursDayRange (hours, day) {
       let string = this.$t('phrases.closed')
-      if (day in hours) {
+      if (!this.operatingHoursIsEmpty(hours)) {
         let range = this.$_.head(hours[day])
         if (!this.$_.isNil(range)) {
           range = range.split('-')
@@ -19,7 +19,7 @@ export default {
       return string
     },
     operatingHoursIsEmpty (hours) {
-      if (this.$_.isObject(hours)) {
+      if (this.$_.isObject(hours) || this.$_.isNil(hours)) {
         return this.$_.isEmpty(hours)
       } else if (this.$_.isArray(hours)) {
         return hours.length > 0

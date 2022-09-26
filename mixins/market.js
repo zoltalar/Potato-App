@@ -29,6 +29,15 @@ export default {
         }
       })
     },
+    marketEditDescriptionLink (market) {
+      return this.localePath({
+        name: 'markets-edit-id-tab',
+        params: {
+          id: market.id,
+          tab: this.localeMarketEditTab('description')
+        }
+      })
+    },
     marketEditMailingAddressLink (market) {
       return this.localePath({
         name: 'markets-edit-id-tab',
@@ -53,6 +62,15 @@ export default {
         params: {
           id: market.id,
           tab: this.localeMarketEditTab('photos')
+        }
+      })
+    },
+    marketEditProductsLink (market) {
+      return this.localePath({
+        name: 'markets-edit-id-tab',
+        params: {
+          id: market.id,
+          tab: this.localeMarketEditTab('products')
         }
       })
     },

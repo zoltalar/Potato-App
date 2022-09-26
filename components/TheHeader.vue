@@ -68,7 +68,7 @@ export default {
       const form = this.$refs['form-i18n']
       form.populate()
     },
-    saveI18n () {
+    async saveI18n () {
       this.$bvModal.hide('modal-i18n')
 
       const form = this.$refs['form-i18n']
@@ -76,12 +76,12 @@ export default {
       const language = form.language()
       const currency = form.currency()
 
-      this.$store.dispatch('country/code', form.country())
-      this.$store.dispatch('language/code', language)
-      this.$store.dispatch('currency/code', currency)
+      await this.$store.dispatch('country/code', form.country())
+      await this.$store.dispatch('language/code', language)
+      await this.$store.dispatch('currency/code', currency)
 
       if (locale !== language) {
-        this.refreshAddressMeta()
+        await this.loadResources(true)
         this.$router.push(this.localePath('/', language))
       }
 

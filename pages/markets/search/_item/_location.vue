@@ -1,5 +1,5 @@
 <template>
-  <div class="farms search">
+  <div class="markets search">
     <page-title>
       {{ $t('phrases.search_results') }}
     </page-title>
@@ -8,23 +8,23 @@
         <advanced-site-search-form />
       </template>
       <template v-if="loaded">
-        <div class="list-farms" v-if="farms.length > 0">
-          <p v-html="$t('messages.farms_search', { item, location })"></p>
-          <farm-list-item-card :farm="farm" :linkable-image="true" class="mb-4" v-for="(farm, i) in pagedFarms" :key="'farm-list-item-' + i">
+        <div class="list-markets" v-if="markets.length > 0">
+          <p v-html="$t('messages.markets_search', { item, location })"></p>
+          <market-list-item-card :market="market" :linkable-image="true" class="mb-4" v-for="(market, i) in pagedMarkets" :key="'market-list-item-' + i">
             <template v-slot:links>
-              <nuxt-link :to="localePath({ name: 'farms-show-id-name', params: { id: farm.id, name: slugify(farm.name) } })" class="card-link">{{ $t('phrases.details') }}</nuxt-link>
+              <nuxt-link :to="localePath({ name: 'markets-show-id-name', params: { id: market.id, name: slugify(market.name) } })" class="card-link">{{ $t('phrases.details') }}</nuxt-link>
             </template>
-          </farm-list-item-card>
+          </market-list-item-card>
           <b-pagination
             class="mb-4"
             v-model="pagination.currentPage"
-            :items="farms"
-            :total-rows="farms.length"
+            :items="markets"
+            :total-rows="markets.length"
             :per-page="pagination.perPage"
           />
         </div>
         <div v-else>
-          <span v-html="$t('messages.farms_search_empty')"></span>
+          <span v-html="$t('messages.markets_search_empty')"></span>
         </div>
       </template>
     </page-aside-content>
@@ -32,7 +32,7 @@
 </template>
 <script>
 export default {
-  name: 'PageFarmsSearch',
+  name: 'PageMarketsSearch',
   layout: 'default',
   head () {
     return {
@@ -41,7 +41,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('messages.meta_description_farms_search')
+          content: this.$t('messages.meta_description_markets_search')
         }
       ],
     }
@@ -49,12 +49,12 @@ export default {
   nuxtI18n: {
     locales: ['en', 'pl'],
     paths: {
-      en: '/farms/search/:item/:location',
-      pl: '/gospodarstwa-rolne/szukaj/:item/:location'
+      en: '/markets/search/:item/:location',
+      pl: '/agromarkety/szukaj/:item/:location'
     }
   },
   data: () => ({
-    farms: [],
+    markets: [],
     loaded: false,
     pagination: {
       currentPage: 1,
@@ -74,12 +74,12 @@ export default {
     location () {
       return this.$route.params.location
     },
-    pagedFarms () {
-      const farms = this.farms
+    pagedMarkets () {
+      const markets = this.markets
       const pagination = this.pagination
       const start = (pagination.currentPage - 1) * pagination.perPage
       const end = pagination.currentPage * pagination.perPage
-      return farms.slice(start, end)
+      return markets.slice(start, end)
     },
     radius () {
       return this.$route.query.radius || this.addressMaxRadius()
@@ -102,11 +102,11 @@ export default {
       const radius = this.radius
       this
         .$axios
-        .get(`/api/potato/farms/search`, {
+        .get(`/api/potato/markets/search`, {
           params: { item, inventory_id: inventoryId, location, city_id: cityId, radius }
         })
         .then((response) => {
-          this.farms = this.$_.get(response, 'data.data', [])
+          this.markets = this.$_.get(response, 'data.data', [])
           this.loaded = true
         })
     }

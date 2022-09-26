@@ -5,6 +5,9 @@
       <nuxt-link :to="farmEditProductsLink(productable)" class="link-edit" :title="$t('phrases.edit_products')" v-if="type === 'farm' && farmIsOwner(productable)">
         <font-awesome-icon icon="pencil-alt" />
       </nuxt-link>
+      <nuxt-link :to="marketEditProductsLink(productable)" class="link-edit" :title="$t('phrases.edit_products')" v-else-if="type === 'market' && marketIsOwner(productable)">
+        <font-awesome-icon icon="pencil-alt" />
+      </nuxt-link>
     </h6>
     <b-tabs v-if="hasInventory()">
       <b-tab :title="$t('phrases.' + season)" :active="currentSeason() === season" v-for="(season, i) in seasons()" :key="'inventory-tab-' + i">

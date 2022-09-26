@@ -41,7 +41,7 @@ export default {
           .get(`/api/potato/prices/analytics/${id}`)
           .then((response) => {
             const analytics = this.$_.get(response, 'data.data', [])
-            this.chartData.labels = this.$_.map(analytics, 'month_year')
+            this.chartData.labels = this.$_.map(analytics, '_year_month')
             this.chartData.datasets = [{
               label: this.$t('phrases.price') + ' (' + this.currencyCode() + ')',
               data: this.$_.map(analytics, 'average_price'),
