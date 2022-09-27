@@ -85,6 +85,7 @@ export default {
       address: '',
       address_2: '',
       city: '',
+      city_id: null,
       zip: '',
       directions: ''
     },
@@ -131,6 +132,7 @@ export default {
       this.$root.$on('autocomplete-city-input', ({ city }) => {
         const zip = this.$_.head(this.phrases(city.zips))
         this.address.city = city.name
+        this.address.city_id = city.id
         if ( ! this.$_.isNil(zip)) {
           this.address.zip = zip
         }

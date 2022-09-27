@@ -1,22 +1,32 @@
 <template>
   <form @submit.prevent="submit">
-    <b-row>
-      <b-col md="6" class="col-left">
-        <div class="item">
-          <autocomplete-inventory-input size="lg" v-model="search.item" />
-        </div>
-      </b-col>
-      <b-col md="6" class="col-right">
-        <div class="position-relative">
-          <b-button type="submit" variant="primary" size="lg">
-            <font-awesome-icon icon="search" />
-          </b-button>
-          <div class="location">
-            <autocomplete-location-input size="lg" :geolocation="true" v-model="search.location" />
+    <ul class="types">
+      <li>
+        <a :class="{'active': this.search.type === 'farms'}" @click.prevent="setType('farms')">{{ $t('phrases.farms') }}</a>
+      </li>
+      <li>
+        <a :class="{'active': this.search.type === 'markets'}" @click.prevent="setType('markets')">{{ $t('phrases.markets') }}</a>
+      </li>
+    </ul>
+    <div class="inputs">
+      <b-row>
+        <b-col md="6" class="col-left">
+          <div class="item">
+            <autocomplete-inventory-input size="lg" v-model="search.item" />
           </div>
-        </div>
-      </b-col>
-    </b-row>
+        </b-col>
+        <b-col md="6" class="col-right">
+          <div class="position-relative">
+            <b-button type="submit" variant="primary" size="lg">
+              <font-awesome-icon icon="search" />
+            </b-button>
+            <div class="location">
+              <autocomplete-location-input size="lg" :geolocation="true" v-model="search.location" />
+            </div>
+          </div>
+        </b-col>
+      </b-row>
+    </div>
   </form>
 </template>
 <script>
@@ -47,6 +57,9 @@ export default {
         this.search.location = location.name
         this.search.city_id = location.id
       })
+    },
+    setType (type) {
+      this.search.type = type
     },
     submit () {
       const search = this.search

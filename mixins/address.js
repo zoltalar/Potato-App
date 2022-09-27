@@ -103,7 +103,8 @@ export default {
         },
         query: {
           type,
-          inventory_id: inventoryId
+          inventory_id: inventoryId,
+          city_id: area.city_id
         }
       })
     },
