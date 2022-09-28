@@ -5,7 +5,7 @@
         <a :class="{'active': this.search.type === 'farms'}" @click.prevent="setType('farms')">{{ $t('phrases.farms') }}</a>
       </li>
       <li>
-        <a :class="{'active': this.search.type === 'markets'}" @click.prevent="setType('markets')">{{ $t('phrases.markets') }}</a>
+        <a :class="{'active': this.search.type === 'markets'}" @click.prevent="setType('markets')">{{ $t('phrases.farmers_markets') }}</a>
       </li>
     </ul>
     <div class="inputs">
@@ -46,6 +46,15 @@ export default {
       return this.addressMaxRadius()
     }
   },
+  watch: {
+    'search.type': {
+      handler(type) {
+        this.$store.dispatch('search/type', type)
+        this.$root.$emit('site-search-type', { type })
+      },
+      immediate: true
+    }
+  },
   methods: {
     listen () {
       this.$root.$on('autocomplete-inventory-input', ({ item }) => {
@@ -57,6 +66,16 @@ export default {
         this.search.location = location.name
         this.search.city_id = location.id
       })
+    },
+    populate () {
+      let type = this.$store.getters['search/type']
+      if (this.$_.isNil(type)) {
+        type = this.$auth.$storage.getCookie('potato.search._type')
+      }
+      if (this.$_.isNil(type)) {
+        type = 'farms'
+      }
+      this.search.type = type
     },
     setType (type) {
       this.search.type = type
@@ -81,6 +100,9 @@ export default {
   },
   created () {
     this.listen()
+  },
+  mounted () {
+    this.populate()
   }
 }
 </script>

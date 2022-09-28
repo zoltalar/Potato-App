@@ -7,7 +7,7 @@
     <b-form-rating variant="warning" size="sm" class="p-0 ml-2" :value="farm.average_rating" no-border inline readonly />
     <p>
       <char-limit :chars="70" :text="farm.description" :ellipsis="true" />
-      <distance-away :distance="farmDistanceAway(farm)" class="small ml-2" />
+      <distance-away :distance="addressableDistanceAway(farm)" class="small ml-2" />
     </p>
   </div>
 </template>

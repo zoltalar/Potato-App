@@ -1,9 +1,5 @@
 export default {
   methods: {
-    farmDistanceAway (farm) {
-      const address = this.addressableAddress(farm)
-      return this.$_.get(address, 'distance', 0)
-    },
     farmEditAddressLink (farm) {
       return this.localePath({
         name: 'farms-edit-id-tab',

@@ -151,6 +151,8 @@ export default {
     availability: 'Dostępność',
     back: 'Powrót',
     browse_farms_map: 'Przeglądaj Mapę Gospodarstw Rolnych',
+    browse_farmers_markets_map: 'Przeglądaj Mapę Agromarketów',
+    buy_at_farmers_markets_near_you: 'Kupuj w Agromarketach w Pobliżu Ciebie',
     buy_from_farmers_near_you: 'Kupuj od Rolników w Pobliżu Ciebie',
     cancel: 'Anuluj',
     change: 'Zmień',

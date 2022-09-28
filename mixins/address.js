@@ -6,6 +6,10 @@ export default {
         return address.type === 1
       }))
     },
+    addressableDistanceAway (addressable) {
+      const address = this.addressableAddress(addressable)
+      return this.$_.get(address, 'distance', 0)
+    },
     addressableMailingAddress (addressable) {
       const addresses = this.$_.get(addressable, 'addresses', [])
       return this.$_.head(this.$_.filter(addresses, (address) => {
