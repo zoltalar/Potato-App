@@ -309,6 +309,16 @@ body {
   }
 }
 
+.map {
+
+  @include media-breakpoint-down(lg) {
+
+    .home & {
+      margin-top: 0;
+    }
+  }
+}
+
 .site-footer {
   background-color: #eef9f0;
   color: #505050;

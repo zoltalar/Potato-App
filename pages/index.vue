@@ -2,27 +2,31 @@
   <div class="home">
     <b-container>
       <b-row>
-        <b-col sm="6">
-          <div class="promoted-farms" v-if="type === 'farms' && farms.length > 0">
-            <span class="circle">
-              <font-awesome-icon icon="seedling" />
-            </span>
-            <h5>{{ $t('phrases.buy_from_farmers_near_you') }}</h5>
-            <div class="list list-farms">
-              <farm-list-item :farm="farm" v-for="(farm, i) in farms" :key="'farm-list-item-' + i" />
+        <b-col lg="6" v-if="colMap() !== 12">
+          <div v-if="type === 'farms'">
+            <div class="promoted-farms">
+              <span class="circle">
+                <font-awesome-icon icon="seedling" />
+              </span>
+              <h5>{{ $t('phrases.buy_from_farmers_near_you') }}</h5>
+              <div class="list list-farms">
+                <farm-list-item :farm="farm" v-for="(farm, i) in farms" :key="'farm-list-item-' + i" />
+              </div>
             </div>
           </div>
-          <div class="promoted-markets" v-else-if="type === 'markets' && markets.length > 0">
-            <span class="circle">
-              <font-awesome-icon icon="shopping-bag" />
-            </span>
-            <h5>{{ $t('phrases.buy_at_farmers_markets_near_you') }}</h5>
-            <div class="list list-markets">
-              <market-list-item :market="market" v-for="(market, i) in markets" :key="'market-list-item-' + i" />
+          <div v-else-if="type === 'markets'">
+            <div class="promoted-markets">
+              <span class="circle">
+                <font-awesome-icon icon="shopping-bag" />
+              </span>
+              <h5>{{ $t('phrases.buy_at_farmers_markets_near_you') }}</h5>
+              <div class="list list-markets">
+                <market-list-item :market="market" v-for="(market, i) in markets" :key="'market-list-item-' + i" />
+              </div>
             </div>
           </div>
         </b-col>
-        <b-col sm="6">
+        <b-col :lg="colMap()">
           <div class="map">
             <span class="circle">
               <font-awesome-icon icon="map" />
@@ -97,12 +101,10 @@ export default {
   watch: {
     city: {
       handler (city) {
-        if (!this.$_.isEmpty(city)) {
-          this.centerize(city)
-          this.fetchFarms()
-          this.fetchMarkers()
-          this.fetchMarkets()
-        }
+        const type = this.type
+        this.centerize(city)
+        this['fetch' + this.$_.capitalize(type)]()
+        this.fetchMarkers()
       },
       deep: true,
       immediate: true
@@ -111,11 +113,19 @@ export default {
       handler (type) {
         this['fetch' + this.$_.capitalize(type)]()
         this.fetchMarkers()
-      },
-      immediate: true
+      }
     }
   },
   methods: {
+    colMap () {
+      const type = this.type
+      const farms = this.farms
+      const markets = this.markets
+      if ((type === 'farms' && farms.length === 0) || (type === 'markets' && markets.length === 0)) {
+        return 12
+      }
+      return 6
+    },
     fetchFarms () {
       const city = this.city
       if (this.$_.isEmpty(city)) {
@@ -168,7 +178,7 @@ export default {
       }
     },
     listen () {
-      this.$root.$on('site-search-type', ({ type }) => {
+      this.$root.$on('search-type', ({ type }) => {
         this.type = type
       })
     },
@@ -186,7 +196,7 @@ export default {
       }
     }
   },
-  mounted () {
+  created () {
     this.listen()
   }
 }

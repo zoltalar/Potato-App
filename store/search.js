@@ -1,5 +1,5 @@
 export const state = () => ({
-  type: 'farms'
+  type: null
 })
 
 export const mutations = {

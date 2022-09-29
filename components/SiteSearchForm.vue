@@ -46,15 +46,6 @@ export default {
       return this.addressMaxRadius()
     }
   },
-  watch: {
-    'search.type': {
-      handler(type) {
-        this.$store.dispatch('search/type', type)
-        this.$root.$emit('site-search-type', { type })
-      },
-      immediate: true
-    }
-  },
   methods: {
     listen () {
       this.$root.$on('autocomplete-inventory-input', ({ item }) => {
@@ -75,10 +66,12 @@ export default {
       if (this.$_.isNil(type)) {
         type = 'farms'
       }
-      this.search.type = type
+      this.setType(type)
     },
     setType (type) {
       this.search.type = type
+      this.$store.dispatch('search/type', type)
+      this.$root.$emit('search-type', { type })
     },
     submit () {
       const search = this.search
