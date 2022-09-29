@@ -49,7 +49,8 @@
     </b-form-group>
     <b-form-group>
       <b-button type="submit" variant="primary" size="lg">{{ $t('phrases.to_register') }}</b-button>
-      <nuxt-link :to="localePath('/login')" class="ml-3">{{ $t('phrases.to_login') }}</nuxt-link>
+      <span class="ml-3">{{ $t('phrases.already_have_an_account?') }}</span>
+      <nuxt-link :to="localePath('/login')">{{ $t('phrases.to_login') }}</nuxt-link>
     </b-form-group>
   </form>
 </template>
@@ -70,7 +71,6 @@ export default {
   methods: {
     register () {
       let user = this.user
-
       this
         .$axios
         .post('/api/potato/register', user)

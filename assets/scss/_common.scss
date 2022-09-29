@@ -6,9 +6,11 @@ html {
   scroll-behavior: smooth;
 }
 
-.authentication {
+.authentication,
+.password {
 
-  &.login {
+  &.login,
+  &.reset {
 
     main {
       margin: 0 auto;
