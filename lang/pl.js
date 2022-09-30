@@ -250,6 +250,7 @@ export default {
     operating_hours: 'Godziny Otwarcia',
     optional: 'Opcjonalne',
     password: 'Hasło',
+    password_change: 'Zmiana Hasła',
     password_reset: 'Resetowanie Hasła',
     phone: 'Telefon',
     photo: 'Zdjęcie',

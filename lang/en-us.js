@@ -247,6 +247,7 @@ export default {
     operating_hours: 'Operating Hours',
     optional: 'Optional',
     password: 'Password',
+    password_change: 'Password Change',
     password_reset: 'Password Reset',
     phone: 'Phone',
     photo: 'Photo',
