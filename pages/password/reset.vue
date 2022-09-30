@@ -4,6 +4,9 @@
       {{ $t('phrases.password_reset') }}
     </page-title>
     <page-content>
+      <b-alert class="mb-4" variant="success" :show="message !== ''">
+        {{ message }}
+      </b-alert>
       <password-reset-form />
       <div class="text-center">
         {{ $t('phrases.already_have_an_account?') }}
@@ -34,6 +37,19 @@ export default {
       en: '/password/reset',
       pl: '/haslo/resetuj'
     }
+  },
+  data: () => ({
+    message: ''
+  }),
+  methods: {
+    listen () {
+      this.$root.$on('reset', ({ message }) => {
+        this.message = message
+      })
+    }
+  },
+  mounted () {
+    this.listen()
   }
 }
 </script>

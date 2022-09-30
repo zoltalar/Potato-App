@@ -31,13 +31,17 @@ export default {
       return user.email !== ''
     },
     async reset () {
-      let user = this.user
+      const user = this.user
       this
         .$axios
         .post('/api/potato/password/reset', user)
         .then((response) => {
           this.setErrors(response)
-          user = this.$_.get(response, 'data.data')
+          const message = this.$_.get(response, 'data.message')
+          if (this.$_.isNil(message)) {
+            this.user.email = ''
+            this.$root.$emit('reset', message)
+          }
         })
         .catch((error) => {
           this.setErrors(error.response)
