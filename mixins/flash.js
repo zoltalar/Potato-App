@@ -17,6 +17,9 @@ export default {
     },
     hasFlashMessage () {
       return this.flashMessage() !== ''
+    },
+    isCurrentUserHasUnverifiedEmailFlashErrorMessage () {
+      return this.flashErrorMessage() === this.$t('messages.email_unverified')
     }
   }
 }

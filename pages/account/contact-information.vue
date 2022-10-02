@@ -9,7 +9,8 @@
       </template>
       <template>
         <b-alert class="mb-4" variant="danger" :show="hasErrorMessage()" @dismissed="clearErrorMessage()" dismissible>
-          {{ flashErrorMessage () }}
+          {{ flashErrorMessage() }}
+          <nuxt-link :to="localePath('/email/resend')" class="alert-link" v-if="isCurrentUserHasUnverifiedEmailFlashErrorMessage()">{{ $t('phrases.verify') }}</nuxt-link>
         </b-alert>
         <b-alert class="mb-4" variant="success" :show="hasFlashMessage()" @dismissed="clearFlashMessage()" dismissible>
           {{ flashMessage() }}
@@ -57,6 +58,7 @@ export default {
   },
   mounted() {
     this.listen()
+    this.currentUserHasUnverifiedEmailFlashErrorMessage()
   }
 }
 </script>

@@ -57,6 +57,7 @@ export default {
         .then((response) => {
           if (response.status === 204) {
             this.verified = true
+            this.$auth.fetchUser()
           }
         })
     }

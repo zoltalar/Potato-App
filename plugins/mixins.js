@@ -19,6 +19,7 @@ import productMixin from '@/mixins/product'
 import stringMixin from '@/mixins/string'
 import systemMixin from '@/mixins/system'
 import unitMixin from '@/mixins/unit'
+import userMixin from '@/mixins/user'
 
 Vue.mixin(addressMixin)
 Vue.mixin(authMixin)
@@ -39,3 +40,4 @@ Vue.mixin(productMixin)
 Vue.mixin(stringMixin)
 Vue.mixin(systemMixin)
 Vue.mixin(unitMixin)
+Vue.mixin(userMixin)

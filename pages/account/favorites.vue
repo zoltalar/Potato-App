@@ -8,6 +8,10 @@
         <my-account-menu class="mb-4" />
       </template>
       <template>
+        <b-alert class="mb-4" variant="danger" :show="hasErrorMessage()" @dismissed="clearErrorMessage()" dismissible>
+          {{ flashErrorMessage() }}
+          <nuxt-link :to="localePath('/email/resend')" class="alert-link" v-if="isCurrentUserHasUnverifiedEmailFlashErrorMessage()">{{ $t('phrases.verify') }}</nuxt-link>
+        </b-alert>
         <b-alert class="mb-4" variant="success" :show="hasFlashMessage()" @dismissed="clearFlashMessage()" dismissible>
           {{ flashMessage() }}
         </b-alert>
@@ -107,6 +111,7 @@ export default {
   },
   mounted() {
     this.fetch()
+    this.currentUserHasUnverifiedEmailFlashErrorMessage()
   }
 }
 </script>
