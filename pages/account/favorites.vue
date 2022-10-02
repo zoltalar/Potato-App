@@ -70,8 +70,10 @@ export default {
     }
   },
   async asyncData({ $axios }) {
-    const response = await $axios.get('/api/potato/account/favorites')
-    return { favorites: response.data.data }
+    try {
+      const response = await $axios.get('/api/potato/account/favorites')
+      return { favorites: response.data.data }
+    } catch(error) {}
   },
   data: () => ({
     favorites: [],

@@ -65,8 +65,10 @@ export default {
     }
   },
   async asyncData({ $axios }) {
-    const response = await $axios.get('/api/potato/account/farms')
-    return { farms: response.data.data }
+    try {
+      const response = await $axios.get('/api/potato/account/farms')
+      return { farms: response.data.data }
+    } catch(error) {}
   },
   data: () => ({
     farms: [],

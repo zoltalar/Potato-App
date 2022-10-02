@@ -38,7 +38,8 @@ export default {
       handler () {
         this.populate()
       },
-      deep: true
+      deep: true,
+      immediate: true
     },
     'farm.description': {
       handler (description) {

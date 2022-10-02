@@ -121,18 +121,27 @@ export default {
       return this.$_.get(farm, 'images', [])
     }
   },
+  async asyncData({ params, $axios }) {
+    const id = params.id
+    try {
+      const response = await $axios.get(`/api/potato/farms/show/${id}`)
+      return { farm: response.data.data }
+    } catch (error) {}
+  },
   data: () => ({
     farm: {},
     image: {}
   }),
   watch: {
-    'farm': {
+    farm: {
       handler (farm) {
-        if (this.$_.isEmpty(farm)) {
+        const id = this.$_.get(farm, 'user_id')
+        if (id !== this.$auth.user.id) {
           this.$router.push(this.localePath('/account/farms'))
         }
       },
-      deep: true
+      deep: true,
+      immediate: true
     }
   },
   methods: {
@@ -211,7 +220,6 @@ export default {
     }
   },
   mounted () {
-    this.fetch()
     this.listen()
   }
 }

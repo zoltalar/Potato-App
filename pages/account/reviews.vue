@@ -71,8 +71,10 @@ export default {
     }
   },
   async asyncData({ $axios }) {
-    const response = await $axios.get('/api/potato/account/reviews')
-    return { reviews: response.data.data }
+    try {
+      const response = await $axios.get('/api/potato/account/reviews')
+      return { reviews: response.data.data }
+    } catch (error) {}
   },
   data: () => ({
     reviews: [],

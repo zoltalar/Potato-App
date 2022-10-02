@@ -121,18 +121,27 @@ export default {
       return this.$_.get(market, 'images', [])
     }
   },
+  async asyncData({ params, $axios }) {
+    const id = params.id
+    try {
+      const response = await $axios.get(`/api/potato/markets/show/${id}`)
+      return { market: response.data.data }
+    } catch (error) {}
+  },
   data: () => ({
     market: {},
     image: {}
   }),
   watch: {
-    'market': {
+    market: {
       handler (market) {
-        if (this.$_.isEmpty(market)) {
+        const id = this.$_.get(market, 'user_id')
+        if (id !== this.$auth.user.id) {
           this.$router.push(this.localePath('/account/markets'))
         }
       },
-      deep: true
+      deep: true,
+      immediate: true
     }
   },
   methods: {

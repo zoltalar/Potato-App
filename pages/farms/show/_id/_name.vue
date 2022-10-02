@@ -68,6 +68,13 @@ export default {
       pl: '/gospodarstwa-rolne/pokaz/:id/:name'
     }
   },
+  async asyncData({ params, $axios }) {
+    const id = params.id
+    try {
+      const response = await $axios.get(`/api/potato/farms/show/${id}`)
+      return { farm: response.data.data }
+    } catch (error) {}
+  },
   data: () => ({
     farm: {}
   }),
@@ -107,9 +114,6 @@ export default {
   },
   created () {
     this.listen()
-  },
-  mounted () {
-    this.fetch()
   }
 }
 </script>

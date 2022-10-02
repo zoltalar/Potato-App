@@ -63,7 +63,8 @@ export default {
       handler () {
         this.populate()
       },
-      deep: true
+      deep: true,
+      immediate: true
     }
   },
   methods: {
@@ -81,7 +82,6 @@ export default {
     },
     update () {
       let farm = this.farm
-
       this
         .$axios
         .put(`/api/potato/farms/update-social-media/${farm.id}`, farm)

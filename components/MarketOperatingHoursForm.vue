@@ -152,6 +152,7 @@ export default {
       handler () {
         this.populate()
       },
+      deep: true,
       immediate: true
     }
   },

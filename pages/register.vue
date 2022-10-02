@@ -10,7 +10,7 @@
         </b-alert>
         <b-alert class="mb-4" variant="success" :show=" ! $_.isEmpty(user)">
           {{ $t('messages.registration_successful') }}
-          <nuxt-link :to="localePath('/login')">{{ $t('phrases.to_login') }}</nuxt-link>
+          <nuxt-link :to="localePath('/login')" class="alert-link">{{ $t('phrases.to_login') }}</nuxt-link>
         </b-alert>
         <register-form />
       </template>

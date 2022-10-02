@@ -6,7 +6,7 @@
     <page-content>
       <b-alert class="mb-4" variant="success" :show="hasMessage()">
         {{ message }}
-        <nuxt-link :to="localePath('/login')">{{ $t('phrases.login') }}</nuxt-link>
+        <nuxt-link :to="localePath('/login')" class="alert-link">{{ $t('phrases.login') }}</nuxt-link>
       </b-alert>
       <password-update-form />
     </page-content>
