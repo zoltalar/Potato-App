@@ -314,7 +314,7 @@ body {
 
 .map {
 
-  @include media-breakpoint-down(lg) {
+  @include media-breakpoint-down(md) {
 
     .home & {
       margin-top: 0;

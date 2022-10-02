@@ -4,7 +4,11 @@
       {{ $t('phrases.password_change') }}
     </page-title>
     <page-content>
-      <password-change-form />
+      <b-alert class="mb-4" variant="success" :show="hasMessage()">
+        {{ message }}
+        <nuxt-link :to="localePath('/login')">{{ $t('phrases.login') }}</nuxt-link>
+      </b-alert>
+      <password-update-form />
     </page-content>
   </div>
 </template>
@@ -27,9 +31,25 @@ export default {
   nuxtI18n: {
     locales: ['en', 'pl'],
     paths: {
-      en: '/password/change',
-      pl: '/haslo/zmiana'
+      en: '/password/update',
+      pl: '/haslo/aktualizacja'
     }
+  },
+  data: () => ({
+    message: ''
+  }),
+  methods: {
+    hasMessage () {
+      return this.message !== ''
+    },
+    listen () {
+      this.$root.$on('password-reset', (message) => {
+        this.message = message
+      })
+    }
+  },
+  mounted() {
+    this.listen()
   }
 }
 </script>

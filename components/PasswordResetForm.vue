@@ -1,5 +1,5 @@
 <template>
-  <form class="form-default" @submit.prevent="reset">
+  <form class="form-default" @submit.prevent="submit">
     <b-form-group>
       <template v-slot:label>
         {{ $t('phrases.email') }}
@@ -30,17 +30,20 @@ export default {
       const user = this.user
       return user.email !== ''
     },
-    async reset () {
+    reset () {
+      this.user.email = ''
+    },
+    async submit () {
       const user = this.user
       this
         .$axios
-        .post('/api/potato/password/reset', user)
+        .post('/api/potato/password/email', user)
         .then((response) => {
           this.setErrors(response)
           const message = this.$_.get(response, 'data.message')
-          if (this.$_.isNil(message)) {
-            this.user.email = ''
-            this.$root.$emit('reset', message)
+          if (!this.$_.isNil(message)) {
+            this.reset()
+            this.$root.$emit('password-reset', message)
           }
         })
         .catch((error) => {

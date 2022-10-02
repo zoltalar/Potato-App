@@ -4,7 +4,7 @@
       {{ $t('phrases.password_reset') }}
     </page-title>
     <page-content>
-      <b-alert class="mb-4" variant="success" :show="message !== ''">
+      <b-alert class="mb-4" variant="success" :show="hasMessage()">
         {{ message }}
       </b-alert>
       <password-reset-form />
@@ -35,15 +35,18 @@ export default {
     locales: ['en', 'pl'],
     paths: {
       en: '/password/reset',
-      pl: '/haslo/resetuj'
+      pl: '/haslo/reset'
     }
   },
   data: () => ({
     message: ''
   }),
   methods: {
+    hasMessage () {
+      return this.message !== ''
+    },
     listen () {
-      this.$root.$on('reset', ({ message }) => {
+      this.$root.$on('password-reset', (message) => {
         this.message = message
       })
     }
