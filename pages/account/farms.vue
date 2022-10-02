@@ -64,6 +64,10 @@ export default {
       pl: '/konto/gospodarstwa-rolne'
     }
   },
+  async asyncData({ $axios }) {
+    const response = await $axios.get('/api/potato/account/farms')
+    return { farms: response.data.data }
+  },
   data: () => ({
     farms: [],
     pagination: {
@@ -80,18 +84,7 @@ export default {
       return farms.slice(start, end)
     }
   },
-  methods: {
-    fetch() {
-      this
-        .$axios
-        .get('/api/potato/account/farms')
-        .then((response) => {
-          this.farms = this.$_.get(response, 'data.data')
-        })
-    }
-  },
   mounted() {
-    this.fetch()
     this.currentUserHasUnverifiedEmailFlashErrorMessage()
   }
 }

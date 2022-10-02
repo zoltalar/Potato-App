@@ -70,6 +70,10 @@ export default {
       pl: '/konto/recenzje'
     }
   },
+  async asyncData({ $axios }) {
+    const response = await $axios.get('/api/potato/account/reviews')
+    return { reviews: response.data.data }
+  },
   data: () => ({
     reviews: [],
     pagination: {
@@ -86,18 +90,7 @@ export default {
       return reviews.slice(start, end)
     }
   },
-  methods: {
-    fetch() {
-      this
-        .$axios
-        .get('/api/potato/account/reviews')
-        .then((response) => {
-          this.reviews = this.$_.get(response, 'data.data')
-        })
-    }
-  },
   mounted() {
-    this.fetch()
     this.currentUserHasUnverifiedEmailFlashErrorMessage()
   }
 }

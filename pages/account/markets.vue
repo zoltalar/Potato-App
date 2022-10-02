@@ -63,6 +63,10 @@ export default {
       pl: '/konto/agromarkety'
     }
   },
+  async asyncData({ $axios }) {
+    const response = await $axios.get('/api/potato/account/markets')
+    return { markets: response.data.data }
+  },
   data: () => ({
     markets: [],
     pagination: {
@@ -79,18 +83,7 @@ export default {
       return markets.slice(start, end)
     }
   },
-  methods: {
-    fetch() {
-      this
-        .$axios
-        .get('/api/potato/account/markets')
-        .then((response) => {
-          this.markets = this.$_.get(response, 'data.data')
-        })
-    }
-  },
   mounted() {
-    this.fetch()
     this.currentUserHasUnverifiedEmailFlashErrorMessage()
   }
 }

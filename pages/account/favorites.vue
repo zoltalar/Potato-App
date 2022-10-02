@@ -69,6 +69,10 @@ export default {
       pl: '/konto/ulubione'
     }
   },
+  async asyncData({ $axios }) {
+    const response = await $axios.get('/api/potato/account/favorites')
+    return { favorites: response.data.data }
+  },
   data: () => ({
     favorites: [],
     pagination: {
@@ -110,7 +114,6 @@ export default {
     }
   },
   mounted() {
-    this.fetch()
     this.currentUserHasUnverifiedEmailFlashErrorMessage()
   }
 }

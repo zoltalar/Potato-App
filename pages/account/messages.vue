@@ -69,6 +69,10 @@ export default {
       pl: '/konto/wiadomosci'
     }
   },
+  async asyncData({ $axios }) {
+    const response = await $axios.get('/api/potato/account/messages')
+    return { messages: response.data.data }
+  },
   data: () => ({
     messages: [],
     pagination: {
@@ -144,7 +148,6 @@ export default {
     this.listen()
   },
   mounted () {
-    this.fetch()
     this.currentUserHasUnverifiedEmailFlashErrorMessage()
   }
 }

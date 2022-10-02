@@ -315,7 +315,7 @@ export default {
     time_range: 'Zakres czasu',
     title: 'Tytuł',
     to_login: 'Zaloguj się',
-    to_register: 'Zarejestruj Się',
+    to_register: 'Zarejestruj się',
     toggle_messages: 'Zaznacz lub odznacz wiadomości',
     top_growing_areas: 'Największe Obszary Upraw',
     town: 'Miejscowość',
