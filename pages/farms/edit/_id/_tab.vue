@@ -135,8 +135,7 @@ export default {
   watch: {
     farm: {
       handler (farm) {
-        const id = this.$_.get(farm, 'user_id')
-        if (id !== this.$auth.user.id) {
+        if (this.$_.isEmpty(farm) || !this.farmIsOwner(farm)) {
           this.$router.push(this.localePath('/account/farms'))
         }
       },

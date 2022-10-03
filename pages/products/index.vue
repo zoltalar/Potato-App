@@ -49,6 +49,7 @@ export default {
       pl: '/produkty'
     }
   },
+  // asyncData not possible here
   data: () => ({
     inventory: [],
     id: null,

@@ -157,9 +157,9 @@ export default {
     }
   },
   methods: {
-    addHours () {
+    addHours (index = null) {
       let hours = this.hours
-      hours.push({
+      const hour = {
         type: null,
         start_date: null,
         end_date: null,
@@ -200,7 +200,12 @@ export default {
           start: null,
           end: null
         }
-      })
+      }
+      if (this.$_.isNil(index)) {
+        this.hours.push(hour)
+      } else {
+        this.hours[index] = hour
+      }
     },
     deleteHours(index) {
       this.$delete(this.hours, index)
@@ -234,7 +239,7 @@ export default {
       const days = this.days()
       if (this.$_.isArray(editedOperatingHours) && editedOperatingHours.length > 0) {
         this.$_.forEach(editedOperatingHours, (editedOperatingHour, i) => {
-          this.addHours()
+          this.addHours(i)
           this.$_.forOwn(editedOperatingHour, (value, key) => {
             if (!this.$_.isArray(value) && key in this.hours[i]) {
               this.hours[i][key] = editedOperatingHour[key]

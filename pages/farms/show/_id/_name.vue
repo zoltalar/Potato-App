@@ -85,7 +85,8 @@ export default {
           this.$router.push(this.localePath('/'))
         }
       },
-      deep: true
+      deep: true,
+      immediate: true
     }
   },
   methods: {

@@ -57,6 +57,14 @@ export default {
       pl: '/wiadomosci/pokaz/:token'
     }
   },
+  async asyncData({ params, $axios, $auth }) {
+    const token = params.token
+    try {
+      const response = await $axios.get(`/api/potato/messages/show/${token}`)
+      $auth.fetchUser()
+      return { message: response.data.data }
+    } catch (error) {}
+  },
   data: () => ({
     message: {}
   }),
@@ -67,7 +75,8 @@ export default {
           this.$router.push(this.localePath('/'))
         }
       },
-      deep: true
+      deep: true,
+      immediate: true
     }
   },
   methods: {
@@ -84,16 +93,6 @@ export default {
             this.$router.push(this.localePath('/account/messages'))
           })
       }
-    },
-    fetch () {
-      const token = this.$route.params.token
-      this
-        .$axios
-        .get(`/api/potato/messages/show/${token}`)
-        .then((response) => {
-          this.message = this.$_.get(response, 'data.data')
-          this.$auth.fetchUser()
-        })
     },
     listen () {
       this.$root.$on('message-replied', () => {
@@ -113,9 +112,6 @@ export default {
   },
   created () {
     this.listen()
-  },
-  mounted () {
-    this.fetch()
   }
 }
 </script>

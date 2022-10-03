@@ -49,6 +49,13 @@ export default {
       pl: '/gospodarstwa-rolne/dezaktywuj/:id'
     }
   },
+  async asyncData({ params, $axios }) {
+    const id = params.id
+    try {
+      const response = await $axios.get(`/api/potato/farms/show/${id}`)
+      return { farm: response.data.data }
+    } catch (error) {}
+  },
   data: () => ({
     farm: {}
   }),
@@ -59,7 +66,8 @@ export default {
           this.$router.push(this.localePath('/account/farms'))
         }
       },
-      deep: true
+      deep: true,
+      immediate: true
     }
   },
   methods: {
@@ -82,7 +90,6 @@ export default {
     }
   },
   mounted () {
-    this.fetch()
     this.listen()
   }
 }

@@ -68,6 +68,13 @@ export default {
       pl: '/agromarkety/pokaz/:id/:name'
     }
   },
+  async asyncData({ params, $axios }) {
+    const id = params.id
+    try {
+      const response = await $axios.get(`/api/potato/markets/show/${id}`)
+      return { market: response.data.data }
+    } catch (error) {}
+  },
   data: () => ({
     market: {}
   }),
@@ -78,7 +85,8 @@ export default {
           this.$router.push(this.localePath('/'))
         }
       },
-      deep: true
+      deep: true,
+      immediate: true
     }
   },
   methods: {
@@ -107,9 +115,6 @@ export default {
   },
   created () {
     this.listen()
-  },
-  mounted () {
-    this.fetch()
   }
 }
 </script>

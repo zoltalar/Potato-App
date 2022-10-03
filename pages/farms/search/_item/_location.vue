@@ -7,7 +7,7 @@
       <template v-slot:aside>
         <advanced-site-search-form />
       </template>
-      <template v-if="loaded">
+      <template>
         <div class="list-farms" v-if="farms.length > 0">
           <p v-html="$t('messages.farms_search', { item, location })"></p>
           <farm-list-item-card :farm="farm" :linkable-image="true" class="mb-4" v-for="(farm, i) in pagedFarms" :key="'farm-list-item-' + i">
@@ -53,9 +53,21 @@ export default {
       pl: '/gospodarstwa-rolne/szukaj/:item/:location'
     }
   },
+  async asyncData({ query, params, $axios }) {
+    const cityId = query.city_id
+    const inventoryId = query.inventory_id
+    const item = params.item
+    const location = params.location
+    const radius = query.radius
+    try {
+      const response = await $axios.get(`/api/potato/farms/search`, {
+        params: { item, inventory_id: inventoryId, location, city_id: cityId, radius }
+      })
+      return { farms: response.data.data }
+    } catch (error) {}
+  },
   data: () => ({
     farms: [],
-    loaded: false,
     pagination: {
       currentPage: 1,
       perPage: 10
@@ -94,7 +106,6 @@ export default {
   },
   methods: {
     fetch () {
-      this.loaded = false
       const item = this.item
       const inventoryId = this.inventoryId
       const location = this.location
@@ -107,12 +118,8 @@ export default {
         })
         .then((response) => {
           this.farms = this.$_.get(response, 'data.data', [])
-          this.loaded = true
         })
     }
-  },
-  mounted() {
-    this.fetch()
   }
 }
 </script>
