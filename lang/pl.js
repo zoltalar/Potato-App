@@ -84,6 +84,8 @@ export default {
       '<p>Jeśli masz jakiekolwiek pytania odnośnie warunków utworzenia agromarketu, prosimy o kontakt.</p>' +
       '<p class="mb-0">Nie sprzedajemy, nie dzielimy i nie rozdajemy Twojego adresu email komukolwiek. Twój adres email nie będzie widoczny w naszym serwisie.</p>',
     market_created: 'Agromarket został utworzony pomyślnie.',
+    market_deactivate: 'Prosimy podać powód dla którego dezaktywujesz agromarket.',
+    market_deactivated: 'Agromarket został zdezaktywowany pomyślnie.',
     market_description: 'Podaj kilka zdań odnośnie Twojego agromarketu. Nie zapomnij użyć słów kluczowych typu "ziemniaki", "pszenica". Nie wpisuj Twojego adresu emailowego w celu zapobiegania spamu.',
     market_description_updated: 'Opis agromarketu został zaktualizowany pomyślnie.',
     market_favorited: 'Agromarket został dodany do ulubionych pomyślnie.',
@@ -180,6 +182,7 @@ export default {
     days: 'Dni',
     deactivate: 'Dezaktywuj',
     deactivate_farm: 'Dezaktywuj Gospodarstwo Rolne',
+    deactivate_market: 'Dezaktywuj Agromarket',
     deactivation_reason: 'Powód do Dezaktywacji',
     delete: 'Usuń',
     delete_selected_messages: 'Usuń zaznaczone wiadomości',

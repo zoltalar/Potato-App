@@ -84,6 +84,8 @@ export default {
       '<p>If you have any questions regarding the above, please contact us.</p>' +
       '<p class="mb-0">We do not sell, share or give away your email address. Your email address will not be visible to public.</p>',
     market_created: "Farmers' market has been created successfully.",
+    market_deactivate: "Please provide a reason for farmer's market deactivation.",
+    market_deactivated: "Farmer's market has been deactivated successfully.",
     market_description: 'Please provide few paragraphs regarding your farmers\' market. Be sure to include keywords such as "potatoes", "wheat". Do not include your email address in order to avoid spam.',
     market_description_updated: "Farmers market's description has been updated successfully.",
     market_favorited: "Farmers' market has been added to your favorites successfully.",
@@ -177,6 +179,7 @@ export default {
     days: 'Dni',
     deactivate: 'Deactivate',
     deactivate_farm: 'Deactivate Farm',
+    deactivate_market: 'Deactivate Market',
     deactivation_reason: 'Deactivation Reason',
     delete: 'Delete',
     delete_selected_messages: 'Delete selected messages',

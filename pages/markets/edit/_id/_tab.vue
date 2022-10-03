@@ -135,8 +135,7 @@ export default {
   watch: {
     market: {
       handler (market) {
-        const id = this.$_.get(market, 'user_id')
-        if (id !== this.$auth.user.id) {
+        if (this.$_.isEmpty(market) || !this.marketIsOwner(market)) {
           this.$router.push(this.localePath('/account/markets'))
         }
       },
@@ -219,7 +218,6 @@ export default {
     }
   },
   mounted () {
-    this.fetch()
     this.listen()
   }
 }
