@@ -6,6 +6,7 @@
     <page-content>
       <b-alert variant="success" :show="verified">
         {{ $t('messages.verification_successful_text') }}
+        <nuxt-link :to="localePath('/account/farms')" class="alert-link">{{ $t('phrases.continue') }}</nuxt-link>
       </b-alert>
       <p v-if=" ! verified">{{ $t('phrases.verifying') }}...</p>
     </page-content>
