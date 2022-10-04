@@ -271,6 +271,8 @@ export default {
     promote_this_farm: 'Promote this Farm',
     promote_this_farmers_market: "Promote this Farmers' Market",
     promoted: 'Promoted',
+    promoted_farms: 'Promoted Farms',
+    promoted_farmers_markets: "Promoted Farmer's Markets",
     publish_on_website: 'Publish on Website',
     publish_phone_on_website: 'Publish Phone on Website',
     quantity: 'Quantity',

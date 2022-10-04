@@ -274,6 +274,8 @@ export default {
     promote_this_farm: 'Promuj to Gospodarstwo Rolne',
     promote_this_farmers_market: 'Promuj ten Agromarket',
     promoted: 'Promowane',
+    promoted_farmers_markets: 'Promowane Agromarkety',
+    promoted_farms: 'Promowane Gospodarstwa Rolne',
     publish_on_website: 'Opublikuj na Stronie',
     publish_phone_on_website: 'Opublikuj Telefon na Stronie',
     quantity: 'Ilość',

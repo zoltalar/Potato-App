@@ -8,7 +8,7 @@
               <span class="circle">
                 <font-awesome-icon icon="seedling" />
               </span>
-              <h5>{{ $t('phrases.buy_from_farmers_near_you') }}</h5>
+              <h5>{{ $t('phrases.promoted_farms') }}</h5>
               <div class="list list-farms">
                 <farm-list-item :farm="farm" v-for="(farm, i) in farms" :key="'farm-list-item-' + i" />
               </div>
@@ -19,7 +19,7 @@
               <span class="circle">
                 <font-awesome-icon icon="shopping-bag" />
               </span>
-              <h5>{{ $t('phrases.buy_at_farmers_markets_near_you') }}</h5>
+              <h5>{{ $t('phrases.promoted_farmers_markets') }}</h5>
               <div class="list list-markets">
                 <market-list-item :market="market" v-for="(market, i) in markets" :key="'market-list-item-' + i" />
               </div>
@@ -40,7 +40,7 @@
                 :opened="map.infoWindow.open"
                 @closeclick="map.infoWindow.open = false" />
               <gmap-marker
-                v-for="(marker, i) in map.markers"
+                v-for="(marker, i) in mapMarkers()"
                 :key="'google-map-marker' + i"
                 :position="position(marker)"
                 :clickable="true"
@@ -68,16 +68,27 @@ export default {
       ]
     }
   },
+  async asyncData({ $axios }) {
+    try {
+      let response = await $axios.get('/api/potato/farms/index', { params: { limit: 2, promote: true }})
+      const farms = response.data.data
+      response = await $axios.get('/api/potato/markets/index', { params: { limit: 2, promote: true }})
+      const markets = response.data.data
+      response = await $axios.get('/api/potato/addresses/plot')
+      const markers = response.data.data
+      return { farms, markets, markers }
+    } catch (error) {}
+  },
   data: () => ({
     farms: [],
     markets: [],
+    markers: [],
     map: {
       center: {
-        lat: 0,
-        lng: 0
+        lat: 51.9194,
+        lng: 19.1451
       },
-      zoom: 10,
-      markers: [],
+      zoom: 5,
       infoWindow: {
         index: null,
         open: false,
@@ -96,24 +107,27 @@ export default {
   computed: {
     city () {
       return this.$store.getters['city/city']
+    },
+    farmMarkers () {
+      const markers = this.markers
+      return this.$_.filter(markers, (marker) => {
+        return marker.addressable_type === 'farm'
+      })
+    },
+    marketMarkers () {
+      const markers = this.markers
+      return this.$_.filter(markers, (marker) => {
+        return marker.addressable_type === 'market'
+      })
     }
   },
   watch: {
     city: {
       handler (city) {
-        const type = this.type
         this.centerize(city)
-        this['fetch' + this.$_.capitalize(type)]()
-        this.fetchMarkers()
       },
       deep: true,
       immediate: true
-    },
-    type: {
-      handler (type) {
-        this['fetch' + this.$_.capitalize(type)]()
-        this.fetchMarkers()
-      }
     }
   },
   methods: {
@@ -125,47 +139,6 @@ export default {
         return 12
       }
       return 6
-    },
-    fetchFarms () {
-      const city = this.city
-      if (this.$_.isEmpty(city)) {
-        return false
-      }
-      const latitude = city.latitude
-      const longitude = city.longitude
-      this
-        .$axios
-        .get(`/api/potato/farms/locate/${latitude}/${longitude}`, {
-          params: { limit: 2 }
-        })
-        .then((response) => {
-          this.farms = this.$_.get(response, 'data.data', [])
-        })
-    },
-    fetchMarkers () {
-      const type = this.type.slice(0, -1)
-      this
-        .$axios
-        .get(`/api/potato/addresses/plot/${type}`)
-        .then((response) => {
-          this.map.markers = this.$_.get(response, 'data.data', [])
-        })
-    },
-    fetchMarkets () {
-      const city = this.city
-      if (this.$_.isEmpty(city)) {
-        return false
-      }
-      const latitude = city.latitude
-      const longitude = city.longitude
-      this
-        .$axios
-        .get(`/api/potato/markets/locate/${latitude}/${longitude}`, {
-          params: { limit: 2 }
-        })
-        .then((response) => {
-          this.markets = this.$_.get(response, 'data.data', [])
-        })
     },
     infoWindow (marker, i) {
       this.map.infoWindow.position = this.position(marker)
@@ -194,6 +167,10 @@ export default {
         this.map.center.lng = city.longitude
         this.map.zoom = 10
       }
+    },
+    mapMarkers () {
+      const type = this.type.slice(0, -1)
+      return this[type + 'Markers']
     }
   },
   created () {
