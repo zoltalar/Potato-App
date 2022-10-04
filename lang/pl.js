@@ -35,6 +35,7 @@ export default {
     confirm_image_primary: 'Czy na pewno chcesz ustawić to zdjęcie jako główne?',
     confirm_model_destroy: 'Czy na pewno chcesz usunąć {model}?',
     confirm_models_destroy_batch: 'Czy na pewno chcesz usunąć zaznaczone {models}?',
+    contact_successful: 'Wiadomość została wysłana pomyślnie.',
     copyrights_text: 'Copyright © {year} Ziemniaczek',
     distance_away: 'Oddalone o {distance} {unit}',
     email_unverified: 'Twój adres email nie jest jeszcze zweryfikowany.',

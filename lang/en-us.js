@@ -35,6 +35,7 @@ export default {
     confirm_image_primary: 'Are you sure you want to set this photo as primary?',
     confirm_model_destroy: 'Are you sure you want to delete this {model}?',
     confirm_models_destroy_batch: 'Are you sure you want to delete selected {models}?',
+    contact_successful: 'Message has been sent successfully.',
     copyrights_text: 'Copyright © {year} Local Grocery',
     distance_away: '{distance} {unit} away',
     email_unverified: 'Your email address is not yet verified.',
