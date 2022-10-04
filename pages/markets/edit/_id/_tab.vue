@@ -103,7 +103,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('messages.meta_description_farmers_market_edit')
+          content: this.$t('messages.meta_description_markets_edit')
         }
       ],
     }

@@ -29,21 +29,21 @@ export default {
     alert_selected_messages_empty: 'Please select at least one message!',
     auth_failed: 'These credentials do not match our records.',
     characters_remaining: '{remaining} character(s) left.',
-    codename: 'Local Grocery',
+    codename: 'Potato',
     confirm_destroy: 'Are you sure you want to delete?',
     confirm_image_cover: 'Are you sure you want to set this photo as cover image?',
     confirm_image_primary: 'Are you sure you want to set this photo as primary?',
     confirm_model_destroy: 'Are you sure you want to delete this {model}?',
     confirm_models_destroy_batch: 'Are you sure you want to delete selected {models}?',
     contact_successful: 'Message has been sent successfully.',
-    copyrights_text: 'Copyright © {year} Local Grocery',
+    copyrights_text: 'Copyright © {year} Potato',
     distance_away: '{distance} {unit} away',
     email_unverified: 'Your email address is not yet verified.',
     farm_address_updated: "Farm's address information has been updated successfully.",
     farm_contact_information_email: "Email address will not be shown on the farm's profile page, but users will be able to contact you via <em>Send Message</em> option.",
     farm_contact_information_updated: "Farm's contact information has been updated successfully.",
     farm_create_agreement:
-      '<p><strong>You can create a farm with Local Grocery if:</strong></p>' +
+      '<p><strong>You can create a farm with Potato if:</strong></p>' +
       '<ul>' +
       '<li>You do not produce GMOs.</li>' +
       '</ul>' +
@@ -78,7 +78,7 @@ export default {
     market_contact_information_email: "Email address will not be shown on the farmers market's profile page, but users will be able to contact you via <em>Send Message</em> option.",
     market_contact_information_updated: "Farmers market's contact information has been updated successfully.",
     market_create_agreement:
-      "<p><strong>You can create a farmers' market with Local Grocery if:</strong></p>" +
+      "<p><strong>You can create a farmers' market with Potato if:</strong></p>" +
       '<ul>' +
       '<li>You do not sell GMOs.</li>' +
       '</ul>' +
@@ -107,10 +107,18 @@ export default {
     message_footer: 'Received {ago} ago from {user}.',
     message_sent: 'Message has been sent successfully.',
     messages_deleted: 'Messages have been deleted successfully.',
+    meta_description_contact: 'Send contact message to Potato',
     meta_description_email_resend: 'Confirm your email address',
     meta_description_email_verify: 'Verify your email address by URL',
-    meta_description_index: 'Find locally grown fresh food from farmers and markets',
-    meta_description_login: 'Local Grocery login',
+    meta_description_farms_add: 'Add farm',
+    meta_description_farms_edit: 'Edit farm information (address, description, operating hours, products, photos, etc.)',
+    meta_description_farms_show: 'Farm details',
+    meta_description_index: "Find locally grown fresh food from farmers and farmers' markets",
+    meta_description_login: 'Potato login',
+    meta_description_markets_add: "Add farmers' market",
+    meta_description_markets_edit: "Edit farmers' market information (address, description, operating hours, products, photos, etc.)",
+    meta_description_markets_show: "Farmers' market details",
+    meta_description_messages_show: 'Message details',
     meta_description_my_account_contact_information: 'My contact information',
     meta_description_my_account_farms: 'My list of farms',
     meta_description_my_account_favorites: "My list of favorite farms and farmers' markets",
@@ -118,6 +126,7 @@ export default {
     meta_description_my_account_messages: 'Received messages from other users',
     meta_description_my_account_password: 'Update access password',
     meta_description_my_account_reviews: "My list of created reviews of farms and farmers' markets",
+    meta_description_products: 'Browse inventory of products, find top growing areas and monitor prices',
     meta_description_register: 'Register for free account',
     no_inventory_items: 'No products to display',
     no_locations: 'No locations to display',

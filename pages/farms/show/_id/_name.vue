@@ -51,12 +51,12 @@ export default {
   layout: 'default',
   head () {
     return {
-      title: this.farm.name,
+      title: this.farm.name + ', ' + this.addressLine(this.addressableAddress(this.farm)),
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('messages.meta_description_farms_show')
+          content: this.$t('messages.meta_description_farms_show') + ': ' + this.farm.name
         }
       ],
     }

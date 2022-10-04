@@ -63,6 +63,17 @@ export default {
     }
   }),
   methods: {
+    populate () {
+      if (this.$auth.loggedIn) {
+        const user = this.$auth.user
+        const contact = this.contact
+        this.$_.forOwn(user, (value, key) => {
+          if (key in contact) {
+            this.contact[key] = value
+          }
+        })
+      }
+    },
     reset () {
       const contact = this.contact
       this.$_.forOwn(contact, (value, key) => {
@@ -87,6 +98,9 @@ export default {
           this.setErrors(error.response)
         })
     }
+  },
+  mounted () {
+    this.populate()
   }
 }
 </script>
