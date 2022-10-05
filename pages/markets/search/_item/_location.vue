@@ -1,7 +1,7 @@
 <template>
   <div class="markets search">
     <page-title>
-      {{ $t('phrases.search_results') }}
+      {{ $t('phrases.markets_search_results') }}
     </page-title>
     <page-aside-content>
       <template v-slot:aside>
@@ -36,12 +36,12 @@ export default {
   layout: 'default',
   head () {
     return {
-      title: this.$t('phrases.search_results'),
+      title: this.item + ' ' + this.$t('phrases.in') + ' ' + this.location + ' - ' + this.$t('phrases.markets_search_results'),
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('messages.meta_description_markets_search')
+          content: this.$t('messages.meta_description_markets_search', { item: this.item, location: this.location })
         }
       ],
     }

@@ -1,7 +1,7 @@
 <template>
   <div class="farms search">
     <page-title>
-      {{ $t('phrases.search_results') }}
+      {{ $t('phrases.farms_search_results') }}
     </page-title>
     <page-aside-content>
       <template v-slot:aside>
@@ -36,7 +36,7 @@ export default {
   layout: 'default',
   head () {
     return {
-      title: this.item + ' ' + this.$t('phrases.in') + ' ' + this.location + ' - ' + this.$t('phrases.search_results'),
+      title: this.item + ' ' + this.$t('phrases.in') + ' ' + this.location + ' - ' + this.$t('phrases.farms_search_results'),
       meta: [
         {
           hid: 'description',
