@@ -5,7 +5,7 @@
         {{ $t('phrases.deactivation_reason') }}
         <span class="text-danger">*</span>
       </template>
-      <b-form-textarea id="input-farm-deactivation-reason" size="lg" rows="7" maxlength="500" no-resize v-model="farm.deactivation_reason"></b-form-textarea>
+      <b-form-textarea id="input-farm-deactivation-reason" :class="{'is-invalid': error('deactivation_reason') !== null}" size="lg" rows="7" maxlength="500" no-resize v-model="farm.deactivation_reason"></b-form-textarea>
       <div class="invalid-feedback d-block" v-if="error('deactivation_reason') !== null">
         {{ error('deactivation_reason') }}
       </div>

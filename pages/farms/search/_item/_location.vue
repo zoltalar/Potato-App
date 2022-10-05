@@ -36,12 +36,12 @@ export default {
   layout: 'default',
   head () {
     return {
-      title: this.$t('phrases.search_results'),
+      title: this.item + ' ' + this.$t('phrases.in') + ' ' + this.location + ' - ' + this.$t('phrases.search_results'),
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('messages.meta_description_farms_search')
+          content: this.$t('messages.meta_description_farms_search', { item: this.item, location: this.location })
         }
       ],
     }

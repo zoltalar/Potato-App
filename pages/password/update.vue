@@ -1,7 +1,7 @@
 <template>
   <div class="password change">
     <page-title>
-      {{ $t('phrases.password_change') }}
+      {{ $t('phrases.password_update') }}
     </page-title>
     <page-content>
       <b-alert class="mb-4" variant="success" :show="hasMessage()">
@@ -14,16 +14,16 @@
 </template>
 <script>
 export default {
-  name: 'PagePasswordChange',
+  name: 'PagePasswordUpdate',
   layout: 'default',
   head () {
     return {
-      title: this.$t('phrases.password_change'),
+      title: this.$t('phrases.password_update'),
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('messages.meta_description_password_change')
+          content: this.$t('messages.meta_description_password_update')
         }
       ],
     }

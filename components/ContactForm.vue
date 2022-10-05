@@ -75,11 +75,7 @@ export default {
       }
     },
     reset () {
-      const contact = this.contact
-      this.$_.forOwn(contact, (value, key) => {
-        contact[key] = ''
-      })
-      this.contact = contact
+      this.contact.message = ''
     },
     submit () {
       let contact = this.contact
