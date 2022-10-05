@@ -107,6 +107,7 @@ export default {
     message_footer: 'Received {ago} ago from {user}.',
     message_sent: 'Message has been sent successfully.',
     messages_deleted: 'Messages have been deleted successfully.',
+    meta_description_cities: "Farms, farmers' markets and farm products near {location}",
     meta_description_contact: 'Send contact message to Potato',
     meta_description_email_resend: 'Confirm your email address',
     meta_description_email_verify: 'Verify your email address by URL',

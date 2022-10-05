@@ -110,6 +110,7 @@ export default {
     message_footer: 'Otrzymano {ago} temu od {user}.',
     message_sent: 'Wiadomość została wysłana pomyślnie.',
     messages_deleted: 'Wiadomości zostały usunięte pomyślnie.',
+    meta_description_cities: 'Gospodarstwa rolne, agromarkety oraz produkty rolne w okolicy miejscowości {location}',
     meta_description_contact: 'Wyślij wiadomość do serwisu Ziemniaczek',
     meta_description_email_resend: 'Potwierdź adres email',
     meta_description_email_verify: 'Zweryfikuj adres email przez link',
