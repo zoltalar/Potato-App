@@ -1,6 +1,9 @@
 export default {
   methods: {
     async loadResources(force = false) {
+      if (this.$_.isEmpty(this.cityLargestCollection()) || force) {
+        await this.refreshCityLargestCollection()
+      }
       if (this.$_.isEmpty(this.languageCollection()) || force) {
         await this.refreshLanguageCollection()
       }

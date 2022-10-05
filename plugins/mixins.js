@@ -3,6 +3,7 @@ import Vue from 'vue'
 import addressMixin from '/mixins/address'
 import authMixin from '@/mixins/auth'
 import categoryMixin from '@/mixins/category'
+import cityMixin from '@/mixins/city'
 import countryMixin from '@/mixins/country'
 import currencyMixin from '@/mixins/currency'
 import dateTimeMixin from '@/mixins/date-time'
@@ -24,6 +25,7 @@ import userMixin from '@/mixins/user'
 Vue.mixin(addressMixin)
 Vue.mixin(authMixin)
 Vue.mixin(categoryMixin)
+Vue.mixin(cityMixin)
 Vue.mixin(countryMixin)
 Vue.mixin(currencyMixin)
 Vue.mixin(dateTimeMixin)
