@@ -42,9 +42,9 @@
               <gmap-marker
                 v-for="(marker, i) in mapMarkers()"
                 :key="'google-map-marker' + i"
-                :position="position(marker)"
+                :position="mapsMarkerPosition(marker)"
                 :clickable="true"
-                @click="infoWindow(marker, i)" />
+                @click="mapsInfoWindow(marker, i)" />
             </gmap-map>
           </div>
         </b-col>
@@ -53,8 +53,10 @@
   </div>
 </template>
 <script>
+import googleMapMixin from '@/mixins/google-map'
 export default {
   name: 'PageIndex',
+  mixins: [ googleMapMixin ],
   layout: 'home',
   head () {
     return {
@@ -154,12 +156,6 @@ export default {
       this.$root.$on('search-type', ({ type }) => {
         this.type = type
       })
-    },
-    position (marker) {
-      return {
-        lat: marker.latitude,
-        lng: marker.longitude
-      }
     },
     centerize (city) {
       if (!this.$_.isEmpty(city)) {
