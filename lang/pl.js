@@ -117,6 +117,7 @@ export default {
     meta_description_email_resend: 'Potwierdź adres email',
     meta_description_email_verify: 'Zweryfikuj adres email przez link',
     meta_description_farms_add: 'Dodaj gospodarstwo rolne',
+    meta_description_farms_browse: 'Przeglądaj gospodarstwa rolne w miejscowości {location} i okolicach',
     meta_description_farms_deactivate: 'Dezaktywacja gospodarstwa rolnego',
     meta_description_farms_edit: 'Edytuj informacje o gospodarstwie rolnym (adres, opis, godziny otwarcia, produkty, zdjęcia, media społecznościowe, itp.)',
     meta_description_farms_search: 'Szukaj gospodarstw rolnych w okolicy miejscowości {location} uprawiających {item}',

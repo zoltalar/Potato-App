@@ -21,7 +21,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('messages.meta_description_farms_browse')
+          content: this.$t('messages.meta_description_farms_browse', { location: this.city })
         }
       ],
     }

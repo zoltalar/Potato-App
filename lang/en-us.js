@@ -114,6 +114,7 @@ export default {
     meta_description_email_resend: 'Confirm your email address',
     meta_description_email_verify: 'Verify your email address by URL',
     meta_description_farms_add: 'Add farm',
+    meta_description_farms_browse: 'Browse farms in {location} and surrounding areas',
     meta_description_farms_deactivate: 'Deactivate farm',
     meta_description_farms_edit: 'Edit farm information (address, description, operating hours, products, photos, social media, etc.)',
     meta_description_farms_show: 'Farm details',
