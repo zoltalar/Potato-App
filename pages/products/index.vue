@@ -67,7 +67,7 @@ export default {
         .$axios
         .get('/api/potato/inventory/index', {
           params: {
-            limit: 1000
+            limit: 500
           }
         })
         .then((result) => {

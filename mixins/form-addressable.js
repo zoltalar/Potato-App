@@ -1,7 +1,4 @@
 export default {
-  data: () => ({
-    countries: []
-  }),
   methods: {
     addressLabel () {
       const country = this.selectedCountry()
@@ -19,7 +16,7 @@ export default {
         value: null,
         text: ''
       }]
-      const countries = this.countries
+      const countries = this.countryCollection()
       this.$_.forEach(countries, (country) => {
         const name = this.$_.snakeCase(country.name)
         options.push({
@@ -29,19 +26,8 @@ export default {
       })
       return options
     },
-    fetchCountries () {
-      this
-        .$axios
-        .get('/api/potato/countries/index')
-        .then((response) => {
-          this.countries = this.$_.get(response, 'data.data')
-        })
-        .catch(() => {
-          this.countries = []
-        })
-    },
     selectedCountry () {
-      const countries = this.countries
+      const countries = this.countryCollection()
       const countryId = this.country_id
       return this.$_.find(countries, { id: countryId })
     },

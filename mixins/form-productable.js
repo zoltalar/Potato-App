@@ -34,7 +34,7 @@ export default {
         .$axios
         .get('/api/potato/inventory/index', {
           params: {
-            limit: 1000,
+            limit: 500,
             type,
             productable_id: productable.id
           }
