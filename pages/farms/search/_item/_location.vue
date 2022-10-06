@@ -9,7 +9,7 @@
       </template>
       <template>
         <div class="list-farms" v-if="farms.length > 0">
-          <p v-html="$t('messages.farms_search', { item, location })"></p>
+          <h2 class="p" v-html="$t('messages.farms_search', { item, location })"></h2>
           <farm-list-item-card :farm="farm" :linkable-image="true" class="mb-4" v-for="(farm, i) in pagedFarms" :key="'farm-list-item-' + i">
             <template v-slot:links>
               <nuxt-link :to="localePath({ name: 'farms-show-id-name', params: { id: farm.id, name: slugify(farm.name) } })" class="card-link">{{ $t('phrases.details') }}</nuxt-link>
@@ -25,6 +25,7 @@
         </div>
         <div v-else>
           <span v-html="$t('messages.farms_search_empty')"></span>
+          <nuxt-link :to="localePath('/farms/create')" class="btn btn-primary">{{ $t('phrases.add_farm') }}</nuxt-link>
         </div>
       </template>
     </page-aside-content>
@@ -36,7 +37,7 @@ export default {
   layout: 'default',
   head () {
     return {
-      title: this.item + ' ' + this.$t('phrases.in') + ' ' + this.location + ' - ' + this.$t('phrases.farms_search_results'),
+      title: this.$t('messages.page_title_farms_search', { item: this.item, location: this.location }),
       meta: [
         {
           hid: 'description',

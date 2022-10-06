@@ -51,7 +51,7 @@ export default {
   layout: 'default',
   head () {
     return {
-      title: this.market.name + ', ' + this.addressLine(this.addressableAddress(this.market)),
+      title: this.$t('messages.page_title_markets_show', { name: this.market.name, address: this.addressLine(this.addressableAddress(this.market)) }),
       meta: [
         {
           hid: 'description',
@@ -64,8 +64,8 @@ export default {
   nuxtI18n: {
     locales: ['en', 'pl'],
     paths: {
-      en: '/markets/show/:id/:name',
-      pl: '/agromarkety/pokaz/:id/:name'
+      en: '/markets/:id/:name',
+      pl: '/agromarkety/:id/:name'
     }
   },
   async asyncData({ params, $axios }) {

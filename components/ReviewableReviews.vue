@@ -1,9 +1,9 @@
 <template>
   <div id="reviews" class="reviews">
-    <h6 class="mb-3">
+    <h2 class="h6 mb-3">
       {{ $t('phrases.reviews') }}
       ({{ reviews.length }})
-    </h6>
+    </h2>
     <div v-if="hasReviews()">
       <div class="list-reviews" v-for="(review, i) in pagedReviews" :key="'review-' + i">
         <review-list-item class="mb-4" :review="review" />

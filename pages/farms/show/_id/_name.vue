@@ -51,7 +51,7 @@ export default {
   layout: 'default',
   head () {
     return {
-      title: this.farm.name + ', ' + this.addressLine(this.addressableAddress(this.farm)),
+      title: this.$t('messages.page_title_farms_show', { name: this.farm.name, address: this.addressLine(this.addressableAddress(this.farm)) }),
       meta: [
         {
           hid: 'description',
@@ -64,8 +64,8 @@ export default {
   nuxtI18n: {
     locales: ['en', 'pl'],
     paths: {
-      en: '/farms/show/:id/:name',
-      pl: '/gospodarstwa-rolne/pokaz/:id/:name'
+      en: '/farms/:id/:name',
+      pl: '/gospodarstwa-rolne/:id/:name'
     }
   },
   async asyncData({ params, $axios }) {

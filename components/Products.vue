@@ -1,6 +1,6 @@
 <template>
   <div class="products">
-    <h6 class="mb-3">
+    <h2 class="h6 mb-3">
       {{ $t('phrases.products') }}
       <nuxt-link :to="farmEditProductsLink(productable)" class="link-edit" :title="$t('phrases.edit_products')" v-if="type === 'farm' && farmIsOwner(productable)">
         <font-awesome-icon icon="pencil-alt" />
@@ -8,7 +8,7 @@
       <nuxt-link :to="marketEditProductsLink(productable)" class="link-edit" :title="$t('phrases.edit_products')" v-else-if="type === 'market' && marketIsOwner(productable)">
         <font-awesome-icon icon="pencil-alt" />
       </nuxt-link>
-    </h6>
+    </h2>
     <b-tabs v-if="hasInventory()">
       <b-tab :title="$t('phrases.' + season)" :active="currentSeason() === season" v-for="(season, i) in seasons()" :key="'inventory-tab-' + i">
         <div v-if="inventory[season]">

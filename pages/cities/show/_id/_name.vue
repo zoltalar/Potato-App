@@ -1,7 +1,7 @@
 <template>
   <div class="cities show">
     <page-title>
-      {{ city.name }}
+      {{ $t('messages.page_title_cities', { location: city.name }) }}
     </page-title>
     <page-content>
       <template>
@@ -21,10 +21,10 @@
         <b-row>
           <b-col md="6">
             <div class="promoted-farms">
-              <h5>{{ $t('phrases.featured_farms') }}</h5>
+              <h2 class="h5">{{ $t('phrases.featured_farms') }}</h2>
               <div class="list list-farms" v-if="hasFarms()">
                 <farm-list-item :farm="farm" v-for="(farm, i) in farms" :key="'farm-list-item-' + i" />
-                <nuxt-link to="/">{{ $t('phrases.more_farms') }}</nuxt-link>
+                <nuxt-link :to="localePath({ name: 'farms-browse-city', params: { city: city.name } })">{{ $t('phrases.more_farms') }}</nuxt-link>
               </div>
               <div v-else>
                 <p>{{ $t('messages.farms_empty', { location: city.name }) }}</p>
@@ -34,7 +34,7 @@
           </b-col>
           <b-col md="6">
             <div class="promoted-markets">
-              <h5>{{ $t('phrases.featured_farmers_markets') }}</h5>
+              <h2 class="h5">{{ $t('phrases.featured_farmers_markets') }}</h2>
               <div class="list list-markets" v-if="hasMarkets()">
                 <market-list-item :market="market" v-for="(market, i) in markets" :key="'market-list-item-' + i" />
                 <nuxt-link to="/">{{ $t('phrases.more_farmers_markets') }}</nuxt-link>
@@ -58,7 +58,7 @@ export default {
   layout: 'default',
   head () {
     return {
-      title: this.city.name + ' - ' + this.$t('messages.page_title_cities'),
+      title: this.$t('messages.page_title_cities', { location: this.city.name }),
       meta: [
         {
           hid: 'description',
@@ -71,8 +71,8 @@ export default {
   nuxtI18n: {
     locales: ['en', 'pl'],
     paths: {
-      en: '/cities/show/:id/:name',
-      pl: '/miasta/pokaz/:id/:name'
+      en: '/cities/:id/:name',
+      pl: '/miasta/:id/:name'
     }
   },
   async asyncData ({ params, $axios }) {

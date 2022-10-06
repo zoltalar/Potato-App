@@ -8,7 +8,7 @@
               <span class="circle">
                 <font-awesome-icon icon="seedling" />
               </span>
-              <h5>{{ $t('phrases.promoted_farms') }}</h5>
+              <h2 class="h5">{{ $t('phrases.promoted_farms') }}</h2>
               <div class="list list-farms">
                 <farm-list-item :farm="farm" v-for="(farm, i) in farms" :key="'farm-list-item-' + i" />
               </div>
@@ -19,7 +19,7 @@
               <span class="circle">
                 <font-awesome-icon icon="shopping-bag" />
               </span>
-              <h5>{{ $t('phrases.promoted_farmers_markets') }}</h5>
+              <h2 class="h5">{{ $t('phrases.promoted_farmers_markets') }}</h2>
               <div class="list list-markets">
                 <market-list-item :market="market" v-for="(market, i) in markets" :key="'market-list-item-' + i" />
               </div>
@@ -31,8 +31,8 @@
             <span class="circle">
               <font-awesome-icon icon="map" />
             </span>
-            <h5 v-if="type === 'farms'">{{ $t('phrases.browse_farms_map') }}</h5>
-            <h5 v-else-if="type === 'markets'">{{ $t('phrases.browse_farmers_markets_map') }}</h5>
+            <h2 class="h5" v-if="type === 'farms'">{{ $t('phrases.browse_farms_map') }}</h2>
+            <h2 class="h5" v-else-if="type === 'markets'">{{ $t('phrases.browse_farmers_markets_map') }}</h2>
             <gmap-map class="google-maps" :center="map.center" :zoom="map.zoom" ref="google-map">
               <gmap-info-window
                 :options="map.infoWindow.options"
