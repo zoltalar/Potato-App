@@ -393,6 +393,10 @@ body {
     }
   }
 
+  .copyrights {
+    margin-top: .375rem;
+  }
+
   @include media-breakpoint-up(md) {
     text-align: left;
   }

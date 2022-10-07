@@ -3,7 +3,7 @@
     <b-container>
       <b-row>
         <b-col sm="6">
-          {{ $t('messages.copyrights_text', { year: (new Date()).getFullYear() }) }}
+          <p class="copyrights">{{ $t('messages.copyrights_text', { year: (new Date()).getFullYear() }) }}</p>
         </b-col>
         <b-col sm="6">
           <ul class="footer-nav">
