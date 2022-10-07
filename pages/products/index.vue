@@ -49,7 +49,7 @@ export default {
       pl: '/produkty'
     }
   },
-  // asyncData not possible here
+  // asyncData (not) possible here?
   data: () => ({
     inventory: [],
     id: null,
@@ -67,7 +67,7 @@ export default {
         .$axios
         .get('/api/potato/inventory/index', {
           params: {
-            limit: 500
+            limit: 200
           }
         })
         .then((result) => {
