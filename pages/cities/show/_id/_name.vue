@@ -27,8 +27,12 @@
                 <nuxt-link :to="localePath({ name: 'farms-browse-city-page', params: { city: city.name, page: 1 }, query: { latitude: city.latitude, longitude: city.longitude } })">{{ $t('phrases.more_farms') }}</nuxt-link>
               </div>
               <div v-else>
-                <p>{{ $t('messages.farms_empty', { location: city.name }) }}</p>
-                <nuxt-link :to="localePath('/farms/create')" class="btn btn-primary">{{ $t('phrases.add_farm') }}</nuxt-link>
+                <b-card class="bg-light" no-body>
+                  <b-card-body>
+                    <p>{{ $t('messages.farms_empty', { location: city.name }) }}</p>
+                    <nuxt-link :to="localePath('/farms/create')" class="btn btn-primary">{{ $t('phrases.add_farm') }}</nuxt-link>
+                  </b-card-body>
+                </b-card>
               </div>
             </div>
           </b-col>
@@ -40,8 +44,12 @@
                 <nuxt-link to="/">{{ $t('phrases.more_farmers_markets') }}</nuxt-link>
               </div>
               <div v-else>
-                <p>{{ $t('messages.markets_empty', { location: city.name }) }}</p>
-                <nuxt-link :to="localePath('/markets/create')" class="btn btn-primary">{{ $t('phrases.add_farmers_market') }}</nuxt-link>
+                <b-card class="bg-light" no-body>
+                  <b-card-body>
+                    <p>{{ $t('messages.markets_empty', { location: city.name }) }}</p>
+                    <nuxt-link :to="localePath('/markets/create')" class="btn btn-primary">{{ $t('phrases.add_farmers_market') }}</nuxt-link>
+                  </b-card-body>
+                </b-card>
               </div>
             </div>
           </b-col>
