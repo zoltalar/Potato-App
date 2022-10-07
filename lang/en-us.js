@@ -283,6 +283,7 @@ export default {
     ok: 'OK',
     operating_hours: 'Operating Hours',
     optional: 'Optional',
+    pagination: 'Pagination',
     password: 'Password',
     password_change: 'Password Change',
     password_reset: 'Password Reset',

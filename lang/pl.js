@@ -288,6 +288,7 @@ export default {
     ok: 'OK',
     operating_hours: 'Godziny Otwarcia',
     optional: 'Opcjonalne',
+    pagination: 'Stronicowanie',
     password: 'Hasło',
     password_change: 'Zmiana Hasła',
     password_reset: 'Resetowanie Hasła',

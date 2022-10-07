@@ -24,7 +24,7 @@
               <h2 class="h5">{{ $t('phrases.featured_farms') }}</h2>
               <div class="list list-farms" v-if="hasFarms()">
                 <farm-list-item :farm="farm" :distance-away="true" v-for="(farm, i) in farms" :key="'farm-list-item-' + i" />
-                <nuxt-link :to="localePath({ name: 'farms-browse-city', params: { city: city.name }, query: { latitude: city.latitude, longitude: city.longitude } })">{{ $t('phrases.more_farms') }}</nuxt-link>
+                <nuxt-link :to="localePath({ name: 'farms-browse-city-page', params: { city: city.name, page: 1 }, query: { latitude: city.latitude, longitude: city.longitude } })">{{ $t('phrases.more_farms') }}</nuxt-link>
               </div>
               <div v-else>
                 <p>{{ $t('messages.farms_empty', { location: city.name }) }}</p>
