@@ -6,7 +6,8 @@
     <nuxt-link :to="localePath({ name: 'farms-show-id-name', params: { id: farm.id, name: slugify(farm.name) } })" class="link-name">{{ farm.name }}</nuxt-link>
     <b-form-rating variant="warning" size="sm" class="p-0 ml-2" :value="farm.average_rating" no-border inline readonly />
     <p>
-      <char-limit :chars="80" :text="farm.description" :ellipsis="true" />
+      <char-limit :chars="charLimit" :text="farm.description" :ellipsis="true" />
+      <distance-away :distance="addressableDistanceAway(farm)" v-if="distanceAway && addressableDistanceAway(farm) !== null" />
     </p>
   </div>
 </template>
@@ -17,6 +18,16 @@ export default {
     farm: {
       type: Object,
       required: true
+    },
+    charLimit: {
+      type: Number,
+      required: false,
+      default: 70
+    },
+    distanceAway: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   computed: {

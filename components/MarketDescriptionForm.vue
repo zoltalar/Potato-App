@@ -34,11 +34,12 @@ export default {
     }
   }),
   watch: {
-    'editedMarket': {
+    editedMarket: {
       handler () {
         this.populate()
       },
-      deep: true
+      deep: true,
+      immediate: true
     },
     'market.description': {
       handler (description) {

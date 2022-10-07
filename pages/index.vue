@@ -10,7 +10,7 @@
               </span>
               <h2 class="h5">{{ $t('phrases.promoted_farms') }}</h2>
               <div class="list list-farms">
-                <farm-list-item :farm="farm" v-for="(farm, i) in farms" :key="'farm-list-item-' + i" />
+                <farm-list-item :farm="farm" :char-limit="80" v-for="(farm, i) in farms" :key="'farm-list-item-' + i" />
               </div>
             </div>
           </div>
@@ -21,7 +21,7 @@
               </span>
               <h2 class="h5">{{ $t('phrases.promoted_farmers_markets') }}</h2>
               <div class="list list-markets">
-                <market-list-item :market="market" v-for="(market, i) in markets" :key="'market-list-item-' + i" />
+                <market-list-item :market="market" :char-limit="80" v-for="(market, i) in markets" :key="'market-list-item-' + i" />
               </div>
             </div>
           </div>

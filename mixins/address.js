@@ -8,7 +8,7 @@ export default {
     },
     addressableDistanceAway (addressable) {
       const address = this.addressableAddress(addressable)
-      return this.$_.get(address, 'distance', 0)
+      return this.$_.get(address, 'distance', null)
     },
     addressableMailingAddress (addressable) {
       const addresses = this.$_.get(addressable, 'addresses', [])

@@ -23,7 +23,7 @@
             <div class="promoted-farms">
               <h2 class="h5">{{ $t('phrases.featured_farms') }}</h2>
               <div class="list list-farms" v-if="hasFarms()">
-                <farm-list-item :farm="farm" v-for="(farm, i) in farms" :key="'farm-list-item-' + i" />
+                <farm-list-item :farm="farm" :distance-away="true" v-for="(farm, i) in farms" :key="'farm-list-item-' + i" />
                 <nuxt-link :to="localePath({ name: 'farms-browse-city', params: { city: city.name }, query: { latitude: city.latitude, longitude: city.longitude } })">{{ $t('phrases.more_farms') }}</nuxt-link>
               </div>
               <div v-else>
@@ -36,7 +36,7 @@
             <div class="promoted-markets">
               <h2 class="h5">{{ $t('phrases.featured_farmers_markets') }}</h2>
               <div class="list list-markets" v-if="hasMarkets()">
-                <market-list-item :market="market" v-for="(market, i) in markets" :key="'market-list-item-' + i" />
+                <market-list-item :market="market" :distance-away="true" v-for="(market, i) in markets" :key="'market-list-item-' + i" />
                 <nuxt-link to="/">{{ $t('phrases.more_farmers_markets') }}</nuxt-link>
               </div>
               <div v-else>

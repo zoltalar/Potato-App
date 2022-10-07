@@ -34,7 +34,7 @@ export default {
     }
   }),
   watch: {
-    'editedFarm': {
+    editedFarm: {
       handler () {
         this.populate()
       },

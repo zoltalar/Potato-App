@@ -63,7 +63,7 @@
             </b-col>
           </b-row>
           <b-row class="mt-4" v-if="hasImages()">
-            <b-col md="4" v-for="(image, i) in images" :key="'farm-image-' + i">
+            <b-col md="4" v-for="(image, i) in images" :key="'market-image-' + i">
               <image-list-item :image="image" :imageable="market" type="market" />
             </b-col>
           </b-row>

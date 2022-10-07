@@ -6,7 +6,8 @@
     <nuxt-link :to="localePath({ name: 'markets-show-id-name', params: { id: market.id, name: slugify(market.name) } })" class="link-name">{{ market.name }}</nuxt-link>
     <b-form-rating variant="warning" size="sm" class="p-0 ml-2" :value="market.average_rating" no-border inline readonly />
     <p>
-      <char-limit :chars="80" :text="market.description" :ellipsis="true" />
+      <char-limit :chars="charLimit" :text="market.description" :ellipsis="true" />
+      <distance-away :distance="addressableDistanceAway(market)" v-if="distanceAway && addressableDistanceAway(market) !== null" />
     </p>
   </div>
 </template>
@@ -17,6 +18,16 @@ export default {
     market: {
       type: Object,
       required: true
+    },
+    charLimit: {
+      type: Number,
+      required: false,
+      default: 70
+    },
+    distanceAway: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   computed: {
