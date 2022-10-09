@@ -1,9 +1,12 @@
 <template>
   <div class="farms browse">
     <page-title>
-      {{ $t('messages.page_title_farms_browse', { location: city }) }}
+      {{ $t('messages.page_title_farms_browse', { location: city.name }) }}
     </page-title>
-    <page-content-aside :col-main="{md: 9}" :col-aside="{md: 3}">
+    <page-aside-content>
+      <template v-slot:aside>
+        <nuxt-link :to="localePath({ name: 'cities-show-id-name', params: { name: city.name, id: city.id } })" class="btn btn-primary mb-4">{{ $t('phrases.back') }}</nuxt-link>
+      </template>
       <template>
         <div v-if="hasFarms()">
           <farm-list-item-card :farm="farm" :linkable-image="true" class="mb-4" v-for="(farm, i) in farms" :key="'farm-list-item-' + i">
@@ -11,14 +14,14 @@
               <nuxt-link :to="localePath({ name: 'farms-show-id-name', params: { id: farm.id, name: slugify(farm.name) } })" class="card-link">{{ $t('phrases.details') }}</nuxt-link>
             </template>
           </farm-list-item-card>
-          <pagination class="mb-0" route="farms-browse-city-page" :meta="meta" />
+          <pagination class="mb-0" route="farms-browse-id-city-page" :meta="meta" />
         </div>
         <div v-else>
           <p>{{ $t('messages.farms_empty', { location: city }) }}</p>
           <nuxt-link :to="localePath('/farms/create')" class="btn btn-primary">{{ $t('phrases.add_farm') }}</nuxt-link>
         </div>
       </template>
-    </page-content-aside>
+    </page-aside-content>
   </div>
 </template>
 <script>
@@ -27,12 +30,12 @@ export default {
   layout: 'default',
   head () {
     return {
-      title: this.$t('messages.page_title_farms_browse', { location: this.city }),
+      title: this.$t('messages.page_title_farms_browse', { location: this.city.name }),
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('messages.meta_description_farms_browse', { location: this.city })
+          content: this.$t('messages.meta_description_farms_browse', { location: this.city.name })
         }
       ],
     }
@@ -40,31 +43,41 @@ export default {
   nuxtI18n: {
     locales: ['en', 'pl'],
     paths: {
-      en: '/farms/browse/:city/page/:page',
-      pl: '/gospodarstwa-rolne/przegladaj/:city/strona/:page'
+      en: '/farms/:id/:city/:page',
+      pl: '/gospodarstwa-rolne/:id/:city/:page'
     }
   },
-  async asyncData({ params, query, $axios }) {
+  async asyncData({ params, $axios }) {
+    const id = params.id
     const page = params.page
-    const latitude = query.latitude
-    const longitude = query.longitude
-    if (latitude && longitude) {
-      try {
+    try {
+      let response = await $axios.get(`/api/potato/cities/show/${id}`)
+      const city = response.data.data
+      if (city) {
+        const latitude = city.latitude
+        const longitude = city.longitude
         const response = await $axios.get(`/api/potato/farms/browse/${latitude}/${longitude}`, { params: { page }})
         return {
+          city,
           farms: response.data.data,
           meta: response.data.meta
         }
-      } catch (error) {}
-    }
+      }
+    } catch (error) {}
   },
   data: () => ({
+    city: {},
     farms: [],
     meta: {}
   }),
-  computed: {
-    city () {
-      return this.$route.params.city
+  watch: {
+    city: {
+      handler (city) {
+        if (this.$_.isEmpty(city)) {
+          this.$router.push(this.localePath('/'))
+        }
+      },
+      immediate: true
     }
   },
   methods: {

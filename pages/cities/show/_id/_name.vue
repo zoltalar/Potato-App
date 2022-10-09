@@ -24,7 +24,7 @@
               <h2 class="h5">{{ $t('phrases.featured_farms') }}</h2>
               <div class="list list-farms" v-if="hasFarms()">
                 <farm-list-item :farm="farm" :distance-away="true" v-for="(farm, i) in farms" :key="'farm-list-item-' + i" />
-                <nuxt-link to="/">{{ $t('phrases.more_farms') }}</nuxt-link>
+                <nuxt-link :to="localePath({ name: 'farms-browse-id-city-page', params: { id: city.id, city: city.name, page: 1 } })">{{ $t('phrases.more_farms') }}</nuxt-link>
               </div>
               <div v-else>
                 <b-card class="bg-light" no-body>
@@ -79,8 +79,8 @@ export default {
   nuxtI18n: {
     locales: ['en', 'pl'],
     paths: {
-      en: '/cities/:id/:name',
-      pl: '/miasta/:id/:name'
+      en: '/cities/:name/:id',
+      pl: '/miasta/:name/:id'
     }
   },
   async asyncData ({ params, $axios }) {
