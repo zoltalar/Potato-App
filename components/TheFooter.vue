@@ -21,7 +21,7 @@
         <b-col sm="12">
           <ul class="list-cities">
             <li v-for="(city, i) in cityLargestCollection()" :key="'city-largest-' + i">
-              <nuxt-link :to="localePath({ name: 'cities-show-id-name', params: { name: city.name, id: city.id } })">{{ city.name }}</nuxt-link>
+              <nuxt-link :to="localePath({ name: 'cities-show-name-id', params: { name: city.name, id: city.id } })">{{ city.name }}</nuxt-link>
             </li>
           </ul>
         </b-col>

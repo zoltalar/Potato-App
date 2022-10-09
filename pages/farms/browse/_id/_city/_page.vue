@@ -5,7 +5,7 @@
     </page-title>
     <page-aside-content>
       <template v-slot:aside>
-        <nuxt-link :to="localePath({ name: 'cities-show-id-name', params: { name: city.name, id: city.id } })" class="btn btn-primary mb-4">{{ $t('phrases.back') }}</nuxt-link>
+        <nuxt-link :to="localePath({ name: 'cities-show-name-id', params: { name: city.name, id: city.id } })" class="btn btn-primary mb-4">{{ $t('phrases.back') }}</nuxt-link>
       </template>
       <template>
         <div v-if="hasFarms()">
