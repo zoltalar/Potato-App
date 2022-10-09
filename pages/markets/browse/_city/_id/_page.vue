@@ -11,7 +11,7 @@
         <div v-if="hasMarkets()">
           <market-list-item-card :market="market" :linkable-image="true" class="mb-4" v-for="(market, i) in markets" :key="'market-list-item-' + i">
             <template v-slot:links>
-              <nuxt-link :to="localePath({ name: 'markets-show-id-name', params: { id: market.id, name: slugify(market.name) } })" class="card-link">{{ $t('phrases.details') }}</nuxt-link>
+              <nuxt-link :to="localePath({ name: 'markets-show-name-id', params: { name: slugify(market.name), id: market.id } })" class="card-link">{{ $t('phrases.details') }}</nuxt-link>
             </template>
           </market-list-item-card>
           <pagination class="mb-0" route="markets-browse-id-city-page" :meta="meta" />

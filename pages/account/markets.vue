@@ -21,7 +21,7 @@
             <template v-slot:links>
               <nuxt-link :to="localePath({ name: 'markets-edit-id-tab', params: { id: market.id, tab: localeMarketEditTab('contact-information') } })" class="card-link">{{ $t('phrases.edit') }}</nuxt-link>
               <nuxt-link :to="localePath({ name: 'markets-deactivate-id', params: { id: market.id } })" class="card-link" v-if="marketIsActive(market)">{{ $t('phrases.deactivate') }}</nuxt-link>
-              <nuxt-link :to="localePath({ name: 'markets-show-id-name', params: { id: market.id, name: slugify(market.name) } })" class="card-link">{{ $t('phrases.view') }}</nuxt-link>
+              <nuxt-link :to="localePath({ name: 'markets-show-name-id', params: { name: slugify(market.name), id: market.id } })" class="card-link">{{ $t('phrases.view') }}</nuxt-link>
             </template>
           </market-list-item-card>
           <b-pagination

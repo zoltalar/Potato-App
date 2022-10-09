@@ -64,8 +64,8 @@ export default {
   nuxtI18n: {
     locales: ['en', 'pl'],
     paths: {
-      en: '/markets/:id/:name',
-      pl: '/agromarkety/:id/:name'
+      en: '/markets/:name/:id',
+      pl: '/agromarkety/:name/:id'
     }
   },
   async asyncData({ params, $axios }) {

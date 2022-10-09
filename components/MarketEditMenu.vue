@@ -1,7 +1,7 @@
 <template>
   <b-list-group>
     <nuxt-link :to="tab.href" class="list-group-item list-group-item-action" v-for="(tab, i) in tabs()" :key="'market-edit-tab-' + i">{{ tab.title }}</nuxt-link>
-    <nuxt-link :to="localePath({ name: 'markets-show-id-name', params: { id: market.id, name: slugify(market.name) } })" class="list-group-item list-group-item-action">{{ $t('phrases.view') }}</nuxt-link>
+    <nuxt-link :to="localePath({ name: 'markets-show-name-id', params: { name: slugify(market.name), id: market.id } })" class="list-group-item list-group-item-action">{{ $t('phrases.view') }}</nuxt-link>
   </b-list-group>
 </template>
 <script>
