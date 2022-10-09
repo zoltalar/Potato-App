@@ -20,10 +20,10 @@ export default{
       this.$_.forEach(editTabs, (struct) => {
         tabs.push({
           href: this.localePath({
-            name: 'farms-edit-id-tab',
+            name: 'farms-edit-tab-id',
             params: {
-              id: this.$route.params.id,
-              tab: this.localeFarmEditTab(struct.tab)
+              tab: this.localeFarmEditTab(struct.tab),
+              id: this.$route.params.id
             }
           }),
           title: this.$t('phrases.' + this.$_.snakeCase(struct.tab))

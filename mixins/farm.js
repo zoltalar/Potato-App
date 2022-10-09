@@ -2,73 +2,73 @@ export default {
   methods: {
     farmEditAddressLink (farm) {
       return this.localePath({
-        name: 'farms-edit-id-tab',
+        name: 'farms-edit-tab-id',
         params: {
-          id: farm.id,
-          tab: this.localeFarmEditTab('address')
+          tab: this.localeFarmEditTab('address'),
+          id: farm.id
         }
       })
     },
     farmEditContactInformationLink (farm) {
       return this.localePath({
-        name: 'farms-edit-id-tab',
+        name: 'farms-edit-tab-id',
         params: {
-          id: farm.id,
-          tab: this.localeFarmEditTab('contact-information')
+          tab: this.localeFarmEditTab('contact-information'),
+          id: farm.id
         }
       })
     },
     farmEditDescriptionLink (farm) {
       return this.localePath({
-        name: 'farms-edit-id-tab',
+        name: 'farms-edit-tab-id',
         params: {
-          id: farm.id,
-          tab: this.localeFarmEditTab('description')
+          tab: this.localeFarmEditTab('description'),
+          id: farm.id
         }
       })
     },
     farmEditMailingAddressLink (farm) {
       return this.localePath({
-        name: 'farms-edit-id-tab',
+        name: 'farms-edit-tab-id',
         params: {
-          id: farm.id,
-          tab: this.localeFarmEditTab('mailing-address')
+          tab: this.localeFarmEditTab('mailing-address'),
+          id: farm.id
         }
       })
     },
     farmEditOperatingHoursLink (farm) {
       return this.localePath({
-        name: 'farms-edit-id-tab',
+        name: 'farms-edit-tab-id',
         params: {
-          id: farm.id,
-          tab: this.localeFarmEditTab('operating-hours')
+          tab: this.localeFarmEditTab('operating-hours'),
+          id: farm.id
         }
       })
     },
     farmEditPhotosLink (farm) {
       return this.localePath({
-        name: 'farms-edit-id-tab',
+        name: 'farms-edit-tab-id',
         params: {
-          id: farm.id,
-          tab: this.localeFarmEditTab('photos')
+          tab: this.localeFarmEditTab('photos'),
+          id: farm.id
         }
       })
     },
     farmEditProductsLink (farm) {
       return this.localePath({
-        name: 'farms-edit-id-tab',
+        name: 'farms-edit-tab-id',
         params: {
-          id: farm.id,
-          tab: this.localeFarmEditTab('products')
+          tab: this.localeFarmEditTab('products'),
+          id: farm.id
         }
       })
     },
     farmEditSocialMediaLink (farm) {
       return this.localePath({
-        name: 'farms-edit-id-tab',
+        name: 'farms-edit-tab-id',
         params: {
-          id: farm.id,
-          tab: this.localeFarmEditTab('social-media')
+          tab: this.localeFarmEditTab('social-media'),
+          id: farm.id
         }
       })
     },

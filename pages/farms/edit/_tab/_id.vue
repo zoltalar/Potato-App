@@ -111,8 +111,8 @@ export default {
   nuxtI18n: {
     locales: ['en', 'pl'],
     paths: {
-      en: '/farms/edit/:id/:tab',
-      pl: '/gospodarstwa-rolne/edytuj/:id/:tab'
+      en: '/farms/edit/:tab/:id',
+      pl: '/gospodarstwa-rolne/edytuj/:tab/:id'
     }
   },
   computed: {
