@@ -53,25 +53,17 @@
               </div>
             </div>
           </b-col>
-          <b-col md="12">
+          <b-col md="12" v-if="hasProducts()">
             <div class="locally-grown">
               <h2 class="h5">{{ $t('messages.locally_grown', { season: $t('phrases.' + currentSeason()) }) }}</h2>
               <b-card>
-                <div class="category-inventory">
-                  <h6>Owoce</h6>
-                  <ul><li>Jabłka</li><li>Agrest</li><li>Gruszki</li><li>Sliwki</li></ul>
-                </div>
-                <div class="category-inventory">
-                  <h6>Warzywa</h6>
-                  <ul><li>Ziemniak Slodki</li><li>Cukini</li><li>Pomidory</li><li>Salata</li></ul>
-                </div>
-                <div class="category-inventory">
-                  <h6>Miod</h6>
-                  <ul><li>Miod Akacjowy</li><li>Miód Gryczany</li><li>Miód Lipowy</li><li>Miód Rzepakowy</li></ul>
-                </div>
-                <div class="category-inventory pb-0">
-                  <h6>Miesa</h6>
-                  <ul><li>Cielęcina</li><li>Dziczyzna</li><li>Gęsi</li><li>Królik</li></ul>
+                <div class="category-inventory" v-for="(inventory, categoryName, i) in products" :key="'category-inventory-' + i">
+                  <h6>{{ categoryName }}</h6>
+                  <ul>
+                    <li v-for="(item, j) in inventory">
+                      <nuxt-link :to="localePath({ name: 'farms-search-item-location', params: { item, location: city.name }, query: { type: 'farms', city_id: city.id } })">{{ item }}</nuxt-link>
+                    </li>
+                  </ul>
                 </div>
               </b-card>
               <nuxt-link :to="localePath('products')">{{ $t('phrases.more_products') }}</nuxt-link>
@@ -118,7 +110,9 @@ export default {
       const markets = response.data.data
       response = await $axios.get('/api/potato/addresses/plot')
       const markers = response.data.data
-      return { city, farms, markets, markers }
+      response = await $axios.get(`/api/potato/products/growing-area/${city.latitude}/${city.longitude}`)
+      const products = response.data
+      return { city, farms, markets, markers, products }
     } catch (error) {}
   },
   data: () => ({
@@ -140,7 +134,8 @@ export default {
     },
     farms: [],
     markets: [],
-    markers: []
+    markers: [],
+    products: []
   }),
   computed: {
     mapCenter () {
@@ -168,6 +163,9 @@ export default {
     },
     hasMarkets () {
       return this.markets.length > 0
+    },
+    hasProducts () {
+      return !this.$_.isEmpty(this.products)
     }
   }
 }

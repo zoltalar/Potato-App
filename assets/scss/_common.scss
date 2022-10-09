@@ -293,6 +293,10 @@ body {
         margin-right: 1rem;
       }
     }
+
+    &:last-of-type {
+      padding-bottom: 0;
+    }
   }
 }
 
