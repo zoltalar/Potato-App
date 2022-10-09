@@ -1,7 +1,7 @@
 <template>
   <b-card class="list-farm-item" v-if="farmNotEmpty(farm)">
     <font-awesome-icon icon="star" class="text-warning float-right" :title="$t('phrases.promoted')" v-if="farm.promote" />
-    <nuxt-link :to="localePath({ name: 'farms-show-id-name', params: { id: farm.id, name: slugify(farm.name) } })" v-if="linkableImage && image && image.file">
+    <nuxt-link :to="localePath({ name: 'farms-show-name-id', params: { name: slugify(farm.name), id: farm.id } })" v-if="linkableImage && image && image.file">
       <b-img-lazy
         :src="imageVariation(image.variations, 'primary', 'file_url')"
         :alt="image.title"

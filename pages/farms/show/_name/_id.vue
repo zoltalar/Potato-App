@@ -64,8 +64,8 @@ export default {
   nuxtI18n: {
     locales: ['en', 'pl'],
     paths: {
-      en: '/farms/:id/:name',
-      pl: '/gospodarstwa-rolne/:id/:name'
+      en: '/farms/:name/:id',
+      pl: '/gospodarstwa-rolne/:name/:id'
     }
   },
   async asyncData({ params, $axios }) {

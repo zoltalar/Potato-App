@@ -12,7 +12,7 @@
           <h2 class="p" v-html="$t('messages.farms_search', { item, location })"></h2>
           <farm-list-item-card :farm="farm" :linkable-image="true" class="mb-4" v-for="(farm, i) in pagedFarms" :key="'farm-list-item-' + i">
             <template v-slot:links>
-              <nuxt-link :to="localePath({ name: 'farms-show-id-name', params: { id: farm.id, name: slugify(farm.name) } })" class="card-link">{{ $t('phrases.details') }}</nuxt-link>
+              <nuxt-link :to="localePath({ name: 'farms-show-name-id', params: { name: slugify(farm.name), id: farm.id } })" class="card-link">{{ $t('phrases.details') }}</nuxt-link>
             </template>
           </farm-list-item-card>
           <b-pagination

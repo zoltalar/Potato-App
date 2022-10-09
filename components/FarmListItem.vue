@@ -1,9 +1,9 @@
 <template>
   <div class="list-item">
-    <nuxt-link :to="localePath({ name: 'farms-show-id-name', params: { id: farm.id, name: slugify(farm.name) } })" v-if="image">
+    <nuxt-link :to="localePath({ name: 'farms-show-name-id', params: { name: slugify(farm.name), id: farm.id } })" v-if="image">
       <img :src="image" class="img-list-item" />
     </nuxt-link>
-    <nuxt-link :to="localePath({ name: 'farms-show-id-name', params: { id: farm.id, name: slugify(farm.name) } })" class="link-name">{{ farm.name }}</nuxt-link>
+    <nuxt-link :to="localePath({ name: 'farms-show-name-id', params: { name: slugify(farm.name), id: farm.id } })" class="link-name">{{ farm.name }}</nuxt-link>
     <b-form-rating variant="warning" size="sm" class="p-0 ml-2" :value="farm.average_rating" no-border inline readonly />
     <p>
       <char-limit :chars="charLimit" :text="farm.description" :ellipsis="true" />

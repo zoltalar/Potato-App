@@ -21,7 +21,7 @@
             <farm-list-item-card class="mb-4" :farm="favorite.favoriteable" :linkable-image="true" v-if="favorite.favoriteable_type === 'farm'">
               <template v-slot:links>
                 <a :href="localePath('/account/favorites')" class="card-link" @click.prevent="destroy(favorite)">{{ $t('phrases.delete') }}</a>
-                <nuxt-link :to="localePath({ name: 'farms-show-id-name', params: { id: favorite.favoriteable.id, name: slugify(favorite.favoriteable.name) } })" class="card-link">{{ $t('phrases.view') }}</nuxt-link>
+                <nuxt-link :to="localePath({ name: 'farms-show-name-id', params: { name: slugify(favorite.favoriteable.name), id: favorite.favoriteable.id } })" class="card-link">{{ $t('phrases.view') }}</nuxt-link>
               </template>
             </farm-list-item-card>
             <market-list-item-card class="mb-4" :market="favorite.favoriteable" :linkable-image="true" v-else-if="favorite.favoriteable_type === 'market'">
