@@ -51,7 +51,10 @@ export default {
     if (latitude && longitude) {
       try {
         const response = await $axios.get(`/api/potato/farms/browse/${latitude}/${longitude}`, { params: { page }})
-        return { farms: response.data.data, meta: response.data.meta }
+        return {
+          farms: response.data.data,
+          meta: response.data.meta
+        }
       } catch (error) {}
     }
   },

@@ -148,6 +148,7 @@ export default {
     page_title_farms_browse: 'Gospodarstwa rolne - {location} i okolice',
     page_title_farms_search: '{item} w miejscowości {location} - Wyniki wyszukiwania gospodarstw rolnych',
     page_title_farms_show: '{name}, {address} - Gospodarstwo rolne',
+    page_title_markets_browse: 'Agromarkety - {location} i okolice',
     page_title_markets_search: '{item} w miejscowości {location} - Wyniki wyszukiwania agromarketów',
     page_title_markets_show: '{name}, {address} - Agromarket',
     price_sample: 'np. 10 PLN za kilogram',
