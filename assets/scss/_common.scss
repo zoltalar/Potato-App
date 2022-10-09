@@ -60,6 +60,16 @@ html {
   }
 }
 
+.cities {
+
+  &.show {
+
+    main {
+      color: $gray-700;
+    }
+  }
+}
+
 .farms,
 .markets {
 
@@ -254,6 +264,36 @@ body {
   margin: 0 .125rem;
   vertical-align: middle;
   width: 2rem;
+}
+
+.locally-grown {
+  margin-top: 2rem;
+
+  h2 {
+    margin: .5rem 0 1.5rem;
+    text-align: center;
+  }
+
+  .card {
+    background-color: $gray-100;
+    margin-bottom: 1.25rem;
+  }
+
+  .category-inventory {
+    padding-bottom: 1rem;
+
+    ul {
+      margin: 0;
+      overflow: auto;
+      padding: 0;
+
+      > li {
+        float: left;
+        list-style: square inside;
+        margin-right: 1rem;
+      }
+    }
+  }
 }
 
 .page-aside-content,
