@@ -111,8 +111,8 @@ export default {
   nuxtI18n: {
     locales: ['en', 'pl'],
     paths: {
-      en: '/markets/edit/:id/:tab',
-      pl: '/agromarkety/edytuj/:id/:tab'
+      en: '/markets/edit/:tab/:id',
+      pl: '/agromarkety/edytuj/:tab/:id'
     }
   },
   computed: {

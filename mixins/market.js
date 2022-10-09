@@ -13,64 +13,64 @@ export default {
     },
     marketEditAddressLink (market) {
       return this.localePath({
-        name: 'markets-edit-id-tab',
+        name: 'markets-edit-tab-id',
         params: {
-          id: market.id,
-          tab: this.localeMarketEditTab('address')
+          tab: this.localeMarketEditTab('address'),
+          id: market.id
         }
       })
     },
     marketEditContactInformationLink (market) {
       return this.localePath({
-        name: 'markets-edit-id-tab',
+        name: 'markets-edit-tab-id',
         params: {
-          id: market.id,
-          tab: this.localeMarketEditTab('contact-information')
+          tab: this.localeMarketEditTab('contact-information'),
+          id: market.id
         }
       })
     },
     marketEditDescriptionLink (market) {
       return this.localePath({
-        name: 'markets-edit-id-tab',
+        name: 'markets-edit-tab-id',
         params: {
-          id: market.id,
-          tab: this.localeMarketEditTab('description')
+          tab: this.localeMarketEditTab('description'),
+          id: market.id
         }
       })
     },
     marketEditMailingAddressLink (market) {
       return this.localePath({
-        name: 'markets-edit-id-tab',
+        name: 'markets-edit-tab-id',
         params: {
-          id: market.id,
-          tab: this.localeMarketEditTab('mailing-address')
+          tab: this.localeMarketEditTab('mailing-address'),
+          id: market.id
         }
       })
     },
     marketEditOperatingHoursLink (market) {
       return this.localePath({
-        name: 'markets-edit-id-tab',
+        name: 'markets-edit-tab-id',
         params: {
-          id: market.id,
-          tab: this.localeMarketEditTab('operating-hours')
+          tab: this.localeMarketEditTab('operating-hours'),
+          id: market.id
         }
       })
     },
     marketEditPhotosLink (market) {
       return this.localePath({
-        name: 'markets-edit-id-tab',
+        name: 'markets-edit-tab-id',
         params: {
-          id: market.id,
-          tab: this.localeMarketEditTab('photos')
+          tab: this.localeMarketEditTab('photos'),
+          id: market.id
         }
       })
     },
     marketEditProductsLink (market) {
       return this.localePath({
-        name: 'markets-edit-id-tab',
+        name: 'markets-edit-tab-id',
         params: {
-          id: market.id,
-          tab: this.localeMarketEditTab('products')
+          tab: this.localeMarketEditTab('products'),
+          id: market.id
         }
       })
     },

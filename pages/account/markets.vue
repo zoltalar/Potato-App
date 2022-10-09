@@ -19,7 +19,7 @@
           <p v-html="$t('messages.account_markets')"></p>
           <market-list-item-card class="mb-4" :market="market" :linkable-image="true" v-for="(market, i) in pagedMarkets" :key="'farm-list-item-' + i">
             <template v-slot:links>
-              <nuxt-link :to="localePath({ name: 'markets-edit-id-tab', params: { id: market.id, tab: localeMarketEditTab('contact-information') } })" class="card-link">{{ $t('phrases.edit') }}</nuxt-link>
+              <nuxt-link :to="localePath({ name: 'markets-edit-tab-id', params: { tab: localeMarketEditTab('contact-information'), id: market.id } })" class="card-link">{{ $t('phrases.edit') }}</nuxt-link>
               <nuxt-link :to="localePath({ name: 'markets-deactivate-id', params: { id: market.id } })" class="card-link" v-if="marketIsActive(market)">{{ $t('phrases.deactivate') }}</nuxt-link>
               <nuxt-link :to="localePath({ name: 'markets-show-name-id', params: { name: slugify(market.name), id: market.id } })" class="card-link">{{ $t('phrases.view') }}</nuxt-link>
             </template>
