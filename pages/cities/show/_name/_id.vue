@@ -60,8 +60,8 @@
                 <div class="category-inventory" v-for="(inventory, categoryName, i) in products" :key="'category-inventory-' + i">
                   <h6>{{ categoryName }}</h6>
                   <ul>
-                    <li v-for="(item, j) in inventory">
-                      <nuxt-link :to="localePath({ name: 'farms-search-item-location', params: { item, location: city.name }, query: { type: 'farms', city_id: city.id } })">{{ item }}</nuxt-link>
+                    <li v-for="(inventoryId, item, j) in inventory" :key="'category-inventory-list-item-' + i + '-' + j">
+                      <nuxt-link :to="localePath({ name: 'farms-search-item-location-inventory-city-page-radius', params: { item: slugify(item), location: slugify(city.name), inventory: inventoryId, city: city.id, page: 1, radius: addressMaxRadius() }})">{{ item }}</nuxt-link>
                     </li>
                   </ul>
                 </div>

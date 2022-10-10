@@ -44,23 +44,47 @@ export default {
     }
   }),
   computed: {
+    city () {
+      return this.searchCity()
+    },
     cityId () {
-      return this.$route.query.city_id
+      return this.$route.params.city
+    },
+    inventory() {
+      return this.searchInventory()
     },
     inventoryId () {
-      return this.$route.query.inventory_id
+      return this.$route.params.inventory
     },
     item () {
       return this.$route.params.item
     },
+    itemName () {
+      const inventory = this.inventory
+      if (!this.$_.isNil(inventory)) {
+        return this.inventoryName(inventory)
+      }
+      return this.unslugify(this.item)
+    },
     location () {
       return this.$route.params.location
     },
-    radius () {
-      return this.$route.query.radius || this.addressMaxRadius()
+    locationName () {
+      const city = this.city
+      if (!this.$_.isNil(city)) {
+        return city.name
+      }
+      return this.unslugify(this.location)
     },
-    type () {
-      return this.$route.query.type || 'farms'
+    radius () {
+      return this.$route.params.radius || this.addressMaxRadius()
+    }
+  },
+  watch: {
+    '$route.query': {
+      handler() {
+        this.submit()
+      }
     }
   },
   methods: {
@@ -76,29 +100,34 @@ export default {
       })
     },
     populate () {
-      this.search.item = this.item
+      this.search.item = this.itemName
       this.search.inventory_id = this.inventoryId
-      this.search.location = this.location
+      this.search.location = this.locationName
       this.search.city_id = this.cityId
-      this.search.type = this.type
+      this.search.type = this.type()
       this.search.radius = this.radius
     },
     submit () {
       const search = this.search
       const type = search.type
       this.$router.push(this.localePath({
-        name: type + '-search-item-location',
+        name: type + '-search-item-location-inventory-city-page-radius',
         params: {
-          item: search.item,
-          location: search.location
-        },
-        query: {
-          type,
-          inventory_id: search.inventory_id,
-          city_id: search.city_id,
+          item: this.slugify(search.item),
+          location: this.slugify(search.location),
+          inventory: search.inventory_id,
+          city: search.city_id,
+          page: 1,
           radius: search.radius
         }
       }))
+    },
+    type () {
+      const elements = this.$route.name.split('-')
+      if (this.$_.isArray(elements) && elements.length > 0) {
+        return elements[0]
+      }
+      return null
     }
   },
   created () {

@@ -77,15 +77,13 @@ export default {
       const search = this.search
       const type = search.type
       this.$router.push(this.localePath({
-        name: type + '-search-item-location',
+        name: type + '-search-item-location-inventory-city-page-radius',
         params: {
-          item: search.item,
-          location: search.location
-        },
-        query: {
-          type,
-          inventory_id: search.inventory_id,
-          city_id: search.city_id,
+          item: this.slugify(search.item),
+          location: this.slugify(search.location),
+          inventory: search.inventory_id,
+          city: search.city_id,
+          page: 1,
           radius: this.radius
         }
       }))

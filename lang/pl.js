@@ -71,7 +71,7 @@ export default {
     farm_review_footer: 'Utworzono dnia {date} o godzinie {time} przez {user}.',
     farm_social_media_updated: 'Media społecznościowe gospodarstwa rolnego zostały zaktualizowane pomyślnie.',
     farms_empty: 'W tym obszarze nie ma jeszcze gospodarstw rolnych do wyświetlenia. Pomóż nam uzupełnić bazę lokalnych gospodarstw rolnych z okolic miejscowości {location}.',
-    farms_search: 'Szukasz gospodarstw rolnych uprawiających <strong>{item}</strong> w okolicy miejscowości <strong>{location}</strong>.',
+    farms_search: 'Szukasz gospodarstw rolnych produkujących <strong>{item}</strong> w okolicy miejscowości <strong>{location}</strong>.',
     farms_search_empty: '<p>Przykro nam ale nie znaleźliśmy żadnych gospodarstw rolnych.</p><p>Prosimy pomóż nam uzupełnić bazę lokalnych gospodarstw rolnych:</p>',
     favorite_deleted: 'Ulubione zostało usunięte pomyślnie.',
     form_errors: 'Formularz zawiera błędy. Prosimy sprobować ponownie.',

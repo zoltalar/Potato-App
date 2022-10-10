@@ -26,6 +26,9 @@ export default {
     },
     slugify (string) {
       return this.$_.kebabCase(string)
+    },
+    unslugify (string) {
+      return string.replace(/\-/g, ' ')
     }
   }
 }
