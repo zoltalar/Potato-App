@@ -5,6 +5,9 @@ export default {
     },
     searchInventory () {
       return this.$store.getters['search/inventory']
+    },
+    searchType () {
+      return this.$store.getters['search/type']
     }
   }
 }

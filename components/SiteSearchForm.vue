@@ -59,7 +59,7 @@ export default {
       })
     },
     populate () {
-      let type = this.$store.getters['search/type']
+      let type = this.searchType()
       if (this.$_.isNil(type)) {
         type = this.$auth.$storage.getCookie('potato.search._type')
       }

@@ -24,7 +24,7 @@
               <h2 class="h5">{{ $t('phrases.featured_farms') }}</h2>
               <div class="list list-farms" v-if="hasFarms()">
                 <farm-list-item :farm="farm" :distance-away="true" v-for="(farm, i) in farms" :key="'farm-list-item-' + i" />
-                <nuxt-link :to="localePath({ name: 'farms-browse-city-id-page', params: { city: city.name, id: city.id, page: 1 } })">{{ $t('phrases.more_farms') }}</nuxt-link>
+                <nuxt-link :to="localePath({ name: 'farms-browse-city-id-page', params: { city: slugify(city.name), id: city.id, page: 1 } })">{{ $t('phrases.more_farms') }}</nuxt-link>
               </div>
               <div v-else>
                 <b-card class="bg-light" no-body>
@@ -41,7 +41,7 @@
               <h2 class="h5">{{ $t('phrases.featured_farmers_markets') }}</h2>
               <div class="list list-markets" v-if="hasMarkets()">
                 <market-list-item :market="market" :distance-away="true" v-for="(market, i) in markets" :key="'market-list-item-' + i" />
-                <nuxt-link :to="localePath({ name: 'markets-browse-city-id-page', params: { city: city.name, id: city.id, page: 1 } })">{{ $t('phrases.more_farmers_markets') }}</nuxt-link>
+                <nuxt-link :to="localePath({ name: 'markets-browse-city-id-page', params: { city: slugify(city.name), id: city.id, page: 1 } })">{{ $t('phrases.more_farmers_markets') }}</nuxt-link>
               </div>
               <div v-else>
                 <b-card class="bg-light" no-body>
