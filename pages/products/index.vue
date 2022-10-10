@@ -6,15 +6,13 @@
     <page-content>
       <template>
         <div>
-          <div class="category-products" v-for="(categoryName, i) in categoryNames()" :key="'category-product-' + i">
-            <div v-if="products[categoryName]">
-              <h6>{{ categoryName }}</h6>
-              <ul>
-                <li v-for="(inventoryId, inventoryName, j) in products[categoryName]" :key="'category-product-item-' + i + '-' + j">
-                  <a :href="localePath({ name: 'products' })" @click.prevent="sidebar(inventoryId, inventoryName)">{{ inventoryName }}</a>
-                </li>
-              </ul>
-            </div>
+          <div class="category-products" v-for="(products, categoryName, i) in inventory" :key="'category-product-' + i">
+            <h2 class="h6">{{ categoryName }}</h2>
+            <ul>
+              <li v-for="(inventoryId, inventoryName, j) in products" :key="'category-product-item-' + i + '-' + j">
+                <a :href="localePath({ name: 'products' })" @click.prevent="sidebar(inventoryId, inventoryName)">{{ inventoryName }}</a>
+              </li>
+            </ul>
           </div>
           <b-sidebar id="sidebar-product" backdrop backdrop-variant="secondary">
             <template>
@@ -49,40 +47,24 @@ export default {
       pl: '/produkty'
     }
   },
-  // asyncData (not) possible here?
+  async asyncData({ $axios }) {
+    try {
+      const response = await $axios.get('/api/potato/categories/inventory')
+      return { inventory: response.data }
+    } catch (error) {}
+  },
   data: () => ({
-    inventory: [],
+    inventory: {},
     id: null,
     name: ''
   }),
-  computed: {
-    products () {
-      const inventory = this.inventory
-      return this.categoryProducts(inventory)
-    }
-  },
   methods: {
-    fetch () {
-      this
-        .$axios
-        .get('/api/potato/inventory/index', {
-          params: {
-            limit: 200
-          }
-        })
-        .then((result) => {
-          this.inventory = this.$_.get(result, 'data.data', [])
-        })
-    },
     sidebar (id, name) {
       this.id = id
       this.name = name
 
       this.$root.$emit('bv::toggle::collapse', 'sidebar-product')
     }
-  },
-  mounted () {
-    this.fetch()
   }
 }
 </script>

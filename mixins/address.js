@@ -100,15 +100,14 @@ export default {
     areaUrl (area, inventoryId, inventoryName) {
       const type = 'farms'
       return this.localePath({
-        name: type + '-search-item-location',
+        name: type + '-search-item-location-inventory-city-page-radius',
         params: {
-          item: inventoryName,
-          location: area.city
-        },
-        query: {
-          type,
-          inventory_id: inventoryId,
-          city_id: area.city_id
+          item: this.slugify(inventoryName),
+          inventory: inventoryId,
+          location: this.slugify(area.city),
+          city: area.city_id,
+          page: 1,
+          radius: this.addressMaxRadius()
         }
       })
     },
