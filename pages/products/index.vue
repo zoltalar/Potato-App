@@ -49,7 +49,7 @@ export default {
   },
   async asyncData({ $axios }) {
     try {
-      const response = await $axios.get('/api/potato/categories/inventory')
+      const response = await $axios.get('/api/potato/inventory/categories')
       return { inventory: response.data }
     } catch (error) {}
   },
