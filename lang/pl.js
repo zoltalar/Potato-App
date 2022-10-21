@@ -163,6 +163,7 @@ export default {
     search_product_with_example: 'Szukaj produktów np. Jabłka',
     user_contact_information_updated: 'Twój profil został zaktualizowany pomyślnie.',
     user_password_updated: 'Hasło zostało zmienione pomyślnie.',
+    verification_failed: 'Weryfikacja adresu email nie powiodła się!',
     verification_resent_text: 'Nowy link weryfikacyjny został wysłany na Twój adres email.',
     verification_successful_text: 'Twój adres email został zweryfikowany pomyślnie.',
     verification_text: 'Przed rozpoczęciem prosimy sprawdzić konto email czy link weryfikacyjny został już wysłany. Jeśli email nie dotarł do Ciebie kliknij poniższy przycisk.',

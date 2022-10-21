@@ -158,6 +158,7 @@ export default {
     search_product_with_example: 'Search products e.g. Apples',
     user_contact_information_updated: 'Your profile has been updated successfully.',
     user_password_updated: 'Password has been changed successfully.',
+    verification_failed: 'Email verification failed!',
     verification_resent_text: 'A fresh verification link has been sent to your email address.',
     verification_successful_text: 'Your email address has been successfully verified.',
     verification_text: 'Before proceeding, please check your email for a verification link. If you did not receive the email, please click the button below.',

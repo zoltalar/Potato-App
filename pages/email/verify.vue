@@ -4,11 +4,14 @@
       {{ $t('phrases.verify_your_email_address') }}
     </page-title>
     <page-content>
-      <b-alert variant="success" :show="verified">
+      <b-alert variant="success" class="mb-0" :show="verified">
         {{ $t('messages.verification_successful_text') }}
         <nuxt-link :to="localePath('/account/farms')" class="alert-link">{{ $t('phrases.continue') }}</nuxt-link>
       </b-alert>
-      <p v-if=" ! verified">{{ $t('phrases.verifying') }}...</p>
+      <b-alert variant="danger" class="mb-0" :show=" ! verified">
+        {{ $t('messages.verification_failed') }}
+        <nuxt-link :to="localePath('/account/farms')" class="alert-link">{{ $t('phrases.continue') }}</nuxt-link>
+      </b-alert>
     </page-content>
   </div>
 </template>
@@ -32,36 +35,26 @@ export default {
   nuxtI18n: {
     locales: ['en', 'pl'],
     paths: {
-      en: '/email/verify/:id/:email',
-      pl: '/email/weryfikuj/:id/:email'
+      en: '/email/verify',
+      pl: '/email/weryfikuj'
+    }
+  },
+  async asyncData({ query, $axios, $auth }) {
+    const id = query.id
+    const email = query.email
+    if (id && email) {
+      try {
+        const response = await $axios.put(`/api/potato/email/verify/${id}/${email}`)
+        const verified = (response.status === 204)
+        if (verified) {
+          $auth.fetchUser()
+        }
+        return { verified }
+      } catch (error) {}
     }
   },
   data: () => ({
     verified: false
-  }),
-  watch: {
-    '$route': {
-      handler () {
-        this.verify()
-      },
-      immediate: true
-    }
-  },
-  methods: {
-    verify () {
-      const id = this.$route.params.id
-      const email = this.$route.params.email
-
-      this
-        .$axios
-        .put(`/api/potato/email/verify/${id}/${email}`)
-        .then((response) => {
-          if (response.status === 204) {
-            this.verified = true
-            this.$auth.fetchUser()
-          }
-        })
-    }
-  }
+  })
 }
 </script>
