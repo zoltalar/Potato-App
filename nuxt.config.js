@@ -1,6 +1,6 @@
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
-  ssr: false,
+  ssr: true,
 
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -16,7 +16,9 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap' }
     ]
   },
 
@@ -50,6 +52,7 @@ export default {
     '@nuxtjs/fontawesome',
     '@nuxtjs/i18n',
     '@nuxtjs/moment',
+    '@nuxtjs/pwa',
     'nuxt-vue-select'
   ],
 
@@ -131,6 +134,17 @@ export default {
     lazy: false,
     langDir: 'lang/',
     defaultLocale: 'pl'
+  },
+
+  pwa: {
+    meta: {
+      name: 'Ziemniaczek.eu',
+      author: 'Ziemniaczek Team'
+    },
+    manifest: {
+      name: 'Ziemniaczek.eu',
+      short_name: 'Ziemniaczek'
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
