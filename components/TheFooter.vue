@@ -35,7 +35,7 @@ export default {
   data: () => ({
     cities: []
   }),
-  async fetch() {
+  async fetch () {
     let collection = this.cityLargestCollection()
     if (collection.length === 0) {
       collection = await this.$store.dispatch('city/largestCollection')

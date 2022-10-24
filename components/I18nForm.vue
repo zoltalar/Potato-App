@@ -5,7 +5,7 @@
     </b-form-group>
     <b-form-group :label="$t('phrases.country')">
       <b-row>
-        <b-col sm="6" v-for="(country) in countryCollection()">
+        <b-col sm="6" v-for="(country) in countries">
           <b-form-radio name="country" v-model="i18n.country" :value="country.code">
             <img :src="countryFlag(country)" class="img-flag" />
             {{ country.name }}
@@ -26,8 +26,16 @@ export default {
       language: undefined,
       country: undefined,
       currency: undefined
-    }
+    },
+    countries: []
   }),
+  async fetch () {
+    let collection = this.countryCollection()
+    if (collection.length === 0) {
+      collection = await this.$store.dispatch('country/collection')
+    }
+    this.countries = collection
+  },
   methods: {
     country () {
       return this.i18n.country
