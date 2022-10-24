@@ -45,7 +45,7 @@ export default {
         })
         if (response.data.token) {
           this.error = null
-          await this.$router.push(this.localePath('/'))
+          await this.$router.push(this.localePath({ name: 'index' }))
         } else if (response.data.error) {
           this.error = response.data.error
         }

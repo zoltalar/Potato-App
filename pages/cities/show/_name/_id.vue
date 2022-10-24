@@ -30,7 +30,7 @@
                 <b-card class="bg-light" no-body>
                   <b-card-body>
                     <p>{{ $t('messages.farms_empty', { location: city.name }) }}</p>
-                    <nuxt-link :to="localePath('/farms/create')" class="btn btn-primary">{{ $t('phrases.add_farm') }}</nuxt-link>
+                    <nuxt-link :to="localePath({ name: 'farms-create' })" class="btn btn-primary">{{ $t('phrases.add_farm') }}</nuxt-link>
                   </b-card-body>
                 </b-card>
               </div>
@@ -47,7 +47,7 @@
                 <b-card class="bg-light" no-body>
                   <b-card-body>
                     <p>{{ $t('messages.markets_empty', { location: city.name }) }}</p>
-                    <nuxt-link :to="localePath('/markets/create')" class="btn btn-primary">{{ $t('phrases.add_farmers_market') }}</nuxt-link>
+                    <nuxt-link :to="localePath({ name: 'markets-create' })" class="btn btn-primary">{{ $t('phrases.add_farmers_market') }}</nuxt-link>
                   </b-card-body>
                 </b-card>
               </div>
@@ -66,7 +66,7 @@
                   </ul>
                 </div>
               </b-card>
-              <nuxt-link :to="localePath('products')">{{ $t('phrases.more_products') }}</nuxt-link>
+              <nuxt-link :to="localePath({ name: 'products' })">{{ $t('phrases.more_products') }}</nuxt-link>
             </div>
           </b-col>
         </b-row>
@@ -150,7 +150,7 @@ export default {
     city: {
       handler (city) {
         if (this.$_.isEmpty(city)) {
-          this.$router.push(this.localePath('/'))
+          this.$router.push(this.localePath({ name: 'index' }))
         }
       },
       deep: true,

@@ -18,7 +18,7 @@
         </div>
         <div v-else>
           <p>{{ $t('messages.markets_empty', { location: city }) }}</p>
-          <nuxt-link :to="localePath('/markets/create')" class="btn btn-primary">{{ $t('phrases.add_farmers_market') }}</nuxt-link>
+          <nuxt-link :to="localePath({ name: 'markets-create'})" class="btn btn-primary">{{ $t('phrases.add_farmers_market') }}</nuxt-link>
         </div>
       </template>
     </page-aside-content>
@@ -74,7 +74,7 @@ export default {
     city: {
       handler (city) {
         if (this.$_.isEmpty(city)) {
-          this.$router.push(this.localePath('/'))
+          this.$router.push(this.localePath({ name: 'index' }))
         }
       },
       immediate: true

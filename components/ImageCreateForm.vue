@@ -47,9 +47,9 @@ export default {
     cancelUrl () {
       const type = this.type
       if (type === 'farm') {
-        return this.localePath('/account/farms')
+        return this.localePath({ name: 'account-farms' })
       } else if (type === 'market') {
-        return this.localePath('/account/markets')
+        return this.localePath({ name: 'account-markets' })
       }
       return ''
     },

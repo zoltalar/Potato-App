@@ -136,7 +136,7 @@ export default {
     farm: {
       handler (farm) {
         if (this.$_.isEmpty(farm) || !this.farmIsOwner(farm)) {
-          this.$router.push(this.localePath('/account/farms'))
+          this.$router.push(this.localePath({ name: 'account-farms' }))
         }
       },
       deep: true,

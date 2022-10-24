@@ -50,7 +50,7 @@
     <b-form-group>
       <b-button type="submit" variant="primary" size="lg">{{ $t('phrases.to_register') }}</b-button>
       <span class="ml-3">{{ $t('phrases.already_have_an_account?') }}</span>
-      <nuxt-link :to="localePath('/login')">{{ $t('phrases.to_login') }}</nuxt-link>
+      <nuxt-link :to="localePath({ name: 'login' })">{{ $t('phrases.to_login') }}</nuxt-link>
     </b-form-group>
   </form>
 </template>

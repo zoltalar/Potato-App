@@ -10,7 +10,7 @@
       <password-reset-form />
       <div class="text-center">
         {{ $t('phrases.already_have_an_account?') }}
-        <nuxt-link :to="localePath('/login')">{{ $t('phrases.to_login') }}</nuxt-link>
+        <nuxt-link :to="localePath({ name: 'login' })">{{ $t('phrases.to_login') }}</nuxt-link>
       </div>
     </page-content>
   </div>

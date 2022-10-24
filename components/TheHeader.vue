@@ -2,7 +2,7 @@
   <header class="site-header">
     <b-container>
       <b-navbar class="navbar-primary" toggleable="lg">
-        <nuxt-link :to="localePath('/')" class="navbar-brand">
+        <nuxt-link :to="localePath({ name: 'index' })" class="navbar-brand">
           {{ $t('messages.codename') }}
         </nuxt-link>
         <b-navbar-toggle target="nav-primary-collapse"></b-navbar-toggle>

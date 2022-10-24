@@ -49,7 +49,7 @@
     </b-form-group>
     <b-form-group>
       <b-button type="submit" variant="primary" size="lg" :disabled="submitDisabled()">{{ $t('phrases.create') }}</b-button>
-      <nuxt-link :to="localePath('/account/markets')" class="ml-3">{{ $t('phrases.cancel') }}</nuxt-link>
+      <nuxt-link :to="localePath({ name: 'account-markets' })" class="ml-3">{{ $t('phrases.cancel') }}</nuxt-link>
     </b-form-group>
   </form>
 </template>

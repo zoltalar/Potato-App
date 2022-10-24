@@ -19,7 +19,7 @@
         </div>
         <div v-else>
           <span v-html="$t('messages.farms_search_empty')"></span>
-          <nuxt-link :to="localePath('/farms/create')" class="btn btn-primary">{{ $t('phrases.add_farm') }}</nuxt-link>
+          <nuxt-link :to="localePath({ name: 'farms-create' })" class="btn btn-primary">{{ $t('phrases.add_farm') }}</nuxt-link>
         </div>
       </template>
     </page-aside-content>

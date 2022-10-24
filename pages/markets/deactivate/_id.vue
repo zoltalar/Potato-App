@@ -22,7 +22,7 @@
           </b-row>
         </div>
         <div v-else>
-          <nuxt-link :to="localePath('/account/markets')" class="btn btn-primary btn-lg">{{ $t('phrases.continue') }}</nuxt-link>
+          <nuxt-link :to="localePath({ name: 'account-markets' })" class="btn btn-primary btn-lg">{{ $t('phrases.continue') }}</nuxt-link>
         </div>
       </template>
     </page-content>
@@ -66,7 +66,7 @@ export default {
     market: {
       handler(market) {
         if (this.$_.isEmpty(market) || !this.marketIsOwner(market)) {
-          this.$router.push(this.localePath('/account/markets'))
+          this.$router.push(this.localePath({ name: 'account-markets' }))
         }
       },
       deep: true,

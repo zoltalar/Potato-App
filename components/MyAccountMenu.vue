@@ -10,29 +10,29 @@ export default{
     tabs () {
       return [
         {
-          href: this.localePath('/account/farms'),
+          href: this.localePath({ name: 'account-farms' }),
           title: this.$t('phrases.farms')
         },
         {
-          href: this.localePath('/account/markets'),
+          href: this.localePath({ name: 'account-markets' }),
           title: this.$t('phrases.farmers_markets')
         },
         {
-          href: this.localePath('/account/favorites'),
+          href: this.localePath({ name: 'account-favorites' }),
           title: this.$t('phrases.favorites') },
         {
-          href: this.localePath('/account/messages'),
+          href: this.localePath({ name: 'account-messages' }),
           title: this.$t('phrases.messages')
         },
         {
-          href: this.localePath('/account/reviews'),
+          href: this.localePath({ name: 'account-reviews' }),
           title: this.$t('phrases.reviews') },
         {
-          href: this.localePath('/account/contact-information'),
+          href: this.localePath({ name: 'account-contact-information' }),
           title: this.$t('phrases.contact_information')
         },
         {
-          href: this.localePath('/account/password'),
+          href: this.localePath({ name: 'account-password' }),
           title: this.$t('phrases.password')
         }
       ]

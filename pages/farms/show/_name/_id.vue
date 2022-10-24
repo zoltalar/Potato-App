@@ -82,7 +82,7 @@ export default {
     farm: {
       handler (farm) {
         if (this.$_.isEmpty(farm)) {
-          this.$router.push(this.localePath('/'))
+          this.$router.push(this.localePath({ name: 'index' }))
         }
       },
       deep: true,

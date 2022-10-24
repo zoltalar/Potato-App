@@ -22,7 +22,7 @@
           </b-row>
         </div>
         <div v-else>
-          <nuxt-link :to="localePath('/account/farms')" class="btn btn-primary btn-lg">{{ $t('phrases.continue') }}</nuxt-link>
+          <nuxt-link :to="localePath({ name: 'account-farms' })" class="btn btn-primary btn-lg">{{ $t('phrases.continue') }}</nuxt-link>
         </div>
       </template>
     </page-content>
@@ -66,7 +66,7 @@ export default {
     farm: {
       handler(farm) {
         if (this.$_.isEmpty(farm) || !this.farmIsOwner(farm)) {
-          this.$router.push(this.localePath('/account/farms'))
+          this.$router.push(this.localePath({ name: 'account-farms' }))
         }
       },
       deep: true,

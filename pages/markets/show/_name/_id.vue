@@ -82,7 +82,7 @@ export default {
     market: {
       handler (market) {
         if (this.$_.isEmpty(market)) {
-          this.$router.push(this.localePath('/'))
+          this.$router.push(this.localePath({ name: 'index' }))
         }
       },
       deep: true,

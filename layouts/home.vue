@@ -20,7 +20,7 @@ export default {
     }
   },
   mounted () {
-    this.loadResources()
+    // this.loadResources()
   }
 }
 </script>

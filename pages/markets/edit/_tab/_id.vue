@@ -136,7 +136,7 @@ export default {
     market: {
       handler (market) {
         if (this.$_.isEmpty(market) || !this.marketIsOwner(market)) {
-          this.$router.push(this.localePath('/account/markets'))
+          this.$router.push(this.localePath({ name: 'account-markets' }))
         }
       },
       deep: true,

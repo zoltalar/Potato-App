@@ -6,7 +6,7 @@
     <page-aside-content :col-main="{md: 9}" :col-aside="{md: 3}">
       <template v-slot:aside>
         <b-button-group class="mb-4">
-          <nuxt-link :to="localePath('/account/messages')" class="btn btn-primary">{{ $t('phrases.back') }}</nuxt-link>
+          <nuxt-link :to="localePath({ name: 'account-messages' })" class="btn btn-primary">{{ $t('phrases.back') }}</nuxt-link>
           <b-button variant="secondary" @click.prevent="destroy">{{ $t('phrases.delete') }}</b-button>
         </b-button-group>
       </template>
@@ -72,7 +72,7 @@ export default {
     'message': {
       handler (message) {
         if (this.$_.isEmpty(message)) {
-          this.$router.push(this.localePath('/'))
+          this.$router.push(this.localePath({ name: 'index' }))
         }
       },
       deep: true,
@@ -90,7 +90,7 @@ export default {
           .delete(`/api/potato/messages/${message.token}`)
           .then(() => {
             this.$store.commit('flash/message', this.$t('messages.message_deleted'))
-            this.$router.push(this.localePath('/account/messages'))
+            this.$router.push(this.localePath({ name: 'account-messages' }))
           })
       }
     },

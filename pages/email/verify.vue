@@ -6,11 +6,11 @@
     <page-content>
       <b-alert variant="success" class="mb-0" :show="verified">
         {{ $t('messages.verification_successful_text') }}
-        <nuxt-link :to="localePath('/account/farms')" class="alert-link">{{ $t('phrases.continue') }}</nuxt-link>
+        <nuxt-link :to="localePath({ name: 'account-farms' })" class="alert-link">{{ $t('phrases.continue') }}</nuxt-link>
       </b-alert>
       <b-alert variant="danger" class="mb-0" :show=" ! verified">
         {{ $t('messages.verification_failed') }}
-        <nuxt-link :to="localePath('/account/farms')" class="alert-link">{{ $t('phrases.continue') }}</nuxt-link>
+        <nuxt-link :to="localePath({ name: 'account-farms' })" class="alert-link">{{ $t('phrases.continue') }}</nuxt-link>
       </b-alert>
     </page-content>
   </div>

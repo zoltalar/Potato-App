@@ -41,7 +41,7 @@ export default {
     listen () {
       this.$root.$on('market-created', () => {
         this.$store.commit('flash/message', this.$t('messages.market_created'))
-        this.$router.push(this.localePath('/account/markets'))
+        this.$router.push(this.localePath({ name: 'account-markets' }))
       })
     }
   },
