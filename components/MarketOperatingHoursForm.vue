@@ -158,7 +158,6 @@ export default {
   },
   methods: {
     addHours (index = null) {
-      let hours = this.hours
       const hour = {
         type: null,
         start_date: null,
@@ -202,9 +201,10 @@ export default {
         }
       }
       if (this.$_.isNil(index)) {
-        this.hours.push(hour)
+        index = this.hours.length
+        this.$set(this.hours, index, hour)
       } else {
-        this.hours[index] = hour
+        this.$set(this.hours, index, hour)
       }
     },
     deleteHours(index) {
