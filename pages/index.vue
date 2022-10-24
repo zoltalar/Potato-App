@@ -33,19 +33,21 @@
             </span>
             <h2 class="h5" v-if="type === 'farms'">{{ $t('phrases.browse_farms_map') }}</h2>
             <h2 class="h5" v-else-if="type === 'markets'">{{ $t('phrases.browse_farmers_markets_map') }}</h2>
-            <gmap-map class="google-maps" :center="map.center" :zoom="map.zoom" ref="google-map">
-              <gmap-info-window
-                :options="map.infoWindow.options"
-                :position="map.infoWindow.position"
-                :opened="map.infoWindow.open"
-                @closeclick="map.infoWindow.open = false" />
-              <gmap-marker
-                v-for="(marker, i) in mapMarkers()"
-                :key="'google-map-marker' + i"
-                :position="mapsMarkerPosition(marker)"
-                :clickable="true"
-                @click="mapsInfoWindow(marker, i)" />
-            </gmap-map>
+            <client-only>
+              <gmap-map class="google-maps" :center="map.center" :zoom="map.zoom" ref="google-map">
+                <gmap-info-window
+                  :options="map.infoWindow.options"
+                  :position="map.infoWindow.position"
+                  :opened="map.infoWindow.open"
+                  @closeclick="map.infoWindow.open = false" />
+                <gmap-marker
+                  v-for="(marker, i) in mapMarkers()"
+                  :key="'google-map-marker' + i"
+                  :position="mapsMarkerPosition(marker)"
+                  :clickable="true"
+                  @click="mapsInfoWindow(marker, i)" />
+              </gmap-map>
+            </client-only>
           </div>
         </b-col>
       </b-row>
@@ -70,8 +72,14 @@ export default {
       ]
     }
   },
-  async asyncData({ $axios }) {
+  async asyncData({ store, $axios }) {
     try {
+      // Global
+      let collection = store.getters['city/largestCollection']
+      if (collection.length === 0) {
+        await store.commit('city/largestCollection')
+      }
+      // Local
       let response = await $axios.get('/api/potato/farms/index', { params: { limit: 2, promote: true }})
       const farms = response.data.data
       response = await $axios.get('/api/potato/markets/index', { params: { limit: 2, promote: true }})

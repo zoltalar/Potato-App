@@ -3,7 +3,7 @@ export default {
   ssr: true,
 
   // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
+  target: 'server',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -29,7 +29,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/plugins/axios.js', mode: 'client' },
+    { src: '~/plugins/axios.js' },
     { src: '~/plugins/bootstrap.js', mode: 'client' },
     { src: '~/plugins/chart.js', mode: 'client' },
     { src: '~/plugins/lodash.js' },
@@ -148,5 +148,5 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {}
 }

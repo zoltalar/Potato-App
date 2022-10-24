@@ -117,6 +117,10 @@ export default {
   },
   data: () => ({
     city: {},
+    farms: [],
+    markets: [],
+    markers: [],
+    products: [],
     map: {
       zoom: 10,
       infoWindow: {
@@ -131,11 +135,7 @@ export default {
         },
         position: null
       }
-    },
-    farms: [],
-    markets: [],
-    markers: [],
-    products: []
+    }
   }),
   computed: {
     mapCenter () {

@@ -7,6 +7,11 @@ export default {
     type: {
       type: String,
       required: true
+    },
+    countryable: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data: () => ({
@@ -30,13 +35,15 @@ export default {
     fetch () {
       const type = this.type
       const productable = this.productable
+      const countryable = this.countryable
       this
         .$axios
         .get('/api/potato/inventory/index', {
           params: {
-            limit: 500,
+            limit: 200,
             type,
-            productable_id: productable.id
+            productable_id: productable.id,
+            countryable: (countryable === true ? 1 : 0)
           }
         })
         .then((response) => {
@@ -92,7 +99,8 @@ export default {
           currency_id: null,
           price_unit: null
         }
-        this.products.push(product)
+        const index = this.products.length
+        this.$set(this.products, index, product)
       }
     },
     uri () {

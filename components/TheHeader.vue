@@ -9,10 +9,10 @@
         <b-collapse id="nav-primary-collapse" is-nav>
           <b-navbar-nav class="ml-auto">
             <li class="nav-item" v-if=" ! $auth.loggedIn">
-              <nuxt-link :to="localePath('/register')" class="nav-link">{{ $t('phrases.register') }}</nuxt-link>
+              <nuxt-link :to="localePath({ name: 'register' })" class="nav-link">{{ $t('phrases.register') }}</nuxt-link>
             </li>
             <li class="nav-item" v-if=" ! $auth.loggedIn">
-              <nuxt-link :to="localePath('/login')" class="nav-link">{{ $t('phrases.login') }}</nuxt-link>
+              <nuxt-link :to="localePath({ name: 'login' })" class="nav-link">{{ $t('phrases.login') }}</nuxt-link>
             </li>
             <b-nav-item-dropdown class="nav-item-user" right v-if="$auth.loggedIn">
               <template v-slot:button-content>
@@ -22,10 +22,10 @@
                 </b-badge>
               </template>
               <li role="presentation">
-                <nuxt-link :to="localePath('/account/farms')" class="dropdown-item" role="menuitem">{{ $t('phrases.my_account') }}</nuxt-link>
+                <nuxt-link :to="localePath({ name: 'account-farms' })" class="dropdown-item" role="menuitem">{{ $t('phrases.my_account') }}</nuxt-link>
               </li>
               <li role="presentation">
-                <nuxt-link :to="localePath('/account/messages')" class="dropdown-item" role="menuitem">
+                <nuxt-link :to="localePath({ name: 'account-messages' })" class="dropdown-item" role="menuitem">
                   {{ $t('phrases.messages') }}
                   ({{ messages.length }})
                 </nuxt-link>

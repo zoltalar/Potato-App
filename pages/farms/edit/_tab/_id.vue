@@ -52,7 +52,7 @@
         <div v-else-if="farmEditTab() === 'products'">
           <h5 class="mb-2">{{ $t('phrases.products') }}</h5>
           <p class="mb-4" v-html="$t('messages.farm_products')"></p>
-          <products-form :productable="farm" type="farm" />
+          <products-form :productable="farm" type="farm" :countryable="true" />
         </div>
         <div v-else-if="farmEditTab() === 'photos'">
           <h5 class="mb-2">{{ $t('phrases.photos') }}</h5>
