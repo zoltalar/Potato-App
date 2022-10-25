@@ -115,6 +115,9 @@ export default {
       return { city, farms, markets, markers, products }
     } catch (error) {}
   },
+  async fetch() {
+    await this.loadResources()
+  },
   data: () => ({
     city: {},
     farms: [],

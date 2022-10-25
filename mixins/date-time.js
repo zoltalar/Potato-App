@@ -6,29 +6,29 @@ export default {
       const month = date.month() + 1
       const day = date.date()
       if (month === 1 || month === 2) {
-        season = 'winter';
+        season = 'winter'
       } else if (month === 4 || month === 5) {
-        season = 'spring';
+        season = 'spring'
       } else if (month === 7 || month === 8) {
-        season = 'summer';
+        season = 'summer'
       } else if (month === 10 || month === 11) {
-        season = 'fall';
+        season = 'fall'
       } else if (month === 3 && day <= 19) {
-        season = 'winter';
+        season = 'winter'
       } else if (month === 3) {
-        season = 'spring';
+        season = 'spring'
       } else if (month === 6 && day <= 20) {
-        season = 'spring';
+        season = 'spring'
       } else if (month === 6) {
-        season = 'summer';
+        season = 'summer'
       } else if (month === 9 && day <= 20) {
-        season = 'summer';
+        season = 'summer'
       } else if (month === 9) {
-        season = 'fall';
+        season = 'fall'
       } else if (month === 12 && day <= 21) {
-        season = 'fall';
+        season = 'fall'
       } else if (month === 12) {
-        season = 'winter';
+        season = 'winter'
       }
       return season
     },

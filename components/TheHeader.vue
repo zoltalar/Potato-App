@@ -39,7 +39,7 @@
         </b-collapse>
       </b-navbar>
     </b-container>
-    <b-modal id="modal-i18n" :title="$t('phrases.language_region_and_currency')" @shown="populateI18n" @ok="saveI18n" no-enforce-focus>
+    <b-modal id="modal-i18n" :title="$t('phrases.language_region_and_currency')" @ok="saveI18n" no-enforce-focus>
       <i18n-form ref="form-i18n" />
       <template #modal-footer="{ ok, cancel, hide }">
         <b-button variant="secondary" @click="cancel()">
@@ -64,10 +64,6 @@ export default {
     hasMessages () {
       return this.messages.length > 0
     },
-    populateI18n () {
-      const form = this.$refs['form-i18n']
-      form.populate()
-    },
     async saveI18n () {
       this.$bvModal.hide('modal-i18n')
 
@@ -81,7 +77,7 @@ export default {
       await this.$store.dispatch('currency/code', currency)
 
       if (locale !== language) {
-        await this.loadResources(true)
+        // await this.loadResources(true)
         this.$router.push(this.localePath('/', language))
       }
 

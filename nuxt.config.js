@@ -56,10 +56,6 @@ export default {
     'nuxt-vue-select'
   ],
 
-  router: {
-    middleware: ['sync']
-  },
-
   auth: {
     strategies: {
       local: {

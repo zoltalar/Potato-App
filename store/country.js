@@ -18,6 +18,7 @@ export const actions = {
       await this.$axios.put('/api/potato/users/update-country', { code })
     }
     commit('code', code)
+    return code
   },
   async collection ({ commit }) {
     const response = await this.$axios.get('/api/potato/countries/index', {

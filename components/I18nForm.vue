@@ -1,7 +1,9 @@
 <template>
   <form class="form-language-region">
     <b-form-group :label="$t('phrases.language')">
-      <b-form-select v-model="i18n.language" :options="languageOptions()" />
+      <select class="custom-select" v-model="i18n.language">
+        <option :value="language.code" v-for="(language) in languages">{{ language.native }}</option>
+      </select>
     </b-form-group>
     <b-form-group :label="$t('phrases.country')">
       <b-row>
@@ -14,7 +16,9 @@
       </b-row>
     </b-form-group>
     <b-form-group :label="$t('phrases.currency')">
-      <b-form-select v-model="i18n.currency" :options="currencyOptions(false, '', 'code')" />
+      <select class="custom-select" v-model="i18n.currency">
+        <option :value="currency.code" v-for="(currency) in currencies">{{ currency.code }}</option>
+      </select>
     </b-form-group>
   </form>
 </template>
@@ -27,7 +31,9 @@ export default {
       country: undefined,
       currency: undefined
     },
-    countries: []
+    countries: [],
+    languages: [],
+    currencies: []
   }),
   async fetch () {
     let collection = this.countryCollection()
@@ -35,6 +41,24 @@ export default {
       collection = await this.$store.dispatch('country/collection')
     }
     this.countries = collection
+    collection = this.languageCollection()
+    if (collection.length === 0) {
+      collection = await this.$store.dispatch('language/collection')
+    }
+    this.languages = collection
+    collection = this.currencyCollection()
+    if (collection.length === 0) {
+      collection = await this.$store.dispatch('currency/collection')
+    }
+    this.currencies = collection
+  },
+  watch: {
+    i18n: {
+      handler () {
+        this.populate()
+      },
+      immediate: true
+    }
   },
   methods: {
     country () {
@@ -47,7 +71,7 @@ export default {
       return this.i18n.language
     },
     populate () {
-      this.i18n.language = this.languageCode()
+      this.i18n.language = this.$i18n.locale
       this.i18n.country = this.countryCode()
       this.i18n.currency = this.currencyCode()
     }

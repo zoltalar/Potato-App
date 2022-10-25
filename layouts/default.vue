@@ -15,9 +15,6 @@ export default {
         lang: this.$i18n.locale,
       }
     }
-  },
-  mounted () {
-    this.loadResources()
   }
 }
 </script>
