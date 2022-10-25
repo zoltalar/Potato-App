@@ -66,7 +66,7 @@
                   </ul>
                 </div>
               </b-card>
-              <nuxt-link :to="localePath({ name: 'products' })">{{ $t('phrases.more_products') }}</nuxt-link>
+              <nuxt-link :to="localePath({ name: 'products-index' })">{{ $t('phrases.more_products') }}</nuxt-link>
             </div>
           </b-col>
         </b-row>

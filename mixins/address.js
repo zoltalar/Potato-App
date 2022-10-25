@@ -89,7 +89,7 @@ export default {
       return 5
     },
     addressMaxRadius () {
-      return this.$_.get(this.addressMeta(), 'radius')
+      return 60
     },
     addressTypes () {
       return this.$_.get(this.addressMeta(), 'types')

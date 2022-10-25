@@ -7,7 +7,7 @@
     </b-form-group>
     <b-form-group :label="$t('phrases.country')">
       <b-row>
-        <b-col sm="6" v-for="(country) in countries">
+        <b-col sm="6" v-for="(country, i) in countries" :key="'country-' + i">
           <b-form-radio name="country" v-model="i18n.country" :value="country.code">
             <img :src="countryFlag(country)" class="img-flag" />
             {{ country.name }}

@@ -10,7 +10,7 @@
     </nuxt-link>
     <b-modal id="modal-photo-gallery-view" size="xl" :title="$t('phrases.photo_gallery')" hide-footer no-enforce-focus>
       <b-carousel id="farm-photo-gallery" fade controls indicators>
-        <b-carousel-slide :caption="image.title" :img-src="image.file_url" v-for="(image, i) in images"></b-carousel-slide>
+        <b-carousel-slide :caption="image.title" :img-src="image.file_url" :key="'carousel-image-' + i" v-for="(image, i) in images"></b-carousel-slide>
       </b-carousel>
     </b-modal>
   </div>

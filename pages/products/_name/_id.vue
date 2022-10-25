@@ -1,7 +1,7 @@
 <template>
   <div class="products index">
     <page-title>
-      {{ $t('phrases.products') }}
+      {{ inventoryName(item) }}
     </page-title>
     <page-content>
       <template>
@@ -10,13 +10,13 @@
             <h2 class="h6">{{ categoryName }}</h2>
             <ul>
               <li v-for="(inventoryId, inventoryName, j) in products" :key="'category-product-item-' + i + '-' + j">
-                <a :href="localePath({ name: 'products' })" @click.prevent="sidebar(inventoryId, inventoryName)">{{ inventoryName }}</a>
+                <nuxt-link :to="localePath({ name: 'products-name-id', params: { name: slugify(inventoryName), id: inventoryId } })">{{ inventoryName }}</nuxt-link>
               </li>
             </ul>
           </div>
-          <b-sidebar id="sidebar-product" backdrop backdrop-variant="secondary">
+          <b-sidebar id="sidebar-product" visible shadow>
             <template>
-              <inventory-details :id="id" :name="name" />
+              <inventory-details :id="item.id" :name="inventoryName(item)" />
             </template>
           </b-sidebar>
         </div>
@@ -26,16 +26,16 @@
 </template>
 <script>
 export default {
-  name: 'PageProductsIndex',
+  name: 'PageProductsShow',
   layout: 'default',
   head () {
     return {
-      title: this.$t('phrases.products'),
+      title: this.inventoryName(this.item),
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('messages.meta_description_products')
+          content: this.$t('messages.meta_description_product', { item: this.inventoryName(this.item)})
         }
       ],
     }
@@ -43,28 +43,23 @@ export default {
   nuxtI18n: {
     locales: ['en', 'pl'],
     paths: {
-      en: '/products',
-      pl: '/produkty'
+      en: '/product/:name/:id',
+      pl: '/produkt/:name/:id'
     }
   },
-  async asyncData({ $axios }) {
+  async asyncData({ params, $axios }) {
+    const id = params.id
     try {
-      const response = await $axios.get('/api/potato/inventory/categories')
-      return { inventory: response.data }
+      let response = await $axios.get('/api/potato/inventory/categories')
+      const inventory = response.data
+      response = await $axios.get(`/api/potato/inventory/show/${id}`)
+      const item = response.data.data
+      return { inventory, item }
     } catch (error) {}
   },
   data: () => ({
     inventory: {},
-    id: null,
-    name: ''
-  }),
-  methods: {
-    sidebar (id, name) {
-      this.id = id
-      this.name = name
-
-      this.$root.$emit('bv::toggle::collapse', 'sidebar-product')
-    }
-  }
+    item: {}
+  })
 }
 </script>
