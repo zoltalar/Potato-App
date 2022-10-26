@@ -39,6 +39,9 @@ export default {
   },
   async fetch() {
     await this.loadResources()
+  },
+  mounted() {
+    this.loggedInRedirect()
   }
 }
 </script>

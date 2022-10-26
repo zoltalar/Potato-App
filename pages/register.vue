@@ -78,6 +78,7 @@ export default {
   },
   mounted() {
     this.listen()
+    this.loggedInRedirect()
   }
 }
 </script>
