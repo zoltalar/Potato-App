@@ -7,7 +7,7 @@ export default {
       return this.$store.getters['country/collection']
     },
     countryFlag (country) {
-      let flag = this.$_.get(country, 'name')
+      let flag = this.$_.get(country, 'name', 'Poland')
       flag = this.$_.kebabCase(flag)
       try {
         return require(`@/assets/images/flag/${flag}.svg`)
@@ -20,8 +20,8 @@ export default {
       const code = this.countryCode()
       return this.$_.find(this.countryCollection(), { code })
     },
-    refreshCountryCollection () {
-      this.$store.dispatch('country/collection')
+    async refreshCountryCollection () {
+      return await this.$store.dispatch('country/collection')
     }
   }
 }

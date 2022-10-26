@@ -23,8 +23,8 @@ export default {
       })
       return options
     },
-    refreshLanguageCollection () {
-      this.$store.dispatch('language/collection')
+    async refreshLanguageCollection () {
+      return await this.$store.dispatch('language/collection')
     }
   }
 }

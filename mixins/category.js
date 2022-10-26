@@ -19,8 +19,8 @@ export default {
         return this.categoryName(category)
       })
     },
-    refreshCategoryCollection () {
-      this.$store.dispatch('category/collection')
+    async refreshCategoryCollection () {
+      return await this.$store.dispatch('category/collection')
     }
   }
 }

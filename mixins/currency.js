@@ -23,8 +23,8 @@ export default {
       })
       return options
     },
-    refreshCurrencyCollection () {
-      this.$store.dispatch('currency/collection')
+    async refreshCurrencyCollection () {
+      await this.$store.dispatch('currency/collection')
     }
   }
 }

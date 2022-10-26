@@ -38,8 +38,8 @@ export default {
       })
       return productUnits
     },
-    refreshUnitMeta () {
-      this.$store.dispatch('unit/meta')
+    async refreshUnitMeta () {
+      return await this.$store.dispatch('unit/meta')
     },
     unitMeta () {
       return this.$store.getters['unit/meta']

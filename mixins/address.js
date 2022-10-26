@@ -105,14 +105,14 @@ export default {
           item: this.slugify(inventoryName),
           inventory: inventoryId,
           location: this.slugify(area.city),
-          city: area.city_id,
+          city: area.city_id || 0,
           page: 1,
           radius: this.addressMaxRadius()
         }
       })
     },
-    refreshAddressMeta () {
-      this.$store.dispatch('address/meta')
+    async refreshAddressMeta () {
+      return await this.$store.dispatch('address/meta')
     }
   }
 }

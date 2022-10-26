@@ -56,6 +56,9 @@ export default {
       pl: '/rejestracja'
     }
   },
+  async fetch() {
+    await this.loadResources()
+  },
   data: () => ({
     user: {}
   }),

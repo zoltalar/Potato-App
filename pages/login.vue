@@ -36,6 +36,9 @@ export default {
       en: '/login',
       pl: '/logowanie'
     }
+  },
+  async fetch() {
+    await this.loadResources()
   }
 }
 </script>

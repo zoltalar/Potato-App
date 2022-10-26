@@ -32,8 +32,8 @@ export default {
     operatingHoursTypes () {
       return this.$_.get(this.operatingHoursMeta(), 'types')
     },
-    refreshOperatingHoursMeta () {
-      this.$store.dispatch('operating-hours/meta')
+    async refreshOperatingHoursMeta () {
+      return await this.$store.dispatch('operating-hours/meta')
     }
   }
 }

@@ -39,6 +39,9 @@ export default {
       pl: '/kontakt'
     }
   },
+  async fetch() {
+    await this.loadResources()
+  },
   data: () => ({
     contact: {}
   }),

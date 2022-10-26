@@ -14,6 +14,7 @@
               </li>
             </ul>
           </div>
+          <nuxt-child />
         </div>
       </template>
     </page-content>
@@ -47,6 +48,9 @@ export default {
       const response = await $axios.get('/api/potato/inventory/categories')
       return { inventory: response.data }
     } catch (error) {}
+  },
+  async fetch() {
+    await this.loadResources()
   },
   data: () => ({
     inventory: {}
