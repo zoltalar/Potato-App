@@ -28,15 +28,17 @@
               <font-awesome-icon icon="trash" />
             </b-button>
           </b-button-group>
-          <ul class="list-messages">
-            <message-list-item :message="message" v-for="(message, i) in pagedMessages" :key="'message-list-item-' + i" />
-          </ul>
-          <b-pagination
-            v-model="pagination.currentPage"
-            :items="messages"
-            :total-rows="messages.length"
-            :per-page="pagination.perPage"
-          />
+          <client-only>
+            <ul class="list-messages">
+              <message-list-item :message="message" v-for="(message, i) in pagedMessages" :key="'message-list-item-' + i" />
+            </ul>
+            <b-pagination
+              v-model="pagination.currentPage"
+              :items="messages"
+              :total-rows="messages.length"
+              :per-page="pagination.perPage"
+            />
+          </client-only>
         </div>
         <div class="mb-4" v-else>
           <p v-html="$t('messages.account_messages_empty')"></p>

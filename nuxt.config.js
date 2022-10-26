@@ -89,10 +89,11 @@ export default {
       }
     },
     redirect: {
-      login: '/login',
+      login: 'login',
       logout: '/',
       home: false
-    }
+    },
+    plugins: [ '~/plugins/auth.js' ]
   },
 
   axios: {
@@ -144,7 +145,5 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-    publicPath: '/nuxt/'
-  }
+  build: {}
 }
