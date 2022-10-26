@@ -49,6 +49,9 @@ export default {
       pl: '/konto/dane-kontaktowe'
     }
   },
+  async fetch() {
+    await this.loadResources()
+  },
   methods: {
     listen () {
       this.$root.$on('user-contact-information-updated', () => {

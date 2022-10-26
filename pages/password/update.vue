@@ -35,6 +35,9 @@ export default {
       pl: '/haslo/aktualizacja'
     }
   },
+  async fetch() {
+    await this.loadResources()
+  },
   data: () => ({
     message: ''
   }),

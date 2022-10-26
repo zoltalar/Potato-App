@@ -37,6 +37,9 @@ export default {
       pl: '/gospodarstwa-rolne/utworz'
     }
   },
+  async fetch() {
+    await this.loadResources()
+  },
   methods: {
     listen () {
       this.$root.$on('farm-created', () => {

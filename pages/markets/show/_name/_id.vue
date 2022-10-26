@@ -75,6 +75,9 @@ export default {
       return { market: response.data.data }
     } catch (error) {}
   },
+  async fetch() {
+    await this.loadResources()
+  },
   data: () => ({
     market: {}
   }),

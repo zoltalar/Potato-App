@@ -53,6 +53,9 @@ export default {
       } catch (error) {}
     }
   },
+  async fetch() {
+    await this.loadResources()
+  },
   data: () => ({
     verified: false
   })

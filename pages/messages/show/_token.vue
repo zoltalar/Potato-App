@@ -65,6 +65,9 @@ export default {
       return { message: response.data.data }
     } catch (error) {}
   },
+  async fetch() {
+    await this.loadResources()
+  },
   data: () => ({
     message: {}
   }),

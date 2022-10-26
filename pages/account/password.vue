@@ -49,6 +49,9 @@ export default {
       pl: '/konto/haslo'
     }
   },
+  async fetch() {
+    await this.loadResources()
+  },
   methods: {
     listen () {
       this.$root.$on('user-password-updated', () => {

@@ -68,6 +68,9 @@ export default {
       }
     } catch (error) {}
   },
+  async fetch() {
+    await this.loadResources()
+  },
   data: () => ({
     farms: [],
     meta: {},

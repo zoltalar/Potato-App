@@ -15,8 +15,8 @@
           <div class="category-inventory" v-for="(inventoryNames, categoryName) in inventory[season]">
             <h6>{{ categoryName }}</h6>
             <ul>
-              <li v-for="(inventoryName) in inventoryNames">
-                {{ inventoryName }}
+              <li v-for="(inventoryId, inventoryName) in inventoryNames">
+                <nuxt-link :to="localePath({ name: 'products-name-id', params: { name: slugify(inventoryName), id: inventoryId } })">{{ inventoryName }}</nuxt-link>
               </li>
             </ul>
           </div>

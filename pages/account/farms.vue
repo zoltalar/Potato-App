@@ -70,6 +70,9 @@ export default {
       return { farms: response.data.data }
     } catch(error) {}
   },
+  async fetch() {
+    await this.loadResources()
+  },
   data: () => ({
     farms: [],
     pagination: {

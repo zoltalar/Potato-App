@@ -37,6 +37,9 @@ export default {
       pl: '/agromarkety/utworz'
     }
   },
+  async fetch() {
+    await this.loadResources()
+  },
   methods: {
     listen () {
       this.$root.$on('market-created', () => {

@@ -54,9 +54,13 @@ export default {
                 inventory[attribute] = {}
               }
               if (this.$_.isNil(inventory[attribute][categoryName])) {
-                inventory[attribute][categoryName] = []
+                inventory[attribute][categoryName] = {}
               }
-              inventory[attribute][categoryName].push(this.inventoryName(product.inventory))
+              const itemName = this.inventoryName(product.inventory)
+              if (this.$_.isNil(inventory[attribute][categoryName][itemName])) {
+                inventory[attribute][categoryName][itemName] = []
+              }
+              inventory[attribute][categoryName][itemName] = product.inventory_id
             }
           })
         })

@@ -38,6 +38,9 @@ export default {
       pl: '/haslo/reset'
     }
   },
+  async fetch() {
+    await this.loadResources()
+  },
   data: () => ({
     message: ''
   }),

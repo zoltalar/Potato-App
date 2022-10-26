@@ -76,6 +76,9 @@ export default {
       return { reviews: response.data.data }
     } catch (error) {}
   },
+  async fetch() {
+    await this.loadResources()
+  },
   data: () => ({
     reviews: [],
     pagination: {

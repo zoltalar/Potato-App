@@ -70,6 +70,9 @@ export default {
       return { markets: response.data.data }
     } catch (error) {}
   },
+  async fetch() {
+    await this.loadResources()
+  },
   data: () => ({
     markets: [],
     pagination: {

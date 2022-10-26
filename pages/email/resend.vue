@@ -43,6 +43,9 @@ export default {
       pl: '/email/wyslij'
     }
   },
+  async fetch() {
+    await this.loadResources()
+  },
   data: () => ({
     resent: false
   }),

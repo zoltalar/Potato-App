@@ -75,6 +75,9 @@ export default {
       return { favorites: response.data.data }
     } catch(error) {}
   },
+  async fetch() {
+    await this.loadResources()
+  },
   data: () => ({
     favorites: [],
     pagination: {
