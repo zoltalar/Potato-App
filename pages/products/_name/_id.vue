@@ -2,9 +2,15 @@
   <b-sidebar :title="itemName" id="sidebar-product" backdrop backdrop-variant="secondary" no-close-on-route-change>
     <template>
       <div class="p-3">
-        <h2 class="h6 mb-3" v-if="hasAreas()">{{ $t('phrases.top_growing_areas') }}</h2>
-        <b-list-group class="mb-4" v-if="hasAreas()">
-          <nuxt-link :to="areaUrl(area, id, itemName)" class="list-group-item" v-for="(area, i) in areas" :key="'top-growing-area-' + i">
+        <h2 class="h6 mb-3" v-if="hasGrowingAreas()">{{ $t('phrases.top_growing_areas') }}</h2>
+        <b-list-group class="mb-4" v-if="hasGrowingAreas()">
+          <nuxt-link :to="areaUrl('farms', area, id, itemName)" class="list-group-item" v-for="(area, i) in growingAreas" :key="'top-growing-area-' + i">
+            {{ areaName(area) }}
+          </nuxt-link>
+        </b-list-group>
+        <h2 class="h6 mb-3" v-if="hasSellingAreas()">{{ $t('phrases.top_selling_areas') }}</h2>
+        <b-list-group class="mb-4" v-if="hasSellingAreas()">
+          <nuxt-link :to="areaUrl('markets', area, id, itemName)" class="list-group-item" v-for="(area, i) in sellingAreas" :key="'top-selling-area-' + i">
             {{ areaName(area) }}
           </nuxt-link>
         </b-list-group>
@@ -45,10 +51,12 @@ export default {
       let response = await $axios.get(`/api/potato/inventory/show/${id}`)
       const item = response.data.data
       response = await $axios.get(`/api/potato/products/top-growing-areas/${id}`)
-      const areas = response.data.data
+      const growingAreas = response.data.data
+      response = await $axios.get(`/api/potato/products/top-selling-areas/${id}`)
+      const sellingAreas = response.data.data
       response = await $axios.get(`/api/potato/prices/analytics/${id}`)
       const analytics = response.data.data
-      return { item, areas, analytics }
+      return { item, growingAreas, sellingAreas, analytics }
     } catch (error) {}
   },
   async fetch() {
@@ -56,7 +64,8 @@ export default {
   },
   data: () => ({
     item: {},
-    areas: [],
+    growingAreas: [],
+    sellingAreas: [],
     analytics: [],
     chartData: {
       labels: [],
@@ -97,8 +106,11 @@ export default {
         hoverBackgroundColor: '#58c26c'
       }]
     },
-    hasAreas () {
-      return this.areas.length > 0
+    hasGrowingAreas () {
+      return this.growingAreas.length > 0
+    },
+    hasSellingAreas () {
+      return this.sellingAreas.length > 0
     },
     toggle () {
       this.$root.$emit('bv::toggle::collapse', 'sidebar-product')

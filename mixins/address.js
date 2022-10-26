@@ -97,8 +97,7 @@ export default {
     areaName (area) {
       return area.city + ', ' + area.state_name
     },
-    areaUrl (area, inventoryId, inventoryName) {
-      const type = 'farms'
+    areaUrl (type = 'farms', area, inventoryId, inventoryName) {
       return this.localePath({
         name: type + '-search-item-location-inventory-city-page-radius',
         params: {
