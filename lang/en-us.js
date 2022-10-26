@@ -135,6 +135,7 @@ export default {
     meta_description_my_account_reviews: "My list of created reviews of farms and farmers' markets",
     meta_description_password_reset: 'Send link for password reset',
     meta_description_password_update: 'Password update',
+    meta_description_product: 'Top growing areas and price chart for {item}',
     meta_description_products: 'Browse inventory of products, find top growing areas and monitor prices',
     meta_description_register: 'Register for free account',
     no_inventory_items: 'No products to display',

@@ -140,7 +140,7 @@ export default {
     meta_description_my_account_reviews: 'Moja lista utworzonych recenzji gospodarstw rolnych i agromarketów',
     meta_description_password_reset: 'Wyślij link do resetowania hasła',
     meta_description_password_update: 'Aktualizacja hasła',
-    meta_description_product: '{item}: największe obszary upraw i wykres cenowy',
+    meta_description_product: 'Największe obszary upraw i wykres cenowy dla {item}',
     meta_description_products: 'Przeglądaj produkty rolne, znajdź największe obszary upraw i monitoruj ceny',
     meta_description_register: 'Utwórz darmowe konto',
     no_inventory_items: 'Brak produktów do wyświetlenia',

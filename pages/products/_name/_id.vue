@@ -27,7 +27,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('messages.meta_description_product', { item: this.itemName })
+          content: this.$t('messages.meta_description_product', { item: this.itemName.toLowerCase() })
         }
       ],
     }
