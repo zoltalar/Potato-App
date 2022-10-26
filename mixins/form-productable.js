@@ -14,6 +14,32 @@ export default {
       default: false
     }
   },
+  async fetch() {
+    const type = this.type
+    const productable = this.productable
+    const countryable = this.countryable
+    this
+      .$axios
+      .get('/api/potato/inventory/index', {
+        params: {
+          limit: 200,
+          type,
+          productable_id: productable.id,
+          countryable: (countryable === true ? 1 : 0)
+        }
+      })
+      .then((response) => {
+        let inventory = this.$_.get(response, 'data.data', [])
+        inventory = this.$_.sortBy(inventory, [
+          'category.list_order',
+          'translations[0].name'
+        ])
+        inventory = this.$_.groupBy(inventory, (item) => {
+          return this.categoryName(item.category)
+        })
+        this.inventory = inventory
+      })
+  },
   data: () => ({
     inventory: {}
   }),
@@ -23,41 +49,7 @@ export default {
       return this.$_.get(productable, 'products', [])
     }
   },
-  watch: {
-    productable: {
-      handler () {
-        this.fetch()
-      },
-      immediate: true
-    }
-  },
   methods: {
-    fetch () {
-      const type = this.type
-      const productable = this.productable
-      const countryable = this.countryable
-      this
-        .$axios
-        .get('/api/potato/inventory/index', {
-          params: {
-            limit: 200,
-            type,
-            productable_id: productable.id,
-            countryable: (countryable === true ? 1 : 0)
-          }
-        })
-        .then((response) => {
-          let inventory = this.$_.get(response, 'data.data', [])
-          inventory = this.$_.sortBy(inventory, [
-            'category.list_order',
-            'translations[0].name'
-          ])
-          inventory = this.$_.groupBy(inventory, (item) => {
-            return this.categoryName(item.category)
-          })
-          this.inventory = inventory
-        })
-    },
     hasProduct (id) {
       const products = this.products
       const product = this.$_.find(products, { inventory_id: id })
