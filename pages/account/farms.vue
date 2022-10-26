@@ -10,7 +10,7 @@
       <template>
         <b-alert class="mb-4" variant="danger" :show="hasErrorMessage()" @dismissed="clearErrorMessage()" dismissible>
           {{ flashErrorMessage() }}
-          <nuxt-link :to="localePath('/email/resend')" class="alert-link" v-if="isCurrentUserHasUnverifiedEmailFlashErrorMessage()">{{ $t('phrases.verify') }}</nuxt-link>
+          <nuxt-link :to="localePath({ name: 'email-resend' })" class="alert-link" v-if="isCurrentUserHasUnverifiedEmailFlashErrorMessage()">{{ $t('phrases.verify') }}</nuxt-link>
         </b-alert>
         <b-alert class="mb-4" variant="success" :show="hasFlashMessage()" @dismissed="clearFlashMessage()" dismissible>
           {{ flashMessage() }}
@@ -35,7 +35,7 @@
         <div class="mb-4" v-else>
           <p v-html="$t('messages.account_farms_empty')"></p>
         </div>
-        <nuxt-link :to="localePath('/farms/create')" class="btn btn-primary btn-lg">{{ $t('phrases.add_farm') }}</nuxt-link>
+        <nuxt-link :to="localePath({ name: 'farms-create' })" class="btn btn-primary btn-lg">{{ $t('phrases.add_farm') }}</nuxt-link>
       </template>
     </page-aside-content>
   </div>
