@@ -11,6 +11,7 @@
 <script>
 export default {
   name: 'LayoutHome',
+  middleware: ['sync'],
   head () {
     return {
       titleTemplate: '%s - ' + this.$t('messages.codename'),

@@ -8,6 +8,7 @@
 <script>
 export default {
   name: 'LayoutDefault',
+  middleware: ['sync'],
   head () {
     return {
       titleTemplate: '%s - ' + this.$t('messages.codename'),
