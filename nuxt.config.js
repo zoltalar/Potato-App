@@ -53,6 +53,7 @@ export default {
     '@nuxtjs/i18n',
     '@nuxtjs/moment',
     '@nuxtjs/pwa',
+    '@nuxtjs/sitemap',
     'nuxt-vue-select'
   ],
 
