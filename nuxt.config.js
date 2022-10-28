@@ -53,6 +53,7 @@ export default {
     '@nuxtjs/i18n',
     '@nuxtjs/moment',
     '@nuxtjs/pwa',
+    '@nuxtjs/robots',
     '@nuxtjs/sitemap',
     'nuxt-vue-select'
   ],
@@ -142,6 +143,24 @@ export default {
     manifest: {
       name: 'Ziemniaczek.eu',
       short_name: 'Ziemniaczek'
+    }
+  },
+
+  robots: [
+    {
+      UserAgent: '*',
+      Allow: '/',
+    }
+  ],
+
+  sitemap: {
+    gzip: true,
+    trailingSlash: false,
+    cacheTime: 1000 * 60 * 15,
+    defaults: {
+      changefreq: 'monthly',
+      priority: 0.5,
+      lastmod: new Date(),
     }
   },
 

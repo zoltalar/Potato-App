@@ -17,6 +17,7 @@
     "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/i18n": "^7.3.0",
     "@nuxtjs/moment": "^1.6.1",
+    "@nuxtjs/robots": "^2.5.0",
     "@nuxtjs/sitemap": "^2.4.0",
     "bootstrap": "^4.6.2",
     "bootstrap-vue": "^2.22.0",
