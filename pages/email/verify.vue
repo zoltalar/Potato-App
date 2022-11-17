@@ -4,14 +4,24 @@
       {{ $t('phrases.verify_your_email_address') }}
     </page-title>
     <page-content>
-      <b-alert variant="success" class="mb-0" :show="verified">
-        {{ $t('messages.verification_successful_text') }}
-        <nuxt-link :to="localePath({ name: 'account-farms' })" class="alert-link">{{ $t('phrases.continue') }}</nuxt-link>
-      </b-alert>
-      <b-alert variant="danger" class="mb-0" :show=" ! verified">
-        {{ $t('messages.verification_failed') }}
-        <nuxt-link :to="localePath({ name: 'account-farms' })" class="alert-link">{{ $t('phrases.continue') }}</nuxt-link>
-      </b-alert>
+      <div v-if="$_.isNil($auth.user.email_verified_at)">
+        <b-alert variant="danger" :show="verified === false">
+          {{ $t('messages.verification_failed') }}
+        </b-alert>
+        <b-alert variant="success" :show="resent" dismissible>
+          {{ $t('messages.verification_resent_text') }}
+        </b-alert>
+        <p v-html="$t('messages.verification_text')"></p>
+        <email-resend-form class="mb-4" />
+        <p v-html="$t('messages.verification_sent_text')"></p>
+        <email-verify-form />
+      </div>
+      <div v-else>
+        <b-alert variant="success" class="mb-0" show>
+          {{ $t('messages.verification_successful_text') }}
+          <nuxt-link :to="localePath({ name: 'account-farms' })" class="alert-link">{{ $t('phrases.continue') }}</nuxt-link>
+        </b-alert>
+      </div>
     </page-content>
   </div>
 </template>
@@ -39,25 +49,25 @@ export default {
       pl: '/email/weryfikuj'
     }
   },
-  async asyncData({ query, $axios, $auth }) {
-    const id = query.id
-    const email = query.email
-    if (id && email) {
-      try {
-        const response = await $axios.put(`/api/potato/email/verify/${id}/${email}`)
-        const verified = (response.status === 204)
-        if (verified) {
-          $auth.fetchUser()
-        }
-        return { verified }
-      } catch (error) {}
-    }
-  },
   async fetch() {
     await this.loadResources()
   },
   data: () => ({
-    verified: false
-  })
+    resent: false,
+    verified: null
+  }),
+  methods: {
+    listen () {
+      this.$root.$on('verification-sent', (bool) => {
+        this.resent = bool
+      })
+      this.$root.$on('verified', (bool) => {
+        this.verified = bool
+      })
+    }
+  },
+  mounted () {
+    this.listen()
+  }
 }
 </script>

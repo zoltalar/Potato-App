@@ -33,7 +33,7 @@
               <b-dropdown-item href="/logout" @click.prevent="logout">{{ $t('phrases.logout') }}</b-dropdown-item>
             </b-nav-item-dropdown>
             <b-nav-item v-b-modal.modal-i18n>
-              <img :src="countryFlag(defaultCountry())" />
+              <img :src="countryFlag(defaultCountry())" :alt="countryName(defaultCountry())" />
             </b-nav-item>
           </b-navbar-nav>
         </b-collapse>

@@ -150,6 +150,9 @@ export default {
     {
       UserAgent: '*',
       Allow: '/',
+    },
+    {
+      Sitemap: process.env.BASE_URL + '/sitemap.xml'
     }
   ],
 
@@ -161,7 +164,15 @@ export default {
       changefreq: 'monthly',
       priority: 0.5,
       lastmod: new Date(),
-    }
+    },
+    routes: [
+      {
+        url: '/',
+        changefreq: 'daily',
+        priority: 1,
+        lastmod: new Date(),
+      },
+    ],
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

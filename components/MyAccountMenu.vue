@@ -17,9 +17,16 @@ export default{
           href: this.localePath({ name: 'account-markets' }),
           title: this.$t('phrases.farmers_markets')
         },
+        /*
+        {
+          href: this.localePath({ name: 'account-events' }),
+          title: this.$t('phrases.events')
+        },
+        */
         {
           href: this.localePath({ name: 'account-favorites' }),
-          title: this.$t('phrases.favorites') },
+          title: this.$t('phrases.favorites')
+        },
         {
           href: this.localePath({ name: 'account-messages' }),
           title: this.$t('phrases.messages')

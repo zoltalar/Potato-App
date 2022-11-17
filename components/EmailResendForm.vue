@@ -1,7 +1,7 @@
 <template>
   <form class="form-default" @submit.prevent="resend">
     <b-form-group>
-      <b-btn type="submit" variant="primary">{{ $t('phrases.request_another_link') }}</b-btn>
+      <b-btn type="submit" variant="primary" size="lg">{{ $t('phrases.request_code') }}</b-btn>
     </b-form-group>
   </form>
 </template>
