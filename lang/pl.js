@@ -166,7 +166,7 @@ export default {
     user_password_updated: 'Hasło zostało zmienione pomyślnie.',
     verification_failed: 'Weryfikacja adresu email nie powiodła się!',
     verification_resent_text: 'Nowy kod weryfikacyjny został wysłany na Twój adres email.',
-    verification_sent_text: 'Jeśli otrzymałeś już kod weryfikacyjny wpisz go poniżej i kliknij <strong>Zweryfikuj</strong>.',
+    verification_sent_text: 'Jeśli otrzymałeś(aś) już kod weryfikacyjny wpisz go poniżej i kliknij <strong>Zweryfikuj</strong>.',
     verification_successful_text: 'Twój adres email został zweryfikowany pomyślnie.',
     verification_text: 'Jeśli email z kodem weryfikacyjnym nie dotarł do Ciebie kliknij przycisk <strong>Wyślij Kod</strong>.',
     verified_text: 'Twój adres email jest już zweryfikowany.',
