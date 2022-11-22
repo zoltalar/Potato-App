@@ -4,6 +4,9 @@ export default {
       if (this.$_.isEmpty(this.cityLargestCollection()) || force) {
         await this.refreshCityLargestCollection()
       }
+      if (this.$_.isEmpty(this.eventMeta()) || force) {
+        await this.refreshEventMeta()
+      }
       if (this.$_.isEmpty(this.languageCollection()) || force) {
         await this.refreshLanguageCollection()
       }

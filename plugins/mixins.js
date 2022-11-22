@@ -7,6 +7,7 @@ import cityMixin from '@/mixins/city'
 import countryMixin from '@/mixins/country'
 import currencyMixin from '@/mixins/currency'
 import dateTimeMixin from '@/mixins/date-time'
+import eventMixin from '@/mixins/event'
 import farmMixin from '@/mixins/farm'
 import flashMixin from '@/mixins/flash'
 import imageMixin from '@/mixins/image'
@@ -30,6 +31,7 @@ Vue.mixin(cityMixin)
 Vue.mixin(countryMixin)
 Vue.mixin(currencyMixin)
 Vue.mixin(dateTimeMixin)
+Vue.mixin(eventMixin)
 Vue.mixin(farmMixin)
 Vue.mixin(flashMixin)
 Vue.mixin(imageMixin)

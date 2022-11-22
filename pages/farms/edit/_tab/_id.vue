@@ -115,12 +115,6 @@ export default {
       pl: '/gospodarstwa-rolne/edytuj/:tab/:id'
     }
   },
-  computed: {
-    images () {
-      const farm = this.farm
-      return this.$_.get(farm, 'images', [])
-    }
-  },
   async asyncData({ params, $axios }) {
     const id = params.id
     try {
@@ -135,6 +129,12 @@ export default {
     farm: {},
     image: {}
   }),
+  computed: {
+    images () {
+      const farm = this.farm
+      return this.$_.get(farm, 'images', [])
+    }
+  },
   watch: {
     farm: {
       handler (farm) {

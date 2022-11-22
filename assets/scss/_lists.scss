@@ -169,6 +169,30 @@
   }
 }
 
+.list-meta {
+  color: $text-muted;
+  font-size: 80%;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: inline-block;
+
+    & + li {
+
+      &:after {
+        margin-right: .25rem;
+      }
+
+      &:before {
+        content: '·';
+        margin-left: .25rem;
+        margin-right: .25rem;
+      }
+    }
+  }
+}
+
 .list-social {
 
   li {

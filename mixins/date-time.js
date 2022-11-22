@@ -64,7 +64,7 @@ export default {
     },
     monthName (index) {
       const names = this.monthNames(true)
-      return names[index-1] ?? ''
+      return names[index-1] || ''
     },
     monthNames (translate = false) {
       let months = [
