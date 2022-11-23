@@ -26,6 +26,14 @@
           <h5 class="mb-4">{{ $t('phrases.description') }}</h5>
           <event-description-form :edited-event="event" />
         </div>
+        <div v-else-if="eventEditTab() === 'address'">
+          <h5 class="mb-4">{{ $t('phrases.address') }}</h5>
+          <b-row>
+            <b-col md="6">
+              <event-address-form :edited-event="event" />
+            </b-col>
+          </b-row>
+        </div>
       </template>
     </page-aside-content>
   </div>
@@ -80,9 +88,19 @@ export default {
   },
   methods: {
     listen () {
+      this.$root.$off('event-address-deleted')
+      this.$root.$off('event-address-updated')
       this.$root.$off('event-general-information-updated')
       this.$root.$off('event-description-updated')
 
+      this.$root.$on('event-address-deleted', () => {
+        this.$store.commit('flash/message', this.$t('messages.event_address_deleted'))
+        this.$nuxt.refresh()
+      })
+      this.$root.$on('event-address-updated', () => {
+        this.$store.commit('flash/message', this.$t('messages.event_address_updated'))
+        this.$nuxt.refresh()
+      })
       this.$root.$on('event-general-information-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.event_general_information_updated'))
       })

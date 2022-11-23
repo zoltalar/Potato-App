@@ -9,6 +9,9 @@
         <li v-if="isValidTime(event.start_time) || isValidTime(event.end_time)">
           {{ timeRange(event.start_time, event.end_time) }}
         </li>
+        <li v-if="hasAddress()">
+          {{ addressLine(address, ',', ['city', 'state']) }}
+        </li>
         <li>
           <b-badge pill variant="info">
             {{ eventStatusName(event.status) }}
@@ -40,6 +43,17 @@ export default {
     event: {
       type: Object,
       required: true
+    }
+  },
+  computed: {
+    address () {
+      const event = this.event
+      return this.addressableAddress(event)
+    }
+  },
+  methods: {
+    hasAddress () {
+      return ! this.$_.isNil(this.address)
     }
   }
 }

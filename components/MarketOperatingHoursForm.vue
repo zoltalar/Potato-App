@@ -2,7 +2,7 @@
   <form class="form-operating-hours" @submit.prevent="save">
     <b-form-group>
       <div v-for="(model, i) in hours" :key="'operating-hours-' + i">
-        <b-button variant="danger" size="sm" class="float-right" :title="$t('phrases.delete')" @click.prevent="deleteHours(i)">
+        <b-button variant="danger" size="sm" class="float-right" :title="$t('phrases.delete_season')" @click.prevent="deleteHours(i)">
           <font-awesome-icon icon="times" />
         </b-button>
         <p>

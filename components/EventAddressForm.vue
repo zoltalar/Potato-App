@@ -1,9 +1,6 @@
 <template>
   <form class="form-default" @submit.prevent="save">
     <b-form-group>
-      <b-checkbox :value="1" :unchecked-value="0" v-model="farm.publish_address">{{ $t('phrases.publish_on_website') }}</b-checkbox>
-    </b-form-group>
-    <b-form-group>
       <template v-slot:label>
         {{ $t('phrases.country') }}
         <span class="text-danger">*</span>
@@ -53,17 +50,10 @@
         {{ error('address.zip') }}
       </div>
     </b-form-group>
-    <h5 class="mt-4 mb-4">{{ $t('phrases.driving_directions_parking') }}</h5>
-    <b-form-group>
-      <b-form-textarea id="input-address-directions" size="lg" rows="7" maxlength="1000" :disabled="$_.isNil(country_id)" no-resize v-model="address.directions"></b-form-textarea>
-      <small class="form-text text-muted">
-        <chars-remaining for="input-address-directions" ref="address-directions" />
-        <span>{{ $t('phrases.html_not_allowed') }}.</span>
-      </small>
-    </b-form-group>
     <b-form-group>
       <b-button type="submit" variant="primary" size="lg">{{ $t('phrases.save') }}</b-button>
-      <nuxt-link :to="localePath({ name: 'account-farms' })" class="ml-3">{{ $t('phrases.cancel') }}</nuxt-link>
+      <b-button variant="secondary" size="lg" class="ml-3" @click.prevent="destroy" v-if="hasAddress()">{{ $t('phrases.delete') }}</b-button>
+      <nuxt-link :to="localePath({ name: 'account-events' })" class="ml-3">{{ $t('phrases.cancel') }}</nuxt-link>
     </b-form-group>
   </form>
 </template>
@@ -71,10 +61,10 @@
 import formErrorsMixin from '@/mixins/form-errors'
 import formAddressable from '@/mixins/form-addressable'
 export default {
-  name: 'FarmAddressForm',
+  name: 'EventAddressForm',
   mixins: [ formErrorsMixin, formAddressable ],
   props: {
-    editedFarm: {
+    editedEvent: {
       type: Object,
       required: true
     }
@@ -86,33 +76,26 @@ export default {
       address_2: '',
       city: '',
       city_id: null,
-      zip: '',
-      directions: ''
+      zip: ''
     },
-    farm: {
-      id: null,
-      publish_address: 0
+    event: {
+      id: null
     },
     country_id: null,
   }),
   computed: {
     editedAddress () {
-      const editedFarm = this.editedFarm
-      return this.addressableAddress(editedFarm)
+      const editedEvent = this.editedEvent
+      return this.addressableAddress(editedEvent)
     }
   },
   watch: {
-    editedFarm: {
+    editedEvent: {
       handler () {
         this.populate()
       },
       deep: true,
       immediate: true
-    },
-    'address.directions': {
-      handler (directions) {
-        this.$refs['address-directions'].update(directions)
-      }
     },
     'address.state_id': {
       handler (id) {
@@ -126,6 +109,32 @@ export default {
     }
   },
   methods: {
+    destroy () {
+      if (this.hasAddress()) {
+        const model = this.$t('phrases.address').toLowerCase()
+        const message = this.$t('messages.confirm_model_destroy', { model })
+        if (confirm(message)) {
+          this
+            .$axios
+            .delete(this.destroyUri())
+            .then((response) => {
+              if (response.status === 204) {
+                this.reset()
+                this.$root.$emit('event-address-deleted')
+              }
+            })
+        }
+      }
+    },
+    destroyUri () {
+      const address = this.editedAddress
+      const addressable = this.editedEvent
+      const type = 'event'
+      return `/api/potato/addresses/${address.id}/${type}/${addressable.id}`
+    },
+    hasAddress () {
+      return ! this.$_.isNil(this.editedAddress)
+    },
     listen () {
       this.$root.$off('autocomplete-city-input')
 
@@ -139,17 +148,17 @@ export default {
       })
     },
     populate () {
-      const editedFarm = this.editedFarm
-      const farm = this.farm
+      const editedEvent = this.editedEvent
+      const event = this.event
       const editedAddress = this.editedAddress
       const address = this.address
-      if ( ! this.$_.isEmpty(editedFarm)) {
-        this.$_.forOwn(editedFarm, (value, key) => {
-          if (key in farm) {
-            farm[key] = value
+      if ( ! this.$_.isEmpty(editedEvent)) {
+        this.$_.forOwn(editedEvent, (value, key) => {
+          if (key in event) {
+            event[key] = value
           }
         })
-        this.farm = farm
+        this.event = event
       }
       if ( ! this.$_.isEmpty(editedAddress)) {
         this.$_.forOwn(editedAddress, (value, key) => {
@@ -161,18 +170,27 @@ export default {
         this.address = address
       }
     },
+    reset () {
+      this.address.state_id = null
+      this.address.address = ''
+      this.address.address_2 = ''
+      this.address.city = ''
+      this.address.city_id = null
+      this.address.zip = ''
+      this.country_id = null
+    },
     save () {
       let address = this.address
       address.type = 1
-      const farm = this.farm
+      const event = this.event
       this
         .$axios
-        .post(`/api/potato/addresses/save/farm/${farm.id}`, { address, addressable: farm })
+        .post(`/api/potato/addresses/save/event/${event.id}`, { address, addressable: event })
         .then((response) => {
           this.setErrors(response)
           address = this.$_.get(response, 'data.data')
           if ( ! this.$_.isEmpty(address)) {
-            this.$root.$emit('farm-address-updated', { farm })
+            this.$root.$emit('event-address-updated', { event })
           }
         })
         .catch((error) => {
