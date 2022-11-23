@@ -108,7 +108,6 @@ export default {
     },
     update () {
       let farm = this.farm
-
       this
         .$axios
         .put(`/api/potato/farms/update-contact-information/${farm.id}`, farm)

@@ -46,6 +46,7 @@ export default {
     event_eventable_type: "Use this filter to display in the Organizer list your farms or farmers' markets.",
     event_footer: 'Created on {date} at {time} for {eventable}.',
     event_general_information_email: "Email address will not be shown on the event detail page, but users will be able to contact you via <em>Send Message</em> option.",
+    event_general_information_updated: "Event's general information has been updated successfully.",
     farm_address_updated: "Farm's address information has been updated successfully.",
     farm_contact_information_email: "Email address will not be shown on the farm's profile page, but users will be able to contact you via <em>Send Message</em> option.",
     farm_contact_information_updated: "Farm's contact information has been updated successfully.",

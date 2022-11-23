@@ -82,12 +82,12 @@
               </label>
               <b-input-group size="sm" class="input-group-fixed">
                 <b-form-timepicker
-                  :hour12="hour12()"
+                  :hour12="(isHour12() === true)"
                   :label-no-time-selected="$t('phrases.no_time_selected')"
                   :label-close-button="$t('phrases.close')"
                   v-model="hours[i][day].start" />
                 <b-form-timepicker
-                  :hour12="hour12()"
+                  :hour12="(isHour12() === true)"
                   :label-no-time-selected="$t('phrases.no_time_selected')"
                   :label-close-button="$t('phrases.close')"
                   v-model="hours[i][day].end" />
@@ -122,11 +122,10 @@
   </form>
 </template>
 <script>
-import formOperatableMixin from '@/mixins/form-operatable'
 import formErrorsMixin from '@/mixins/form-errors'
 export default {
   name: 'MarketOperatingHoursForm',
-  mixins: [ formOperatableMixin, formErrorsMixin ],
+  mixins: [ formErrorsMixin ],
   props: {
     operatable: {
       type: Object,

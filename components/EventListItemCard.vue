@@ -4,10 +4,10 @@
       <b-card-title class="h5 mb-1">{{ event.title }}</b-card-title>
       <ul class="list-meta mb-1">
         <li>
-          {{ dateFormat(event.start_date) }}
+          {{ dateRange(event.start_date, event.end_date) }}
         </li>
-        <li>
-          2:00 PM - 5:00 PM
+        <li v-if="isValidTime(event.start_time) || isValidTime(event.end_time)">
+          {{ timeRange(event.start_time, event.end_time) }}
         </li>
         <li>
           <b-badge pill variant="info">

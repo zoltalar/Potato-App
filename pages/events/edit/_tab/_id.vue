@@ -62,6 +62,18 @@ export default {
   },
   data: () => ({
     event: {}
-  })
+  }),
+  methods: {
+    listen () {
+      this.$root.$off('event-general-information-updated')
+
+      this.$root.$on('event-general-information-updated', () => {
+        this.$store.commit('flash/message', this.$t('messages.event_general_information_updated'))
+      })
+    }
+  },
+  mounted() {
+    this.listen()
+  }
 }
 </script>

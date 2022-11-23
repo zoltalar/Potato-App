@@ -34,6 +34,62 @@
       <small class="form-text text-muted" v-html="$t('messages.event_general_information_email')"></small>
     </b-form-group>
     <b-form-group>
+      <template v-slot:label>
+        {{ $t('phrases.start_date') }}
+        <span class="text-danger">*</span>
+      </template>
+      <b-form-datepicker
+        :placeholder="$t('phrases.start_date')"
+        :locale="countryCode()"
+        :date-format-options="{ year: 'numeric', month: '2-digit', day: '2-digit' }"
+        :reset-button="true"
+        reset-button-variant="secondary"
+        :label-reset-button="$t('phrases.reset')"
+        :label-no-date-selected="$t('phrases.no_date_selected')"
+        size="lg"
+        v-model="event.start_date" />
+      <div class="invalid-feedback d-block" v-if="error('start_date') !== null">
+        {{ error('start_date') }}
+      </div>
+    </b-form-group>
+    <b-form-group :label="$t('phrases.end_date')">
+      <b-form-datepicker
+        :placeholder="$t('phrases.end_date')"
+        :locale="countryCode()"
+        :date-format-options="{ year: 'numeric', month: '2-digit', day: '2-digit' }"
+        :reset-button="true"
+        reset-button-variant="secondary"
+        :label-reset-button="$t('phrases.reset')"
+        :label-no-date-selected="$t('phrases.no_date_selected')"
+        size="lg"
+        v-model="event.end_date" />
+      <div class="invalid-feedback d-block" v-if="error('end_date') !== null">
+        {{ error('end_date') }}
+      </div>
+    </b-form-group>
+    <b-form-group :label="$t('phrases.start_time')">
+      <b-form-timepicker
+        :hour12="(isHour12() === true)"
+        :label-no-time-selected="$t('phrases.no_time_selected')"
+        :label-close-button="$t('phrases.close')"
+        size="lg"
+        v-model="event.start_time" />
+      <div class="invalid-feedback d-block" v-if="error('start_time') !== null">
+        {{ error('start_time') }}
+      </div>
+    </b-form-group>
+    <b-form-group :label="$t('phrases.end_time')">
+      <b-form-timepicker
+        :hour12="(isHour12() === true)"
+        :label-no-time-selected="$t('phrases.no_time_selected')"
+        :label-close-button="$t('phrases.close')"
+        size="lg"
+        v-model="event.end_time" />
+      <div class="invalid-feedback d-block" v-if="error('end_time') !== null">
+        {{ error('end_time') }}
+      </div>
+    </b-form-group>
+    <b-form-group>
       <b-button type="submit" variant="primary" size="lg">{{ $t('phrases.save') }}</b-button>
       <nuxt-link :to="localePath({ name: 'account-events' })" class="ml-3">{{ $t('phrases.cancel') }}</nuxt-link>
     </b-form-group>
@@ -56,7 +112,11 @@ export default {
       title: '',
       website: '',
       phone: '',
-      email: ''
+      email: '',
+      start_date: null,
+      end_date: null,
+      start_time: null,
+      end_time: null
     }
   }),
   watch: {
@@ -82,7 +142,20 @@ export default {
       }
     },
     update () {
-      console.log("Updating...")
+      let event = this.event
+      this
+        .$axios
+        .put(`/api/potato/events/update-general-information/${event.id}`, event)
+        .then((response) => {
+          this.setErrors(response)
+          event = this.$_.get(response, 'data.data')
+          if ( ! this.$_.isEmpty(event)) {
+            this.$root.$emit('event-general-information-updated', { event })
+          }
+        })
+        .catch((error) => {
+          this.setErrors(error.response)
+        })
     }
   }
 }

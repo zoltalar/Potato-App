@@ -40,6 +40,16 @@ export default {
       const date = this.$moment(dt).format('YYYY-MM-DD')
       return this.$moment(date).isSame(today)
     },
+    dateRange (startDate, endDate) {
+      const dates = []
+      if (this.isValidDate(startDate)) {
+        dates.push(this.dateFormat(startDate))
+      }
+      if (this.isValidDate(endDate)) {
+        dates.push(this.dateFormat(endDate))
+      }
+      return dates.join(' - ')
+    },
     dateTimeFromNow (dt) {
       return this.$moment(dt).locale(this.languageCode()).fromNow(true)
     },
@@ -53,6 +63,15 @@ export default {
         'saturday',
         'sunday'
       ]
+    },
+    isHour12 () {
+      return this.countryCode() === 'us'
+    },
+    isValidDate (date) {
+      return this.$moment(date).isValid()
+    },
+    isValidTime (time) {
+      return this.$moment(time, 'HH:mm:ss').isValid()
     },
     localeDateFormat () {
       let format = 'DD/MM/YYYY'
@@ -126,6 +145,16 @@ export default {
         format = 'hh:mm a'
       }
       return this.$moment(time, 'HH:mm:ss').locale(code).format(format)
+    },
+    timeRange (startTime, endTime) {
+      const times = []
+      if (this.isValidTime(startTime)) {
+        times.push(this.time(startTime))
+      }
+      if (this.isValidTime(endTime)) {
+        times.push(this.time(endTime))
+      }
+      return times.join(' - ')
     }
   }
 }
