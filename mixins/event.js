@@ -17,9 +17,13 @@ export default {
     eventEditTabs () {
       return [
         { tab: 'general', tabs: { en: 'general', pl: 'ogolne' } },
+        { tab: 'description', tabs: { en: 'description', pl: 'opis' } },
         { tab: 'address', tabs: { en: 'address', pl: 'adres' } },
         { tab: 'photos', tabs: { en: 'photos', pl: 'zdjecia' } },
       ]
+    },
+    eventIsOwner (event) {
+      return this.$auth.loggedIn && this.$auth.user.id === this.$_.get(event, 'eventable.user_id')
     },
     eventMeta () {
       return this.$store.getters['event/meta']

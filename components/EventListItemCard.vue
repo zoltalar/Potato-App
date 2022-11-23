@@ -3,7 +3,7 @@
     <b-card-body>
       <b-card-title class="h5 mb-1">{{ event.title }}</b-card-title>
       <ul class="list-meta mb-1">
-        <li>
+        <li v-if="isValidDate(event.start_date) || isValidDate(event.end_date)">
           {{ dateRange(event.start_date, event.end_date) }}
         </li>
         <li v-if="isValidTime(event.start_time) || isValidTime(event.end_time)">

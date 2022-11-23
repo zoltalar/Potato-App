@@ -22,6 +22,10 @@
             </b-col>
           </b-row>
         </div>
+        <div v-else-if="eventEditTab() === 'description'">
+          <h5 class="mb-4">{{ $t('phrases.description') }}</h5>
+          <event-description-form :edited-event="event" />
+        </div>
       </template>
     </page-aside-content>
   </div>
@@ -63,12 +67,27 @@ export default {
   data: () => ({
     event: {}
   }),
+  watch: {
+    event: {
+      handler (event) {
+        if (this.$_.isEmpty(event) || !this.eventIsOwner(event)) {
+          this.$router.push(this.localePath({ name: 'account-events' }))
+        }
+      },
+      deep: true,
+      immediate: true
+    }
+  },
   methods: {
     listen () {
       this.$root.$off('event-general-information-updated')
+      this.$root.$off('event-description-updated')
 
       this.$root.$on('event-general-information-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.event_general_information_updated'))
+      })
+      this.$root.$on('event-description-updated', () => {
+        this.$store.commit('flash/message', this.$t('messages.event_description_updated'))
       })
     }
   },
