@@ -1,10 +1,32 @@
 export default {
   methods: {
+    eventApproved (event) {
+      const status = this.$_.get(event, 'status', 1)
+      return parseInt(status) === 3
+    },
+    eventEditAddressLink (event) {
+      return this.localePath({
+        name: 'events-edit-tab-id',
+        params: {
+          tab: this.localeEventEditTab('address'),
+          id: event.id
+        }
+      })
+    },
     eventEditDescriptionLink (event) {
       return this.localePath({
         name: 'events-edit-tab-id',
         params: {
           tab: this.localeEventEditTab('description'),
+          id: event.id
+        }
+      })
+    },
+    eventEditGeneralInformationLink (event) {
+      return this.localePath({
+        name: 'events-edit-tab-id',
+        params: {
+          tab: this.localeEventEditTab('general'),
           id: event.id
         }
       })
@@ -53,6 +75,19 @@ export default {
     },
     eventStatuses () {
       return this.$_.get(this.eventMeta(), 'statuses')
+    },
+    eventStyle (event) {
+      let variant = 'info'
+      const status = parseInt(this.$_.get(event, 'status', 1))
+      switch (status) {
+        case 3:
+          variant = 'success'
+          break
+        case 4:
+          variant = 'danger'
+          break
+      }
+      return variant
     },
     localeEventEditTab (tab) {
       let editTab = tab

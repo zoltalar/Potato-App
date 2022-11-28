@@ -5,7 +5,7 @@
     </page-title>
     <page-aside-content>
       <template v-slot:aside>
-        <event-edit-menu class="mb-4" />
+        <event-edit-menu class="mb-4" :event="event" />
       </template>
       <template>
         <b-alert class="mb-4" variant="danger" :show="hasErrorMessage()" @dismissed="clearErrorMessage()" dismissible>

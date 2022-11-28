@@ -40,8 +40,8 @@
       <small class="form-text text-muted" v-html="$t('messages.event_eventable_type')"></small>
     </b-form-group>
     <b-form-group :label="$t('phrases.status')">
-      <b-badge pill variant="info">
-        {{ eventStatusName(1) }}
+      <b-badge class="text-uppercase" variant="info" pill>
+        <span class="small">{{ eventStatusName(1) }}</span>
       </b-badge>
     </b-form-group>
     <b-form-group>

@@ -1,12 +1,18 @@
 <template>
   <b-list-group>
     <nuxt-link :to="tab.href" class="list-group-item list-group-item-action" v-for="(tab, i) in tabs()" :key="'event-edit-tab-' + i">{{ tab.title }}</nuxt-link>
-    <nuxt-link to="/" class="list-group-item list-group-item-action">{{ $t('phrases.view') }}</nuxt-link>
+    <nuxt-link :to="localePath({ name: 'events-show-title-id', params: { title: slugify(event.title), id: event.id } })" class="list-group-item list-group-item-action">{{ $t('phrases.view') }}</nuxt-link>
   </b-list-group>
 </template>
 <script>
 export default{
   name: 'EventEditMenu',
+  props: {
+    event: {
+      type: Object,
+      required: true
+    }
+  },
   methods: {
     tabs () {
       const tabs = []

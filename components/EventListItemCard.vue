@@ -13,7 +13,7 @@
           {{ addressLine(address, ',', ['city', 'state']) }}
         </li>
         <li>
-          <b-badge pill variant="info">
+          <b-badge class="text-uppercase" :variant="eventStyle(event)" pill>
             {{ eventStatusName(event.status) }}
           </b-badge>
         </li>
