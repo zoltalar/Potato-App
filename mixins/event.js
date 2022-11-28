@@ -1,5 +1,14 @@
 export default {
   methods: {
+    eventEditDescriptionLink (event) {
+      return this.localePath({
+        name: 'events-edit-tab-id',
+        params: {
+          tab: this.localeEventEditTab('description'),
+          id: event.id
+        }
+      })
+    },
     eventEditTab () {
       const tab = this.$route.params.tab
       let editTab = tab
@@ -18,8 +27,7 @@ export default {
       return [
         { tab: 'general', tabs: { en: 'general', pl: 'ogolne' } },
         { tab: 'description', tabs: { en: 'description', pl: 'opis' } },
-        { tab: 'address', tabs: { en: 'address', pl: 'adres' } },
-        { tab: 'photos', tabs: { en: 'photos', pl: 'zdjecia' } },
+        { tab: 'address', tabs: { en: 'address', pl: 'adres' } }
       ]
     },
     eventIsOwner (event) {
@@ -27,6 +35,9 @@ export default {
     },
     eventMeta () {
       return this.$store.getters['event/meta']
+    },
+    eventNotEmpty (event) {
+      return ! this.$_.isEmpty(event)
     },
     eventStatusName (id) {
       let name = null

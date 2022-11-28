@@ -56,7 +56,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('messages.meta_description_farms_show') + ': ' + this.farm.name
+          content: this.$t('messages.meta_description_farms_show', { name: this.farm.name })
         }
       ],
     }
