@@ -77,21 +77,12 @@ export default {
     }
   },
   methods: {
-    fetch () {
-      const id = this.$route.params.id
-      this
-        .$axios
-        .get(`/api/potato/farms/show/${id}`)
-        .then((response) => {
-          this.farm = this.$_.get(response, 'data.data')
-        })
-    },
     listen () {
       this.$root.$off('farm-deactivated')
 
       this.$root.$on('farm-deactivated', () => {
         this.$store.commit('flash/message', this.$t('messages.farm_deactivated'))
-        this.fetch()
+        this.$nuxt.refresh()
       })
     }
   },

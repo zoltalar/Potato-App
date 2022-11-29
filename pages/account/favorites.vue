@@ -104,18 +104,10 @@ export default {
           .then((response) => {
             if (response.status === 204) {
               this.$store.commit('flash/message', this.$t('messages.favorite_deleted'))
-              this.fetch()
+              this.$nuxt.refresh()
             }
           })
       }
-    },
-    fetch () {
-      this
-        .$axios
-        .get('/api/potato/account/favorites')
-        .then((response) => {
-          this.favorites = this.$_.get(response, 'data.data')
-        })
     }
   },
   mounted() {

@@ -40,6 +40,7 @@
         </b-row>
         <market-description :market="market" class="mb-4" />
         <products :productable="market" type="market" class="mb-4" />
+        <eventable-events :eventable="market" class="mb-4" />
         <reviewable-reviews :reviewable="market" />
       </template>
     </page-aside-content>
@@ -56,7 +57,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('messages.meta_description_markets_show') + ': ' + this.market.name
+          content: this.$t('messages.meta_description_markets_show', { name: this.market.name })
         }
       ],
     }
@@ -93,26 +94,17 @@ export default {
     }
   },
   methods: {
-    fetch () {
-      const id = this.$route.params.id
-      this
-        .$axios
-        .get(`/api/potato/markets/show/${id}`)
-        .then((response) => {
-          this.market = this.$_.get(response, 'data.data')
-        })
-    },
     listen () {
       this.$root.$on('market-favorited', () => {
         this.$store.commit('flash/message', this.$t('messages.market_favorited'))
-        this.fetch()
+        this.$nuxt.refresh()
       })
       this.$root.$on('message-created', () => {
         this.$store.commit('flash/message', this.$t('messages.message_sent'))
       })
       this.$root.$on('review-created', () => {
         this.$store.commit('flash/message', this.$t('messages.review_created'))
-        this.fetch()
+        this.$nuxt.refresh()
       })
     }
   },

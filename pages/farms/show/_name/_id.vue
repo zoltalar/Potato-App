@@ -40,6 +40,7 @@
         </b-row>
         <farm-description :farm="farm" class="mb-4" />
         <products :productable="farm" type="farm" class="mb-4" />
+        <eventable-events :eventable="farm" class="mb-4" />
         <reviewable-reviews :reviewable="farm" />
       </template>
     </page-aside-content>
@@ -93,26 +94,17 @@ export default {
     }
   },
   methods: {
-    fetch () {
-      const id = this.$route.params.id
-      this
-        .$axios
-        .get(`/api/potato/farms/show/${id}`)
-        .then((response) => {
-          this.farm = this.$_.get(response, 'data.data')
-        })
-    },
     listen () {
       this.$root.$on('farm-favorited', () => {
         this.$store.commit('flash/message', this.$t('messages.farm_favorited'))
-        this.fetch()
+        this.$nuxt.refresh()
       })
       this.$root.$on('message-created', () => {
         this.$store.commit('flash/message', this.$t('messages.message_sent'))
       })
       this.$root.$on('review-created', () => {
         this.$store.commit('flash/message', this.$t('messages.review_created'))
-        this.fetch()
+        this.$nuxt.refresh()
       })
     }
   },

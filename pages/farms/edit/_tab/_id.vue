@@ -151,15 +151,6 @@ export default {
       this.image = image
       this.$bvModal.show('modal-farm-image-edit')
     },
-    fetch () {
-      const id = this.$route.params.id
-      this
-        .$axios
-        .get(`/api/potato/farms/show/${id}`)
-        .then((response) => {
-          this.farm = this.$_.get(response, 'data.data')
-        })
-    },
     hasImages () {
       return this.images.length > 0
     },
@@ -187,11 +178,11 @@ export default {
       })
       this.$root.$on('farm-image-created', () => {
         this.$store.commit('flash/message', this.$t('messages.farm_image_created'))
-        this.fetch()
+        this.$nuxt.refresh()
       })
       this.$root.$on('farm-image-deleted', () => {
         this.$store.commit('flash/message', this.$t('messages.farm_image_deleted'))
-        this.fetch()
+        this.$nuxt.refresh()
       })
       this.$root.$on('farm-image-edit', ({ image }) => {
         this.editImage(image)
@@ -199,7 +190,7 @@ export default {
       this.$root.$on('farm-image-updated', () => {
         this.$bvModal.hide('modal-farm-image-edit')
         this.$store.commit('flash/message', this.$t('messages.farm_image_updated'))
-        this.fetch()
+        this.$nuxt.refresh()
       })
       this.$root.$on('farm-mailing-address-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.farm_mailing_address_updated'))
