@@ -53,6 +53,21 @@
               </div>
             </div>
           </b-col>
+          <b-col md="12" v-if="hasEvents()">
+            <div class="local-events">
+              <h2 class="h5">{{ $t('phrases.local_events') }}</h2>
+              <b-card>
+                <ul class="list-square mb-0">
+                  <li v-for="(event, i) in events" :key="'event-' + i">
+                    <nuxt-link :to="localePath({ name: 'events-show-title-id', params: { title: slugify(event.title), id: event.id } })">{{ event.title }}</nuxt-link>
+                    <small class="text-muted ml-1">
+                      <span v-if="isValidDate(event.start_date) || isValidDate(event.end_date)">{{ dateRange(event.start_date, event.end_date) }}</span><span v-if="addressableAddress(event)">, {{ addressLine(addressableAddress(event), ',', ['city', 'state']) }}</span>
+                    </small>
+                  </li>
+                </ul>
+              </b-card>
+            </div>
+          </b-col>
           <b-col md="12" v-if="hasProducts()">
             <div class="locally-grown">
               <h2 class="h5">{{ $t('messages.locally_grown', { season: $t('phrases.' + currentSeason()) }) }}</h2>
@@ -108,11 +123,13 @@ export default {
       const farms = response.data.data
       response = await $axios.get(`/api/potato/markets/locate/${city.latitude}/${city.longitude}`, { params: { limit: 3 }})
       const markets = response.data.data
+      response = await $axios.get(`/api/potato/events/locate/${city.latitude}/${city.longitude}`, { params: { limit: 10 }})
+      const events = response.data.data
       response = await $axios.get('/api/potato/addresses/plot')
       const markers = response.data.data
       response = await $axios.get(`/api/potato/products/growing-area/${city.latitude}/${city.longitude}`)
       const products = response.data
-      return { city, farms, markets, markers, products }
+      return { city, farms, markets, events, markers, products }
     } catch (error) {}
   },
   async fetch() {
@@ -122,6 +139,7 @@ export default {
     city: {},
     farms: [],
     markets: [],
+    events: [],
     markers: [],
     products: [],
     map: {
@@ -161,6 +179,9 @@ export default {
     }
   },
   methods: {
+    hasEvents () {
+      return this.events.length > 0
+    },
     hasFarms () {
       return this.farms.length > 0
     },

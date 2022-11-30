@@ -45,7 +45,7 @@
       </b-badge>
     </b-form-group>
     <b-form-group>
-      <b-button type="submit" variant="primary" size="lg">{{ $t('phrases.next') }}</b-button>
+      <b-button type="submit" variant="primary" size="lg">{{ $t('phrases.create') }}</b-button>
       <nuxt-link :to="localePath({ name: 'account-events' })" class="ml-3">{{ $t('phrases.cancel') }}</nuxt-link>
     </b-form-group>
   </form>
