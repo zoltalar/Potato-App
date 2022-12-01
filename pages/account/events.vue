@@ -23,6 +23,19 @@
               <a :href="localePath({ name: 'account-events' })" class="card-link" @click.prevent="destroy(occurrence)">{{ $t('phrases.delete') }}</a>
               <nuxt-link :to="localePath({ name: 'events-show-title-id', params: { title: slugify(occurrence.title), id: occurrence.id } })" class="card-link">{{ $t('phrases.view') }}</nuxt-link>
             </template>
+            <template v-slot:footer>
+              <b-card-footer>
+                <small class="text-muted">
+                  {{
+                    $t('messages.event_footer', {
+                      date: shortDate(occurrence.created_at, localeDateFormat()),
+                      time: shortTime(occurrence.created_at),
+                      eventable: occurrence.eventable.name
+                    })
+                  }}
+                </small>
+              </b-card-footer>
+            </template>
           </event-list-item-card>
           <b-pagination
             class="mb-4"
@@ -55,6 +68,13 @@ export default {
           content: this.$t('messages.meta_description_my_account_events')
         }
       ],
+    }
+  },
+  nuxtI18n: {
+    locales: ['en', 'pl'],
+    paths: {
+      en: '/account/events',
+      pl: '/konto/wydarzenia'
     }
   },
   async asyncData({ $axios }) {

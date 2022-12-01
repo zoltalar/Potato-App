@@ -61,6 +61,12 @@ export default {
     eventNotEmpty (event) {
       return ! this.$_.isEmpty(event)
     },
+    eventMinRadius () {
+      return 5
+    },
+    eventMaxRadius () {
+      return 500
+    },
     eventStatusName (id) {
       let name = null
       const statuses = this.eventStatuses()
@@ -72,6 +78,26 @@ export default {
         })
       }
       return name
+    },
+    eventScopeOptions (defaultOption = false) {
+      const options = []
+      const scopes = this.eventScopes()
+      if (defaultOption) {
+        options.push({
+          text: '',
+          value: null
+        })
+      }
+      this.$_.forOwn(scopes, (value, key) => {
+        options.push({
+          text: value,
+          value: key
+        })
+      })
+      return options
+    },
+    eventScopes () {
+      return this.$_.get(this.eventMeta(), 'scopes')
     },
     eventStatuses () {
       return this.$_.get(this.eventMeta(), 'statuses')

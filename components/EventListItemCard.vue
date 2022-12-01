@@ -12,28 +12,18 @@
         <li v-if="hasAddress()">
           {{ addressLine(address, ',', ['city', 'state']) }}
         </li>
-        <li>
+        <li v-if="status">
           <b-badge class="text-uppercase" :variant="eventStyle(event)" pill>
             {{ eventStatusName(event.status) }}
           </b-badge>
         </li>
       </ul>
       <b-card-text v-if="event.description">
-        <read-more-less :text="event.description" :chars="190" />
+        <char-limit :text="event.description" :chars="190" :ellipsis="true" />
       </b-card-text>
       <slot name="links"></slot>
     </b-card-body>
-    <b-card-footer>
-      <small class="text-muted">
-        {{
-          $t('messages.event_footer', {
-            date: shortDate(event.created_at, localeDateFormat()),
-            time: shortTime(event.created_at),
-            eventable: event.eventable.name
-          })
-        }}
-      </small>
-    </b-card-footer>
+    <slot name="footer"></slot>
   </b-card>
 </template>
 <script>
@@ -43,6 +33,11 @@ export default {
     event: {
       type: Object,
       required: true
+    },
+    status: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
   computed: {

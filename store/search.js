@@ -76,6 +76,20 @@ export const actions = {
     const meta = response.data.meta
     commit('search', search)
     return { search, meta }
+  },
+  async searchEvents ({ commit }, { keyword, location, cityId, scope, radius, page }) {
+    const response = await this.$axios.get(`/api/potato/events/search`, { params: {
+        keyword,
+        location,
+        city_id: cityId,
+        scope,
+        radius,
+        page
+      }})
+    const search = response.data.data
+    const meta = response.data.meta
+    commit('search', search)
+    return { search, meta }
   }
 }
 

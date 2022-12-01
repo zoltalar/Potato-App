@@ -2,17 +2,17 @@
   <form @submit.prevent="submit">
     <b-form-group>
       <template v-slot:label>
-        {{ $t('phrases.type') }}
+        {{ $t('phrases.scope') }}
         <span class="text-danger">*</span>
       </template>
-      <b-form-select :options="productableOptions(true)" required v-model="search.type" />
+      <b-form-select :options="eventScopeOptions(true)" required v-model="search.scope" />
     </b-form-group>
     <b-form-group>
       <template v-slot:label>
-        {{ $t('phrases.product') }}
+        {{ $t('phrases.keyword') }}
         <span class="text-danger">*</span>
       </template>
-      <autocomplete-inventory-input size="md" v-model="search.item" />
+      <b-form-input v-model="search.keyword" />
     </b-form-group>
     <b-form-group>
       <template v-slot:label>
@@ -27,7 +27,7 @@
         <small class="text-muted ml-1">({{ lengthUnit('abbreviation') }})</small>
       </template>
       <b-input-group>
-        <b-form-input type="range" :min="addressMinRadius()" :max="addressMaxRadius()" v-model="search.radius" />
+        <b-form-input type="range" :min="eventMinRadius()" :max="eventMaxRadius()" v-model="search.radius" />
         <b-input-group-append is-text>
           {{ search.radius }}
         </b-input-group-append>
@@ -40,14 +40,13 @@
 </template>
 <script>
 export default {
-  name: 'AdvancedSiteSearchForm',
+  name: 'AdvancedEventSearchForm',
   data: () => ({
     search: {
-      item: '',
-      inventory_id: 0,
+      scope: 1,
+      keyword: '',
       location: '',
       city_id: 0,
-      type: 'farms',
       radius: 0
     }
   }),
@@ -58,21 +57,8 @@ export default {
     cityId () {
       return this.$route.params.city
     },
-    inventory() {
-      return this.searchInventory()
-    },
-    inventoryId () {
-      return this.$route.params.inventory
-    },
-    item () {
-      return this.$route.params.item
-    },
-    itemName () {
-      const inventory = this.inventory
-      if (!this.$_.isNil(inventory)) {
-        return this.inventoryName(inventory)
-      }
-      return this.unslugify(this.item)
+    keyword () {
+      return this.$route.params.keyword
     },
     location () {
       return this.$route.params.location
@@ -85,7 +71,10 @@ export default {
       return this.unslugify(this.location)
     },
     radius () {
-      return this.$route.params.radius || this.addressMaxRadius()
+      return this.$route.params.radius || this.eventMaxRadius()
+    },
+    scope () {
+      return this.$route.params.scope || 1
     }
   },
   watch: {
@@ -97,45 +86,31 @@ export default {
   },
   methods: {
     listen () {
-      this.$root.$on('autocomplete-inventory-input', ({ item }) => {
-        this.search.item = this.inventoryName(item)
-        this.search.inventory_id = item.id
-      })
-
       this.$root.$on('autocomplete-location-input', ({ location }) => {
         this.search.location = location.name
         this.search.city_id = location.id
       })
     },
     populate () {
-      this.search.item = this.itemName
-      this.search.inventory_id = this.inventoryId
+      this.search.scope = this.scope
+      this.search.keyword = this.keyword
       this.search.location = this.locationName
       this.search.city_id = this.cityId
-      this.search.type = this.type()
       this.search.radius = this.radius
     },
     submit () {
       const search = this.search
-      const type = search.type
       this.$router.push(this.localePath({
-        name: type + '-search-item-location-inventory-city-page-radius',
+        name: 'events-search-keyword-location-city-scope-page-radius',
         params: {
-          item: this.slugify(search.item),
+          keyword: search.keyword,
           location: this.slugify(search.location),
-          inventory: search.inventory_id,
           city: search.city_id,
+          scope: search.scope,
           page: 1,
           radius: search.radius
         }
       }))
-    },
-    type () {
-      const elements = this.$route.name.split('-')
-      if (this.$_.isArray(elements) && elements.length > 0) {
-        return elements[0]
-      }
-      return null
     }
   },
   created () {

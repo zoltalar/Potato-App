@@ -15,7 +15,7 @@
               <nuxt-link :to="localePath({ name: 'markets-show-name-id', params: { name: slugify(market.name), id: market.id } })" class="card-link">{{ $t('phrases.details') }}</nuxt-link>
             </template>
           </market-list-item-card>
-          <pagination class="mb-0" route="markets-search-item-location-inventory-city-page" :meta="meta" />
+          <pagination class="mb-0" route="markets-search-item-location-inventory-city-page-radius" :meta="meta" />
         </div>
         <div v-else>
           <span v-html="$t('messages.markets_search_empty')"></span>

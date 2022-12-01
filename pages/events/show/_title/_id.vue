@@ -12,6 +12,9 @@
         <b-alert class="mb-4" variant="danger" :show="!eventApproved(event)">
           {{ $t('messages.event_unapproved') }}
         </b-alert>
+        <b-alert class="mb-4" variant="success" :show="hasFlashMessage()" @dismissed="clearFlashMessage()" dismissible>
+          {{ flashMessage() }}
+        </b-alert>
         <event-description :event="event" class="mb-4" />
         <event-organizer :event="event" />
       </template>
@@ -65,5 +68,15 @@ export default {
       immediate: true
     }
   },
+  methods: {
+    listen () {
+      this.$root.$on('message-created', () => {
+        this.$store.commit('flash/message', this.$t('messages.message_sent'))
+      })
+    }
+  },
+  created() {
+    this.listen()
+  }
 }
 </script>

@@ -3,7 +3,7 @@
     <b-form-input
       :size="size"
       maxlength="255"
-      :placeholder="$t('phrases.near')"
+      :placeholder="$t('phrases.town')"
       required
       @input="onChange"
       @keyup="onKeyUp"

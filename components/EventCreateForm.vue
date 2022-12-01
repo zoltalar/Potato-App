@@ -15,7 +15,7 @@
         {{ $t('phrases.organizer') }}
         <span class="text-danger">*</span>
       </template>
-      <select class="custom-select" :class="{'is-invalid': error('eventable_id') !== null}" v-model="occurrence.eventable_id">
+      <select class="custom-select" :class="{'is-invalid': error('eventable_id') !== null}" :disabled="eventableIsDisabled()" v-model="occurrence.eventable_id">
         <option :value="null"></option>
         <template v-if="occurrence.eventable_type === 'farm'">
           <option :value="farm.id" v-for="(farm) in farms">{{ farm.name }}</option>
@@ -99,6 +99,11 @@ export default {
         .then((response) => {
           this.markets = this.$_.get(response, 'data.data', [])
         })
+    },
+    eventableIsDisabled () {
+      const occurrence = this.occurrence
+      const type = occurrence.eventable_type
+      return (type === 'farm' && this.farms.length === 0) || (type === 'market' && this.markets.length === 0)
     },
     setEventableType (type) {
       this.occurrence.eventable_type = type
