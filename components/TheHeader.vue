@@ -14,6 +14,9 @@
             <li class="nav-item" v-if=" ! $auth.loggedIn">
               <nuxt-link :to="localePath({ name: 'login' })" class="nav-link">{{ $t('phrases.login') }}</nuxt-link>
             </li>
+            <li class="nav-item">
+              <nuxt-link :to="localePath({ name: 'products' })" class="nav-link">{{ $t('phrases.products') }}</nuxt-link>
+            </li>
             <b-nav-item-dropdown class="nav-item-user" right v-if="$auth.loggedIn">
               <template v-slot:button-content>
                 {{ $auth.user.first_name }}
@@ -77,7 +80,7 @@ export default {
       await this.$store.dispatch('currency/code', currency)
 
       if (locale !== language) {
-        // await this.loadResources(true)
+        await this.loadResources(true)
         this.$router.push(this.localePath('/', language))
       }
 

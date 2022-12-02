@@ -25,6 +25,24 @@
               </div>
             </div>
           </div>
+          <div v-else-if="type === 'events'">
+            <div class="upcoming-events">
+              <span class="circle">
+                <font-awesome-icon icon="calendar-alt" />
+              </span>
+              <h2 class="h5">{{ $t('phrases.upcoming_events') }}</h2>
+              <b-card>
+                <ul class="list-square mb-0">
+                  <li v-for="(event, i) in events" :key="'event-' + i">
+                    <nuxt-link :to="localePath({ name: 'events-show-title-id', params: { title: slugify(event.title), id: event.id } })">{{ event.title }}</nuxt-link>
+                    <small class="text-muted ml-1">
+                      <span v-if="isValidDate(event.start_date) || isValidDate(event.end_date)">{{ dateRange(event.start_date, event.end_date) }}</span><span v-if="addressableAddress(event)">, {{ addressLine(addressableAddress(event), ',', ['city', 'state']) }}</span>
+                    </small>
+                  </li>
+                </ul>
+              </b-card>
+            </div>
+          </div>
         </b-col>
         <b-col :lg="colMap()">
           <div class="map">
@@ -33,6 +51,7 @@
             </span>
             <h2 class="h5" v-if="type === 'farms'">{{ $t('phrases.browse_farms_map') }}</h2>
             <h2 class="h5" v-else-if="type === 'markets'">{{ $t('phrases.browse_farmers_markets_map') }}</h2>
+            <h2 class="h5" v-else-if="type === 'events'">{{ $t('phrases.browse_events_map') }}</h2>
             <gmap-map class="google-maps" :center="map.center" :zoom="map.zoom" ref="google-map">
               <gmap-info-window
                 :options="map.infoWindow.options"
@@ -76,9 +95,11 @@ export default {
       const farms = response.data.data
       response = await $axios.get('/api/potato/markets/index', { params: { limit: 2, promote: true }})
       const markets = response.data.data
+      response = await $axios.get('/api/potato/events/index', { params: { limit: 10, scope: 1 }})
+      const events = response.data.data
       response = await $axios.get('/api/potato/addresses/plot')
       const markers = response.data.data
-      return { farms, markets, markers }
+      return { farms, markets, events, markers }
     } catch (error) {}
   },
   async fetch() {
@@ -87,6 +108,7 @@ export default {
   data: () => ({
     farms: [],
     markets: [],
+    events: [],
     markers: [],
     map: {
       center: {
@@ -113,17 +135,14 @@ export default {
     city () {
       return this.$store.getters['city/city']
     },
+    eventMarkers () {
+      return this.filterMarkers('event')
+    },
     farmMarkers () {
-      const markers = this.markers
-      return this.$_.filter(markers, (marker) => {
-        return marker.addressable_type === 'farm'
-      })
+      return this.filterMarkers('farm')
     },
     marketMarkers () {
-      const markers = this.markers
-      return this.$_.filter(markers, (marker) => {
-        return marker.addressable_type === 'market'
-      })
+      return this.filterMarkers('market')
     }
   },
   watch: {
@@ -144,6 +163,12 @@ export default {
         return 12
       }
       return 6
+    },
+    filterMarkers (type) {
+      const markers = this.markers
+      return this.$_.filter(markers, (marker) => {
+        return marker.addressable_type === type
+      })
     },
     infoWindow (marker, i) {
       this.map.infoWindow.position = this.position(marker)

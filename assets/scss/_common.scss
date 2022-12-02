@@ -429,6 +429,7 @@ body {
 
 .promoted-farms,
 .promoted-markets,
+.upcoming-events,
 .map {
   text-align: center;
 
@@ -486,5 +487,20 @@ body {
 
   @include media-breakpoint-up(md) {
     text-align: left;
+  }
+}
+
+.upcoming-events {
+
+  .card {
+    background-color: $gray-100;
+    border: none;
+    margin-bottom: 1.25rem;
+    text-align: left;
+  }
+
+  .list-square {
+    margin: 0;
+    padding: 0 0 0 1.5rem;
   }
 }
