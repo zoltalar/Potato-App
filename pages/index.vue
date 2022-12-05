@@ -141,7 +141,10 @@ export default {
       const type = this.type
       const farms = this.farms
       const markets = this.markets
-      if ((type === 'farms' && farms.length === 0) || (type === 'markets' && markets.length === 0)) {
+      const events = this.events
+      if ((type === 'farms' && farms.length === 0)
+        || (type === 'markets' && markets.length === 0)
+        || (type === 'events' && events.length === 0)) {
         return 12
       }
       return 6
