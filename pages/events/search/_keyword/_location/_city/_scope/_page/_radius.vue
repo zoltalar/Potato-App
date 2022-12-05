@@ -35,12 +35,12 @@ export default {
   name: 'PageEventsSearch',
   head () {
     return {
-      title: this.$t('messages.page_title_events_search'),
+      title: this.$t('messages.page_title_events_search', { location: this.locationName }),
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.$t('messages.meta_description_events_search')
+          content: this.$t('messages.meta_description_events_search', { location: this.locationName })
         }
       ],
     }
