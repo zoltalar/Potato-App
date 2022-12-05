@@ -99,7 +99,7 @@ export default {
   },
 
   axios: {
-    baseUrl: process.env.API_BASE_URL
+    baseUrl: process.env.NUXT_ENV_API_BASE_URL
   },
 
   bootstrapVue: {
