@@ -157,9 +157,8 @@ export default {
   ],
 
   sitemap: {
-    gzip: true,
+    gzip: false,
     trailingSlash: false,
-    cacheTime: 1000 * 60 * 15,
     defaults: {
       changefreq: 'monthly',
       priority: 0.5,

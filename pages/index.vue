@@ -155,16 +155,6 @@ export default {
         return marker.addressable_type === type
       })
     },
-    infoWindow (marker, i) {
-      this.map.infoWindow.position = this.position(marker)
-      this.map.infoWindow.options.content = '<strong>' + marker.addressable.name + '</strong>'
-      if (this.index === i) {
-        this.map.infoWindow.open = ! this.map.infoWindow.open
-      } else {
-        this.map.infoWindow.open = true
-        this.index = i
-      }
-    },
     listen () {
       this.$root.$on('search-type', ({ type }) => {
         this.type = type
