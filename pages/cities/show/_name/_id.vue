@@ -6,17 +6,11 @@
     <page-content>
       <template>
         <gmap-map class="google-maps" :center="mapCenter" :zoom="map.zoom" ref="google-map">
-          <gmap-info-window
-            :options="map.infoWindow.options"
-            :position="map.infoWindow.position"
-            :opened="map.infoWindow.open"
-            @closeclick="map.infoWindow.open = false" />
           <gmap-marker
             v-for="(marker, i) in markers"
             :key="'google-map-marker' + i"
             :position="mapsMarkerPosition(marker)"
-            :clickable="true"
-            @click="mapsInfoWindow(marker, i)" />
+            :clickable="false" />
         </gmap-map>
         <b-row>
           <b-col md="6">
@@ -143,19 +137,7 @@ export default {
     markers: [],
     products: [],
     map: {
-      zoom: 10,
-      infoWindow: {
-        index: null,
-        open: false,
-        options: {
-          content: '',
-          pixelOffset: {
-            width: 0,
-            height: -35
-          }
-        },
-        position: null
-      }
+      zoom: 10
     }
   }),
   computed: {

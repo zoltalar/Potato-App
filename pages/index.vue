@@ -53,17 +53,11 @@
             <h2 class="h5" v-else-if="type === 'markets'">{{ $t('phrases.browse_farmers_markets_map') }}</h2>
             <h2 class="h5" v-else-if="type === 'events'">{{ $t('phrases.browse_events_map') }}</h2>
             <gmap-map class="google-maps" :center="map.center" :zoom="map.zoom" ref="google-map">
-              <gmap-info-window
-                :options="map.infoWindow.options"
-                :position="map.infoWindow.position"
-                :opened="map.infoWindow.open"
-                @closeclick="map.infoWindow.open = false" />
               <gmap-marker
                 v-for="(marker, i) in mapMarkers()"
                 :key="'google-map-marker' + i"
                 :position="mapsMarkerPosition(marker)"
-                :clickable="true"
-                @click="mapsInfoWindow(marker, i)" />
+                :clickable="false" />
             </gmap-map>
           </div>
         </b-col>
@@ -115,19 +109,7 @@ export default {
         lat: 51.9194,
         lng: 19.1451
       },
-      zoom: 5,
-      infoWindow: {
-        index: null,
-        open: false,
-        options: {
-          content: '',
-          pixelOffset: {
-            width: 0,
-            height: -35
-          }
-        },
-        position: null
-      }
+      zoom: 5
     },
     type: 'farms'
   }),
