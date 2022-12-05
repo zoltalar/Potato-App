@@ -54,7 +54,6 @@ export default {
     '@nuxtjs/moment',
     '@nuxtjs/pwa',
     '@nuxtjs/robots',
-    '@nuxtjs/sitemap',
     'nuxt-vue-select'
   ],
 
@@ -155,24 +154,6 @@ export default {
       Sitemap: process.env.BASE_URL + '/sitemap.xml'
     }
   ],
-
-  sitemap: {
-    gzip: false,
-    trailingSlash: false,
-    defaults: {
-      changefreq: 'monthly',
-      priority: 0.5,
-      lastmod: new Date(),
-    },
-    routes: [
-      {
-        url: '/',
-        changefreq: 'daily',
-        priority: 1,
-        lastmod: new Date(),
-      },
-    ],
-  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {}
