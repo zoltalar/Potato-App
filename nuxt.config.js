@@ -161,7 +161,7 @@ export default {
       Allow: '/',
     },
     {
-      Sitemap: process.env.BASE_URL + '/sitemap.xml'
+      Sitemap: process.env.NUXT_ENV_BASE_URL + '/sitemap.xml'
     }
   ],
 
