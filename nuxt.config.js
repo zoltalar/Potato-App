@@ -42,7 +42,7 @@ export default {
     { src: '~/plugins/bootstrap.js', mode: 'client' },
     { src: '~/plugins/chart.js', mode: 'client' },
     { src: '~/plugins/lodash.js' },
-    { src: '~/plugins/maps.js', mode: 'client' },
+    { src: '~/plugins/maps.js' },
     { src: '~/plugins/moment.js', mode: 'client' },
     { src: '~/plugins/mixins.js' }
   ],
@@ -184,5 +184,5 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
+  build: { transpile: [/^vue2-google-maps($|\/)/], }
 }
