@@ -246,6 +246,7 @@ export default {
     description: 'Opis',
     details: 'Szczegóły',
     'dont_have_an_account?': 'Nie posiadasz konta?',
+    download_calendar_file: 'Pobierz Plik do Kalendarza',
     driving_directions_parking: 'Jak Dojechać / Parking',
     duplicate: 'Duplikuj',
     edit: 'Edytuj',

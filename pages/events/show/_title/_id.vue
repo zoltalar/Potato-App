@@ -6,7 +6,7 @@
     <page-aside-content :col-aside="{ md: 4, lg: 4 }" :col-main="{ md: 8, lg: 8 }">
       <template v-slot:aside>
         <event-buttons-menu :event="event" />
-        <event-general-information :event="event" />
+        <event-general-information :event="event" class="mb-4" />
       </template>
       <template>
         <b-alert class="mb-4" variant="danger" :show="!eventApproved(event)">

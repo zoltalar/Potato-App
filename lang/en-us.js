@@ -242,6 +242,7 @@ export default {
     description: 'Description',
     details: 'Details',
     'dont_have_an_account?': "Don't have an account?",
+    download_calendar_file: 'Download Calendar File',
     driving_directions_parking: 'Driving Directions / Parking',
     duplicate: 'Duplicate',
     edit: 'Edit',
