@@ -5,6 +5,7 @@
       maxlength="255"
       :placeholder="$t('phrases.town')"
       required
+      :tabindex="tabindex"
       @input="onChange"
       @keyup="onKeyUp"
       v-model="location" />
@@ -32,6 +33,10 @@ export default {
     size: {
       type: String,
       default: 'lg'
+    },
+    tabindex: {
+      type: Number,
+      required: false
     }
   },
   data: () => ({

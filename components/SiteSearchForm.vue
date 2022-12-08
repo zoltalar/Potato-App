@@ -20,17 +20,18 @@
               v-model="search.keyword"
               :placeholder="$t('messages.search_events')"
               required
+              tabindex="1"
               v-if="getType() === 'events'" />
-            <autocomplete-inventory-input size="lg" v-model="search.item" v-else />
+            <autocomplete-inventory-input size="lg" :tabindex="1" v-model="search.item" v-else />
           </div>
         </b-col>
         <b-col md="6" class="col-right">
           <div class="position-relative">
-            <b-button type="submit" variant="primary" size="lg">
+            <b-button type="submit" variant="primary" size="lg" tabindex="3">
               <font-awesome-icon icon="search" />
             </b-button>
             <div class="location">
-              <autocomplete-location-input size="lg" :geolocation="true" v-model="search.location" />
+              <autocomplete-location-input size="lg" :geolocation="true" :tabindex="2" v-model="search.location" />
             </div>
           </div>
         </b-col>

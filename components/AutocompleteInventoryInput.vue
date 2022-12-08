@@ -5,6 +5,7 @@
       maxlength="255"
       :placeholder="$t('messages.search_product_with_example')"
       required
+      :tabindex="tabindex"
       @input="onChange"
       @keyup="onKeyUp"
       v-model="item" />
@@ -26,6 +27,10 @@ export default {
     size: {
       type: String,
       default: 'lg'
+    },
+    tabindex: {
+      type: Number,
+      required: false
     }
   },
   data: () => ({
