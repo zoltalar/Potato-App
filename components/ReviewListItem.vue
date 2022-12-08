@@ -5,6 +5,7 @@
     <div class="mb-2" v-if="review.content">
       <read-more-less :text="review.content" :chars="280" />
     </div>
+    <slot name="links"></slot>
     <div class="small text-muted">
       {{
         $t('messages.farm_review_footer', {
@@ -13,6 +14,9 @@
           user: fullName(review.user, true)
         })
       }}
+    </div>
+    <div class="comments review-comments" v-if="hasComments()">
+      <comment-list-item :comment="comment" v-for="(comment, j) in comments" :key="'comment-' + j" />
     </div>
   </div>
 </template>
@@ -23,6 +27,17 @@ export default {
     review: {
       type: Object,
       required: true
+    }
+  },
+  computed: {
+    comments () {
+      const review = this.review
+      return this.$_.get(review, 'comments', [])
+    }
+  },
+  methods: {
+    hasComments () {
+      return this.comments.length > 0
     }
   }
 }

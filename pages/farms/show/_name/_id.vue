@@ -95,6 +95,10 @@ export default {
   },
   methods: {
     listen () {
+      this.$root.$on('comment-created', () => {
+        this.$store.commit('flash/message', this.$t('messages.comment_created'))
+        this.$nuxt.refresh()
+      })
       this.$root.$on('farm-favorited', () => {
         this.$store.commit('flash/message', this.$t('messages.farm_favorited'))
         this.$nuxt.refresh()

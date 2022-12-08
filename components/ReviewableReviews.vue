@@ -6,8 +6,14 @@
     </h2>
     <div v-if="hasReviews()">
       <div class="list-reviews" v-for="(review, i) in pagedReviews" :key="'review-' + i">
-        <review-list-item class="mb-4" :review="review" />
-        <hr v-if="i < pagedReviews.length - 1" />
+        <review-list-item class="mb-4" :review="review">
+          <template v-slot:links>
+            <div class="mb-2">
+              <a href="/" @click.prevent="comment(review)">{{ $t('phrases.comment_on_this_review') }}</a>
+            </div>
+          </template>
+        </review-list-item>
+        <hr v-if="i < (pagedReviews.length - 1)" />
       </div>
       <b-pagination
         v-model="pagination.currentPage"
@@ -15,6 +21,9 @@
         :total-rows="reviews.length"
         :per-page="pagination.perPage"
       />
+      <b-modal id="modal-comment-create" :title="$t('phrases.review_comment')" @ok="store" no-enforce-focus>
+        <comment-create-form :commentable="selectedReview" type="review" ref="form-comment-create" />
+      </b-modal>
     </div>
     <p v-else>{{ $t('phrases.no_reviews') }}.</p>
   </div>
@@ -29,6 +38,7 @@ export default {
     }
   },
   data: () => ({
+    selectedReview: null,
     pagination: {
       currentPage: 1,
       perPage: 3
@@ -48,9 +58,27 @@ export default {
     }
   },
   methods: {
+    comment (review) {
+      this.selectedReview = review
+      this.$bvModal.show('modal-comment-create')
+    },
     hasReviews () {
       return this.reviews.length > 0
+    },
+    listen () {
+      this.$root.$on('comment-created', () => {
+        this.$bvModal.hide('modal-comment-create')
+      })
+    },
+    store (event) {
+      event.preventDefault()
+      this.$refs['form-comment-create'].store()
+
+      return
     }
+  },
+  mounted() {
+    this.listen()
   }
 }
 </script>
