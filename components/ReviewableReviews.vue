@@ -8,7 +8,7 @@
       <div class="list-reviews" v-for="(review, i) in pagedReviews" :key="'review-' + i">
         <review-list-item class="mb-4" :review="review">
           <template v-slot:links>
-            <div class="mb-2">
+            <div class="mb-2" v-if="$auth.loggedIn">
               <a href="/" @click.prevent="comment(review)">{{ $t('phrases.comment_on_this_review') }}</a>
             </div>
           </template>

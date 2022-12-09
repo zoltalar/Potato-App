@@ -8,7 +8,7 @@
     <slot name="links"></slot>
     <div class="small text-muted">
       {{
-        $t('messages.farm_review_footer', {
+        $t('messages.model_footer', {
           date: shortDate(review.created_at, localeDateFormat()),
           time: shortTime(review.created_at),
           user: fullName(review.user, true)
@@ -16,7 +16,8 @@
       }}
     </div>
     <div class="comments review-comments" v-if="hasComments()">
-      <comment-list-item :comment="comment" v-for="(comment, j) in comments" :key="'comment-' + j" />
+      <h4 class="h6 mb-2">{{ $t('phrases.comments_to_this_review') }}</h4>
+      <comment-list-item :comment="comment" class="mb-4" v-for="(comment, j) in comments" :key="'comment-' + j" />
     </div>
   </div>
 </template>

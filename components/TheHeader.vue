@@ -8,14 +8,14 @@
         <b-navbar-toggle target="nav-primary-collapse"></b-navbar-toggle>
         <b-collapse id="nav-primary-collapse" is-nav>
           <b-navbar-nav class="ml-auto">
+            <li class="nav-item">
+              <nuxt-link :to="localePath({ name: 'products' })" class="nav-link">{{ $t('phrases.products') }}</nuxt-link>
+            </li>
             <li class="nav-item" v-if=" ! $auth.loggedIn">
               <nuxt-link :to="localePath({ name: 'register' })" class="nav-link">{{ $t('phrases.register') }}</nuxt-link>
             </li>
             <li class="nav-item" v-if=" ! $auth.loggedIn">
               <nuxt-link :to="localePath({ name: 'login' })" class="nav-link">{{ $t('phrases.login') }}</nuxt-link>
-            </li>
-            <li class="nav-item">
-              <nuxt-link :to="localePath({ name: 'products' })" class="nav-link">{{ $t('phrases.products') }}</nuxt-link>
             </li>
             <b-nav-item-dropdown class="nav-item-user" right v-if="$auth.loggedIn">
               <template v-slot:button-content>
