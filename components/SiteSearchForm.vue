@@ -11,6 +11,11 @@
         <a :class="{'active': getType() === 'events'}" @click.prevent="setType('events')">{{ $t('phrases.events') }}</a>
       </li>
     </ul>
+    <b-dropdown variant="primary" class="dropdown-types" split right :text="dropdownText()">
+      <b-dropdown-item-button @click.prevent="setType('farms')">{{ $t('phrases.farms') }}</b-dropdown-item-button>
+      <b-dropdown-item-button @click.prevent="setType('markets')">{{ $t('phrases.farmers_markets') }}</b-dropdown-item-button>
+      <b-dropdown-item-button @click.prevent="setType('events')">{{ $t('phrases.events') }}</b-dropdown-item-button>
+    </b-dropdown>
     <div class="inputs">
       <b-row>
         <b-col md="6" class="col-left">
@@ -27,7 +32,7 @@
         </b-col>
         <b-col md="6" class="col-right">
           <div class="position-relative">
-            <b-button type="submit" variant="primary" size="lg" tabindex="3">
+            <b-button type="submit" variant="primary" class="btn-search" size="lg" tabindex="3">
               <font-awesome-icon icon="search" />
             </b-button>
             <div class="location">
@@ -61,6 +66,10 @@ export default {
     }
   },
   methods: {
+    dropdownText () {
+      const type = this.getType()
+      return this.$t('phrases.' + type)
+    },
     listen () {
       this.$root.$on('autocomplete-inventory-input', ({ item }) => {
         this.search.item = this.inventoryName(item)

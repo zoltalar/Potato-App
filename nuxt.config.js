@@ -22,7 +22,7 @@ export default {
     ],
     script: [
       {
-        src: 'https://www.googletagmanager.com/gtag/js?id=G-1NP25CZJBL',
+        src: 'https://www.googletagmanager.com/gtag/js?id=' + process.env.NUXT_ENV_GOOGLE_ANALYTICS_PROPERTY_ID,
         async: true
       },
       {
