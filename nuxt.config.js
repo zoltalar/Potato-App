@@ -169,18 +169,10 @@ export default {
     gzip: false,
     trailingSlash: false,
     defaults: {
-      changefreq: 'monthly',
+      changefreq: 'weekly',
       priority: 0.5,
       lastmod: new Date(),
-    },
-    routes: [
-      {
-        url: '/',
-        changefreq: 'daily',
-        priority: 1,
-        lastmod: new Date(),
-      },
-    ],
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
