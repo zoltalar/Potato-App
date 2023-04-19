@@ -28,6 +28,10 @@
         </div>
         <div v-else-if="eventEditTab() === 'address'">
           <h5 class="mb-4">{{ $t('phrases.address') }}</h5>
+          <b-card class="mb-4" v-if="!address && eventableAddress">
+            <b-card-text v-html="$t('messages.event_address_use', { address: addressLine(eventableAddress, ',', ['address', 'address_2', 'city', 'state', 'zip']) })"></b-card-text>
+            <b-button variant="primary" @click="useAddress()">{{ $t('phrases.use_this_address') }}</b-button>
+          </b-card>
           <b-row>
             <b-col md="6">
               <event-address-form :edited-event="event" />
@@ -72,6 +76,17 @@ export default {
   async fetch() {
     await this.loadResources()
   },
+  computed: {
+    address() {
+      const event = this.event
+      return this.addressableAddress(event)
+    },
+    eventableAddress() {
+      const event = this.event
+      const eventable = this.$_.get(event, 'eventable')
+      return this.addressableAddress(eventable)
+    }
+  },
   data: () => ({
     event: {}
   }),
@@ -107,6 +122,10 @@ export default {
       this.$root.$on('event-description-updated', () => {
         this.$store.commit('flash/message', this.$t('messages.event_description_updated'))
       })
+    },
+    useAddress() {
+      const address = this.eventableAddress
+      this.$root.$emit('event-address-set', { address })
     }
   },
   mounted() {

@@ -137,6 +137,7 @@ export default {
     },
     listen () {
       this.$root.$off('autocomplete-city-input')
+      this.$root.$off('event-address-set')
 
       this.$root.$on('autocomplete-city-input', ({ city }) => {
         const zip = this.$_.head(this.phrases(city.zips))
@@ -145,6 +146,10 @@ export default {
         if ( ! this.$_.isNil(zip)) {
           this.address.zip = zip
         }
+      })
+
+      this.$root.$on('event-address-set', ({ address }) => {
+        this.useAddress(address)
       })
     },
     populate () {
@@ -196,6 +201,15 @@ export default {
         .catch((error) => {
           this.setErrors(error.response)
         })
+    },
+    useAddress(address) {
+      this.country_id = this.$_.get(address, 'state.country_id')
+      this.address.state_id = address.state_id
+      this.address.address = address.address
+      this.address.address_2 = address.address_2
+      this.address.city = address.city
+      this.address.city_id = address.city_id
+      this.address.zip = address.zip
     }
   },
   mounted () {
