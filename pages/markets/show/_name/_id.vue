@@ -54,11 +54,10 @@ export default {
     return {
       title: this.$t('messages.page_title_markets_show', { name: this.market.name, address: this.addressLine(this.addressableAddress(this.market)) }),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_markets_show', { name: this.market.name })
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_markets_show', { name: this.market.name }) },
+        { hid: 'og:title', name: 'og:title', content: this.$t('messages.page_title_markets_show', { name: this.market.name, address: this.addressLine(this.addressableAddress(this.market)) }) },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_markets_show', { name: this.market.name }) },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },

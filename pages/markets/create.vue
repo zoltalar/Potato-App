@@ -22,11 +22,10 @@ export default {
     return {
       title: this.$t('phrases.add_farmers_market'),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_markets_add')
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_markets_add') },
+        { hid: 'og:title', name: 'og:title', content: this.$t('phrases.add_farmers_market') },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_markets_add') },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },
