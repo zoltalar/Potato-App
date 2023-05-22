@@ -172,6 +172,7 @@ export default {
     page_title_farms_search: '{item} in {location} - Farm search results',
     page_title_farms_show: '{name}, {address} - Farm',
     page_title_markets_browse: "Farmers' markets - {location} and surrounding areas",
+    page_title_markets_deactivate: "Deactivate farmers' market - {name}",
     page_title_markets_search: "{item} in {location} - Farmers' markets search results",
     page_title_markets_show: "{name}, {address} - Farmers' market",
     price_sample: 'e.g. 5 USD per pound',

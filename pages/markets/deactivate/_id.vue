@@ -35,13 +35,12 @@ export default {
   layout: 'default',
   head () {
     return {
-      title: this.$t('phrases.deactivate_market') + ' - ' + this.market.name,
+      title: this.$t('messages.page_title_markets_deactivate', { name: this.market.name }),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_markets_deactivate')
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_markets_deactivate') },
+        { hid: 'og:title', name: 'og:title', content: this.$t('messages.page_title_markets_deactivate', { name: this.market.name }) },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_markets_deactivate') },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },

@@ -1,7 +1,7 @@
 <template>
   <div class="markets browse">
     <page-title>
-      {{ $t('messages.page_title_markets_browse', { location: city.name}) }}
+      {{ $t('messages.page_title_markets_browse', { location: city.name }) }}
     </page-title>
     <page-aside-content>
       <template v-slot:aside>
@@ -32,11 +32,10 @@ export default {
     return {
       title: this.$t('messages.page_title_markets_browse', { location: this.city.name }),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_farms_browse', { location: this.city.name })
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_farms_browse', { location: this.city.name }) },
+        { hid: 'og:title', name: 'og:title', content: this.$t('messages.page_title_markets_browse', { location: this.city.name }) },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_farms_browse', { location: this.city.name }) },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },
