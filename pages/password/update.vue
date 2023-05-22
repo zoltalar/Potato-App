@@ -20,11 +20,10 @@ export default {
     return {
       title: this.$t('phrases.password_update'),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_password_update')
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_password_update') },
+        { hid: 'og:title', name: 'og:title', content: this.$t('phrases.password_update') },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_password_update') },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },

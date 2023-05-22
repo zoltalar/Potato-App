@@ -23,11 +23,10 @@ export default {
     return {
       title: this.$t('phrases.password_reset'),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_password_reset')
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_password_reset') },
+        { hid: 'og:title', name: 'og:title', content: this.$t('phrases.password_reset') },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_password_reset') },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },
