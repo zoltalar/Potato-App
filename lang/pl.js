@@ -144,7 +144,7 @@ export default {
     meta_description_farms_edit: 'Edytuj informacje o gospodarstwie rolnym (adres, opis, godziny otwarcia, produkty, zdjęcia, media społecznościowe, itp.)',
     meta_description_farms_search: 'Szukaj gospodarstw rolnych w okolicy miejscowości {location} uprawiających {item}',
     meta_description_farms_show: 'Szczegóły dotyczące gospodarstwa rolnego: {name}',
-    meta_description_index: 'Szukaj zdrową żywność w Twojej okolicy od rolników i agromarketów',
+    meta_description_index: 'Spożywaj zdrową i ekologiczną żywność od lokalnych rolników i agromarketów.',
     meta_description_login: 'Zaloguj się do Ziemniaczka',
     meta_description_markets_add: 'Dodaj agromarket',
     meta_description_markets_deactivate: 'Dezaktywacja agromarketu',

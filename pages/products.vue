@@ -28,11 +28,10 @@ export default {
     return {
       title: this.$t('phrases.products'),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_products')
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_products') },
+        { hid: 'og:title', name: 'og:title', content: this.$t('phrases.products') },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_products') },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },

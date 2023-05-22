@@ -41,11 +41,10 @@ export default {
     return {
       title: this.$t('phrases.register'),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_register')
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_register') },
+        { hid: 'og:title', name: 'og:title', content: this.$t('phrases.register') },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_register') },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },

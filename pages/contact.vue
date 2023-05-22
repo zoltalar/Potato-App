@@ -24,11 +24,10 @@ export default {
     return {
       title: this.$t('phrases.contact_us'),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_contact')
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_contact') },
+        { hid: 'og:title', name: 'og:title', content: this.$t('phrases.contact_us') },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_contact') },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },
