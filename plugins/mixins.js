@@ -15,6 +15,7 @@ import inventoryMixin from '@/mixins/inventory'
 import languageMixin from '@/mixins/language'
 import marketMixin from '@/mixins/market'
 import messageMixin from '@/mixins/message'
+import metaMixin from '@/mixins/meta'
 import nameableMixin from '@/mixins/nameable'
 import operatingHoursMixin from '@/mixins/operating-hours'
 import productMixin from '@/mixins/product'
@@ -39,6 +40,7 @@ Vue.mixin(inventoryMixin)
 Vue.mixin(languageMixin)
 Vue.mixin(marketMixin)
 Vue.mixin(messageMixin)
+Vue.mixin(metaMixin)
 Vue.mixin(nameableMixin)
 Vue.mixin(operatingHoursMixin)
 Vue.mixin(productMixin)

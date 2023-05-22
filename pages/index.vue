@@ -75,11 +75,10 @@ export default {
     return {
       title: this.$t('messages.search_food'),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_index')
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_index') },
+        { hid: 'og:title', name: 'og:title', content: this.$t('messages.search_food') },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_index') },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ]
     }
   },
