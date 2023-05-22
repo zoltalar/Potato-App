@@ -30,11 +30,10 @@ export default {
     return {
       title: this.itemName,
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_product', { item: this.itemName.toLowerCase() })
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_product', { item: this.itemName.toLowerCase() }) },
+        { hid: 'og:title', name: 'og:title', content: this.itemName },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_product', { item: this.itemName.toLowerCase() }) },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },
