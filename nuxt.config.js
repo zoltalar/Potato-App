@@ -125,8 +125,9 @@ export default {
   },
 
   i18n: {
+    baseUrl: process.env.NUXT_ENV_BASE_URL,
     detectBrowserLanguage: false,
-    strategy: 'prefix',
+    strategy: 'prefix_except_default',
     locales: [
       {
         code: 'pl',
