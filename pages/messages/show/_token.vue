@@ -42,11 +42,10 @@ export default {
     return {
       title: this.message.subject,
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_messages_show')
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_messages_show') },
+        { hid: 'og:title', name: 'og:title', content: this.message.subject },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_messages_show') },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },
