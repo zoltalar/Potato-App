@@ -35,13 +35,12 @@ export default {
   layout: 'default',
   head () {
     return {
-      title: this.$t('phrases.deactivate_farm') + ' - ' + this.farm.name,
+      title: this.$t('messages.page_title_farms_deactivate', { name: this.farm.name }),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_farms_deactivate')
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_farms_deactivate') },
+        { hid: 'og:title', name: 'og:title', content: this.$t('messages.page_title_farms_deactivate', { name: this.farm.name }) },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_farms_deactivate') },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },

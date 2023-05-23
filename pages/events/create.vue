@@ -22,11 +22,7 @@ export default {
     return {
       title: this.$t('phrases.add_event'),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_events_add')
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_events_add') },
       ],
     }
   },

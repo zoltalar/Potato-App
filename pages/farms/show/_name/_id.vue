@@ -54,11 +54,10 @@ export default {
     return {
       title: this.$t('messages.page_title_farms_show', { name: this.farm.name, address: this.addressLine(this.addressableAddress(this.farm)) }),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_farms_show', { name: this.farm.name })
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_farms_show', { name: this.farm.name }) },
+        { hid: 'og:title', name: 'og:title', content: this.$t('messages.page_title_farms_show', { name: this.farm.name, address: this.addressLine(this.addressableAddress(this.farm)) }) },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_farms_show', { name: this.farm.name }) },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },

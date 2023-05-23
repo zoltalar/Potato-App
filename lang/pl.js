@@ -173,6 +173,7 @@ export default {
     page_title_events_search: 'Wydarzenia w miejscowości {location} - Wyniki wyszukiwania wydarzeń',
     page_title_events_show: '{title} - Wydarzenie',
     page_title_farms_browse: 'Gospodarstwa rolne - {location} i okolice',
+    page_title_farms_deactivate: 'Dezaktywuj Gospodarstwo Rolne - {name}',
     page_title_farms_search: '{item} w miejscowości {location} - Wyniki wyszukiwania gospodarstw rolnych',
     page_title_farms_show: '{name}, {address} - Gospodarstwo rolne',
     page_title_markets_browse: 'Agromarkety - {location} i okolice',

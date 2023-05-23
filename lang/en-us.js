@@ -169,6 +169,7 @@ export default {
     page_title_events_search: 'Events in {location} - Event search results',
     page_title_events_show: '{title} - Event',
     page_title_farms_browse: 'Farms - {location} and surrounding areas',
+    page_title_farms_deactivate: 'Deactivate farm - {name}',
     page_title_farms_search: '{item} in {location} - Farm search results',
     page_title_farms_show: '{name}, {address} - Farm',
     page_title_markets_browse: "Farmers' markets - {location} and surrounding areas",
