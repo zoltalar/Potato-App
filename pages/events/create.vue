@@ -23,6 +23,9 @@ export default {
       title: this.$t('phrases.add_event'),
       meta: [
         { hid: 'description', name: 'description', content: this.$t('messages.meta_description_events_add') },
+        { hid: 'og:title', name: 'og:title', content: this.$t('phrases.add_event') },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_events_add') },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },

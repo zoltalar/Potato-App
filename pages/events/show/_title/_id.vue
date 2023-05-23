@@ -29,11 +29,10 @@ export default {
     return {
       title: this.$t('messages.page_title_events_show', { title: this.event.title }),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_events_show', { title: this.event.title })
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_events_show', { title: this.event.title }) },
+        { hid: 'og:title', name: 'og:title', content: this.$t('messages.page_title_events_show', { title: this.event.title }) },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_events_show', { title: this.event.title }) },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ]
     }
   },
