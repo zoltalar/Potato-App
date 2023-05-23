@@ -34,11 +34,10 @@ export default {
     return {
       title: this.$t('phrases.contact_information'),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_my_account_contact_information')
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_my_account_contact_information') },
+        { hid: 'og:title', name: 'og:title', content: this.$t('phrases.contact_information') },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_my_account_contact_information') },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },

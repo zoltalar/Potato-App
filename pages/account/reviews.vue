@@ -55,11 +55,10 @@ export default {
     return {
       title: this.$t('phrases.reviews'),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_my_account_reviews')
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_my_account_reviews') },
+        { hid: 'og:title', name: 'og:title', content: this.$t('phrases.reviews') },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_my_account_reviews') },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },

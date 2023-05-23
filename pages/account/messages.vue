@@ -56,11 +56,10 @@ export default {
     return {
       title: this.$t('phrases.messages'),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_my_account_messages')
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_my_account_messages') },
+        { hid: 'og:title', name: 'og:title', content: this.$t('phrases.messages') },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_my_account_messages') },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },

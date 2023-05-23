@@ -54,11 +54,10 @@ export default {
     return {
       title: this.$t('phrases.favorites'),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_my_account_favorites')
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_my_account_favorites') },
+        { hid: 'og:title', name: 'og:title', content: this.$t('phrases.favorites') },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_my_account_favorites') },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },

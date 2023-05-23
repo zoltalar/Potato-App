@@ -49,11 +49,10 @@ export default {
     return {
       title: this.$t('phrases.farms'),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_my_account_farms')
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_my_account_farms') },
+        { hid: 'og:title', name: 'og:title', content: this.$t('phrases.farms') },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_my_account_farms') },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },

@@ -93,11 +93,10 @@ export default {
     return {
       title: this.$t('messages.page_title_cities', { location: this.city.name }),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_cities', { location: this.city.name })
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_cities', { location: this.city.name }) },
+        { hid: 'og:title', name: 'og:title', content: this.$t('messages.page_title_cities', { location: this.city.name }) },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_cities', { location: this.city.name }) },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },

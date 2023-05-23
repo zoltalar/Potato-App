@@ -34,11 +34,10 @@ export default {
     return {
       title: this.$t('phrases.verify_your_email_address'),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_email_verify')
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_email_verify') },
+        { hid: 'og:title', name: 'og:title', content: this.$t('phrases.verify_your_email_address') },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_email_verify') },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },

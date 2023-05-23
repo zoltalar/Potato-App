@@ -49,11 +49,10 @@ export default {
     return {
       title: this.$t('phrases.farmers_markets'),
       meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.$t('messages.meta_description_my_account_markets')
-        }
+        { hid: 'description', name: 'description', content: this.$t('messages.meta_description_my_account_markets') },
+        { hid: 'og:title', name: 'og:title', content: this.$t('phrases.farmers_markets') },
+        { hid: 'og:description', name: 'og:description', content: this.$t('messages.meta_description_my_account_markets') },
+        { hid: 'og:image', name: 'og:image', content: this.metaOgImage() },
       ],
     }
   },
