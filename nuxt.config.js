@@ -1,3 +1,6 @@
+const axios = require('axios')
+const _ = require('lodash')
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: true,
@@ -173,7 +176,37 @@ export default {
       changefreq: 'weekly',
       priority: 0.5,
       lastmod: new Date(),
-    }
+    },
+    sitemaps: [
+      {
+        path: '/sitemap.xml'
+      },
+      {
+        path: '/city-sitemap.xml',
+        exclude: ['/**'],
+        routes: async () => {
+          const response = await axios.get(process.env.NUXT_ENV_API_BASE_URL + '/api/potato/cities/index', {
+            params: { population: 200000, limit: 25 }
+          })
+          return response.data.data.map((city) => '/miasta/' + _.kebabCase(city.name_ascii) + '/' + city.id)
+        }
+      },
+      {
+        path: '/product-sitemap.xml',
+        exclude: ['/**'],
+        routes: async () => {
+          const response = await axios.get(process.env.NUXT_ENV_API_BASE_URL + '/api/potato/inventory/index', {
+            params: { limit: 200 }
+          })
+          return response.data.data.map((inventory) => {
+            if (inventory.translations[0]) {
+              return '/produkty/' + _.kebabCase(inventory.translations[0].name) + '/' + inventory.id
+            }
+            return '/en/products/' + _.kebabCase(inventory.name) + '/' + inventory.id
+          })
+        }    
+      }
+    ]    
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
