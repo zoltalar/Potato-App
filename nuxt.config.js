@@ -65,6 +65,7 @@ export default {
     '@nuxtjs/i18n',
     '@nuxtjs/moment',
     '@nuxtjs/pwa',
+    '@nuxtjs/redirect-module',
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
     'nuxt-vue-select'
@@ -158,6 +159,11 @@ export default {
       short_name: 'Ziemniaczek'
     }
   },
+
+  redirect: [
+    { from: '/pl/produkty/fasola/32', to: '/produkty/fasola/32', statusCode: 301 },
+    { from: '/pl/produkty/miod-lipowy/108', to: '/produkty/miod-lipowy/108', statusCode: 301 },
+  ],
 
   robots: [
     {
