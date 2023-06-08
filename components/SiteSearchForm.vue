@@ -2,13 +2,13 @@
   <form @submit.prevent="submit">
     <ul class="types">
       <li>
-        <a :class="{'active': getType() === 'farms'}" @click.prevent="setType('farms')">{{ $t('phrases.farms') }}</a>
+        <span :class="{'active': getType() === 'farms'}" @click.prevent="setType('farms')">{{ $t('phrases.farms') }}</span>
       </li>
       <li>
-        <a :class="{'active': getType() === 'markets'}" @click.prevent="setType('markets')">{{ $t('phrases.farmers_markets') }}</a>
+        <span :class="{'active': getType() === 'markets'}" @click.prevent="setType('markets')">{{ $t('phrases.farmers_markets') }}</span>
       </li>
       <li>
-        <a :class="{'active': getType() === 'events'}" @click.prevent="setType('events')">{{ $t('phrases.events') }}</a>
+        <span :class="{'active': getType() === 'events'}" @click.prevent="setType('events')">{{ $t('phrases.events') }}</span>
       </li>
     </ul>
     <b-dropdown variant="primary" class="dropdown-types" split right :text="dropdownText()">
