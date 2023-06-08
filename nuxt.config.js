@@ -161,8 +161,26 @@ export default {
   },
 
   redirect: [
+    { from: '/pl/kontakt', to: '/kontakt', statusCode: 301 },
+    { from: '/pl/logowanie', to: '/logowanie', statusCode: 301 },
+    { from: '/pl/produkty', to: '/produkty', statusCode: 301 },
+    { from: '/pl/rejestracja', to: '/rejestracja', statusCode: 301 },
+    { from: '/pl/agromarkety/utworz', to: '/agromarkety/utworz', statusCode: 301 },
+    { from: '/pl/gospodarstwa-rolne/utworz', to: '/gospodarstwa-rolne/utworz', statusCode: 301 },
+    { from: '/pl/miasta/gdansk/1640', to: '/miasta/gdansk/1640', statusCode: 301 },
+    { from: '/pl/miasta/szczecin/2304', to: '/miasta/szczecin/2304', statusCode: 301 },
+    { from: '/pl/miasta/warszawa/1090', to: '/miasta/warszawa/1090', statusCode: 301 },
+    { from: '/pl/produkty/czeresnie/8', to: '/produkty/czeresnie/8', statusCode: 301 },
+    { from: '/pl/produkty/czerwona-kapusta/39', to: '/produkty/czerwona-kapusta/39', statusCode: 301 },
     { from: '/pl/produkty/fasola/32', to: '/produkty/fasola/32', statusCode: 301 },
+    { from: '/pl/produkty/groszek-cukrowy/77', to: '/produkty/groszek-cukrowy/77', statusCode: 301 },
+    { from: '/pl/produkty/imbir/51', to: '/produkty/imbir/51', statusCode: 301 },
+    { from: '/pl/produkty/kasztany/91', to: '/produkty/kasztany/91', statusCode: 301 },
     { from: '/pl/produkty/miod-lipowy/108', to: '/produkty/miod-lipowy/108', statusCode: 301 },
+    { from: '/pl/produkty/proso/115', to: '/produkty/proso/115', statusCode: 301 },
+    { from: '/pl/produkty/szpinak/76', to: '/produkty/szpinak/76', statusCode: 301 },
+    { from: '/pl/produkty/zielony-groszek/64', to: '/produkty/zielony-groszek/64', statusCode: 301 },
+    { from: '/pl/produkty/zielona-papryka/65', to: '/produkty/zielona-papryka/65', statusCode: 301 },
   ],
 
   robots: [
