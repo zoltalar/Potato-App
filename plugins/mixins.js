@@ -21,6 +21,7 @@ import operatingHoursMixin from '@/mixins/operating-hours'
 import productMixin from '@/mixins/product'
 import searchMixin from '@/mixins/search'
 import stringMixin from '@/mixins/string'
+import substanceMixin from '@/mixins/substance'
 import systemMixin from '@/mixins/system'
 import unitMixin from '@/mixins/unit'
 import userMixin from '@/mixins/user'
@@ -46,6 +47,7 @@ Vue.mixin(operatingHoursMixin)
 Vue.mixin(productMixin)
 Vue.mixin(searchMixin)
 Vue.mixin(stringMixin)
+Vue.mixin(substanceMixin)
 Vue.mixin(systemMixin)
 Vue.mixin(unitMixin)
 Vue.mixin(userMixin)

@@ -2,7 +2,13 @@
   <b-sidebar :title="itemName" id="sidebar-product" backdrop backdrop-variant="secondary" no-close-on-route-change>
     <template>
       <div class="p-3">
-        <h2 class="h6 mb-3">{{ $t('phrases.nutrition_facts') }}</h2>
+        <h2 class="h6 mb-3" v-if="hasSubstances()">{{ $t('phrases.nutrition_facts') }} (100g)</h2>
+        <b-list-group class="list-group-nutrition-facts mb-4" v-if="hasSubstances()">
+          <b-list-group-item class="d-flex justify-content-between align-items-center" v-for="(substance, i) in substances" :key="'substance-item-' + i">
+            {{ substanceName(substance) }}
+            <b-badge variant="primary" pill>{{ substanceValue(substance) }}</b-badge>
+          </b-list-group-item>
+        </b-list-group>
         <h2 class="h6 mb-3" v-if="hasGrowingAreas()">{{ $t('phrases.top_growing_areas') }}</h2>
         <b-list-group class="mb-4" v-if="hasGrowingAreas()">
           <nuxt-link :to="areaUrl('farms', area, id, itemName)" class="list-group-item" v-for="(area, i) in growingAreas" :key="'top-growing-area-' + i">
@@ -79,6 +85,11 @@ export default {
     },
     itemName () {
       return this.inventoryName(this.item)
+    },
+    substances () {
+      return this.$_.sortBy(this.item.substances, (substance) => {
+        return this.substanceName(substance)
+      })
     }
   },
   watch: {
@@ -111,6 +122,9 @@ export default {
     },
     hasSellingAreas () {
       return this.sellingAreas.length > 0
+    },
+    hasSubstances () {
+      return this.substances.length > 0
     },
     toggle () {
       this.$root.$emit('bv::toggle::collapse', 'sidebar-product')

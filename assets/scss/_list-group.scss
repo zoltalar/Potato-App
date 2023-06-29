@@ -8,3 +8,10 @@
     @extend .active;
   }
 }
+
+.list-group-nutrition-facts {
+
+  .badge-pill {
+    color: $white;
+  }
+}
