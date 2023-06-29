@@ -337,6 +337,7 @@ export default {
     no_product_information: 'No product information',
     no_reviews: 'No reviews',
     no_time_selected: 'No time selected',
+    nutrition_facts: 'Nutrition Facts',
     ok: 'OK',
     operating_hours: 'Operating Hours',
     optional: 'Optional',

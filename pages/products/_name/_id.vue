@@ -2,6 +2,7 @@
   <b-sidebar :title="itemName" id="sidebar-product" backdrop backdrop-variant="secondary" no-close-on-route-change>
     <template>
       <div class="p-3">
+        <h2 class="h6 mb-3">{{ $t('phrases.nutrition_facts') }}</h2>
         <h2 class="h6 mb-3" v-if="hasGrowingAreas()">{{ $t('phrases.top_growing_areas') }}</h2>
         <b-list-group class="mb-4" v-if="hasGrowingAreas()">
           <nuxt-link :to="areaUrl('farms', area, id, itemName)" class="list-group-item" v-for="(area, i) in growingAreas" :key="'top-growing-area-' + i">

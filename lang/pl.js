@@ -342,6 +342,7 @@ export default {
     no_product_information: 'Brak informacji o produktach',
     no_reviews: 'Brak recenzji',
     no_time_selected: 'Nie wybrano czasu',
+    nutrition_facts: 'Wartość Odżywcza',
     ok: 'OK',
     operating_hours: 'Godziny Otwarcia',
     optional: 'Opcjonalne',
